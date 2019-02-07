@@ -2,7 +2,7 @@ addons:
   sonarcloud:
     organization: "sgt390-github"
     token:
-      secure: "56a3745b52d96e589499bcd8d6a88ead9d03aded"
+      secure: "1d4a6c2e6682736c28eb9499fb8b3a06710eac3d"
 script:
   # other script steps might be done before running the actual analysis
   - sonar-scanner
