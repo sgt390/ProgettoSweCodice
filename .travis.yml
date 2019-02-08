@@ -3,9 +3,6 @@ addons:
     organization: "sgt390-github"
     token:
       secure: "1d4a6c2e6682736c28eb9499fb8b3a06710eac3d"
-script:
-  # other script steps might be done before running the actual analysis
-  - sonar-scanner
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -28,7 +25,15 @@ android:
     - 'google-gdk-license-.+'
 
 before_script:
-  #- yes | sdkmanager "platforms;android-27"
    - cd MegAlexa
-script:
-   - ./gradlew build
+   jobs:
+  include:
+    - stage: test
+      name: "Static tests"
+      script: sonar-scanner
+    - name: "Unit tests"
+      script: ./gradlew build
+    - name: "Integration tests"
+      script: skip
+    - stage: deploy
+      script: skip
