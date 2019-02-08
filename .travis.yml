@@ -28,12 +28,19 @@ before_script:
    - cd MegAlexa
    jobs:
   include:
-    - stage: test
+    - stage: "Static tests"
       name: "Static tests"
       script: sonar-scanner
-    - name: "Unit tests"
+    - stage: "Dynamic tests"  
+      name: "Unit tests"
       script: ./gradlew build
     - name: "Integration tests"
       script: skip
     - stage: deploy
       script: skip
+
+stages:
+  - "Static tests"
+  - "Dynamic tests"
+  - name: deploy
+    if: branch = master
