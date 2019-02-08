@@ -38,7 +38,6 @@ before_script:
       script: skip
     - stage: deploy
       script: skip
-
 stages:
   - "Static tests"
   - "Dynamic tests"
