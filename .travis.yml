@@ -26,7 +26,7 @@ android:
 
 before_script:
    - cd MegAlexa
-   jobs:
+jobs:
   include:
     - stage: "Static tests"
       name: "Static tests"
@@ -41,5 +41,4 @@ before_script:
 stages:
   - "Static tests"
   - "Dynamic tests"
-  - name: deploy
-    if: branch = master
+  - deploy
