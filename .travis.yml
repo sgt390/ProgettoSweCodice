@@ -41,3 +41,5 @@ stages:
   - "Static tests"
   - "Dynamic tests"
   - deploy
+notifications:
+  slack: zerosevengroup:awH2p9uSzEPY9plMSyKBtAHF
