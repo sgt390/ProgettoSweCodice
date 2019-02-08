@@ -23,4 +23,4 @@ before_script:
   #- yes | sdkmanager "platforms;android-27"
    - cd MegAlexa
 script:
-   - ./gradlew build
+   - ./gradlew build --status
