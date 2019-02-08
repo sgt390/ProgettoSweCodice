@@ -10,8 +10,8 @@ script:
 language: android
 android:
   components:
-    - build-tools-26.0.2
-    - android-26
+    - build-tools-28.0.3
+    - android-28
     - add-on
     - extra
   licenses:
