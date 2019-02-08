@@ -24,8 +24,7 @@ android:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
 
-before_script:
-   - cd MegAlexa
+#use "MegAlexa/gradlew stage-name" to run stages!
 jobs:
   include:
     - stage: "Static tests"
@@ -33,7 +32,7 @@ jobs:
       script: sonar-scanner
     - stage: "Dynamic tests"  
       name: "Unit tests"
-      script: ./gradlew build
+      script: MegAlexa/gradlew build
     - name: "Integration tests"
       script: skip
     - stage: deploy
