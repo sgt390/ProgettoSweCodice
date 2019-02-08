@@ -1,8 +1,7 @@
-addons:
-  sonarcloud:
-    organization: "sgt390-github"
-    token:
-      secure: "1d4a6c2e6682736c28eb9499fb8b3a06710eac3d"
+language: android
+android:
+  components:
+    - android-19
 script:
-  # other script steps might be done before running the actual analysis
-  - sonar-scanner
+  - cd MegAlexa
+  - ./gradlew build
