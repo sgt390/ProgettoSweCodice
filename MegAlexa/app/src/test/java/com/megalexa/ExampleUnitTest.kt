@@ -1,4 +1,4 @@
-package com.example.megalexa
+package com.megalexa
 
 import org.junit.Test
 
