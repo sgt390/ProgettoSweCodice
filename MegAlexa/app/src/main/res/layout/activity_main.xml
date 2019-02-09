@@ -6,14 +6,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
-
-    <TextView
+    <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
+            android:layout_height="wrap_content" app:srcCompat="@mipmap/ic_launcher"
+            tools:layout_editor_absoluteY="314dp" tools:layout_editor_absoluteX="162dp"
+            android:id="@+id/login_with_amazon" android:src="@drawable/btnlwa_gry_loginwithamazon"/>
 </android.support.constraint.ConstraintLayout>
