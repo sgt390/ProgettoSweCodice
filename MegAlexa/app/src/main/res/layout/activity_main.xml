@@ -6,9 +6,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
-    <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@mipmap/ic_launcher"
-            tools:layout_editor_absoluteY="314dp" tools:layout_editor_absoluteX="162dp"
-            android:id="@+id/login_with_amazon" android:src="@drawable/btnlwa_gry_loginwithamazon"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:id="@+id/ButtonGroups"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:orientation="vertical" app:layout_constraintTop_toTopOf="parent"
+                  app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+                android:id="@+id/login_with_amazon"
+                android:layout_width="313dp"
+                android:layout_height="91dp"
+                android:src="@drawable/btnlwa_gry_loginwithamazon"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" android:contentDescription="@string/todo"
+        />
+        <TextView
+                android:text="@string/textview"
+                android:layout_width="169dp"
+                android:layout_height="69dp" tools:layout_editor_absoluteY="442dp"
+                tools:layout_editor_absoluteX="135dp" android:id="@+id/result_login"
+                android:textSize="24sp" android:textAlignment="center"/>
+        <Button
+                android:text="@string/button"
+                android:layout_width="222dp"
+                android:layout_height="92dp" tools:layout_editor_absoluteY="189dp"
+                tools:layout_editor_absoluteX="94dp" android:id="@+id/logout_button"/>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
