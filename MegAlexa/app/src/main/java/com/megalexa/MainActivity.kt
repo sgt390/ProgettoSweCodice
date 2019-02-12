@@ -1,6 +1,7 @@
 package com.megalexa
 
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             /* Authorization was completed successfully. */
             override fun onSuccess(result : AuthorizeResult){
                 /*The app in authorized for the requested scopes */
-                this@MainActivity.result.text = "onSuccess"
+                startActivity(Intent(this@MainActivity, AuthenticatedUser::class.java))
             }
             /* There was an error during the attempt to authorize the application. */
             override fun onError(ae : AuthError) {
@@ -54,21 +55,6 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         })
-        var logoutButton : View = findViewById(R.id.logout_button)
-        logoutButton.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v : View){
-                AuthorizationManager.signOut(applicationContext, object : Listener<Void, AuthError>{
-
-                    override fun onSuccess(response : Void ){
-                        this@MainActivity.result.text = "Logged out";
-                    }
-
-                    override fun onError(authError: AuthError){
-                        this@MainActivity.result.text = "Error log out"
-                    }
-                })
-            }
-        })
     }
 
     override fun onResume(){
@@ -86,7 +72,7 @@ class MainActivity : AppCompatActivity() {
             override fun onSuccess(result: AuthorizeResult) {
                 if (result.accessToken != null) {
                     /* The user is signed in */
-                    this@MainActivity.result.text = "Signed in"
+                    startActivity(Intent(this@MainActivity, AuthenticatedUser::class.java))
                 } else {
                     /* The user is not signed in */
                     this@MainActivity.result.text = "Not Signed in"

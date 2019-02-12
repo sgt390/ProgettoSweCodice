@@ -27,15 +27,9 @@
                 app:layout_constraintBottom_toBottomOf="parent" android:contentDescription="@string/todo"
         />
         <TextView
-                android:text="@string/textview"
                 android:layout_width="169dp"
                 android:layout_height="69dp" tools:layout_editor_absoluteY="442dp"
                 tools:layout_editor_absoluteX="135dp" android:id="@+id/result_login"
                 android:textSize="24sp" android:textAlignment="center"/>
-        <Button
-                android:text="@string/button"
-                android:layout_width="222dp"
-                android:layout_height="92dp" tools:layout_editor_absoluteY="189dp"
-                tools:layout_editor_absoluteX="94dp" android:id="@+id/logout_button"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MegAlexa</string>
     <string name="todo">TODO</string>
-    <string name="textview">TextView</string>
     <string name="button">Button</string>
+    <string name="wow_you_re_logged">Wow! You\'re logged!</string>
+    <string name="logout">Logout</string>
 </resources>
