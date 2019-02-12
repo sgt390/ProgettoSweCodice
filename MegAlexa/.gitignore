@@ -11,5 +11,6 @@
 /build
 /captures
 .externalNativeBuild
-/.idea/
-/assets/
+.idea/
+assets/
+.DS_Store
