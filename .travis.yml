@@ -2,7 +2,7 @@ addons:
   sonarcloud:
     organization: "sgt390-github"
     token:
-      secure: "1d4a6c2e6682736c28eb9499fb8b3a06710eac3d"
+      secure: "$SONAR_TOKEN"
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
