@@ -31,17 +31,34 @@ class MainActivity : AppCompatActivity() {
             /* Authorization was completed successfully. */
             override fun onSuccess(result : AuthorizeResult){
                 /*The app in authorized for the requested scopes */
-                this@MainActivity.result.text = "onSuccess"
+                Thread(
+                    Runnable {
+                        this@MainActivity.runOnUiThread(java.lang.Runnable {
+                            this@MainActivity.result.text = "onSuccess"
+                        })
+                    }).start()
+
             }
             /* There was an error during the attempt to authorize the application. */
             override fun onError(ae : AuthError) {
                 /* Inform the user of the error */
-                this@MainActivity.result.text = "onError"
+                Thread(
+                    Runnable {
+                        this@MainActivity.runOnUiThread(java.lang.Runnable {
+                            this@MainActivity.result.text = "onError"
+                        })
+                    }).start()
             }
             /* Authorization was cancelled before it could be completed. */
             override fun onCancel(cancellation : AuthCancellation){
                 /* Reset the UI to a ready-to-login state */
-                this@MainActivity.result.text = "onCancel"
+                Thread(
+                    Runnable {
+                        this@MainActivity.runOnUiThread(java.lang.Runnable {
+                            this@MainActivity.result.text = "onCancel"
+                        })
+                    }).start()
+
             }
 
         }
@@ -59,12 +76,23 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(v : View){
                 AuthorizationManager.signOut(applicationContext, object : Listener<Void, AuthError>{
 
-                    override fun onSuccess(response : Void ){
-                        this@MainActivity.result.text = "Logged out";
+                    override fun onSuccess(response : Void? ){
+                        Thread(
+                            Runnable {
+                                this@MainActivity.runOnUiThread(java.lang.Runnable {
+                                    this@MainActivity.result.text = "Logged out"
+                                })
+                            }).start()
+
                     }
 
                     override fun onError(authError: AuthError){
-                        this@MainActivity.result.text = "Error log out"
+                        Thread(
+                            Runnable {
+                                this@MainActivity.runOnUiThread(java.lang.Runnable {
+                                    this@MainActivity.result.text = "Error log out"
+                                })
+                            }).start()
                     }
                 })
             }
@@ -86,10 +114,23 @@ class MainActivity : AppCompatActivity() {
             override fun onSuccess(result: AuthorizeResult) {
                 if (result.accessToken != null) {
                     /* The user is signed in */
-                    this@MainActivity.result.text = "Signed in"
+
+                    Thread(
+                        Runnable {
+                            this@MainActivity.runOnUiThread(java.lang.Runnable {
+                                this@MainActivity.result.text = "Signed in"
+                            })
+                        }).start()
+
                 } else {
                     /* The user is not signed in */
-                    this@MainActivity.result.text = "Not Signed in"
+                    Thread(
+                        Runnable {
+                            this@MainActivity.runOnUiThread(java.lang.Runnable {
+                                this@MainActivity.result.text = "Not Signed in"
+                            })
+                        }).start()
+
                 }
             }
             override fun onError(ae: AuthError) {
