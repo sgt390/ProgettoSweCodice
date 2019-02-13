@@ -3,7 +3,7 @@ package com.megalexa.models.blocks
 import com.megalexa.adapters.connectors.Connector
 
 /*
-* may change uri time with a more specific one
+* may change uri with a more specific one
 * */
 class BlockFeedRss(val uri: String): Block,Filtrable {
     init{
