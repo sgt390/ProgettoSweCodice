@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity" android:background="@android:color/darker_gray">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:id="@+id/ButtonGroups"
                   android:layout_width="fill_parent"
@@ -14,7 +14,12 @@
                   android:orientation="vertical" app:layout_constraintTop_toTopOf="parent"
                   app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
                   app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent">
-
+        <TextView
+                android:layout_width="395dp"
+                android:layout_height="116dp" tools:layout_editor_absoluteY="178dp"
+                tools:layout_editor_absoluteX="8dp" android:id="@+id/result_login"
+                android:textSize="24sp" android:textAlignment="center"
+                android:text="Entra con il tuo account Amazon per utilizzare i nostri servizi."/>
         <ImageButton
                 android:id="@+id/login_with_amazon"
                 android:layout_width="313dp"
@@ -22,20 +27,9 @@
                 android:src="@drawable/btnlwa_gry_loginwithamazon"
                 android:scaleType="centerInside"
                 android:adjustViewBounds="true"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" android:contentDescription="@string/todo"
-        />
-        <TextView
-                android:text="@string/textview"
-                android:layout_width="169dp"
-                android:layout_height="69dp" tools:layout_editor_absoluteY="442dp"
-                tools:layout_editor_absoluteX="135dp" android:id="@+id/result_login"
-                android:textSize="24sp" android:textAlignment="center"/>
-        <Button
-                android:text="@string/button"
-                android:layout_width="222dp"
-                android:layout_height="92dp" tools:layout_editor_absoluteY="189dp"
-                tools:layout_editor_absoluteX="94dp" android:id="@+id/logout_button"/>
+                android:contentDescription="@string/todo"
+                tools:layout_editor_absoluteY="427dp" tools:layout_editor_absoluteX="49dp"/>
+
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
