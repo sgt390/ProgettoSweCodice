@@ -1,7 +1,6 @@
-package com.megalexa
+package com.megalexa.activities
 
 import android.content.Intent
-import android.net.sip.SipSession
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
 
@@ -17,6 +16,7 @@ import android.view.ViewGroup
 import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
+import com.megalexa.R
 
 import kotlinx.android.synthetic.main.activity_general_logged.*
 

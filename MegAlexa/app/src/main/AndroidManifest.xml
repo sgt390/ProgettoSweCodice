@@ -13,19 +13,12 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".GeneralLoggedActivity"
+                android:name=".activities.GeneralLoggedActivity"
                 android:label="@string/title_activity_general_logged"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name=".LoggedGeneralActivity"
-                android:label="@string/title_activity_logged_general"
-                android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name=".AuthenticatedUser">
-        </activity>
-        <activity
-                android:name=".MainActivity"
+                android:name=".activities.MainActivity"
                 android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

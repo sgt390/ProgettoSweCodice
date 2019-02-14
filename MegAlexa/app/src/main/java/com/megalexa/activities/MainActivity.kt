@@ -1,11 +1,10 @@
-package com.megalexa
+package com.megalexa.activities
 
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import com.amazon.identity.auth.device.api.workflow.RequestContext
 import com.amazon.identity.auth.device.api.authorization.*
 import com.amazon.identity.auth.device.api.authorization.AuthCancellation
@@ -14,7 +13,7 @@ import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizeResult
 import com.amazon.identity.auth.device.api.authorization.AuthorizeListener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
-
+import com.megalexa.R
 
 
 class MainActivity : AppCompatActivity() {
