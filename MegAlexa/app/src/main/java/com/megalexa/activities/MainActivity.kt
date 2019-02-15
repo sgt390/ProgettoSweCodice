@@ -4,6 +4,7 @@ package com.megalexa.activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.amazon.identity.auth.device.api.workflow.RequestContext
 import com.amazon.identity.auth.device.api.authorization.*
@@ -13,23 +14,45 @@ import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizeResult
 import com.amazon.identity.auth.device.api.authorization.AuthorizeListener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
+import com.amazonaws.mobile.client.AWSMobileClient
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient
 import com.megalexa.R
+import com.megalexa.util.UserDO
+import kotlin.concurrent.thread
 
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var requestContext: RequestContext
+    companion object {
+        private val TAG: String = this::class.java.simpleName
+    }
+    private var dynamoDBMapper: DynamoDBMapper? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         requestContext = RequestContext.create(this)
+        AWSMobileClient.getInstance().initialize(this) {
+            Log.d(TAG, "AWSMobileClient is initialized")
+        }.execute()
+        val client = AmazonDynamoDBClient(AWSMobileClient.getInstance().credentialsProvider)
+        dynamoDBMapper = DynamoDBMapper.builder()
+            .dynamoDBClient(client)
+            .awsConfiguration(AWSMobileClient.getInstance().configuration)
+            .build()
         requestContext.registerListener( object :
             AuthorizeListener(){
             /* Authorization was completed successfully. */
             override fun onSuccess(result : AuthorizeResult){
                 /*The app in authorized for the requested scopes */
+                val UserItem  = UserDO()
+                UserItem.setMail("ciao.ciao@gmail.com")
+                thread(start = true){
+                    dynamoDBMapper?.save(UserItem)
+                }
                 startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
             }
             /* There was an error during the attempt to authorize the application. */
