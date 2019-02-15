@@ -17,9 +17,8 @@ import kotlin.properties.Delegates
 public class UserDO {
     private var _iD : Int by Delegates.notNull<Int>()
     private lateinit var  _birthDate : String
-    private lateinit var _firstName : String
-    private lateinit var _lastName : String
     private lateinit var _mail : String
+    private lateinit var _name : String
 
     @DynamoDBHashKey(attributeName = "ID")
     @DynamoDBAttribute(attributeName = "ID")
@@ -38,21 +37,14 @@ public class UserDO {
     fun setBirthDate( _birthDate : String) {
         this._birthDate = _birthDate;
     }
-    @DynamoDBAttribute(attributeName = "firstName")
-    fun getFirstName() : String {
-        return _firstName;
+
+    @DynamoDBAttribute(attributeName = "name")
+    fun getName() : String {
+        return _name;
     }
 
-    fun setFirstName( _firstName : String) {
-        this._firstName = _firstName;
-    }
-    @DynamoDBAttribute(attributeName = "lastName")
-    fun getLastName() : String {
-        return _lastName;
-    }
-
-    fun setLastName( _lastName : String) {
-        this._lastName = _lastName;
+    fun setName( _name : String) {
+        this._name = _name;
     }
 
     @DynamoDBAttribute(attributeName = "mail")

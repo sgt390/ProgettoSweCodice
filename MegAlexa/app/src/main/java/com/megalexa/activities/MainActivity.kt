@@ -14,12 +14,14 @@ import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizeResult
 import com.amazon.identity.auth.device.api.authorization.AuthorizeListener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
+import com.amazon.identity.auth.device.dataobject.Profile
 import com.amazonaws.mobile.client.AWSMobileClient
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient
 import com.megalexa.R
 import com.megalexa.util.UserDO
 import kotlin.concurrent.thread
+import kotlin.random.Random
 
 
 class MainActivity : AppCompatActivity() {
@@ -49,7 +51,11 @@ class MainActivity : AppCompatActivity() {
             override fun onSuccess(result : AuthorizeResult){
                 /*The app in authorized for the requested scopes */
                 val UserItem  = UserDO()
-                UserItem.setMail("ciao.ciao@gmail.com")
+                UserItem.setID(1)
+                UserItem.setBirthDate("1997-11-15")
+                UserItem.setMail("mirko.franco@icloud.com")
+                UserItem.setName("Mirko Franco")
+                //TODO: Understand how retrieve user information from Amazon
                 thread(start = true){
                     dynamoDBMapper?.save(UserItem)
                 }
