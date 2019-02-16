@@ -2,6 +2,7 @@ package com.megalexa
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.megalexa.adapters.connectors.ConnectorFeedRss
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -21,4 +22,13 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getTargetContext()
         assertEquals("com.megalexa", appContext.packageName)
     }
+
+    @Test
+    fun valid() {
+        val uri = "https://abcnews.go.com/abcnews/internationalheadlines"
+        val uriIsValid = ConnectorFeedRss(uri).valid()
+        assertEquals(false, uriIsValid)
+    }
+
+
 }

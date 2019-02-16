@@ -35,7 +35,6 @@ class ConnectorFeedRss(private var url: String):Connector {
      * @return feed is valid
      */
     override fun valid():Boolean {
-
         return URLUtil.isHttpsUrl(url) && isRssFeed()
     }
 
