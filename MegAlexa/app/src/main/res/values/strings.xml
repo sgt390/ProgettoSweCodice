@@ -14,4 +14,8 @@
     <string name="library">Library</string>
     <string name="news">News</string>
     <string name="settings">Settings</string>
+    <string name="title_workflow">Your workflow</string>
+    <string name="title_main">Your workflow</string>
+    <string name="email_developer">zerosevenswe@gmail.com</string>
+
 </resources>
