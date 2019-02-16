@@ -14,8 +14,17 @@
     <string name="library">Library</string>
     <string name="news">News</string>
     <string name="settings">Settings</string>
-    <string name="title_workflow">Your workflow</string>
+    <string name="title_workflow">Your workflows</string>
     <string name="title_main">Your workflow</string>
     <string name="email_developer">zerosevenswe@gmail.com</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="title_create_workflow">Create your workflow</string>
+    <string name="button_save_workflow">save your workflow</string>
+    <string name="title_user_workflow">Insert your workflow name here</string>
+    <string name="title_create_blocks"/>
+    <string name="title_create_block">Add blocks</string>
+    <string name="nav_account_title">Information</string>
+    <string name="nav_management_title">Account</string>
 
 </resources>

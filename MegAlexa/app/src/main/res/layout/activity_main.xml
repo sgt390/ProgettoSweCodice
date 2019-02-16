@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".activities.MainActivity"
         tools:background="#fafafa"
-        android:id="@+id/main_content">
+        android:id="@+id/drawer_layout">
     <LinearLayout
             android:id="@+id/ButtonGroups"
             android:layout_width="fill_parent"
