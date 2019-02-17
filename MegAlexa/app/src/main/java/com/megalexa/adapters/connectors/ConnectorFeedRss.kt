@@ -60,12 +60,13 @@ class ConnectorFeedRss(private var url: String):Connector {
             iStream = getInputStream(resource)
 
             iStream.use {
-                    x -> xpp.setInput(x, "UTF_8")
 
+                x -> xpp.setInput(x, "UTF_8")
+                xpp.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false)
+                xpp.nextTag()
 
-                if(xpp.getName().equals("rss"))
-                    result =true
-
+                if(xpp.name =="rss")
+                    return true
             }
 
 
@@ -79,7 +80,7 @@ class ConnectorFeedRss(private var url: String):Connector {
         }
 
 
-    return result
+    return false
     }
 
 
@@ -99,5 +100,6 @@ class ConnectorFeedRss(private var url: String):Connector {
 
         return resource.openConnection().getInputStream()
     }
+
 
 }
