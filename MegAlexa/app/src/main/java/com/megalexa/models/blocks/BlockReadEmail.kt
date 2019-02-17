@@ -17,4 +17,18 @@ class BlockReadEmail(private val email: Email):Block,Filtrable {
     fun valid(): Boolean {
         TODO(reason = "not implemented")
     }
+
+    override var itemsToShow: Int
+        get() = itemsToShow
+        set(value) {
+            itemsToShow=value
+        }
+
+    override var filtered: Boolean
+        get() = filtered
+        set(value) {
+            filtered=value
+        }
+
+
 }
