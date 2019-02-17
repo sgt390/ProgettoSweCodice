@@ -6,3 +6,5 @@ class BlockTextBox(private val textBox: String):Block {
     }
     fun read() = textBox
 }
+
+//prove
