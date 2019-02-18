@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Button
+import android.widget.ImageButton
 import com.megalexa.R
 import kotlinx.android.synthetic.main.activity_create_block.*
 import kotlinx.android.synthetic.main.activity_create_workflow.*
@@ -15,6 +17,10 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_create_block)
 
         button_cancel_block.setOnClickListener(this)
+
+
+
+
 
     }
 
