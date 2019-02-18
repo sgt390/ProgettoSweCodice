@@ -30,6 +30,5 @@ class ExampleInstrumentedTest {
         assertEquals(true, uriIsValid)
     }
 
-
 }
 

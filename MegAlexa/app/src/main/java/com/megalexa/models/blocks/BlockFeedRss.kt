@@ -3,9 +3,7 @@ package com.megalexa.models.blocks
 import com.megalexa.adapters.connectors.Connector
 import com.megalexa.adapters.connectors.ConnectorFeedRss
 
-/*
-* may change uri with a more specific one
-* */
+
 class BlockFeedRss(val url: String): Block,Filtrable {
     init{
         val connector = generateConnector(url)
@@ -21,10 +19,13 @@ class BlockFeedRss(val url: String): Block,Filtrable {
     override var filtered: Boolean
         get() = filtered
         set(value) {
-            filtered=value
+            this.filtered=value
         }
 
-
+    /** generateConnector(url) returns an object that represents the connector for the desidered feedRSS
+     * @param url is the url for the feedRSS
+     * @return ConnectorFeedRss for the url(if the URL is valid)
+     */
     private fun generateConnector(url: String): Connector {
 
         val toReturn=ConnectorFeedRss(url= url)
@@ -33,17 +34,21 @@ class BlockFeedRss(val url: String): Block,Filtrable {
             //throw InvalidBLockException() TODO("custom error handling required ")
         }
 
-
         return toReturn
 
-
     }
 
-    override fun getInformation() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    /** getInformation()
+     * @return  String that sums up the information for the given feedRSS
+     *
+     */
+    override fun getInformation():String {
+
+        var str = ""
+        if(filtered == true)
+            str="and shows the first $itemsToShow items"
+
+        return "Feed RSS block created for $url URL $str"
     }
-
-
-
 
 }

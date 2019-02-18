@@ -17,17 +17,14 @@ class ConnectorFeedRss(private var url: String):Connector {
 
     override fun connect(url: String):String {
 
-    if (valid()) {
+        if (valid()) {
 
-        return url
-    }else{
+            return url
+        }else {
 
-        return "ERROR_INVALID_URL"
+            return "ERROR_INVALID_URL"
 
-    }
-
-
-
+        }
     }
 
     /**
@@ -47,7 +44,6 @@ class ConnectorFeedRss(private var url: String):Connector {
         val resource:URL
         val xpp: XmlPullParser
         val iStream:InputStream
-        var result = false
 
         try {
 
@@ -83,9 +79,9 @@ class ConnectorFeedRss(private var url: String):Connector {
     return false
     }
 
-
-
-
+    /**getInputStream(resource) returns an InputStream for the given URL
+     * @param URL url that needs th InputStream
+     */
     private fun getInputStream(resource: URL) : InputStream {
 
         try {
