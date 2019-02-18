@@ -4,7 +4,7 @@ import android.provider.ContactsContract.CommonDataKinds.Email
 import com.megalexa.adapters.connectors.Connector
 
 class BlockReadEmail(private val email: Email):Block,Filtrable {
-    override fun getInformation() {
+    override fun getInformation():String {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -17,18 +17,5 @@ class BlockReadEmail(private val email: Email):Block,Filtrable {
     fun valid(): Boolean {
         TODO(reason = "not implemented")
     }
-
-    override var itemsToShow: Int
-        get() = itemsToShow
-        set(value) {
-            itemsToShow=value
-        }
-
-    override var filtered: Boolean
-        get() = filtered
-        set(value) {
-            filtered=value
-        }
-
 
 }

@@ -10,17 +10,6 @@ class BlockFeedRss(val url: String): Block,Filtrable {
 
     }
 
-    override var itemsToShow: Int
-        get() = itemsToShow
-        set(value) {
-            itemsToShow=value
-        }
-
-    override var filtered: Boolean
-        get() = filtered
-        set(value) {
-            this.filtered=value
-        }
 
     /** generateConnector(url) returns an object that represents the connector for the desidered feedRSS
      * @param url is the url for the feedRSS
@@ -43,12 +32,7 @@ class BlockFeedRss(val url: String): Block,Filtrable {
      *
      */
     override fun getInformation():String {
-
-        var str = ""
-        if(filtered == true)
-            str="and shows the first $itemsToShow items"
-
-        return "Feed RSS block created for $url URL $str"
+        return "Feed RSS block created for $url URL "
     }
 
 }
