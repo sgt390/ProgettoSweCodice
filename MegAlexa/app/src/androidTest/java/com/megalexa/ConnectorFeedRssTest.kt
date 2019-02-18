@@ -15,7 +15,7 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ConnectorFeedRssTest {
+class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -30,5 +30,5 @@ class ConnectorFeedRssTest {
         assertEquals(true, uriIsValid)
     }
 
-
 }
+

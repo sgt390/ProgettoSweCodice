@@ -26,5 +26,7 @@
     <string name="title_create_block">Add blocks</string>
     <string name="nav_account_title">Information</string>
     <string name="nav_management_title">Account</string>
-
+    <string name="insert_url">Insert URL</string>
+    <string name="save">Save</string>
+    <string name="url">URL</string>
 </resources>

@@ -3,7 +3,7 @@ package com.megalexa.models.blocks
 import com.megalexa.adapters.connectors.Connector
 
 class BlockCalendar(private val userCredential:String): Block {
-    override fun getInformation() {
+    override fun getInformation() :String {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

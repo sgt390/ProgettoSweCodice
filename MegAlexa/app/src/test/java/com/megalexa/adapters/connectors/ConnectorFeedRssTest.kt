@@ -14,4 +14,5 @@ class ConnectorFeedRssTest {
         assertEquals("ConnectorFeedRss connect test", uriIsValid, true)
     }*/
 
+
 }

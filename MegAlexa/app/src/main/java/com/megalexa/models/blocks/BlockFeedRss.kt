@@ -1,21 +1,38 @@
 package com.megalexa.models.blocks
 
 import com.megalexa.adapters.connectors.Connector
+import com.megalexa.adapters.connectors.ConnectorFeedRss
 
-/*
-* may change uri with a more specific one
-* */
-class BlockFeedRss(val uri: String): Block,Filtrable {
+
+class BlockFeedRss(val url: String): Block,Filtrable {
     init{
-        val connector: Connector = generateConnector(uri)
+        val connector = generateConnector(url)
+
     }
 
-    private fun generateConnector(uri: String): Connector {
-        TODO("not implemented")
+
+    /** generateConnector(url) returns an object that represents the connector for the desidered feedRSS
+     * @param url is the url for the feedRSS
+     * @return ConnectorFeedRss for the url(if the URL is valid)
+     */
+    private fun generateConnector(url: String): Connector {
+
+        val toReturn=ConnectorFeedRss(url= url)
+
+        if(toReturn.valid().equals(false)){
+            //throw InvalidBLockException() TODO("custom error handling required ")
+        }
+
+        return toReturn
+
     }
 
-    override fun getInformation() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    /** getInformation()
+     * @return  String that sums up the information for the given feedRSS
+     *
+     */
+    override fun getInformation():String {
+        return "Feed RSS block created for $url URL "
     }
 
 }
