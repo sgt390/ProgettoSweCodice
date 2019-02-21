@@ -1,3 +1,17 @@
+/*
+* File: ConnectorFeedRss.kt
+* Version: 1.0.0
+* Date: 2019-02-16
+* Author: Ludovico Brocca
+*         Matteo Depascale
+* License:
+*
+* History:
+* Author                || Date         || Description
+* Ludovico Brocca       || 2019-02-16   || Writing class ConnectorFeedRss
+* Matteo Depascale      || 2019-02-20   || Verifying code
+*/
+
 package com.megalexa.adapters.connectors
 import android.webkit.URLUtil
 import org.xmlpull.v1.XmlPullParser
@@ -12,18 +26,15 @@ import java.net.URLConnection
 
 class ConnectorFeedRss(private var url: String):Connector {
     init {
-        url=connect(url)
+        url =connect(url)
     }
 
     override fun connect(url: String):String {
 
-        if (valid()) {
-
+        if(valid()) {
             return url
-        }else {
-
+        } else {
             return "ERROR_INVALID_URL"
-
         }
     }
 
@@ -42,41 +53,31 @@ class ConnectorFeedRss(private var url: String):Connector {
     private fun isRssFeed(): Boolean {
 
         val resource:URL
-        val xpp: XmlPullParser
+        val xpp:XmlPullParser
         val iStream:InputStream
 
         try {
-
             resource = URL(url)
-
             val factory = XmlPullParserFactory.newInstance()
-
             xpp = factory.newPullParser()
-
             iStream = getInputStream(resource)
 
             iStream.use {
-
                 x -> xpp.setInput(x, "UTF_8")
                 xpp.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false)
                 xpp.nextTag()
-
-                if(xpp.name =="rss")
+                if(xpp.name =="rss") {
                     return true
+                }
             }
 
-
         }catch (err: MalformedURLException) {
-
             err.printStackTrace()
-
         }catch (err: XmlPullParserException) {
-
             err.printStackTrace()
         }
 
-
-    return false
+        return false
     }
 
     /**getInputStream(resource) returns an InputStream for the given URL
@@ -85,15 +86,10 @@ class ConnectorFeedRss(private var url: String):Connector {
     private fun getInputStream(resource: URL) : InputStream {
 
         try {
-
             return resource.openConnection().getInputStream()
-
         }catch (err: IOException){
-
             err.printStackTrace()
-
         }
-
         return resource.openConnection().getInputStream()
     }
 
