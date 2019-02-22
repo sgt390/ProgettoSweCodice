@@ -11,12 +11,16 @@
  *
  */
 package com.megalexa.models.blocks
-class BlockTextBox(private val textBox: String):Block {
+class BlockTextBox(private var textBox: String):Block {
     init{
         //Control variable textBox's character number
-        require(textBox.length >= 500){ println("Text block much long!(<500)") }
+        require(textBox.length >= 256){ println("Text block much long!(<256)") }
     }
     override fun getInformation(): String {
         return "$textBox" //To change body of created functions use File | Settings | File Templates.
+    }
+    //Set method
+    fun setText(text: String){
+        textBox = text
     }
 }
