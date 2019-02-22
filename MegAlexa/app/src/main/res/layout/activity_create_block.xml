@@ -18,7 +18,7 @@
             android:id="@+id/button_cancel_block" android:background="@drawable/ic_cancel_black_24dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
-    <LinearLayout
+    <ListView
             android:layout_width="395dp"
             android:layout_height="634dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,69 +26,9 @@
             android:id="@+id/View_blocks"
             app:layout_constraintHorizontal_bias="0.51"
             android:layout_marginTop="32dp" app:layout_constraintTop_toBottomOf="@+id/textView2"
-            tools:listitem="@layout/recycler_view_item" tools:itemCount="1" android:orientation="horizontal">
+            android:orientation="horizontal">
 
 
-        <LinearLayout
-                android:orientation="vertical"
-                android:id="@+id/rssBlock"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:gravity="center_horizontal"
-                android:background="@color/colorSecondary"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-
-        >
-
-            <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/add_feedrss"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#000"
-                    android:textSize="25sp"/>
-
-            <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="25dp"
-                    android:src="@drawable/ic_mr_button_connected_11_light"
-                    android:contentDescription="TODO"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@color/colorPrimaryDark"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="100dp"
-        >
-
-
-            <TextView
-                    android:id="@+id/secondBlock"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="Example"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#000"
-                    android:textSize="25sp"/>
-
-            <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/ic_mr_button_connected_11_light"
-
-            />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </ListView>
 
 </android.support.constraint.ConstraintLayout>

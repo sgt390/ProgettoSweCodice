@@ -20,7 +20,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
 
 
 
-        rssBlock.setOnClickListener {
+        /*rssBlock.setOnClickListener {
             // Get the text fragment instance
             val textFragment = RssFragment()
 
@@ -36,7 +36,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
 
             // Finishing the transition
             transaction.commit()
-        }
+        }*/
 
 
     }
