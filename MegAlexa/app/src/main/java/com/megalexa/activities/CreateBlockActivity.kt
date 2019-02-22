@@ -1,20 +1,15 @@
 package com.megalexa.activities
 
 
-import android.app.Dialog
-import android.app.Fragment
-import android.app.Fragment.instantiate
 import android.os.Bundle
-
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.view.Window
 import android.widget.*
 import com.megalexa.R
 import com.megalexa.adapters.view.ListArrayAdapter
-import kotlinx.android.synthetic.main.activity_create_block.*
 import com.megalexa.fragments.RssFragment
-import java.util.zip.Inflater
+import kotlinx.android.synthetic.main.activity_create_block.*
 
 
 class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
@@ -34,51 +29,32 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
 
         button_cancel_block.setOnClickListener(this)
 
-
-
+        var fragment: Fragment
 
         listView.setOnItemClickListener{
                 _,_,position, _
             ->
 
-            if(position==0)
-                showRSSDialog()
+            if(position==0) {
+                Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
+                fragment = RssFragment()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+            }
 
-            if(position==1)
-                Toast.makeText(this,"position $position", Toast.LENGTH_SHORT).show()
+            if(position==1) {
+                Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
+            }
 
-            if(position==2)
-                Toast.makeText(this,"position $position", Toast.LENGTH_SHORT).show()
+            if(position==2) {
+                Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
+            }
 
-            if(position==3)
-                Toast.makeText(this,"position $position", Toast.LENGTH_SHORT).show()
-
+            if(position==3) {
+                Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
+            }
 
         }
-
-
-
-        //RSS listener
-
-
-
-        /*listView.getChildAt(0).setOnClickListener {
-            // Get the text fragment instance
-            val textFragment = RssFragment()
-
-            // Get the support fragment manager instance
-            val manager = supportFragmentManager
-
-            // Begin the fragment transition using support fragment manager
-            val transaction = manager.beginTransaction()
-
-            // Replace the fragment on container
-            transaction.replace(R.id.fragment_container, textFragment)
-            transaction.addToBackStack(null)
-
-            // Finishing the transition
-            transaction.commit()
-        }*/
 
 
     }
@@ -86,14 +62,14 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View) {
 
 
-    TODO()
-
-
-
+    when(view.id){
+        R.id.button_cancel_block -> {
+            this.finish()
+        }
+    }
 
 
     }
-
 
 
     private fun getBlockList(): List<Pair<String, Int>> {
@@ -117,18 +93,5 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
     }
 
 
-    private fun showRSSDialog(){
-
-        var view= Dialog(this)
-
-        view.setContentView(R.layout.rss_fragment_layout)
-       /* val textView= view.findViewById<TextView>(R.id.Url)
-        val editText= view.findViewById<EditText>(R.id.insert_URL)
-        val button=view.findViewById<Button>(R.id.confirm_button)
-
-        button.setOnClickListener { view.dismiss() }
-*/
-        view.show()
-    }
 
 }
