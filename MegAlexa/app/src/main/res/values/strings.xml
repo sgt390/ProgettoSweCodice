@@ -31,4 +31,5 @@
     <string name="url">URL</string>
     <string name="add_feedrss">Add FeedRSS</string>
     <string name="add">Add</string>
+    <string name="insert_url_hint">Insert url here</string>
 </resources>

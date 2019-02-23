@@ -1,14 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:id="@+id/rss_fragment_container"
-              android:layout_width="match_parent"
+              android:layout_width="fill_parent"
               android:layout_height="wrap_content"
               android:layout_gravity="center"
               android:padding="16dp"
               android:orientation="vertical"
               tools:openDrawer="start"
               android:background="@color/colorSecondaryAccent"
-              android:gravity="center"
+              android:gravity="start"
 
 >
 
@@ -16,10 +17,13 @@
             android:id="@+id/Url"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="start"
             android:labelFor="@+id/Url"
             android:textStyle="bold"
-            android:text="@string/add_feedrss" tools:text="@string/add_feedrss"/>
+            android:text="@string/insert_url" tools:text="Insert URL"
+            android:hint="@string/insert_url_hint"
+            android:padding="2dp"
+    />
 
 
     <EditText
@@ -45,6 +49,5 @@
 
 
 </LinearLayout>
-
 
 

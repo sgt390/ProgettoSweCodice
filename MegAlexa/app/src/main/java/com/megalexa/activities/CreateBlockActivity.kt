@@ -26,7 +26,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
 
         listView.adapter = ListArrayAdapter(this, blockList)
 
-
         button_cancel_block.setOnClickListener(this)
 
         var fragment: Fragment
@@ -77,10 +76,10 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
         val list = getTitlesList()
         //more pairs to be added
         return listOf(
-            Pair(list[0], R.drawable.ic_mr_button_connecting_30_light),
-            Pair(list[1], R.drawable.ic_mr_button_connecting_30_light),
-            Pair(list[2], R.drawable.ic_mr_button_connecting_30_light),
-            Pair(list[3], R.drawable.ic_mr_button_connecting_30_light)
+            Pair(list[0], R.drawable.ic_feed_rss),
+            Pair(list[1], R.drawable.ic_alarm_clock),
+            Pair(list[2], R.drawable.ic_text),
+            Pair(list[3], R.drawable.ic_filter)
         )
 
     }
