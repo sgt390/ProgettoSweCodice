@@ -14,58 +14,64 @@ import com.megalexa.R
 import kotlinx.android.synthetic.main.activity_workflow.*
 import android.content.Intent
 import android.R.id
+import android.view.Menu
+import com.amazon.identity.auth.device.AuthError
+import com.amazon.identity.auth.device.api.Listener
+import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
+import kotlinx.android.synthetic.main.activity_general_logged.*
+import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.NullPointerException
 
 
+class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-
-
-class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-
-    private lateinit var drawer: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_general_logged)
-
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val navigationView  : View = findViewById(R.id.nav_view)
+        navigationView.bringToFront()
         setSupportActionBar(toolbar)
-
-        drawer = findViewById(R.id.drawer_layout)
-        val navigationView: NavigationView = findViewById(R.id.nav_view)
-        navigationView.setNavigationItemSelectedListener(this)
-
-        val toggle = ActionBarDrawerToggle(
-            this, this.drawer, toolbar, R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close
+        val toogle = ActionBarDrawerToggle(
+            this,  drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
-        drawer.addDrawerListener(toggle)
-        toggle.syncState()
+        drawer_layout.addDrawerListener(toogle)
+        toogle.syncState()
+        nav_view.setNavigationItemSelectedListener(this)
+        add_workflow.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?) {
+                startActivity(Intent(this@GeneralLoggedActivity, CreateWorkflowActivity::class.java))
+            }
+        })
 
-        add_workflow.setOnClickListener(this)
-    }
-
-
-    override fun onClick(v: View?) {
-        when(v){
-            add_workflow -> startActivity(Intent(this, CreateWorkflowActivity::class.java))
-        }
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            //R.id.menu_quit ->
-        }
-        drawer.closeDrawer(GravityCompat.START)
-        return true
     }
 
     override fun onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START)
-        }else {
+        if(drawer_layout.isDrawerOpen(GravityCompat.START)){
+            drawer_layout.closeDrawer(GravityCompat.START)
+        }else{
             super.onBackPressed()
         }
     }
 
 
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.menu_quit -> {
+                AuthorizationManager.signOut(applicationContext, object: Listener<Void, AuthError> {
+                    override fun onSuccess(response: Void) {
+                        startActivity(Intent(this@GeneralLoggedActivity, MainActivity::class.java))
+                    }
+
+                    override fun onError(authError: AuthError) {
+
+                    }
+                })
+                return true
+            }
+        }
+        drawer_layout.closeDrawer(GravityCompat.START)
+        return true
+    }
 }
