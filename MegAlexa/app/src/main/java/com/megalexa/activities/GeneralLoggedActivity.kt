@@ -60,7 +60,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         when(item.itemId){
             R.id.menu_quit -> {
                 AuthorizationManager.signOut(applicationContext, object: Listener<Void, AuthError> {
-                    override fun onSuccess(response: Void) {
+                    override fun onSuccess(response: Void?) {
                         startActivity(Intent(this@GeneralLoggedActivity, MainActivity::class.java))
                     }
 
