@@ -29,14 +29,7 @@ public class UserDO {
     fun setID( _iD : Int) {
         this._iD = _iD;
     }
-    @DynamoDBAttribute(attributeName = "birthDate")
-    fun getBirthDate() : String {
-        return _birthDate;
-    }
 
-    fun setBirthDate( _birthDate : String) {
-        this._birthDate = _birthDate;
-    }
 
     @DynamoDBAttribute(attributeName = "name")
     fun getName() : String {
