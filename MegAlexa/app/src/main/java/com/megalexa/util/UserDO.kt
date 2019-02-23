@@ -15,18 +15,17 @@ import kotlin.properties.Delegates
 @DynamoDBTable(tableName = "megalexa-mobilehub-1331931398-User")
 
 public class UserDO {
-    private var _iD : Int by Delegates.notNull<Int>()
-    private lateinit var  _birthDate : String
+    private lateinit var _iD : String
     private lateinit var _mail : String
     private lateinit var _name : String
 
     @DynamoDBHashKey(attributeName = "ID")
     @DynamoDBAttribute(attributeName = "ID")
-    fun getID() : Int {
+    fun getID() : String {
         return _iD;
     }
 
-    fun setID( _iD : Int) {
+    fun setID( _iD : String) {
         this._iD = _iD;
     }
 
