@@ -18,7 +18,7 @@ class WorkflowDO {
     private var  _iD : Int by Delegates.notNull<Int>()
     private lateinit var _blocksID : Set<Int>
     private lateinit var _name : String
-    private var _userID : Int by Delegates.notNull<Int>()
+    private lateinit var _userID : String
 
     @DynamoDBHashKey(attributeName = "ID")
     @DynamoDBAttribute(attributeName = "ID")
@@ -46,11 +46,11 @@ class WorkflowDO {
         this._name = _name;
     }
     @DynamoDBAttribute(attributeName = "userID")
-    fun getUserID() : Int {
+    fun getUserID() : String {
         return _userID;
     }
 
-    fun setUserID( _userID : Int) {
+    fun setUserID( _userID : String) {
         this._userID = _userID;
     }
 
