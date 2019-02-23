@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private var dynamoDBMapper: DynamoDBMapper? = null
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -49,15 +50,12 @@ class MainActivity : AppCompatActivity() {
             AuthorizeListener(){
             /* Authorization was completed successfully. */
             override fun onSuccess(result : AuthorizeResult){
-                /*The app in authorized for the requested scopes */
-                val UserItem  = UserDO()
-                UserItem.setID(1)
-                UserItem.setBirthDate("1997-11-15")
-                UserItem.setMail("mirko.franco@icloud.com")
-                UserItem.setName("Mirko Franco")
-                //TODO: Understand how retrieve user information from Amazon
+                val user : UserDO = UserDO()
+                user.setID(result.user.userId)
+                user.setName(result.user.userName)
+                user.setMail(result.user.userEmail)
                 thread(start = true){
-                    dynamoDBMapper?.save(UserItem)
+                    dynamoDBMapper?.save(user)
                 }
                 startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
             }
