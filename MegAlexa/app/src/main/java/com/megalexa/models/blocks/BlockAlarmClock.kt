@@ -22,6 +22,7 @@ class BlockAlarmClock(private var minutes: Int, private var hours: Int,
     init {
         calendar.set(Calendar.HOUR_OF_DAY, hours)
         calendar.set(Calendar.MINUTE, minutes)
+        calendar.set(Calendar.SECOND, 0)
     }
 
     //Set method
