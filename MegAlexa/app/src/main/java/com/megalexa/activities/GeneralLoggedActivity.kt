@@ -4,23 +4,21 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
 import com.megalexa.R
 import kotlinx.android.synthetic.main.activity_workflow.*
 import android.content.Intent
-import android.R.id
-import android.view.Menu
+import android.provider.ContactsContract
+import android.util.Log
 import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
+import com.amazon.identity.auth.device.api.authorization.ProfileScope
+import com.amazon.identity.auth.device.api.authorization.User
 import kotlinx.android.synthetic.main.activity_general_logged.*
-import kotlinx.android.synthetic.main.activity_main.*
-import java.lang.NullPointerException
+
 
 
 class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -38,9 +36,17 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         drawer_layout.addDrawerListener(toogle)
         toogle.syncState()
         nav_view.setNavigationItemSelectedListener(this)
-        add_workflow.setOnClickListener(object : View.OnClickListener{
+        add_workflow.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 startActivity(Intent(this@GeneralLoggedActivity, CreateWorkflowActivity::class.java))
+            }
+        })
+        User.fetch(this, object: Listener<User, AuthError>{
+            override fun onSuccess(p0: User) {
+                 Log.d("UserID:" , p0.userId)
+            }
+            override fun onError(p0: AuthError?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         })
 
@@ -61,6 +67,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             R.id.menu_quit -> {
                 AuthorizationManager.signOut(applicationContext, object: Listener<Void, AuthError> {
                     override fun onSuccess(response: Void?) {
+
                         startActivity(Intent(this@GeneralLoggedActivity, MainActivity::class.java))
                     }
 
