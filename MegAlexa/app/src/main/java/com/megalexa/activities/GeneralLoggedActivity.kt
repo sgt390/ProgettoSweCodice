@@ -17,12 +17,20 @@ import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
 import com.amazon.identity.auth.device.api.authorization.ProfileScope
 import com.amazon.identity.auth.device.api.authorization.User
+import com.amazonaws.mobile.client.AWSMobileClient
 import kotlinx.android.synthetic.main.activity_general_logged.*
-
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBQueryExpression
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient
+import com.amazonaws.services.dynamodbv2.model.AttributeValue
+import com.megalexa.util.WorkflowDO
+import kotlin.concurrent.thread
 
 
 class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    private lateinit var userID : String
+    private var dynamoDBMapper: DynamoDBMapper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,16 +49,22 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                 startActivity(Intent(this@GeneralLoggedActivity, CreateWorkflowActivity::class.java))
             }
         })
+        val client = AmazonDynamoDBClient(AWSMobileClient.getInstance().credentialsProvider)
+        dynamoDBMapper = DynamoDBMapper.builder()
+            .dynamoDBClient(client)
+            .awsConfiguration(AWSMobileClient.getInstance().configuration)
+            .build()
         User.fetch(this, object: Listener<User, AuthError>{
             override fun onSuccess(p0: User) {
-                 Log.d("UserID:" , p0.userId)
+                userID = p0.userId
+                queryWorkflow()
             }
             override fun onError(p0: AuthError?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         })
-
     }
+
 
     override fun onBackPressed() {
         if(drawer_layout.isDrawerOpen(GravityCompat.START)){
@@ -59,6 +73,26 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             super.onBackPressed()
         }
     }
+
+    private fun queryWorkflow(){
+        thread(start = true){
+            val item = WorkflowDO()
+            item.setUserID(userID)
+            item.setID(0)
+            val queryExpression = DynamoDBQueryExpression<WorkflowDO>()
+            queryExpression.indexName = "userID"
+            queryExpression.withHashKeyValues(item)
+            queryExpression.withConsistentRead(false)
+            val result = dynamoDBMapper?.query(WorkflowDO::class.java, queryExpression)
+            runOnUiThread {
+                for (value in result!!){
+                    Log.d("Workflow", value.toString())
+                }
+            }
+        }
+    }
+
+
 
 
 
