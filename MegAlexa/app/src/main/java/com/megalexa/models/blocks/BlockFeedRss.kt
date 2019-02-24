@@ -14,7 +14,7 @@ class BlockFeedRss(val uri: String): Block,Filtrable {
         TODO("not implemented")
     }
 
-    override fun getInformation() {
+    override fun getInformation():String {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

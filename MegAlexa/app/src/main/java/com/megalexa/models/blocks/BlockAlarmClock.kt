@@ -4,7 +4,7 @@ import java.text.DateFormat
 
 class BlockAlarmClock(private val time: DateFormat) : Block{
 
-    override fun getInformation() {
+    override fun getInformation():String  {
         TODO("not implemented")
     }
 
