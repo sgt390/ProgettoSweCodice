@@ -1,12 +1,13 @@
 /*
  * File: TextFragment.kt
- * Version: 0.1
- * Date: 2019/02/23
+ * Version: 0.0.1
+ * Date: 2019-02-23
  * Author: Andrea Deidda
- *
  * License:
- * History: registro delle modifiche
- * Andrea Deidda || 2019/02/23 || creazione file e intestazione
+ *
+ * History:
+ * Author           || Date         || Description
+ * Andrea Deidda    || 2019-02-23   || creating file and header
  *
  */
 package com.megalexa.fragments
