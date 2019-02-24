@@ -9,7 +9,7 @@
 * History:
 * Author                || Date         || Description
 * Ludovico Brocca       || 2019-02-16   || Writing class ConnectorFeedRss
-* Matteo Depascale      || 2019-02-20   || Verifying code
+* Matteo Depascale      || 2019-02-23   || Verifying code
 */
 
 package com.megalexa.adapters.connectors
