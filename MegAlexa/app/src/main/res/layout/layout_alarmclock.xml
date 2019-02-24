@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/alarmclock_container"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:orientation="vertical"
+                android:background="@color/colorSecondaryAccent" android:padding="16dp">
+
+    <TextView
+            android:text="@string/entertime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView"
+            android:padding="2dp"
+            android:textStyle="bold" tools:text="Enter time"
+            android:gravity="start" android:layout_centerHorizontal="true" android:layout_marginTop="300dp"/>
+    <TextView
+            android:text="@string/dotpoint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textDotPoint" android:padding="2dp"
+            tools:text=" : "
+            android:textStyle="bold"
+            android:layout_centerInParent="true" android:layout_below="@+id/textView"
+            android:layout_marginTop="20dp"
+    />
+    <Button
+            android:text="@string/setalarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/setButton" tools:text="SET ALARM"
+            android:layout_below="@+id/textDotPoint" android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true" android:textStyle="normal"/>
+    <EditText
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:labelFor="@id/editHour"
+            android:autofillHints=""
+            android:id="@+id/editHour" tools:targetApi="o" android:layout_width="46dp"
+            android:layout_below="@+id/textView"
+            android:layout_toStartOf="@+id/textDotPoint" android:layout_marginTop="10dp"
+    />
+    <EditText
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:id="@+id/editMinutes"
+            android:labelFor="@id/editMinutes"
+            android:ems="10"
+            android:autofillHints="" tools:targetApi="o" android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/textDotPoint" android:layout_width="46dp"
+            android:layout_below="@+id/textView"/>
+</RelativeLayout>
