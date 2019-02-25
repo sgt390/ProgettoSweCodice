@@ -11,6 +11,7 @@ import com.megalexa.R
 import kotlinx.android.synthetic.main.activity_workflow.*
 import android.content.Intent
 import android.R.id
+import android.content.ComponentCallbacks
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.Menu
@@ -67,7 +68,14 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         User.fetch(this, object: Listener<User, AuthError>{
             override fun onSuccess(p0: User) {
                 userID = p0.userId
-                queryWorkflow()
+                val printWorkflow : (List<WorkflowDO>?) -> Unit = {
+                    workflow ->
+                        for(item in workflow!!){
+                            Log.d("Item", "Name: " + item.getName())
+
+                    }
+                }
+                queryWorkflow(printWorkflow)
             }
             override fun onError(p0: AuthError?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -84,7 +92,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         }
     }
 
-    private fun queryWorkflow(){
+    private fun queryWorkflow(callback: (List<WorkflowDO>?) -> Unit){
         thread(start = true){
             val item = WorkflowDO()
             item.setUserID(userID)
@@ -93,11 +101,9 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             queryExpression.indexName = "userID"
             queryExpression.withHashKeyValues(item)
             queryExpression.withConsistentRead(false)
-            val result = dynamoDBMapper?.query(WorkflowDO::class.java, queryExpression)
+            val result =  dynamoDBMapper?.query(WorkflowDO::class.java, queryExpression) as List<WorkflowDO>
             runOnUiThread {
-                for (value in result!!) {
-                    Log.d("Workflow", "ID: " + value.getID() +  " Nome: " + value.getName() + "userID: " + value.getUserID() )
-                }
+                callback(result)
             }
         }
     }
@@ -130,6 +136,8 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
         TODO()
     }
+
+ 
 
 
     private fun debugWorkflowNames():ArrayList<String>{
