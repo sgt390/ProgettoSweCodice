@@ -35,4 +35,6 @@
     <string name="entertime">Enter time</string>
     <string name="dotpoint">:</string>
     <string name="setalarm">SET ALARM</string>
+    <string name="slash"> / </string>
+    <string name="enterdate">Enter date</string>
 </resources>

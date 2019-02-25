@@ -1,3 +1,15 @@
+/*
+* File: AlarmClockFragment.kt
+* Version: 0.0.1
+* Date: 2019-02-23
+* Author: Andrea Deidda
+* License:
+*
+* History:
+* Author           || Date         || Description
+* Andrea Deidda    || 2019-02-23   || creating file and header
+* Andrea Deidda    || 2019-02-25   || Insert methods
+*/
 package com.megalexa.fragments
 
 import android.os.Bundle
