@@ -3,12 +3,7 @@ package com.megalexa.util;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBAttribute;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBHashKey;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBIndexHashKey;
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBIndexRangeKey;
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBRangeKey;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBTable;
-
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import kotlin.properties.Delegates
 
@@ -18,7 +13,16 @@ class WorkflowDO {
     private var  _iD : Int by Delegates.notNull<Int>()
     private lateinit var _blocksID : Set<Int>
     private lateinit var _name : String
-    private var _userID : Int by Delegates.notNull<Int>()
+    private lateinit var _userID : String
+
+    @DynamoDBIndexHashKey(attributeName = "userID", globalSecondaryIndexName = "userID")
+    fun getUserID() : String {
+        return _userID;
+    }
+
+    fun setUserID( _userID : String) {
+        this._userID = _userID;
+    }
 
     @DynamoDBHashKey(attributeName = "ID")
     @DynamoDBAttribute(attributeName = "ID")
@@ -45,13 +49,7 @@ class WorkflowDO {
     fun setName( _name : String) {
         this._name = _name;
     }
-    @DynamoDBAttribute(attributeName = "userID")
-    fun getUserID() : Int {
-        return _userID;
-    }
 
-    fun setUserID( _userID : Int) {
-        this._userID = _userID;
-    }
+
 
 }
