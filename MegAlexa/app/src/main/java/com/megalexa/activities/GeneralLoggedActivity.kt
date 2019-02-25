@@ -85,8 +85,8 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             queryExpression.withConsistentRead(false)
             val result = dynamoDBMapper?.query(WorkflowDO::class.java, queryExpression)
             runOnUiThread {
-                for (value in result!!){
-                    Log.d("Workflow", value.toString())
+                for (value in result!!) {
+                    Log.d("Workflow", "ID: " + value.getID() +  " Nome: " + value.getName() + "userID: " + value.getUserID() )
                 }
             }
         }

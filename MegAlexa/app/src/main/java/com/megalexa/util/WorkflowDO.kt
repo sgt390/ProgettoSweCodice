@@ -51,8 +51,5 @@ class WorkflowDO {
     }
 
 
-    override fun toString(): String {
-        return "ID: " + _iD + " User: " + _userID + " Nome: " + _name
-    }
 
 }
