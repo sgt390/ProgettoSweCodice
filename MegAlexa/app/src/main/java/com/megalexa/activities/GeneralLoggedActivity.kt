@@ -12,10 +12,13 @@ import kotlinx.android.synthetic.main.activity_workflow.*
 import android.content.Intent
 import android.R.id
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.Menu
 import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
+import com.amazon.identity.auth.device.api.authorization.User
+import com.amazonaws.mobile.client.AWSMobileClient
 import com.megalexa.adapters.view.WorkflowViewAdapter
 import com.megalexa.util.UserDO
 import kotlinx.android.synthetic.main.activity_general_logged.*
@@ -29,6 +32,8 @@ import kotlin.concurrent.thread
 
 class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    private  var dynamoDBMapper : DynamoDBMapper? = null
+    private lateinit var userID : String
     private lateinit var workflowNames: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
