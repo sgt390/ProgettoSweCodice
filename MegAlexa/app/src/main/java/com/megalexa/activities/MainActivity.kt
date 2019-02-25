@@ -100,7 +100,6 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
                 } else {
                     /* The user is not signed in */
-
                 }
             }
             override fun onError(ae: AuthError) {
