@@ -136,8 +136,10 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
         TODO()
     }
+    
 
- 
+
+
 
 
     private fun debugWorkflowNames():ArrayList<String>{
