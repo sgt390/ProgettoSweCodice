@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+        * File activity_workflow.kt
+        * Version: 1.0.0
+        * Date: 2019-02-16
+        * Author: Stefano Zanatta
+        *         Ludovico Brocca
+        * License:
+        *
+        * History:
+        * Author                || Date         || Description
+        * Stefano Zanatta       || 2019-02-12   || Structure for activity visualization
+        * Ludovico Brocca       || 2019-02-24   || Structure for workflow visualization
+        */
+
+-->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"

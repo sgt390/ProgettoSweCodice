@@ -1,5 +1,19 @@
 package com.megalexa.adapters.view
 
+/*
+* File: ListArrayAdapter.kt
+* Version: 1.0.0
+* Date: 2019-02-17
+* Author: Ludovico Brocca
+*
+* License:
+*
+* History:
+* Author                || Date         || Description
+* Ludovico Brocca       || 2019-02-17   || Writing class ListArrayAdapter
+*                       ||              ||
+*/
+
 
 import android.content.Context
 import android.view.LayoutInflater
