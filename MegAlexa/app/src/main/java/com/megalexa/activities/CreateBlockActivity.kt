@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.*
 import com.megalexa.R
 import com.megalexa.adapters.view.ListArrayAdapter
+import com.megalexa.fragments.AlarmClockFragment
 import com.megalexa.fragments.RssFragment
 import kotlinx.android.synthetic.main.activity_create_block.*
 
@@ -31,26 +32,28 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
         var fragment: Fragment
 
         listView.setOnItemClickListener{
-                _,_,position, _
-            ->
+             _ ,_ ,position, _ ->
 
-            if(position==0) {
-                Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
-                fragment = RssFragment()
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
-            }
+            when(position){
+                0 -> {
+                    Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
+                    fragment = RssFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+                }
+                1 -> {
+                    Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
+                    fragment = AlarmClockFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+                }
+                2 -> {
+                    Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
+                }
+                3 -> {
+                    Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
+                }
 
-            if(position==1) {
-                Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
-            }
-
-            if(position==2) {
-                Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
-            }
-
-            if(position==3) {
-                Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
             }
 
         }
