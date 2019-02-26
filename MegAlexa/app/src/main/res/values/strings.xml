@@ -33,4 +33,9 @@
     <string name="add">Add</string>
     <string name="insert_url_hint">Insert url here</string>
     <string name="insert_text_here">Insert Text here</string>
+    <string name="entertime">Enter time</string>
+    <string name="dotpoint">:</string>
+    <string name="setalarm">SET ALARM</string>
+    <string name="slash"> / </string>
+    <string name="enterdate">Enter date</string>
 </resources>
