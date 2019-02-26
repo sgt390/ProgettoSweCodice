@@ -9,6 +9,7 @@ import android.widget.*
 import com.megalexa.R
 import com.megalexa.adapters.view.ListArrayAdapter
 import com.megalexa.fragments.RssFragment
+import com.megalexa.fragments.TextToSpeechFragment
 import kotlinx.android.synthetic.main.activity_create_block.*
 
 
@@ -46,6 +47,11 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
             }
 
             if(position==2) {
+
+                fragment= TextToSpeechFragment()
+                val transaction =supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+
                 Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
             }
 
