@@ -50,11 +50,17 @@ class MainActivity : AppCompatActivity() {
             AuthorizeListener(){
             /* Authorization was completed successfully. */
             override fun onSuccess(result : AuthorizeResult){
-                val user : UserDO = UserDO()
+                /*val user : UserDO = UserDO()
                 user.setID(result.user.userId)
                 user.setName(result.user.userName)
                 user.setMail(result.user.userEmail)
                 thread(start = true){
+                    dynamoDBMapper?.save(user)
+                }*/
+                val user : UserDO = UserDO()
+                user.setID("CiaoBimbo")
+                user.setMail("prova@unipd.it")
+                thread (start = true){
                     dynamoDBMapper?.save(user)
                 }
                 startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
