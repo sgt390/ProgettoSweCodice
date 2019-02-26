@@ -12,8 +12,10 @@
  *
  */
 package com.megalexa.models.blocks
-import java.util.Calendar
 import android.media.Ringtone
+import java.time.Month
+import java.util.*
+import kotlin.math.min
 
 class BlockAlarmClock(private var minutes: Int, private var hours: Int,
                       private var month: Int, private var day:Int,
