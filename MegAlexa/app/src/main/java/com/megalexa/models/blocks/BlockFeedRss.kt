@@ -41,6 +41,7 @@ class BlockFeedRss(val url: String): Block,Filtrable {
 
     }
 
+
     /** getInformation()
      * @return  String that sums up the information for the given feedRSS
      *
