@@ -51,12 +51,11 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
                 }
                 2 -> {
                     Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
-                }
-                3 -> {
-                    Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
-                }
+                    fragment = TextToSpeechFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
 
-
+                }
             }
 
         }
@@ -84,8 +83,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
         return listOf(
             Pair(list[0], R.drawable.ic_feed_rss),
             Pair(list[1], R.drawable.ic_alarm_clock),
-            Pair(list[2], R.drawable.ic_text),
-            Pair(list[3], R.drawable.ic_filter)
+            Pair(list[2], R.drawable.ic_text)
         )
 
     }
@@ -93,7 +91,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
 
     private fun getTitlesList(): List<String> {
 
-        return listOf("Add FeedRSS", "Add Alarm Clock", "Add Text Block", "Add Filter")
+        return listOf("Add FeedRSS", "Add Alarm Clock", "Add Text Block")
 
     }
 
