@@ -30,6 +30,7 @@ class BlockAlarmClock(private var minutes: Int, private var hours: Int,
         calendar.set(Calendar.YEAR,year)
         calendar.set(Calendar.MONTH,month)
         calendar.set(Calendar.DAY_OF_MONTH,day)
+
     }
 
     //Set time method
