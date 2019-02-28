@@ -1,9 +1,3 @@
-addons:
-  sonarcloud:
-    organization: "sgt390-github"
-    token:
-      secure: "$SONAR_TOKEN"
-
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -12,34 +6,33 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 
-language: android
-android:
-  components:
-    - build-tools-28.0.3
-    - android-28
-    - add-on
-    - extra
-  licenses:
-    - 'android-sdk-preview-license-52d11cd2'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
+
 
 #use "MegAlexa/gradlew stage-name" to run stages!
 jobs:
   include:
     - stage: "Static tests"
       name: "Static tests"
+      addons:
+       sonarcloud:
+          organization: "sgt390-github"
+          token:
+             secure: "$SONAR_TOKEN"
       script: sonar-scanner
-    - stage: "Dynamic tests"  
+    - stage: "Dynamic tests"
+      language: android
+      android:
+        components:
+          - build-tools-28.0.3
+          - android-28
+        licenses:
+          - 'android-sdk-preview-license-52d11cd2'
+          - 'android-sdk-license-.+'
+          - 'google-gdk-license-.+' 
       name: "Unit tests"
       script: MegAlexa/gradlew build
-    - name: "Integration tests"
-      script: skip
-    - stage: deploy
-      script: skip
 stages:
   - "Static tests"
   - "Dynamic tests"
-  - deploy
 notifications:
   slack: zerosevengroup:awH2p9uSzEPY9plMSyKBtAHF
