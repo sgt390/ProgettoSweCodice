@@ -20,13 +20,11 @@ import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
 import com.amazon.identity.auth.device.api.authorization.User
 import com.amazonaws.mobile.client.AWSMobileClient
 import com.megalexa.adapters.view.WorkflowViewAdapter
-import com.megalexa.util.UserDO
 import kotlinx.android.synthetic.main.activity_general_logged.*
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBQueryExpression
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient
 import com.amazonaws.services.dynamodbv2.model.AttributeValue
-import com.megalexa.util.WorkflowDO
 import kotlin.concurrent.thread
 
 
@@ -126,7 +124,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     /**retrieves the names of the workflow for the given user
      * @param User identifies the user that needs to display the workflow
      */
-    fun fetchWorkflowNames(User: UserDO){
+    fun fetchWorkflowNames(){
 
         TODO()
     }

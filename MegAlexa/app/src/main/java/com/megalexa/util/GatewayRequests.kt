@@ -9,24 +9,18 @@ import javax.net.ssl.HttpsURLConnection
 
 object GatewayRequests{
 
-    private val api_URL= "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/user/create"
-    private var jSon_object= JSONObject()
+    private const val api_URL= "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/"
 
 
-    fun saveUser(paramID :String ,paramName:String, paramMail:String){
-        jSon_object.put("userID", paramID)
-        jSon_object.put("name", paramName)
-        jSon_object.put("email", paramMail)
+    fun getJSONFile() : JSONObject {
 
-        postRequestToWrite()
-        //clearing object
-        jSon_object= JSONObject()
-
+        TODO()
     }
-     
-       private fun postRequestToWrite(){
 
-           var myURL = URL(api_URL)
+        ////////POST Requests Functions
+    private fun postRequestToWrite(jSon_object: JSONObject, url: String){
+
+           val myURL = URL(url)
            with(myURL.openConnection() as HttpsURLConnection){
                setRequestProperty("Content-Type", "application/json")
                requestMethod = "POST"
@@ -43,12 +37,100 @@ object GatewayRequests{
                        response.append(inputLine)
                        inputLine = it.readLine()
                    }
-                   it.close()
                    println("Response : $response")
                }
 
 
            }
+
+
+
     }
+
+    private fun postRequestToRead(jSon_object: JSONObject, url: String) :JSONObject {
+        val myURL = URL(url)
+
+
+        with(myURL.openConnection() as HttpsURLConnection){
+            setRequestProperty("Content-Type", "application/json")
+            requestMethod = "POST"
+            doOutput = true
+            val wr = OutputStreamWriter(outputStream)
+            wr.write(jSon_object.toString())
+            wr.flush()
+            var readResult: StringBuffer
+            BufferedReader(InputStreamReader(inputStream)).use {
+                readResult = StringBuffer()
+                var inputLine = it.readLine()
+                while (inputLine != null) {
+                    readResult.append(inputLine)
+                    inputLine = it.readLine()
+                }
+
+
+                return JSONObject(readResult.toString())
+            }
+
+
+        }
+    }
+
+
+
+    ////////////USER FUNCTIONS
+    fun saveUser(paramID :String ,paramName:String, paramMail:String){
+        val jSonObject= JSONObject()
+        val resources="user/create"
+        jSonObject.put("userID", paramID)
+        jSonObject.put("name", paramName)
+        jSonObject.put("email", paramMail)
+
+        postRequestToWrite(jSonObject, api_URL+resources)
+
+    }
+
+
+    fun readUser(paramID: String) : JSONObject{
+        val jSonObject= JSONObject()
+        val resources="user/read"
+        jSonObject.put("userID",paramID)
+        val response =postRequestToRead(jSonObject, api_URL+resources)
+        return response
+
+    }
+    //////////BLOCK FUNCTIONS
+    fun saveBlock() {
+        TODO()
+
+    }
+
+    fun deleteBlock() {
+
+        TODO()
+    }
+
+    fun updateBlock() {
+
+        TODO()
+    }
+
+    ///////////WORKFLOW FUNCTIONS
+    fun saveWorkflow(workflow_name: String) {
+
+        TODO()
+    }
+
+
+    fun deleteWorkflow(workflow_name: String) {
+
+        TODO()
+
+    }
+
+    fun updateWorkflow() {
+
+        TODO()
+    }
+
 
 }

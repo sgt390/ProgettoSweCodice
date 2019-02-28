@@ -49,8 +49,10 @@ class MainActivity : AppCompatActivity() {
             /* Authorization was completed successfully. */
             override fun onSuccess(result : AuthorizeResult){
 
-                GatewayRequests.saveUser(result.user.userId,result.user.userName,result.user.userEmail)
+                //GatewayRequests.saveUser(result.user.userId,result.user.userName,result.user.userEmail)
 
+                val json =GatewayRequests.readUser("ProvaDaInternet")
+                println(json.toString())
            /*   var connection = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/user/create"
                 var requestParam = JSONObject()
                 requestParam.put("userID", result.user.userId)
