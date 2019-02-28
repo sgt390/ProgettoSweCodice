@@ -6,12 +6,8 @@ import com.megalexa.models.workflow.Workflow
 class MegAlexa(val u:User) {
 
     private var workflows = ArrayList<Workflow>()
-    private  val user:User
+    private  var user=User(u.getID(),u.getMail(), u.getName())
 
-    init{
-
-        user= User(u.getID(),u.getMail(), u.getName())
-    }
 
     fun addWorkflow(w: Workflow){
         workflows.add(w)

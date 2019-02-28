@@ -14,24 +14,16 @@ import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizeResult
 import com.amazon.identity.auth.device.api.authorization.AuthorizeListener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
-import com.amazon.identity.auth.device.dataobject.Profile
-import com.amazonaws.auth.BasicAWSCredentials
 import com.amazonaws.mobile.client.AWSMobileClient
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient
 import com.megalexa.R
-import com.megalexa.util.UserDO
+import com.megalexa.util.GatewayRequests
 import org.json.JSONObject
 import java.io.BufferedReader
-import java.io.DataOutputStream
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
-import java.net.HttpURLConnection
 import java.net.URL
-import java.net.URLEncoder
 import javax.net.ssl.HttpsURLConnection
-import kotlin.concurrent.thread
-import kotlin.random.Random
 
 
 class MainActivity : AppCompatActivity() {
@@ -51,18 +43,15 @@ class MainActivity : AppCompatActivity() {
         AWSMobileClient.getInstance().initialize(this) {
             Log.d(TAG, "AWSMobileClient is initialized")
         }.execute()
-        /*val client = AmazonDynamoDBClient(AWSMobileClient.getInstance().credentialsProvider)
-        dynamoDBMapper = DynamoDBMapper.builder()
-            .dynamoDBClient(client)
-            .awsConfiguration(AWSMobileClient.getInstance().configuration)
-            .build()*/
+
         requestContext.registerListener( object :
             AuthorizeListener(){
             /* Authorization was completed successfully. */
             override fun onSuccess(result : AuthorizeResult){
 
-                var connection = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/user/create"
-                //var requestParam = URLEncoder.encode("\"userID\"", "UTF-8") + "=" + URLEncoder.encode(result.user.userId, "UTF-8") + "&" + URLEncoder.encode("\"name\"", "UTF-8") + "=" + URLEncoder.encode(result.user.userName, "UTF-8")  + "&" + URLEncoder.encode("\"email\"", "UTF-8") + "="  + URLEncoder.encode(result.user.userEmail, "UTF-8")
+                GatewayRequests.saveUser(result.user.userId,result.user.userName,result.user.userEmail)
+
+           /*   var connection = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/user/create"
                 var requestParam = JSONObject()
                 requestParam.put("userID", result.user.userId)
                 requestParam.put("name", result.user.userName)
@@ -88,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                         println("Response : $response")
                     }
 
-                }
+                }*/
 
                 startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
             }
