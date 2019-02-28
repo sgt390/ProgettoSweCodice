@@ -60,32 +60,7 @@ class MainActivity : AppCompatActivity() {
             AuthorizeListener(){
             /* Authorization was completed successfully. */
             override fun onSuccess(result : AuthorizeResult){
-                /*val url = " https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/user/create/"
-                val requestParam = URLEncoder.encode("userID", "UTF-8") + "=" + URLEncoder.encode(result.user.userId, "UTF-8") + "&" + URLEncoder.encode("email", "UTF-8") + "="  + URLEncoder.encode(result.user.userEmail, "UTF-8")+ "&" + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(result.user.userName, "UTF-8")
-                val myURL = URL(url)
-                with(myURL.openConnection() as HttpURLConnection) {
-                    // optional default is GET
-                    requestMethod = "POST"
 
-                    val wr = OutputStreamWriter(getOutputStream());
-                    wr.write(requestParam)
-                    wr.flush();
-
-                    println("URL : $url")
-                    println("Response Code : $responseCode")
-
-                    BufferedReader(InputStreamReader(inputStream)).use {
-                        val response = StringBuffer()
-
-                        var inputLine = it.readLine()
-                        while (inputLine != null) {
-                            response.append(inputLine)
-                            inputLine = it.readLine()
-                        }
-                        it.close()
-                        println("Response : $response")
-                    }
-                }*/
                 var connection = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/user/create"
                 //var requestParam = URLEncoder.encode("\"userID\"", "UTF-8") + "=" + URLEncoder.encode(result.user.userId, "UTF-8") + "&" + URLEncoder.encode("\"name\"", "UTF-8") + "=" + URLEncoder.encode(result.user.userName, "UTF-8")  + "&" + URLEncoder.encode("\"email\"", "UTF-8") + "="  + URLEncoder.encode(result.user.userEmail, "UTF-8")
                 var requestParam = JSONObject()
