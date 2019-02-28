@@ -20,6 +20,13 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient
 import com.megalexa.R
 import com.megalexa.util.UserDO
+import java.io.BufferedReader
+import java.io.DataOutputStream
+import java.io.InputStreamReader
+import java.io.OutputStreamWriter
+import java.net.HttpURLConnection
+import java.net.URL
+import java.net.URLEncoder
 import kotlin.concurrent.thread
 import kotlin.random.Random
 
@@ -41,22 +48,59 @@ class MainActivity : AppCompatActivity() {
         AWSMobileClient.getInstance().initialize(this) {
             Log.d(TAG, "AWSMobileClient is initialized")
         }.execute()
-        val client = AmazonDynamoDBClient(AWSMobileClient.getInstance().credentialsProvider)
+        /*val client = AmazonDynamoDBClient(AWSMobileClient.getInstance().credentialsProvider)
         dynamoDBMapper = DynamoDBMapper.builder()
             .dynamoDBClient(client)
             .awsConfiguration(AWSMobileClient.getInstance().configuration)
-            .build()
+            .build()*/
         requestContext.registerListener( object :
             AuthorizeListener(){
             /* Authorization was completed successfully. */
             override fun onSuccess(result : AuthorizeResult){
-                val user : UserDO = UserDO()
-                user.setID(result.user.userId)
-                user.setName(result.user.userName)
-                user.setMail(result.user.userEmail)
-                thread(start = true){
-                    dynamoDBMapper?.save(user)
+                val url = " https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/user/create/"
+                val requestParam = "userID="+result.user.userId+"&name="+result.user.userName+"&email="+result.user.userEmail //URLEncoder.encode("userID", "UTF-8") + "=" + URLEncoder.encode(result.user.userId, "UTF-8") + "&" + URLEncoder.encode("email", "UTF-8") + "="  + URLEncoder.encode(result.user.userEmail, "UTF-8")+ "&" + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(result.user.userName, "UTF-8")
+
+                println(requestParam)
+
+                //"userID="+result.user.userId+"&name="+result.user.userName+"&email="+result.user.userEmail
+
+                val myURL = URL(url)
+
+                with(myURL.openConnection() as HttpURLConnection) {
+                    // optional default is GET
+                    requestMethod = "POST"
+
+                    val wr = OutputStreamWriter(getOutputStream());
+                    wr.write(URLEncoder.encode(requestParam))
+                    wr.flush();
+
+                    println("URL : $url")
+                    println("Response Code : $responseCode")
+
+                    BufferedReader(InputStreamReader(inputStream)).use {
+                        val response = StringBuffer()
+
+                        var inputLine = it.readLine()
+                        while (inputLine != null) {
+                            response.append(inputLine)
+                            inputLine = it.readLine()
+                        }
+                        it.close()
+                        println("Response : $response")
+                    }
                 }
+
+                /*var connection = myURL.openConnection() as HttpURLConnection
+                connection.requestMethod = "POST"
+                connection.outputStream.write(requestParam.toByteArray())
+                try {
+                    connection.connect()*/
+                    Log.d("Connect", "Sono passato di qui")
+
+
+                /*finally {
+                    connection.disconnect();
+                }*/
                 startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
             }
             /* There was an error during the attempt to authorize the application. */

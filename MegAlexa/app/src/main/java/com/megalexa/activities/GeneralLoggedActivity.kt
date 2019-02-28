@@ -59,15 +59,15 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                 startActivity(Intent(this@GeneralLoggedActivity, CreateWorkflowActivity::class.java))
             }
         })
-        val client = AmazonDynamoDBClient(AWSMobileClient.getInstance().credentialsProvider)
+       /* val client = AmazonDynamoDBClient(AWSMobileClient.getInstance().credentialsProvider)
         dynamoDBMapper = DynamoDBMapper.builder()
             .dynamoDBClient(client)
             .awsConfiguration(AWSMobileClient.getInstance().configuration)
-            .build()
+            .build()*/
         User.fetch(this, object: Listener<User, AuthError>{
             override fun onSuccess(p0: User) {
                 userID = p0.userId
-                queryWorkflow()
+                //queryWorkflow()
             }
             override fun onError(p0: AuthError?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -84,7 +84,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         }
     }
 
-    private fun queryWorkflow(){
+    /*private fun queryWorkflow(){
         thread(start = true){
             val item = WorkflowDO()
             item.setUserID(userID)
@@ -100,7 +100,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                 }
             }
         }
-    }
+    }*/
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
