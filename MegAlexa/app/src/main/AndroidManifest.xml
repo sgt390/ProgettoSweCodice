@@ -34,6 +34,10 @@
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
+                android:name=".activities.ViewBlockActivity"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
                 android:name="com.amazon.identity.auth.device.workflow.WorkflowActivity"
                 android:allowTaskReparenting="true"
                 android:launchMode="singleTask"
