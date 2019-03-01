@@ -3,11 +3,11 @@ package com.megalexa.models.workflow
 import com.megalexa.models.blocks.Block
 
 class Workflow(private val name:String) {
-    private  var  blockList: ArrayList<Block> = ArrayList()
-    private  var workflowName=name
+    //private  var  blockList: ArrayList<Block> = ArrayList()
+    private  var workflowName = name
 
 
-    fun addBlock(block: Block){
+    /*fun addBlock(block: Block){
         blockList.add(block)
     }
 
@@ -25,7 +25,14 @@ class Workflow(private val name:String) {
 
     fun removeBlock(block:Block) {
         blockList.remove(block)
+    }*/
+
+    override fun toString(): String {
+        return workflowName
     }
 
+    fun getName() : String{
+        return workflowName
+    }
     
 }

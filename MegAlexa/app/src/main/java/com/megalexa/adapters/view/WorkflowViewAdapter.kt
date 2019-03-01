@@ -8,13 +8,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.amazonaws.services.dynamodbv2.model.StreamViewType
 import com.megalexa.R
+import com.megalexa.models.workflow.Workflow
 
 
-class WorkflowViewAdapter(private val dataset: ArrayList<String>, private val context: Context):RecyclerView.Adapter<WorkflowViewHolder>(){
+class WorkflowViewAdapter(private val dataset: ArrayList<Workflow>, private val context: Context):RecyclerView.Adapter<WorkflowViewHolder>(){
 
 
     override fun onBindViewHolder(holder: WorkflowViewHolder, position: Int) {
-        holder.tView?.text = dataset[position]
+        holder.tView?.text = dataset[position].getName()
     }
 
     override fun getItemCount(): Int {
