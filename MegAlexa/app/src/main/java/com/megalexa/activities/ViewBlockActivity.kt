@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.megalexa.R
-import com.megalexa.adapters.view.WorkflowViewAdapter
+import com.megalexa.adapters.view.BlockViewAdapter
 import kotlinx.android.synthetic.main.activity_create_workflow.*
 import kotlinx.android.synthetic.main.activity_view_block.*
 
@@ -23,7 +23,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
         rec_view=findViewById(R.id.recyclerView_addedBlocksView)
         rec_view.layoutManager= LinearLayoutManager(this)
-        rec_view.adapter= WorkflowViewAdapter(block_names,this)
+        rec_view.adapter= BlockViewAdapter(block_names,this)
 
 
         button_add_blockView.setOnClickListener(this)
