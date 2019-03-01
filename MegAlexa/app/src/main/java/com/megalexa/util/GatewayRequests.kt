@@ -1,6 +1,7 @@
 package com.megalexa.util
 
 import com.megalexa.models.User
+import com.megalexa.models.workflow.Workflow
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -127,6 +128,20 @@ object GatewayRequests{
 
         TODO()
     }
+
+    fun readWorkflow(user : User) : ArrayList<Workflow>{
+        var listWorkflow : ArrayList<Workflow> = ArrayList<Workflow>()
+        var userID = JSONObject()
+        userID.put("userID", user.getID())
+        val resources="workflow/read"
+        var workflowListJSON = postRequestToRead(userID, api_URL + resources )
+
+        for(workflow in workflowListJSON.keys()){
+            listWorkflow.add(Workflow(workflow))
+        }
+        return listWorkflow
+    }
+
 
 
 }

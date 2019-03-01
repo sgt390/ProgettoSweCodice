@@ -6,7 +6,7 @@ import com.megalexa.util.GatewayRequests
 
 class MegAlexa {
 
-    private var workflows = ArrayList<Workflow>()
+    private var workflows  = ArrayList<Workflow>()
     private  lateinit var user : User
 
     fun saveUser(user: User){
@@ -20,6 +20,19 @@ class MegAlexa {
 
     fun getWorkflowList(): ArrayList<Workflow> {
 
+        return workflows
+    }
+
+    fun setUser(user: User){
+        this.user = user
+    }
+
+    fun getUser() : User{
+        return user
+    }
+
+    fun loadWorkflow() : ArrayList<Workflow>{
+        workflows = GatewayRequests.readWorkflow(user)
         return workflows
     }
 

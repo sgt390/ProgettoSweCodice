@@ -1,10 +1,11 @@
 package com.megalexa.viewModel
 
-import android.arch.lifecycle.AndroidViewModel
+
+import android.util.Log
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.User
 import com.megalexa.models.workflow.Workflow
-import com.megalexa.util.GatewayRequests
+
 
 class ViewModelMain{
 
@@ -13,9 +14,20 @@ class ViewModelMain{
 
 
     fun saveUser(userID : String, name: String, email: String){
-        app.saveUser(User(userID, name, email))
+        app.saveUser(com.megalexa.models.User(userID, name, email))
     }
 
+    fun setUser(user: com.amazon.identity.auth.device.api.authorization.User){
+        app.setUser(com.megalexa.models.User(user.userId, user.userName, user.userName))
+    }
+
+    fun fetchWorkflow() : ArrayList<Workflow>{
+        return app.loadWorkflow()
+    }
+
+    override fun toString(): String {
+        return app.getUser().toJSON().toString()
+    }
     /**
      * returns a list of workflow names from db
      * and adds it to the app
