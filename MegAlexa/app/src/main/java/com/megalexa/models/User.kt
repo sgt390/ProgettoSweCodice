@@ -19,7 +19,7 @@ class User(uID: String ,mail: String,value: String) {
     }
 
     fun toJSON() : JSONObject{
-        var userJ : JSONObject = JSONObject()
+        val userJ : JSONObject = JSONObject()
         userJ.put("userID", userID)
         userJ.put("name", name)
         userJ.put("email", email)

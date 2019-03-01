@@ -42,34 +42,6 @@ class MainActivity : AppCompatActivity() {
                 //GatewayRequests.saveUser(result.user.userId,result.user.userName,result.user.userEmail)
 
                 viewModel.saveUser(result.user.userId, result.user.userName, result.user.userEmail)
-           /*   var connection = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/user/create"
-                var requestParam = JSONObject()
-                requestParam.put("userID", result.user.userId)
-                requestParam.put("name", result.user.userName)
-                requestParam.put("email", result.user.userEmail)
-                var myURL = URL(connection)
-                with(myURL.openConnection() as HttpsURLConnection){
-                    setRequestProperty("Content-Type", "application/json")
-                    requestMethod = "POST"
-                    doOutput = true
-                    val wr = OutputStreamWriter(outputStream)
-                    wr.write(requestParam.toString())
-                    wr.flush()
-                    println("URL : $url")
-                    println("Response Code : $responseCode")
-                    BufferedReader(InputStreamReader(inputStream)).use {
-                        val response = StringBuffer()
-                        var inputLine = it.readLine()
-                        while (inputLine != null) {
-                            response.append(inputLine)
-                            inputLine = it.readLine()
-                        }
-                        it.close()
-                        println("Response : $response")
-                    }
-
-                }*/
-
                 startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
             }
             /* There was an error during the attempt to authorize the application. */
@@ -102,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        var scopes:  Array<Scope> = arrayOf(
+        val scopes:  Array<Scope> = arrayOf(
             ProfileScope.profile(),
             ProfileScope.postalCode()
         )
