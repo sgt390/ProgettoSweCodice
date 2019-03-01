@@ -14,33 +14,19 @@ import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizeResult
 import com.amazon.identity.auth.device.api.authorization.AuthorizeListener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
-import com.amazon.identity.auth.device.dataobject.Profile
-import com.amazonaws.auth.BasicAWSCredentials
-import com.amazonaws.mobile.client.AWSMobileClient
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient
+
 import com.megalexa.R
-import com.megalexa.util.UserDO
-import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.DataOutputStream
-import java.io.InputStreamReader
-import java.io.OutputStreamWriter
-import java.net.HttpURLConnection
-import java.net.URL
-import java.net.URLEncoder
-import javax.net.ssl.HttpsURLConnection
-import kotlin.concurrent.thread
-import kotlin.random.Random
+
+import com.megalexa.viewModel.ViewModelMain
+
 
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var requestContext: RequestContext
     companion object {
-        private val TAG: String = this::class.java.simpleName
+        private var viewModel : ViewModelMain = ViewModelMain()
     }
-    private var dynamoDBMapper: DynamoDBMapper? = null
 
 
 
@@ -48,73 +34,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         requestContext = RequestContext.create(this)
-        AWSMobileClient.getInstance().initialize(this) {
-            Log.d(TAG, "AWSMobileClient is initialized")
-        }.execute()
-        /*val client = AmazonDynamoDBClient(AWSMobileClient.getInstance().credentialsProvider)
-        dynamoDBMapper = DynamoDBMapper.builder()
-            .dynamoDBClient(client)
-            .awsConfiguration(AWSMobileClient.getInstance().configuration)
-            .build()*/
         requestContext.registerListener( object :
             AuthorizeListener(){
             /* Authorization was completed successfully. */
             override fun onSuccess(result : AuthorizeResult){
-                /*val url = " https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/user/create/"
-                val requestParam = URLEncoder.encode("userID", "UTF-8") + "=" + URLEncoder.encode(result.user.userId, "UTF-8") + "&" + URLEncoder.encode("email", "UTF-8") + "="  + URLEncoder.encode(result.user.userEmail, "UTF-8")+ "&" + URLEncoder.encode("name", "UTF-8") + "=" + URLEncoder.encode(result.user.userName, "UTF-8")
-                val myURL = URL(url)
-                with(myURL.openConnection() as HttpURLConnection) {
-                    // optional default is GET
-                    requestMethod = "POST"
 
-                    val wr = OutputStreamWriter(getOutputStream());
-                    wr.write(requestParam)
-                    wr.flush();
+                //GatewayRequests.saveUser(result.user.userId,result.user.userName,result.user.userEmail)
 
-                    println("URL : $url")
-                    println("Response Code : $responseCode")
-
-                    BufferedReader(InputStreamReader(inputStream)).use {
-                        val response = StringBuffer()
-
-                        var inputLine = it.readLine()
-                        while (inputLine != null) {
-                            response.append(inputLine)
-                            inputLine = it.readLine()
-                        }
-                        it.close()
-                        println("Response : $response")
-                    }
-                }*/
-                var connection = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/user/create"
-                //var requestParam = URLEncoder.encode("\"userID\"", "UTF-8") + "=" + URLEncoder.encode(result.user.userId, "UTF-8") + "&" + URLEncoder.encode("\"name\"", "UTF-8") + "=" + URLEncoder.encode(result.user.userName, "UTF-8")  + "&" + URLEncoder.encode("\"email\"", "UTF-8") + "="  + URLEncoder.encode(result.user.userEmail, "UTF-8")
-                var requestParam = JSONObject()
-                requestParam.put("userID", result.user.userId)
-                requestParam.put("name", result.user.userName)
-                requestParam.put("email", result.user.userEmail)
-                var myURL = URL(connection)
-                with(myURL.openConnection() as HttpsURLConnection){
-                    setRequestProperty("Content-Type", "application/json")
-                    requestMethod = "POST"
-                    doOutput = true
-                    val wr = OutputStreamWriter(outputStream)
-                    wr.write(requestParam.toString())
-                    wr.flush()
-                    println("URL : $url")
-                    println("Response Code : $responseCode")
-                    BufferedReader(InputStreamReader(inputStream)).use {
-                        val response = StringBuffer()
-                        var inputLine = it.readLine()
-                        while (inputLine != null) {
-                            response.append(inputLine)
-                            inputLine = it.readLine()
-                        }
-                        it.close()
-                        println("Response : $response")
-                    }
-
-                }
-
+                viewModel.saveUser(result.user.userId, result.user.userName, result.user.userEmail)
                 startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
             }
             /* There was an error during the attempt to authorize the application. */
@@ -147,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        var scopes:  Array<Scope> = arrayOf(
+        val scopes:  Array<Scope> = arrayOf(
             ProfileScope.profile(),
             ProfileScope.postalCode()
         )

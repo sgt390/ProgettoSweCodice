@@ -16,17 +16,14 @@ class Workflow(private val name:String) {
     }
 
     fun getName() :String {
-
         return workflowName
     }
 
     fun removeBlockAt(position:Int) {
-
         blockList.removeAt(position)
     }
 
     fun removeBlock(block:Block) {
-
         blockList.remove(block)
     }
 
