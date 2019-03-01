@@ -14,25 +14,19 @@ import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizeResult
 import com.amazon.identity.auth.device.api.authorization.AuthorizeListener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
-import com.amazonaws.mobile.client.AWSMobileClient
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper
+
 import com.megalexa.R
-import com.megalexa.util.GatewayRequests
-import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.io.OutputStreamWriter
-import java.net.URL
-import javax.net.ssl.HttpsURLConnection
+
+import com.megalexa.viewModel.ViewModelMain
+
 
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var requestContext: RequestContext
     companion object {
-        private val TAG: String = this::class.java.simpleName
+        private var viewModel : ViewModelMain = ViewModelMain()
     }
-    private var dynamoDBMapper: DynamoDBMapper? = null
 
 
 
@@ -40,10 +34,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         requestContext = RequestContext.create(this)
-        AWSMobileClient.getInstance().initialize(this) {
-            Log.d(TAG, "AWSMobileClient is initialized")
-        }.execute()
-
         requestContext.registerListener( object :
             AuthorizeListener(){
             /* Authorization was completed successfully. */
@@ -51,8 +41,7 @@ class MainActivity : AppCompatActivity() {
 
                 //GatewayRequests.saveUser(result.user.userId,result.user.userName,result.user.userEmail)
 
-                val json =GatewayRequests.readUser("ProvaDaInternet")
-                println(json.toString())
+                viewModel.saveUser(result.user.userId, result.user.userName, result.user.userEmail)
            /*   var connection = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/user/create"
                 var requestParam = JSONObject()
                 requestParam.put("userID", result.user.userId)

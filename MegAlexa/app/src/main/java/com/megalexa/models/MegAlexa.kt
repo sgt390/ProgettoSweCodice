@@ -1,13 +1,18 @@
 package com.megalexa.models
 
 import com.megalexa.models.workflow.Workflow
+import com.megalexa.util.GatewayRequests
 
 
-class MegAlexa(val u:User) {
+class MegAlexa {
 
     private var workflows = ArrayList<Workflow>()
-    private  var user=User(u.getID(),u.getMail(), u.getName())
+    private  lateinit var user : User
 
+    fun saveUser(user: User){
+        this.user = user
+        GatewayRequests.saveUser(user)
+    }
 
     fun addWorkflow(w: Workflow){
         workflows.add(w)

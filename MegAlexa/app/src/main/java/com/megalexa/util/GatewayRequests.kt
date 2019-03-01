@@ -1,5 +1,6 @@
 package com.megalexa.util
 
+import com.megalexa.models.User
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -78,14 +79,9 @@ object GatewayRequests{
 
 
     ////////////USER FUNCTIONS
-    fun saveUser(paramID :String ,paramName:String, paramMail:String){
-        val jSonObject= JSONObject()
+    fun saveUser(user: User){
         val resources="user/create"
-        jSonObject.put("userID", paramID)
-        jSonObject.put("name", paramName)
-        jSonObject.put("email", paramMail)
-
-        postRequestToWrite(jSonObject, api_URL+resources)
+        postRequestToWrite(user.toJSON(), api_URL+resources)
 
     }
 
