@@ -13,6 +13,7 @@ import android.content.Intent
 import android.R.id
 import android.arch.lifecycle.ViewModel
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.Menu
 import android.widget.ArrayAdapter
@@ -36,27 +37,26 @@ import kotlin.concurrent.thread
 
 
 class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
-    private lateinit var listView: ListView
-    private lateinit var adapter: ArrayAdapter<String>
     companion object {
         private var viewModel : ViewModelMain = ViewModelMain()
     }
+
+    private lateinit var layoutManager: RecyclerView.LayoutManager
+    private lateinit var listWorkflow: ArrayList<Workflow>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_general_logged)
 
 
-        listView= findViewById(R.id.container_workflow)
-        adapter=ArrayAdapter(this,R.layout.item_workflow)
-        listView.adapter=adapter
-        Log.d("adapter","adapter")
+        val recyclerView=findViewById<RecyclerView>(R.id.container_workflow)
+        recyclerView.setHasFixedSize(true)
+        layoutManager= LinearLayoutManager(this)
+        recyclerView.layoutManager=layoutManager
 
-        listView.setOnItemClickListener{
-            _,_,_,_ -> startActivity(Intent(this@GeneralLoggedActivity, ViewBlockActivity::class.java))
-
-        }
+        listWorkflow= ArrayList()
+        val adapter= WorkflowViewAdapter(listWorkflow,this)
+        recyclerView.adapter=adapter
 
         val navigationView  : View = findViewById(R.id.nav_view)
         navigationView.bringToFront()
@@ -75,15 +75,12 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         User.fetch(this, object: Listener<User, AuthError>{
             override fun onSuccess(p0: User) {
                 viewModel.setUser(p0)
-                val listWorkflow = viewModel.fetchWorkflow()
-                Log.d("ViewModel: ", viewModel.toString()  )
-                /*runOnUiThread{
-                    //Toast.makeText(this@GeneralLoggedActivity,"I'M here",Toast.LENGTH_LONG).show()
+                listWorkflow = viewModel.fetchWorkflow()
+                runOnUiThread{
+                    recyclerView.adapter= WorkflowViewAdapter(listWorkflow,applicationContext)
+                }
 
-                    //adapter.addAll(getAllNames(listWorkflow))
-                    //listView.adapter=adapter
-                    //adapter.notifyDataSetChanged()
-                }*/
+                Log.d("ViewModel: ", viewModel.toString()  )
 
             }
             override fun onError(p0: AuthError?) {
@@ -122,14 +119,6 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         return true
     }
 
-    fun getAllNames(listWorkflow:ArrayList<Workflow>): ArrayList<String>{
-        val toReturn= ArrayList<String>()
-
-            toReturn.add(listWorkflow[0].getName())
-            Toast.makeText(this@GeneralLoggedActivity,toReturn[0],Toast.LENGTH_LONG).show()
-
-        return toReturn
-    }
 
 
 }
