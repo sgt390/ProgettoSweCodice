@@ -22,7 +22,6 @@ class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): Rec
         return BlockViewHolder(LayoutInflater.from(context).inflate(R.layout.block_view_layout, parent, false))
     }
 
-
 }
 
 class BlockViewHolder(v: View): RecyclerView.ViewHolder(v) {

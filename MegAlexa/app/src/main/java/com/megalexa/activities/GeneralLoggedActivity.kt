@@ -15,6 +15,9 @@ import android.arch.lifecycle.ViewModel
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.Menu
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import android.widget.Toast
 import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
@@ -26,15 +29,16 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBQueryExpression
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient
 import com.amazonaws.services.dynamodbv2.model.AttributeValue
+import com.google.gson.internal.bind.ArrayTypeAdapter
+import com.megalexa.models.workflow.Workflow
 import com.megalexa.viewModel.ViewModelMain
 import kotlin.concurrent.thread
 
 
 class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    //private  var dynamoDBMapper : DynamoDBMapper? = null
-    //private lateinit var userID : String
-    //private  var workflowNames: ArrayList<String>? =
+    private lateinit var listView: ListView
+    private lateinit var adapter: ArrayAdapter<String>
     companion object {
         private var viewModel : ViewModelMain = ViewModelMain()
     }
@@ -42,7 +46,18 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_general_logged)
-        //must be changed to load real workflow names
+
+
+        listView= findViewById(R.id.container_workflow)
+        adapter=ArrayAdapter(this,R.layout.item_workflow)
+        listView.adapter=adapter
+        Log.d("adapter","adapter")
+
+        listView.setOnItemClickListener{
+            _,_,_,_ -> startActivity(Intent(this@GeneralLoggedActivity, ViewBlockActivity::class.java))
+
+        }
+
         val navigationView  : View = findViewById(R.id.nav_view)
         navigationView.bringToFront()
         setSupportActionBar(toolbar)
@@ -61,11 +76,15 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             override fun onSuccess(p0: User) {
                 viewModel.setUser(p0)
                 val listWorkflow = viewModel.fetchWorkflow()
-                runOnUiThread {
-                    container_workflow.layoutManager = LinearLayoutManager(applicationContext)
-                    container_workflow.adapter = WorkflowViewAdapter(listWorkflow, applicationContext)
-                }
                 Log.d("ViewModel: ", viewModel.toString()  )
+                /*runOnUiThread{
+                    //Toast.makeText(this@GeneralLoggedActivity,"I'M here",Toast.LENGTH_LONG).show()
+
+                    //adapter.addAll(getAllNames(listWorkflow))
+                    //listView.adapter=adapter
+                    //adapter.notifyDataSetChanged()
+                }*/
+
             }
             override fun onError(p0: AuthError?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -103,7 +122,14 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         return true
     }
 
+    fun getAllNames(listWorkflow:ArrayList<Workflow>): ArrayList<String>{
+        val toReturn= ArrayList<String>()
 
+            toReturn.add(listWorkflow[0].getName())
+            Toast.makeText(this@GeneralLoggedActivity,toReturn[0],Toast.LENGTH_LONG).show()
+
+        return toReturn
+    }
 
 
 }
