@@ -17,37 +17,20 @@ import java.time.Month
 import java.util.*
 import kotlin.math.min
 
-class BlockAlarmClock(private var minutes: Int, private var hours: Int,
-                      private var month: Int, private var day:Int,
-                      private var year:Int, private var sound: Ringtone) : Block{
-    val calendar = Calendar.getInstance()
+class BlockAlarmClock(val alarm: Calendar) : Block{
+    private val calendar = alarm
     //set calendar
-    init {
-        //controls will do in fragment file later
-        calendar.set(Calendar.HOUR_OF_DAY, hours)
-        calendar.set(Calendar.MINUTE, minutes)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.YEAR,year)
-        calendar.set(Calendar.MONTH,month)
-        calendar.set(Calendar.DAY_OF_MONTH,day)
-
-    }
 
     //Set time method
     fun setTime(hour: Int,minute: Int) {
-        minutes = minute
-        hours = hour
         calendar.set(Calendar.HOUR_OF_DAY, hour)
         calendar.set(Calendar.MINUTE, minute)
     }
     //Set date method
     fun setDate(y: Int, m: Int, d:Int) {
-        year = y
-        month = m
-        day = d
-        calendar.set(Calendar.YEAR,year)
-        calendar.set(Calendar.MONTH,month)
-        calendar.set(Calendar.DAY_OF_MONTH,day)
+        calendar.set(Calendar.YEAR,y)
+        calendar.set(Calendar.MONTH,m)
+        calendar.set(Calendar.DAY_OF_MONTH,d)
     }
     //Return informations about this block
     override fun getInformation() : String{
@@ -55,6 +38,6 @@ class BlockAlarmClock(private var minutes: Int, private var hours: Int,
     }
     //Return alarm clock set time
     fun alarmTime(): String {
-        return "Alarm set at $hours:$minutes"
+        return "Alarm set at ${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}"
     }
 }
