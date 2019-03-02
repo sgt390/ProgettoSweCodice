@@ -6,16 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.amazonaws.services.dynamodbv2.model.StreamViewType
+import android.widget.Toast
 import com.megalexa.R
 import com.megalexa.models.workflow.Workflow
+import com.megalexa.util.ItemClickListener
 
 
 class WorkflowViewAdapter(private val dataset: ArrayList<Workflow>, private val context: Context):RecyclerView.Adapter<WorkflowViewHolder>(){
 
 
     override fun onBindViewHolder(holder: WorkflowViewHolder, position: Int) {
-        holder.tView?.text = dataset[position].getName()
+        holder.workflowName?.text = dataset[position].getName()
+
+        holder.setItemClickListener(object: ItemClickListener{
+
+            override fun onClick(view: View?, position: Int) {
+                Toast.makeText(context,dataset[position].getName(),Toast.LENGTH_SHORT).show()
+            }
+
+        })
+
     }
 
     override fun getItemCount(): Int {
@@ -24,15 +34,28 @@ class WorkflowViewAdapter(private val dataset: ArrayList<Workflow>, private val 
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkflowViewHolder {
-        return WorkflowViewHolder(LayoutInflater.from(context).inflate(R.layout.item_workflow, parent, false))
+        return WorkflowViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_workflow, parent, false))
     }
 }
 
 
 
 
-class WorkflowViewHolder(v: View): RecyclerView.ViewHolder(v) {
+class WorkflowViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener {
 
-     val  tView = v.findViewById<TextView>(R.id.workflow_name)
+    val  workflowName :TextView? = v.findViewById(R.id.workflow_name)
+    private lateinit var itemClickListener:ItemClickListener
+
+    init{
+        workflowName?.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        itemClickListener.onClick(v,adapterPosition)
+    }
+
+    fun setItemClickListener(itemClickListener: ItemClickListener){
+        this.itemClickListener= itemClickListener
+    }
 
 }

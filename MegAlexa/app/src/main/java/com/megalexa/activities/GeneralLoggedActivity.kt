@@ -13,8 +13,12 @@ import android.content.Intent
 import android.R.id
 import android.arch.lifecycle.ViewModel
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.Menu
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import android.widget.Toast
 import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
@@ -26,23 +30,34 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBQueryExpression
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient
 import com.amazonaws.services.dynamodbv2.model.AttributeValue
+import com.google.gson.internal.bind.ArrayTypeAdapter
+import com.megalexa.models.workflow.Workflow
 import com.megalexa.viewModel.ViewModelMain
 import kotlin.concurrent.thread
 
 
 class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
-    //private  var dynamoDBMapper : DynamoDBMapper? = null
-    //private lateinit var userID : String
-    //private  var workflowNames: ArrayList<String>? =
     companion object {
         private var viewModel : ViewModelMain = ViewModelMain()
     }
 
+    private lateinit var layoutManager: RecyclerView.LayoutManager
+    private lateinit var listWorkflow: ArrayList<Workflow>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_general_logged)
-        //must be changed to load real workflow names
+
+
+        val recyclerView=findViewById<RecyclerView>(R.id.container_workflow)
+        recyclerView.setHasFixedSize(true)
+        layoutManager= LinearLayoutManager(this)
+        recyclerView.layoutManager=layoutManager
+
+        listWorkflow= ArrayList()
+        val adapter= WorkflowViewAdapter(listWorkflow,this)
+        recyclerView.adapter=adapter
+
         val navigationView  : View = findViewById(R.id.nav_view)
         navigationView.bringToFront()
         setSupportActionBar(toolbar)
@@ -60,12 +75,13 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         User.fetch(this, object: Listener<User, AuthError>{
             override fun onSuccess(p0: User) {
                 viewModel.setUser(p0)
-                val listWorkflow = viewModel.fetchWorkflow()
-                runOnUiThread {
-                    container_workflow.layoutManager = LinearLayoutManager(applicationContext)
-                    container_workflow.adapter = WorkflowViewAdapter(listWorkflow, applicationContext)
+                listWorkflow = viewModel.fetchWorkflow()
+                runOnUiThread{
+                    recyclerView.adapter= WorkflowViewAdapter(listWorkflow,applicationContext)
                 }
+
                 Log.d("ViewModel: ", viewModel.toString()  )
+
             }
             override fun onError(p0: AuthError?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -102,7 +118,6 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
-
 
 
 
