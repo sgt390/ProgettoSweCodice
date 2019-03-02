@@ -30,7 +30,6 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         button_cancel_workflow_creationView.setOnClickListener(this)
 
 
-
     }
 
     override fun onClick(v: View?) {
