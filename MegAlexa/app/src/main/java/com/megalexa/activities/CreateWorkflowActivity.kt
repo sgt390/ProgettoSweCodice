@@ -9,11 +9,10 @@ import android.widget.TextView
 import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.User
+import android.widget.Button
 import com.megalexa.R
-import com.megalexa.adapters.view.WorkflowViewAdapter
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_workflow.*
-import org.w3c.dom.Text
 import kotlin.concurrent.thread
 
 class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
@@ -26,7 +25,9 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_workflow)
 
-        button_add_block.setOnClickListener(this)
+        val buttonContinue= findViewById<Button>(R.id.button_continue)
+
+        buttonContinue.setOnClickListener(this)
         button_cancel_workflow_creation.setOnClickListener(this)
         User.fetch(this, object: Listener<User, AuthError> {
             override fun onSuccess(p0: User) {
@@ -41,7 +42,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v) {
-            button_add_block -> {
+            button_continue -> {
                 thread (start = true) {
                     val isPresent = viewModel.haveUserWorkflowName(findViewById<TextView>(R.id.input_title_workflow).text.toString())
                     runOnUiThread {
@@ -49,13 +50,13 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                             Log.d("Stupido utente", "Non ti accorgi che hai gia questo nome")
 
                         } else {
-                            startActivity(Intent(this, CreateBlockActivity::class.java))
+                            startActivity(Intent(this, ViewBlockActivity::class.java))
                         }
                     }
                 }
             }
             button_cancel_workflow_creation -> startActivity(Intent(this, GeneralLoggedActivity::class.java))
-            //TODO button_save_workflow ->
+
         }
     }
 }
