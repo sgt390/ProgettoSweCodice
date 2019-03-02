@@ -48,11 +48,10 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                     runOnUiThread {
                         if (isPresent) {
                             Log.d("Stupido utente", "Non ti accorgi che hai gia questo nome")
-
                         } else {
-                            val intent = Intent(this,ViewBlockActivity::class.java)
-                            intent.putExtra("WORKFLOW_NAME",workflowTitle)
-                            startActivity(intent)
+                            var newIntent : Intent = Intent(this, ViewBlockActivity::class.java)
+                            newIntent.putExtra("workflowName", findViewById<TextView>(R.id.input_title_workflow).text.toString())
+                            startActivity(newIntent)
                         }
                     }
                 }

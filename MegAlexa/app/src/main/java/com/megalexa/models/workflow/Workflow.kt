@@ -1,13 +1,16 @@
 package com.megalexa.models.workflow
 
+import com.megalexa.models.User
 import com.megalexa.models.blocks.Block
+import com.megalexa.util.GatewayRequests
 
 class Workflow(private val name:String) {
-    //private  var  blockList: ArrayList<Block> = ArrayList()
+    private  var  blockList: ArrayList<Block> = ArrayList()
     private  var workflowName = name
 
 
-    /*fun addBlock(block: Block){
+
+    fun addBlock(block: Block){
         blockList.add(block)
     }
 
@@ -15,9 +18,6 @@ class Workflow(private val name:String) {
         return blockList.size
     }
 
-    fun getName() :String {
-        return workflowName
-    }
 
     fun removeBlockAt(position:Int) {
         blockList.removeAt(position)
@@ -25,8 +25,12 @@ class Workflow(private val name:String) {
 
     fun removeBlock(block:Block) {
         blockList.remove(block)
-    }*/
+    }
 
+    fun getBlocks(user: User) : ArrayList<Block>? {
+        blockList = GatewayRequests.readBlocks(user, this)!!
+        return blockList
+    }
     override fun toString(): String {
         return workflowName
     }

@@ -1,6 +1,8 @@
 package com.megalexa.util
 
+import android.util.Log
 import com.megalexa.models.User
+import com.megalexa.models.blocks.Block
 import com.megalexa.models.workflow.Workflow
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -140,6 +142,19 @@ object GatewayRequests{
             listWorkflow.add(Workflow(workflow))
         }
         return listWorkflow
+    }
+
+    fun readBlocks(user: User, workflow: Workflow) : ArrayList<Block>?{
+        var blocksList : ArrayList<Block> = ArrayList<Block>()
+        var toPass = JSONObject()
+        toPass.put("userID", user.getID())
+        toPass.put("workflow", workflow.getName())
+        var resources = "block/read"
+        var blocks = postRequestToRead(toPass, api_URL)
+        for (item in blocks.keys()){
+            Log.d("Item: " , item)
+        }
+        return blocksList
     }
 
 

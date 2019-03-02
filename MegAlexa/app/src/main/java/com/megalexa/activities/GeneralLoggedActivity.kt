@@ -79,9 +79,6 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                 runOnUiThread{
                     recyclerView.adapter= WorkflowViewAdapter(listWorkflow,applicationContext)
                 }
-
-                Log.d("ViewModel: ", viewModel.toString()  )
-
             }
             override fun onError(p0: AuthError?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
