@@ -25,6 +25,11 @@ class ViewModelMain{
         return app.loadWorkflow()
     }
 
+    fun haveUserWorkflowName(name: String) : Boolean{
+        app.loadWorkflow()
+        return app.isPresentWorkflow(name)
+    }
+
     override fun toString(): String {
         return app.getUser().toJSON().toString()
     }

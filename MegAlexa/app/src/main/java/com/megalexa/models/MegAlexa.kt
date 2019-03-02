@@ -36,4 +36,14 @@ class MegAlexa {
         return workflows
     }
 
+    fun isPresentWorkflow(w: String) : Boolean{
+        var isPresent  = false
+        for(workflow in workflows){
+            if(workflow.getName() == w){
+                isPresent = true
+            }
+        }
+        return isPresent
+    }
+
 }
