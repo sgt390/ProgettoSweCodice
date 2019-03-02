@@ -20,6 +20,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_block)
 
+        block_names=getDebugBlocks()
 
         rec_view=findViewById(R.id.recyclerView_addedBlocksView)
         rec_view.layoutManager= LinearLayoutManager(this)
@@ -36,7 +37,6 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         when(v) {
             button_add_block -> startActivity(Intent(this, CreateBlockActivity::class.java))
             button_cancel_workflow_creation -> startActivity(Intent(this, GeneralLoggedActivity::class.java))
-            //TODO button_save_workflow ->
         }
     }
 

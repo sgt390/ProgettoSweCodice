@@ -19,7 +19,7 @@ class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): Rec
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BlockViewHolder {
-        return BlockViewHolder(LayoutInflater.from(context).inflate(R.layout.block_view_layout, parent, false))
+        return BlockViewHolder(LayoutInflater.from(context).inflate(R.layout.item_workflow, parent, false))
     }
 
 }
