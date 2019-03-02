@@ -25,7 +25,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_workflow)
 
-        val buttonContinue= findViewById<Button>(R.id.button_continue)
+        val buttonContinue : View= findViewById(R.id.button_continue)
 
         buttonContinue.setOnClickListener(this)
         button_cancel_workflow_creation.setOnClickListener(this)

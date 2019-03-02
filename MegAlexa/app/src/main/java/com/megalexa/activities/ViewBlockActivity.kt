@@ -35,7 +35,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v) {
-            button_add_block -> startActivity(Intent(this, CreateBlockActivity::class.java))
+            button_continue -> startActivity(Intent(this, CreateBlockActivity::class.java))
             button_cancel_workflow_creation -> startActivity(Intent(this, GeneralLoggedActivity::class.java))
         }
     }
