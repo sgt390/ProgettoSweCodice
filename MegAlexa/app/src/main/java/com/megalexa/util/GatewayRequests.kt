@@ -185,7 +185,7 @@ object GatewayRequests{
 
             when(item){
 
-                "TextToSpeech"-> blocksList.add(BlockTextBox("Hi, there is a test"))
+                "textToSpeech"-> blocksList.add(BlockTextBox("Hi, there is a test"))
 
                 "FeedRSS" -> blocksList.add(BlockFeedRss("https://feedforall.com/sample.xml"))
                 //MORE BLOCKS TO BE ADDED
