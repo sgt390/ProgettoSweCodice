@@ -3,6 +3,7 @@ package com.megalexa.util
 import android.util.Log
 import com.megalexa.models.User
 import com.megalexa.models.blocks.Block
+import com.megalexa.models.blocks.BlockFeedRss
 import com.megalexa.models.blocks.BlockTextBox
 import com.megalexa.models.workflow.Workflow
 import org.json.JSONArray
@@ -160,11 +161,11 @@ object GatewayRequests{
     }
 
     fun readWorkflow(user : User) : ArrayList<Workflow>{
-        var listWorkflow : ArrayList<Workflow> = ArrayList<Workflow>()
-        var userID = JSONObject()
+        val listWorkflow : ArrayList<Workflow> = ArrayList<Workflow>()
+        val userID = JSONObject()
         userID.put("userID", user.getID())
         val resources="workflow/read"
-        var workflowListJSON = postRequestToRead(userID, api_URL + resources )
+        val workflowListJSON = postRequestToRead(userID, api_URL + resources )
 
         for(workflow in workflowListJSON.keys()){
             listWorkflow.add(Workflow(workflow))
@@ -173,17 +174,25 @@ object GatewayRequests{
     }
 
     fun readBlocks(user: User, workflow: Workflow) : ArrayList<Block>?{
-        var blocksList : ArrayList<Block> = ArrayList<Block>()
-        var toPass = JSONObject()
+        val blocksList : ArrayList<Block> = ArrayList<Block>()
+        val toPass = JSONObject()
         toPass.put("userID", user.getID())
         toPass.put("workflow", workflow.getName())
-        var resources = "block/read"
-        var blocks = postRequestToReadArray(toPass, api_URL + resources)
+        val resources = "block/read"
+        val blocks = postRequestToReadArray(toPass, api_URL + resources)
         for(i in 0..blocks.length()-1){
             val item = blocks.getJSONObject(i).getString("blockType")
+
+            when(item){
+
+                "TextToSpeech"-> blocksList.add(BlockTextBox("Hi, there is a test"))
+
+                "FeedRSS" -> blocksList.add(BlockFeedRss("https://feedforall.com/sample.xml"))
+                //MORE BLOCKS TO BE ADDED
+            }
         }
-        blocksList.add(BlockTextBox("Hi, there is a test"));
-        blocksList.add(BlockTextBox("hi, anothere test"))
+        //blocksList.add(BlockTextBox("Hi, there is a test"));
+
         return blocksList
     }
 
