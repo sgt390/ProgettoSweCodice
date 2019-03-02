@@ -1,5 +1,6 @@
 package com.megalexa.models
 
+import com.megalexa.models.blocks.Block
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.GatewayRequests
 
@@ -35,6 +36,16 @@ class MegAlexa {
         workflows = GatewayRequests.readWorkflow(user)
         return workflows
     }
+
+    fun getBlock(user: User, w: String) : ArrayList<Block>? {
+        for(item in workflows){
+            if(item.getName() == w){
+                return item.getBlocks(user)
+            }
+        }
+        return null
+    }
+
 
     fun isPresentWorkflow(w: String) : Boolean{
         var isPresent  = false

@@ -6,30 +6,39 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.amazon.identity.auth.device.AuthError
+import com.amazon.identity.auth.device.api.Listener
+import com.amazon.identity.auth.device.api.authorization.User
 import com.megalexa.R
 import com.megalexa.adapters.view.BlockViewAdapter
+import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_workflow.*
 import kotlinx.android.synthetic.main.activity_view_block.*
 
 class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
-
+    companion object {
+        private var viewModel : ViewModelMain = ViewModelMain()
+    }
     private lateinit var block_names:ArrayList<String>
     private lateinit var rec_view: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_block)
-
-        block_names=getDebugBlocks()
-
-        rec_view=findViewById(R.id.recyclerView_addedBlocksView)
-        rec_view.layoutManager= LinearLayoutManager(this)
-        rec_view.adapter= BlockViewAdapter(block_names,this)
-
-
         button_add_blockView.setOnClickListener(this)
         button_cancel_workflow_creationView.setOnClickListener(this)
-
+        User.fetch(this, object: Listener<User, AuthError> {
+            override fun onSuccess(p0: User) {
+                viewModel.setUser(p0)
+                block_names = viewModel.getBlocks(intent.getStringExtra("workflowName"))
+                rec_view=findViewById(R.id.recyclerView_addedBlocksView)
+                rec_view.layoutManager= LinearLayoutManager(applicationContext)
+                rec_view.adapter= BlockViewAdapter(block_names,applicationContext)
+            }
+            override fun onError(p0: AuthError?) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+        })
 
     }
 

@@ -4,12 +4,18 @@ package com.megalexa.viewModel
 import android.util.Log
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.User
+import com.megalexa.models.blocks.Block
 import com.megalexa.models.workflow.Workflow
 
 
 class ViewModelMain{
 
-    private var app: MegAlexa = MegAlexa()
+
+    companion object {
+        private var app: MegAlexa = MegAlexa()
+
+    }
+
 
 
 
@@ -18,7 +24,7 @@ class ViewModelMain{
     }
 
     fun setUser(user: com.amazon.identity.auth.device.api.authorization.User){
-        app.setUser(com.megalexa.models.User(user.userId, user.userName, user.userName))
+        app.setUser(com.megalexa.models.User(user.userId, user.userName, user.userEmail))
     }
 
     fun fetchWorkflow() : ArrayList<Workflow>{
@@ -28,6 +34,15 @@ class ViewModelMain{
     fun haveUserWorkflowName(name: String) : Boolean{
         app.loadWorkflow()
         return app.isPresentWorkflow(name)
+    }
+
+    fun getBlocks(name: String) : ArrayList<String>{
+        var blocks = app.getBlock(app.getUser(), name)
+        var blocksType : ArrayList<String> = ArrayList<String>()
+        for(item in blocks!! ){
+            blocksType.add(item.getInformation())
+        }
+        return blocksType
     }
 
     override fun toString(): String {
