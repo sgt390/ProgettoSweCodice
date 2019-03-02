@@ -3,7 +3,9 @@ package com.megalexa.util
 import android.util.Log
 import com.megalexa.models.User
 import com.megalexa.models.blocks.Block
+import com.megalexa.models.blocks.BlockTextBox
 import com.megalexa.models.workflow.Workflow
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -54,6 +56,33 @@ object GatewayRequests{
     private fun postRequestToRead(jSon_object: JSONObject, url: String) :JSONObject {
         val myURL = URL(url)
 
+        with(myURL.openConnection() as HttpsURLConnection){
+            setRequestProperty("Content-Type", "application/json")
+            requestMethod = "POST"
+            doOutput = true
+            val wr = OutputStreamWriter(outputStream)
+            wr.write(jSon_object.toString())
+            wr.flush()
+            var readResult: StringBuffer
+            BufferedReader(InputStreamReader(inputStream)).use {
+                readResult = StringBuffer()
+                var inputLine = it.readLine()
+                while (inputLine != null) {
+                    readResult.append(inputLine)
+                    inputLine = it.readLine()
+                }
+
+                return JSONObject(readResult.toString())
+
+            }
+
+
+        }
+    }
+
+
+    private fun postRequestToReadArray(jSon_object: JSONObject, url: String) :JSONArray {
+        val myURL = URL(url)
 
         with(myURL.openConnection() as HttpsURLConnection){
             setRequestProperty("Content-Type", "application/json")
@@ -71,14 +100,13 @@ object GatewayRequests{
                     inputLine = it.readLine()
                 }
 
+                return JSONArray(readResult.toString())
 
-                return JSONObject(readResult.toString())
             }
 
 
         }
     }
-
 
 
     ////////////USER FUNCTIONS
@@ -150,10 +178,12 @@ object GatewayRequests{
         toPass.put("userID", user.getID())
         toPass.put("workflow", workflow.getName())
         var resources = "block/read"
-        var blocks = postRequestToRead(toPass, api_URL)
-        for (item in blocks.keys()){
-            Log.d("Item: " , item)
+        var blocks = postRequestToReadArray(toPass, api_URL + resources)
+        for(i in 0..blocks.length()-1){
+            val item = blocks.getJSONObject(i).getString("blockType")
         }
+        blocksList.add(BlockTextBox("Hi, there is a test"));
+        blocksList.add(BlockTextBox("hi, anothere test"))
         return blocksList
     }
 

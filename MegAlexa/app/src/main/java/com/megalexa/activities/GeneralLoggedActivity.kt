@@ -54,10 +54,9 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         layoutManager= LinearLayoutManager(this)
         recyclerView.layoutManager=layoutManager
 
-        listWorkflow= ArrayList()
-        val adapter= WorkflowViewAdapter(listWorkflow,this)
-        recyclerView.adapter=adapter
-
+       // listWorkflow= ArrayList()
+        /*val adapter= WorkflowViewAdapter(listWorkflow,this)
+        recyclerView.adapter=adapter*/
         val navigationView  : View = findViewById(R.id.nav_view)
         navigationView.bringToFront()
         setSupportActionBar(toolbar)
@@ -77,7 +76,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                 viewModel.setUser(p0)
                 listWorkflow = viewModel.fetchWorkflow()
                 runOnUiThread{
-                    recyclerView.adapter= WorkflowViewAdapter(listWorkflow,applicationContext)
+                    recyclerView.adapter= WorkflowViewAdapter(listWorkflow,this@GeneralLoggedActivity)
                 }
             }
             override fun onError(p0: AuthError?) {
