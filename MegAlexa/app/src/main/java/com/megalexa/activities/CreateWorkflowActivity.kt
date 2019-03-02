@@ -3,6 +3,8 @@ package com.megalexa.activities
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -10,11 +12,15 @@ import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.User
 import com.megalexa.R
+import com.megalexa.adapters.view.BlockViewAdapter
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_workflow.*
 import kotlin.concurrent.thread
 
 class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
+
+    private lateinit var block_names:ArrayList<String>
+    private lateinit var rec_view: RecyclerView
 
     companion object {
         private var viewModel : ViewModelMain = ViewModelMain()
@@ -31,6 +37,10 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         User.fetch(this, object: Listener<User, AuthError> {
             override fun onSuccess(p0: User) {
                 viewModel.setUser(p0)
+                rec_view=findViewById(R.id.recyclerView_addedBlocksOnCreation)
+                rec_view.layoutManager = LinearLayoutManager(applicationContext)
+                rec_view.adapter = BlockViewAdapter(getDebugBlocks(), applicationContext)
+
             }
             override fun onError(p0: AuthError?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -60,4 +70,10 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
         }
     }
+
+    fun getDebugBlocks(): ArrayList<String>{
+        return arrayListOf("Block1","Block2","Block3","Block4","Block5")
+
+    }
+
 }

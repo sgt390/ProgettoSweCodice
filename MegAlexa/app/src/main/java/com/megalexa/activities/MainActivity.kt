@@ -16,6 +16,7 @@ import com.amazon.identity.auth.device.api.authorization.AuthorizeListener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
 
 import com.megalexa.R
+import com.megalexa.util.GatewayRequests
 
 import com.megalexa.viewModel.ViewModelMain
 
@@ -39,8 +40,8 @@ class MainActivity : AppCompatActivity() {
             /* Authorization was completed successfully. */
             override fun onSuccess(result : AuthorizeResult){
 
-                //GatewayRequests.saveUser(result.user.userId,result.user.userName,result.user.userEmail)
 
+                //GatewayRequests.saveUser(result.user.userId,result.user.userName,result.user.userEmail)
                 viewModel.saveUser(result.user.userId, result.user.userName, result.user.userEmail)
                 startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
             }
