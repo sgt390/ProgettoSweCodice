@@ -69,12 +69,4 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         }
     }
 
-
-    fun getDebugBlocks(): ArrayList<String>{
-        return arrayListOf("Block1","Block2","Block3","Block4","Block5")
-
-    }
-
-
-
 }
