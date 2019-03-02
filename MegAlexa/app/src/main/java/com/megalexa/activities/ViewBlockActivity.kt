@@ -26,6 +26,23 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         rec_view.layoutManager= LinearLayoutManager(this)
         rec_view.adapter= BlockViewAdapter(block_names,this)
 
+        var title: String?="PROVA"
+
+        if(savedInstanceState == null){
+
+            val extras :Bundle? = intent.extras
+            if(extras==null){
+                title="EXTRAS NULLI"
+            } else {
+                title= extras.getString("WORKFLOW_NAME")
+            }
+
+        }else{
+
+            title= savedInstanceState.getSerializable("WORKFLOW_NAME") as String
+        }
+        workflow_title.text= title
+
 
         button_add_blockView.setOnClickListener(this)
         button_cancel_workflow_creationView.setOnClickListener(this)
@@ -45,6 +62,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         return arrayListOf("Block1","Block2","Block3","Block4","Block5")
 
     }
+
 
 
 }

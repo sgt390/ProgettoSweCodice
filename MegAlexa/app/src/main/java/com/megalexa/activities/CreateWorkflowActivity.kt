@@ -9,7 +9,6 @@ import android.widget.TextView
 import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.User
-import android.widget.Button
 import com.megalexa.R
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_workflow.*
@@ -44,13 +43,16 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         when(v) {
             button_continue -> {
                 thread (start = true) {
-                    val isPresent = viewModel.haveUserWorkflowName(findViewById<TextView>(R.id.input_title_workflow).text.toString())
+                    val workflowTitle=findViewById<TextView>(R.id.input_title_workflow).text.toString()
+                    val isPresent = viewModel.haveUserWorkflowName(workflowTitle)
                     runOnUiThread {
                         if (isPresent) {
                             Log.d("Stupido utente", "Non ti accorgi che hai gia questo nome")
 
                         } else {
-                            startActivity(Intent(this, ViewBlockActivity::class.java))
+                            val intent = Intent(this,ViewBlockActivity::class.java)
+                            intent.putExtra("WORKFLOW_NAME",workflowTitle)
+                            startActivity(intent)
                         }
                     }
                 }

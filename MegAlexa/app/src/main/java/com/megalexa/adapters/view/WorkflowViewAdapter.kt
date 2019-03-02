@@ -1,6 +1,7 @@
 package com.megalexa.adapters.view
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import com.megalexa.R
+import com.megalexa.activities.ViewBlockActivity
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.ItemClickListener
 
@@ -21,7 +23,9 @@ class WorkflowViewAdapter(private val dataset: ArrayList<Workflow>, private val 
         holder.setItemClickListener(object: ItemClickListener{
 
             override fun onClick(view: View?, position: Int) {
-                Toast.makeText(context,dataset[position].getName(),Toast.LENGTH_SHORT).show()
+                val intent = Intent(context,ViewBlockActivity::class.java)
+                intent.putExtra("WORKFLOW_NAME",dataset[position].getName())
+                context.startActivity(intent)
             }
 
         })
