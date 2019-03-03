@@ -37,6 +37,13 @@ class MegAlexa {
         return workflows
     }
 
+    fun saveWorkflow(workfloName: String, blockList: ArrayList<Block>){
+        var workflow = Workflow(workfloName)
+        workflow.setBlocks(blockList)
+        workflows.add(workflow)
+        GatewayRequests.saveWorkflow(user, workflow)
+    }
+
     fun getBlock(user: User, w: String) : ArrayList<Block>? {
         for(item in workflows){
             if(item.getName() == w){

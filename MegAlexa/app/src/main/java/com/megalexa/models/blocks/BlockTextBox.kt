@@ -14,6 +14,9 @@
  */
 package com.megalexa.models.blocks
 
+import android.webkit.JsPromptResult
+import org.json.JSONObject
+
 class BlockTextBox(private var textBox: String):Block {
     init{
         //Control variable textBox's character number
@@ -38,5 +41,14 @@ class BlockTextBox(private var textBox: String):Block {
     //Set method
     fun setText(text: String){
         textBox = text
+    }
+
+    override fun toJSON() : JSONObject{
+        var allBlock : JSONObject = JSONObject()
+        allBlock.put("blockType", "textToSpeech")
+        var config : JSONObject = JSONObject()
+        config.put("textToSpeech", textBox )
+        allBlock.put("config", config)
+        return allBlock
     }
 }

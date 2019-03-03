@@ -45,8 +45,19 @@ class ViewModelMain{
         return blocksType
     }
 
+    fun getUser() : User{
+        return app.getUser()
+    }
+    fun saveWorkflow(workflowName : String, blockList: ArrayList<Block>){
+        app.saveWorkflow(workflowName, blockList)
+
+    }
     override fun toString(): String {
         return app.getUser().toJSON().toString()
+    }
+
+    fun getWorkflow() : ArrayList<Workflow>{
+        return app.getWorkflowList()
     }
     /**
      * returns a list of workflow names from db

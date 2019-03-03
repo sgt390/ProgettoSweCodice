@@ -1,6 +1,7 @@
 package com.megalexa.util
 
 import android.util.Log
+import com.google.gson.JsonObject
 import com.megalexa.models.User
 import com.megalexa.models.blocks.Block
 import com.megalexa.models.blocks.BlockFeedRss
@@ -143,9 +144,14 @@ object GatewayRequests{
     }
 
     ///////////WORKFLOW FUNCTIONS
-    fun saveWorkflow(workflow_name: String) {
-
-        TODO()
+    fun saveWorkflow(user: User, w: Workflow) {
+        var workflow = JSONObject()
+        workflow.put("userID", user.getID())
+        workflow.put("workflowName", w.getName())
+        var workflowContent = JSONArray(w.getBlocks())
+        workflow.put("workflow", workflowContent)
+        Log.d("Loghjlrgkqenolkgnkjngjkwmbjòkgnòekln aòg,mebdòjkgwre: ", workflow.toString())
+        postRequestToWrite(workflow, api_URL + "workflow/create")
     }
 
 
@@ -159,6 +165,8 @@ object GatewayRequests{
 
         TODO()
     }
+
+
 
     fun readWorkflow(user : User) : ArrayList<Workflow>{
         val listWorkflow : ArrayList<Workflow> = ArrayList<Workflow>()

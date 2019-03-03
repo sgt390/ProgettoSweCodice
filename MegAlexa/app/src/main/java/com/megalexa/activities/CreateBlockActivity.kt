@@ -1,9 +1,12 @@
 package com.megalexa.activities
 
 
+import android.arch.lifecycle.ViewModel
 import android.os.Bundle
+import android.os.WorkSource
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.megalexa.R
@@ -11,12 +14,20 @@ import com.megalexa.adapters.view.ListArrayAdapter
 import com.megalexa.fragments.AlarmClockFragment
 import com.megalexa.fragments.RssFragment
 import com.megalexa.fragments.TextToSpeechFragment
+import com.megalexa.models.MegAlexa
+import com.megalexa.models.blocks.Block
+import com.megalexa.models.workflow.Workflow
+import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_block.*
 
 
 class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
 
     private lateinit var listView: ListView
+    companion object {
+        private var viewModel = ViewModelMain()
+    }
+    private var blockList = ArrayList<Block>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +86,12 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
 
     }
 
+    fun getBlockListIntent() : ArrayList<Block>{
+        Log.d("CreateBlockActivity: ", (intent.extras.get("blockList") as ArrayList<Block>).toString())
+        blockList = intent.extras.get("blockList") as ArrayList<Block>
+        return blockList
+    }
+
 
     private fun getBlockList(): List<Pair<String, Int>> {
 
@@ -93,6 +110,10 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
 
         return listOf("Add FeedRSS", "Add Alarm Clock", "Add Text Block")
 
+    }
+
+    fun getModel() : ArrayList<Workflow>{
+        return viewModel.getWorkflow()
     }
 
 

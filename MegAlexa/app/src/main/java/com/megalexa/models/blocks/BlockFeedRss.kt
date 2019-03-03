@@ -16,6 +16,7 @@ package com.megalexa.models.blocks
 
 import com.megalexa.adapters.connectors.Connector
 import com.megalexa.adapters.connectors.ConnectorFeedRss
+import org.json.JSONObject
 
 
 class BlockFeedRss(val url: String): Block,Filtrable {
@@ -50,4 +51,12 @@ class BlockFeedRss(val url: String): Block,Filtrable {
         return "Feed RSS block created for $url URL "
     }
 
+    override fun toJSON() : JSONObject{
+        var allBlock = JSONObject()
+        allBlock.put("blockType", "FeedRSS" )
+        var config = JSONObject()
+        config.put("url" , url)
+        allBlock.put("config", config)
+        return allBlock
+    }
 }

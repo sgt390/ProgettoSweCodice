@@ -36,7 +36,8 @@ class RssFragment : Fragment(){
         button.setOnClickListener {
 
             //ViewModel.addRssBlock(RSS_FEED, editText.text)
-            Toast.makeText(view.context,"Button CLicked",Toast.LENGTH_SHORT).show()
+            //Toast.makeText(view.context,"Button CLicked",Toast.LENGTH_SHORT).show()
+
         }
 
 
