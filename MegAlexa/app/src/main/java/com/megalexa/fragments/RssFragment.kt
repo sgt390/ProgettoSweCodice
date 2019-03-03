@@ -25,6 +25,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.megalexa.R
 import com.megalexa.activities.CreateBlockActivity
+import com.megalexa.adapters.connectors.ConnectorFeedRss
 
 class RssFragment : Fragment(){
     private var url=""
@@ -38,7 +39,10 @@ class RssFragment : Fragment(){
 
         button.setOnClickListener {
 
-            if(editText.text.toString() == "") {
+            val connector = ConnectorFeedRss(editText.text.toString())
+            val isValid=  connector.valid()
+
+            if(editText.text.toString() == ""|| !isValid) {
                 Toast.makeText(context, "url is invalid", Toast.LENGTH_SHORT).show()
             }
             else{

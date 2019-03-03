@@ -16,9 +16,6 @@ class ViewModelMain{
 
     }
 
-
-
-
     fun saveUser(userID : String, name: String, email: String){
         app.saveUser(com.megalexa.models.User(userID, name, email))
     }
@@ -37,8 +34,8 @@ class ViewModelMain{
     }
 
     fun getBlocks(name: String) : ArrayList<String>{
-        var blocks = app.getBlock(app.getUser(), name)
-        var blocksType : ArrayList<String> = ArrayList<String>()
+        val blocks = app.getBlock(app.getUser(), name)
+        val blocksType : ArrayList<String> = ArrayList<String>()
         for(item in blocks!! ){
             blocksType.add(item.getInformation())
         }
@@ -59,33 +56,5 @@ class ViewModelMain{
     fun getWorkflow() : ArrayList<Workflow>{
         return app.getWorkflowList()
     }
-    /**
-     * returns a list of workflow names from db
-     * and adds it to the app
-     */
-    /*fun fetchWorkflows(u: User ): ArrayList<String>{
 
-        //fetch from db
-        //call functions on app
-        //return
-
-        return ArrayList()
-    }
-
-    /** returns a list of strings that represent the block inisde the given workflow
-     *
-     */
-    fun fetchBlocks(u:User,w: Workflow): ArrayList<String> {
-
-        //fetch from db
-        //call functions on app
-        //return
-
-        return ArrayList()
-    }
-
-     //fetch from db
-        //call functions on app
-        //return
-*/
 }
