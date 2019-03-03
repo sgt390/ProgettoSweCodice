@@ -17,6 +17,7 @@ package com.megalexa.fragments
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,10 +40,10 @@ class RssFragment : Fragment(){
 
         button.setOnClickListener {
 
-            val connector = ConnectorFeedRss(editText.text.toString())
-            val isValid=  connector.valid()
+            url=editText.text.toString()
+            val isValid=ConnectorFeedRss(url).valid()
 
-            if(editText.text.toString() == ""|| !isValid) {
+            if(url == ""|| !isValid) {
                 Toast.makeText(context, "url is invalid", Toast.LENGTH_SHORT).show()
             }
             else{

@@ -109,11 +109,15 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                     }
 
                     "FeedRss" -> {
+
+
+
                         blockList.add(BlockFeedRss(data!!.extras!!.get("feedRss").toString()))
                     }
 
                 }
             }
+
 
         }
 

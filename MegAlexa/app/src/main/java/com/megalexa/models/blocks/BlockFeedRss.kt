@@ -14,6 +14,7 @@
 
 package com.megalexa.models.blocks
 
+import android.util.Log
 import com.megalexa.adapters.connectors.Connector
 import com.megalexa.adapters.connectors.ConnectorFeedRss
 import org.json.JSONObject
@@ -34,7 +35,8 @@ class BlockFeedRss(val url: String): Block,Filtrable {
 
         val toReturn=ConnectorFeedRss(url= url)
 
-        if(toReturn.valid().equals(false)){
+        Log.d("genero idhfgidhgfgikhdszfkoighsdifhgiousdh", "eccomi")
+        if(!toReturn.valid()){
             //throw InvalidBLockException() TODO("custom error handling required ")
         }
 

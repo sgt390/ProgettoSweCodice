@@ -13,7 +13,10 @@
 */
 
 package com.megalexa.adapters.connectors
+import android.util.Log
 import android.webkit.URLUtil
+import kotlinx.coroutines.experimental.runBlocking
+import org.jetbrains.anko.custom.async
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
@@ -22,15 +25,18 @@ import java.io.InputStream
 import java.net.MalformedURLException
 import java.net.URL
 import java.net.URLConnection
+import java.util.concurrent.atomic.AtomicBoolean
 
 
 class ConnectorFeedRss(private var url: String):Connector {
+    private var result= AtomicBoolean(false)
+
     init {
         url =connect(url)
     }
 
-    override fun connect(url: String):String {
 
+    override fun connect(url: String):String {
         if(valid()) {
             return url
         } else {
@@ -42,42 +48,49 @@ class ConnectorFeedRss(private var url: String):Connector {
      * A ConnectorFeedRss is valid if the feedMessage is correct
      * @return feed is valid
      */
-    override fun valid():Boolean {
-        return URLUtil.isHttpsUrl(url) && isRssFeed()
+    override fun valid():Boolean = runBlocking{
+        isRssFeed()
+        return@runBlocking result.get()
     }
 
     /**
      * isRssFeed checks if the content received from the URL returns a correct rss feed in xml format
      * @returns true if the url is an rssFeed
      */
-    private fun isRssFeed(): Boolean {
+    private fun isRssFeed()  {
 
-        val resource:URL
-        val xpp:XmlPullParser
-        val iStream:InputStream
 
-        try {
-            resource = URL(url)
-            val factory = XmlPullParserFactory.newInstance()
-            xpp = factory.newPullParser()
-            iStream = getInputStream(resource)
+        var resource: URL
+        var xpp: XmlPullParser
+        var iStream: InputStream
 
-            iStream.use {
-                x -> xpp.setInput(x, "UTF_8")
-                xpp.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false)
-                xpp.nextTag()
-                if(xpp.name =="rss") {
-                    return true
+
+        async {
+            try {
+                resource = URL(url)
+                val factory = XmlPullParserFactory.newInstance()
+                xpp = factory.newPullParser()
+                iStream = resource.openConnection().getInputStream()
+                iStream.use { x ->
+                    xpp.setInput(x, "UTF_8")
+                    xpp.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false)
+                    xpp.nextTag()
+                    if (xpp.name == "rss") {
+                        setResult(AtomicBoolean(true))
+                    }
                 }
+
+            } catch (err: MalformedURLException) {
+                err.printStackTrace()
+            } catch (err: XmlPullParserException) {
+                err.printStackTrace()
             }
 
-        }catch (err: MalformedURLException) {
-            err.printStackTrace()
-        }catch (err: XmlPullParserException) {
-            err.printStackTrace()
+
+            setResult(AtomicBoolean(false))
         }
 
-        return false
+
     }
 
     /**getInputStream(resource) returns an InputStream for the given URL
@@ -93,5 +106,8 @@ class ConnectorFeedRss(private var url: String):Connector {
         return resource.openConnection().getInputStream()
     }
 
+    fun setResult(b:AtomicBoolean){
+        result=b
+    }
 
 }
