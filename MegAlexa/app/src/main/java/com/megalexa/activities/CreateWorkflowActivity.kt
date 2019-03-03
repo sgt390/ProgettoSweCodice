@@ -14,6 +14,8 @@ import com.amazon.identity.auth.device.api.authorization.User
 import com.megalexa.R
 import com.megalexa.adapters.view.BlockViewAdapter
 import com.megalexa.models.blocks.Block
+import com.megalexa.models.blocks.BlockFeedRss
+import com.megalexa.models.blocks.BlockTextBox
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_workflow.*
 import kotlinx.android.synthetic.main.activity_view_block.*
@@ -83,11 +85,11 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                         when(blockType){
 
                             "Text to speech" ->{
-                                
+                                blockList.add(BlockTextBox(intent.extras.get("text").toString()))
                             }
 
                             "feedRss" -> {
-
+                                blockList.add(BlockFeedRss(intent.extras.get("url").toString()))
                             }
 
                         }
