@@ -17,11 +17,12 @@ import com.megalexa.fragments.TextToSpeechFragment
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.Block
 import com.megalexa.models.workflow.Workflow
+import com.megalexa.util.FragmentClickListener
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_block.*
 
 
-class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
+class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentClickListener {
 
     private lateinit var listView: ListView
     companion object {
@@ -69,6 +70,16 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
                 }
             }
 
+        }
+
+
+    }
+
+    override fun onFragmentClick(sender: Fragment) {
+        when(sender){
+
+            sender as RssFragment ->  Toast.makeText(this, "ciao dalla activity", Toast.LENGTH_SHORT).show()
+            //chiudi 
         }
 
 

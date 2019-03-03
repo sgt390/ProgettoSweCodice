@@ -14,6 +14,7 @@
 
 package com.megalexa.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -23,8 +24,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.megalexa.R
+import com.megalexa.activities.CreateBlockActivity
 
 class RssFragment : Fragment(){
+    private var url=""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -35,16 +38,26 @@ class RssFragment : Fragment(){
 
         button.setOnClickListener {
 
-            //ViewModel.addRssBlock(RSS_FEED, editText.text)
-            //Toast.makeText(view.context,"Button CLicked",Toast.LENGTH_SHORT).show()
+            if(editText.text.toString() == "") {
+                Toast.makeText(context, "url is invalid", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                url= editText.text.toString()
+                val activity= activity as CreateBlockActivity
+                activity.onFragmentClick(this)
+            }
+
 
         }
-
 
     return view
     }
 
+    override fun onDetach() {
+        super.onDetach()
 
+
+    }
 
 
 }
