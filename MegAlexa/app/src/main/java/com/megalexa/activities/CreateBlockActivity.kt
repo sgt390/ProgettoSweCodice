@@ -1,6 +1,7 @@
 package com.megalexa.activities
 
 
+import android.app.Activity
 import android.arch.lifecycle.ViewModel
 import android.content.Intent
 import android.os.Bundle
@@ -94,7 +95,8 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
             val intent = Intent(this,CreateWorkflowActivity::class.java)
             intent.putExtra("block_type", "Text to speech")
             intent.putExtra("text",text)
-            startActivity(intent)
+            setResult(Activity.RESULT_OK,intent)
+            finish()
 
         }
     }
@@ -109,12 +111,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
     }
 
 
-    }
-
-    fun getBlockListIntent() : ArrayList<Block>{
-        Log.d("CreateBlockActivity: ", (intent.extras.get("blockList") as ArrayList<Block>).toString())
-        blockList = intent.extras.get("blockList") as ArrayList<Block>
-        return blockList
     }
 
 

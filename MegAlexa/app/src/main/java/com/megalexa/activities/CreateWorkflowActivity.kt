@@ -1,5 +1,6 @@
 package com.megalexa.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -69,7 +70,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                         } else {
                             var newIntent : Intent = Intent(this, CreateBlockActivity::class.java)
                             newIntent.putExtra("blockList", blockList)
-                            startActivity(newIntent)
+                            startActivityForResult(newIntent,1)
                         }
                     }
                 }
@@ -77,26 +78,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
             button_save_workflow -> {
                 Log.d("Ci sono", "Ci passo")
                 thread (start = true) {
-
-                    val blockType:String
-                    if(intent.extras != null) {
-                        blockType = intent.extras.get("block_type").toString()
-
-                        when(blockType){
-
-                            "Text to speech" ->{
-                                blockList.add(BlockTextBox(intent.extras.get("text").toString()))
-                            }
-
-                            "feedRss" -> {
-                                blockList.add(BlockFeedRss(intent.extras.get("url").toString()))
-                            }
-
-                        }
-
-
-                    }
-
 
                     viewModel.saveWorkflow(findViewById<TextView>(R.id.input_title_workflow).text.toString(), blockList)
                     runOnUiThread{
@@ -109,6 +90,32 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         }
     }
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 1) {
+            if(resultCode==Activity.RESULT_OK) {
+                val blockType:String?
+                blockType = data!!.extras!!.getString("block_type")
+
+                when(blockType){
+
+                    "Text to speech" -> {
+                        blockList.add(BlockTextBox(data!!.extras!!.get("text").toString()))
+
+                    }
+
+                    "feedRss" -> {
+                        blockList.add(BlockFeedRss(data!!.extras!!.get("url").toString()))
+                    }
+
+                }
+            }
+
+        }
+
+    }
 
     fun getDebugBlocks(): ArrayList<String>{
         return arrayListOf("Block1","Block2","Block3","Block4","Block5")
