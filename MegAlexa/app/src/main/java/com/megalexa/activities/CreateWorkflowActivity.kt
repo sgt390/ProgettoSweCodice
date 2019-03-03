@@ -75,6 +75,27 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
             button_save_workflow -> {
                 Log.d("Ci sono", "Ci passo")
                 thread (start = true) {
+
+                    val blockType:String
+                    if(intent.extras != null) {
+                        blockType = intent.extras.get("block_type").toString()
+
+                        when(blockType){
+
+                            "Text to speech" ->{
+                                
+                            }
+
+                            "feedRss" -> {
+
+                            }
+
+                        }
+
+
+                    }
+
+
                     viewModel.saveWorkflow(findViewById<TextView>(R.id.input_title_workflow).text.toString(), blockList)
                     runOnUiThread{
                         startActivity(Intent(this, GeneralLoggedActivity::class.java))
