@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.megalexa.R
+import com.megalexa.activities.CreateBlockActivity
 
 class TextToSpeechFragment: Fragment(){
 
@@ -23,7 +24,8 @@ class TextToSpeechFragment: Fragment(){
         button.setOnClickListener {
 
             //ViewModel.addTtsBLock(editText.text)
-            Toast.makeText(view.context,"Button CLicked", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(view.context,"Button CLicked", Toast.LENGTH_SHORT).show()
+            //(activity as CreateBlockActivity).getModel().
         }
 
 

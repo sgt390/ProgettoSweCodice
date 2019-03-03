@@ -13,6 +13,7 @@
  */
 package com.megalexa.models.blocks
 import android.media.Ringtone
+import org.json.JSONObject
 import java.time.Month
 import java.util.*
 import kotlin.math.min
@@ -39,5 +40,9 @@ class BlockAlarmClock(val alarm: Calendar) : Block{
     //Return alarm clock set time
     fun alarmTime(): String {
         return "Alarm set at ${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}"
+    }
+
+    override fun toJSON(): JSONObject {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
