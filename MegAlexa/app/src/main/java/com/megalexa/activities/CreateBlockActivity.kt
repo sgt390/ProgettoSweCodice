@@ -1,11 +1,14 @@
 package com.megalexa.activities
 
 
+import android.app.Activity
 import android.arch.lifecycle.ViewModel
+import android.content.Intent
 import android.os.Bundle
 import android.os.WorkSource
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.view.menu.ActionMenuItem
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -17,11 +20,12 @@ import com.megalexa.fragments.TextToSpeechFragment
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.Block
 import com.megalexa.models.workflow.Workflow
+import com.megalexa.util.FragmentClickListener
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_block.*
 
 
-class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
+class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentClickListener {
 
     private lateinit var listView: ListView
     companion object {
@@ -74,6 +78,31 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
 
     }
 
+    override fun onFragmentClick(sender: Fragment) {
+
+
+        if(sender is RssFragment){
+            Log.d("Dove sono?: ", "FragmentFeedRSS")
+            val url = sender.getUrl()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type", "FeedRss")
+            intent.putExtra("feedRss",url)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+
+
+        }else if(sender is TextToSpeechFragment){
+            Log.d("Dove sono?: ", "FragmentText")
+            val text= sender.getText()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type", "Text to speech")
+            intent.putExtra("text",text)
+            setResult(Activity.RESULT_OK,intent)
+            finish()
+
+        }
+    }
+
     override fun onClick(view: View) {
 
 
@@ -84,12 +113,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
     }
 
 
-    }
-
-    fun getBlockListIntent() : ArrayList<Block>{
-        Log.d("CreateBlockActivity: ", (intent.extras.get("blockList") as ArrayList<Block>).toString())
-        blockList = intent.extras.get("blockList") as ArrayList<Block>
-        return blockList
     }
 
 
