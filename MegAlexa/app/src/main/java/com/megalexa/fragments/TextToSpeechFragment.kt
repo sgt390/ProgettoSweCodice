@@ -22,7 +22,7 @@ class TextToSpeechFragment: Fragment(){
         val editText= view.findViewById<EditText>(R.id.insert_text)
 
         button.setOnClickListener {
-
+            activity.
             //ViewModel.addTtsBLock(editText.text)
             //Toast.makeText(view.context,"Button CLicked", Toast.LENGTH_SHORT).show()
             //(activity as CreateBlockActivity).getModel().

@@ -48,8 +48,8 @@ class ViewModelMain{
     fun getUser() : User{
         return app.getUser()
     }
-    fun saveWorkflow(workflowName : String){
-        app.saveWorkflow(workflowName)
+    fun saveWorkflow(workflowName : String, blockList: ArrayList<Block>){
+        app.saveWorkflow(workflowName, blockList)
 
     }
     override fun toString(): String {

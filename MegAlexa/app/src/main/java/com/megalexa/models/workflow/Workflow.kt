@@ -29,7 +29,11 @@ class Workflow(private val name:String) {
         blockList.remove(block)
     }
 
-    fun getBlocks(user: User) : ArrayList<Block>? {
+    fun getBlocks() : ArrayList<Block>{
+        return blockList
+    }
+
+    fun getBlocks(user: User) : ArrayList<Block>{
         blockList = GatewayRequests.readBlocks(user, this)!!
         return blockList
     }

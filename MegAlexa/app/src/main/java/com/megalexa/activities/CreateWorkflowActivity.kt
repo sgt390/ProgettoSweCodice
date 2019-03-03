@@ -10,6 +10,7 @@ import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.User
 import com.megalexa.R
+import com.megalexa.models.blocks.Block
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_workflow.*
 import kotlinx.android.synthetic.main.activity_view_block.*
@@ -20,6 +21,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
     companion object {
         private var viewModel : ViewModelMain = ViewModelMain()
     }
+    var blockList : ArrayList<Block> = ArrayList<Block>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +63,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
             button_save_workflow -> {
                 Log.d("Ci sono", "Ci passo")
                 thread (start = true) {
-                    viewModel.saveWorkflow(findViewById<TextView>(R.id.input_title_workflow).text.toString())
+                    viewModel.saveWorkflow(findViewById<TextView>(R.id.input_title_workflow).text.toString(), blockList)
                     runOnUiThread{
                         startActivity(Intent(this, GeneralLoggedActivity::class.java))
                     }
@@ -71,4 +73,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
         }
     }
+
+
 }

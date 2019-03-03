@@ -14,6 +14,7 @@ import com.megalexa.fragments.AlarmClockFragment
 import com.megalexa.fragments.RssFragment
 import com.megalexa.fragments.TextToSpeechFragment
 import com.megalexa.models.MegAlexa
+import com.megalexa.models.blocks.Block
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_block.*
@@ -25,6 +26,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
     companion object {
         private var viewModel = ViewModelMain()
     }
+    private var blockList = ArrayList<Block>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

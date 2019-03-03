@@ -148,9 +148,10 @@ object GatewayRequests{
         var workflow = JSONObject()
         workflow.put("userID", user.getID())
         workflow.put("workflowName", w.getName())
-        var workflowContent = JSONArray(w.getBlocks(user))
+        var workflowContent = JSONArray(w.getBlocks())
         workflow.put("workflow", workflowContent)
-        postRequestToWrite(workflow, api_URL + "workflow/save")
+
+        postRequestToWrite(workflow, api_URL + "workflow/create")
     }
 
 
