@@ -204,8 +204,9 @@ object GatewayRequests{
                 //MORE BLOCKS TO BE ADDED
             }
         }
-        //blocksList.add(BlockTextBox("Hi, there is a test"));
+
         workflow.setBlocks(blocksList)
+
         return blocksList
     }
 
