@@ -2,6 +2,7 @@ package com.megalexa.activities
 
 
 import android.arch.lifecycle.ViewModel
+import android.content.Intent
 import android.os.Bundle
 import android.os.WorkSource
 import android.support.v4.app.Fragment
@@ -76,10 +77,25 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
     }
 
     override fun onFragmentClick(sender: Fragment) {
+
+
         if(sender is RssFragment){
-            Toast.makeText(this, "ciao sono il feed", Toast.LENGTH_SHORT).show()
+
+            val url = sender.getUrl()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type", "Text to speech")
+            intent.putExtra("feedRss",url)
+            startActivity(intent)
+
+
         }else if(sender is TextToSpeechFragment){
-            Toast.makeText(this, "ciao sono il testo", Toast.LENGTH_SHORT).show()
+
+            val text= sender.getText()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type", "Text to speech")
+            intent.putExtra("text",text)
+            startActivity(intent)
+
         }
     }
 
