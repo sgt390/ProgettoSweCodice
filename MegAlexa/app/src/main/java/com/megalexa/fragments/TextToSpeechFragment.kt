@@ -15,6 +15,7 @@ import com.megalexa.models.blocks.BlockTextBox
 
 class TextToSpeechFragment: Fragment(){
 
+    private var text= ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -24,16 +25,23 @@ class TextToSpeechFragment: Fragment(){
         val editText= view.findViewById<EditText>(R.id.insert_text)
 
         button.setOnClickListener {
-            Log.d("Fragment: ",(activity as CreateBlockActivity).getBlockListIntent().toString() )
-            (activity as CreateBlockActivity).getBlockListIntent().add(BlockTextBox(editText.text.toString()))
-            Log.d("Fragment: ",(activity as CreateBlockActivity).getBlockListIntent().toString() )
-            //ViewModel.addTtsBLock(editText.text)
-            //Toast.makeText(view.context,"Button CLicked", Toast.LENGTH_SHORT).show()
-            //(activity as CreateBlockActivity).getModel().
+            if(editText.text.toString() == "") {
+                Toast.makeText(context, "text is empty", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                text= editText.text.toString()
+                val activity= activity as CreateBlockActivity
+                activity.onFragmentClick(this)
+            }
+
         }
 
 
         return view
+    }
+
+    fun getText(): String{
+        return text
     }
 
 }

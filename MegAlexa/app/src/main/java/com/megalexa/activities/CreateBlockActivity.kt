@@ -76,10 +76,11 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
     }
 
     override fun onFragmentClick(sender: Fragment) {
-        when(sender){
+        when(sender) {
 
-            sender as RssFragment ->  Toast.makeText(this, "ciao dalla activity", Toast.LENGTH_SHORT).show()
-            //chiudi 
+            sender as RssFragment ->  Toast.makeText(this, "ciao sono il feed", Toast.LENGTH_SHORT).show()
+
+            sender as TextToSpeechFragment -> Toast.makeText(this, "ciao sono il testo", Toast.LENGTH_SHORT).show()
         }
 
 

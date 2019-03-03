@@ -47,18 +47,15 @@ class RssFragment : Fragment(){
                 activity.onFragmentClick(this)
             }
 
-
         }
 
     return view
     }
 
-    override fun onDetach() {
-        super.onDetach()
 
-
+    fun getUrl(): String  {
+        return url
     }
-
 
 }
 
