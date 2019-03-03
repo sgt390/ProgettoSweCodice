@@ -41,9 +41,11 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         User.fetch(this, object: Listener<User, AuthError> {
             override fun onSuccess(p0: User) {
                 viewModel.setUser(p0)
-                rec_view=findViewById(R.id.recyclerView_addedBlocksOnCreation)
-                rec_view.layoutManager = LinearLayoutManager(applicationContext)
-                rec_view.adapter = BlockViewAdapter(getDebugBlocks(), applicationContext)
+                runOnUiThread {
+                    rec_view = findViewById(R.id.recyclerView_addedBlocksOnCreation)
+                    rec_view.layoutManager = LinearLayoutManager(applicationContext)
+                    rec_view.adapter = BlockViewAdapter(getDebugBlocks(), applicationContext)
+                }
 
             }
             override fun onError(p0: AuthError?) {
