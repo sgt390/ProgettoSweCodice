@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.WorkSource
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.megalexa.R
@@ -83,6 +84,12 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener {
     }
 
 
+    }
+
+    fun getBlockListIntent() : ArrayList<Block>{
+        Log.d("CreateBlockActivity: ", (intent.extras.get("blockList") as ArrayList<Block>).toString())
+        blockList = intent.extras.get("blockList") as ArrayList<Block>
+        return blockList
     }
 
 

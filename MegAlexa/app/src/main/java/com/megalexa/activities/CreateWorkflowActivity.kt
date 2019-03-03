@@ -54,7 +54,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                             Log.d("Stupido utente", "Non ti accorgi che hai gia questo nome")
                         } else {
                             var newIntent : Intent = Intent(this, CreateBlockActivity::class.java)
-                            //newIntent.putExtra("workflowName", findViewById<TextView>(R.id.input_title_workflow).text.toString())
+                            newIntent.putExtra("blockList", blockList)
                             startActivity(newIntent)
                         }
                     }

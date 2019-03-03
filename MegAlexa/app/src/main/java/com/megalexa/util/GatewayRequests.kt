@@ -150,7 +150,7 @@ object GatewayRequests{
         workflow.put("workflowName", w.getName())
         var workflowContent = JSONArray(w.getBlocks())
         workflow.put("workflow", workflowContent)
-
+        Log.d("Loghjlrgkqenolkgnkjngjkwmbjòkgnòekln aòg,mebdòjkgwre: ", workflow.toString())
         postRequestToWrite(workflow, api_URL + "workflow/create")
     }
 

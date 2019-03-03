@@ -37,6 +37,11 @@ class Workflow(private val name:String) {
         blockList = GatewayRequests.readBlocks(user, this)!!
         return blockList
     }
+
+    fun setBlocks(blockList : ArrayList<Block>){
+        this.blockList = blockList
+    }
+
     override fun toString(): String {
         return workflowName
     }
