@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.WorkSource
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.view.menu.ActionMenuItem
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -81,16 +82,17 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
 
 
         if(sender is RssFragment){
-
+            Log.d("Dove sono?: ", "FragmentFeedRSS")
             val url = sender.getUrl()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
-            intent.putExtra("block_type", "Text to speech")
+            intent.putExtra("block_type", "FeedRss")
             intent.putExtra("feedRss",url)
-            startActivity(intent)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
 
 
         }else if(sender is TextToSpeechFragment){
-
+            Log.d("Dove sono?: ", "FragmentText")
             val text= sender.getText()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
             intent.putExtra("block_type", "Text to speech")

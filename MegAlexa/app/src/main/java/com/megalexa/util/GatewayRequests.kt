@@ -1,6 +1,7 @@
 package com.megalexa.util
 
 import android.util.Log
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.JsonMarshaller
 import com.google.gson.JsonObject
 import com.megalexa.models.User
 import com.megalexa.models.blocks.Block
@@ -148,7 +149,11 @@ object GatewayRequests{
         var workflow = JSONObject()
         workflow.put("userID", user.getID())
         workflow.put("workflowName", w.getName())
-        var workflowContent = JSONArray(w.getBlocks())
+        val blocks = w.getBlocks()
+        var workflowContent = JSONArray()
+        for(item in w.getBlocks()){
+            workflowContent.put(item.toJSON())
+        }
         workflow.put("workflow", workflowContent)
         Log.d("Loghjlrgkqenolkgnkjngjkwmbjòkgnòekln aòg,mebdòjkgwre: ", workflow.toString())
         postRequestToWrite(workflow, api_URL + "workflow/create")
@@ -189,18 +194,18 @@ object GatewayRequests{
         val resources = "block/read"
         val blocks = postRequestToReadArray(toPass, api_URL + resources)
         for(i in 0..blocks.length()-1){
-            val item = blocks.getJSONObject(i).getString("blockType")
+            val item = blocks.getJSONObject(i)
 
-            when(item){
+            when(item.getString("blockType")){
 
-                "textToSpeech"-> blocksList.add(BlockTextBox("Hi, there is a test"))
+                "textToSpeech"-> blocksList.add(BlockTextBox(item.getJSONObject("config").getString("textToSpeech")))
 
-                "FeedRSS" -> blocksList.add(BlockFeedRss("https://feedforall.com/sample.xml"))
+                "FeedRSS" -> blocksList.add(BlockFeedRss(item.getJSONObject("config").getString("url")))
                 //MORE BLOCKS TO BE ADDED
             }
         }
         //blocksList.add(BlockTextBox("Hi, there is a test"));
-
+        workflow.setBlocks(blocksList)
         return blocksList
     }
 

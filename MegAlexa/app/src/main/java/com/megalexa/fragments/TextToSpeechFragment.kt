@@ -15,7 +15,7 @@ import com.megalexa.models.blocks.BlockTextBox
 
 class TextToSpeechFragment: Fragment(){
 
-    private var text= ""
+    private var text =  ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
