@@ -47,7 +47,7 @@ class BlockTextBox(private var textBox: String):Block {
         val allBlock : JSONObject = JSONObject()
         allBlock.put("blockType", "textToSpeech")
         val config : JSONObject = JSONObject()
-        config.put("textToSpeech", textBox )
+        config.put("TextToSpeech", textBox )
         allBlock.put("config", config)
         return allBlock
     }
