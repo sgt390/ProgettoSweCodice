@@ -32,7 +32,8 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
     companion object {
         private var viewModel : ViewModelMain = ViewModelMain()
     }
-    var blockList : ArrayList<Block> = ArrayList<Block>()
+    var blockList : ArrayList<Block> = ArrayList()
+    var blocknames: ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +50,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                 runOnUiThread {
                     rec_view = findViewById(R.id.recyclerView_addedBlocksOnCreation)
                     rec_view.layoutManager = LinearLayoutManager(applicationContext)
-                    rec_view.adapter = BlockViewAdapter(getDebugBlocks(), applicationContext)
+                    rec_view.adapter = BlockViewAdapter(blocknames, applicationContext)
                 }
 
             }
@@ -103,16 +104,16 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                 when(blockType){
 
                     "Text to speech" -> {
-                        var extra = data!!.extras!!.get("text")
-                        blockList.add(BlockTextBox(data!!.extras!!.get("text").toString()))
-
+                        val block= BlockTextBox(data!!.extras!!.get("text").toString())
+                        blockList.add(block)
+                        blocknames.add(block.getInformation())
                     }
 
                     "FeedRss" -> {
 
-
-
-                        blockList.add(BlockFeedRss(data!!.extras!!.get("feedRss").toString()))
+                        val block=BlockFeedRss(data!!.extras!!.get("feedRss").toString())
+                        blockList.add(block)
+                        blocknames.add(block.getInformation())
                     }
 
                 }
