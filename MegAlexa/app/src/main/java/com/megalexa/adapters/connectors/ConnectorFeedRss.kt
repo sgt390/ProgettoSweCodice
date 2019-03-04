@@ -34,12 +34,8 @@ class ConnectorFeedRss(private var url: String):Connector {
     }
 
 
-    override fun connect(url: String):String {
-        if(valid()) {
+    override fun connect(url: String):String { 
             return url
-        } else {
-            return "ERROR_INVALID_URL"
-        }
     }
 
     /**
