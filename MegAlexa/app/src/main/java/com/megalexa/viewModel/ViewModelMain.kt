@@ -6,6 +6,9 @@ import com.megalexa.models.MegAlexa
 import com.megalexa.models.User
 import com.megalexa.models.blocks.Block
 import com.megalexa.models.workflow.Workflow
+import com.megalexa.util.GatewayRequests
+import org.json.JSONArray
+import org.json.JSONObject
 
 
 class ViewModelMain{
@@ -57,4 +60,12 @@ class ViewModelMain{
         return app.getWorkflowList()
     }
 
+    fun isUserPresent(paramID:String):Boolean {
+        val jsonObject= GatewayRequests.readUser(paramID)
+
+        if(jsonObject.toString()== "")
+            return false
+
+        return true
+    }
 }

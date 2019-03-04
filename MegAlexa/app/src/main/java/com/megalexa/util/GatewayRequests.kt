@@ -2,6 +2,7 @@ package com.megalexa.util
 
 import android.util.Log
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.JsonMarshaller
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.megalexa.models.User
 import com.megalexa.models.blocks.Block
@@ -71,10 +72,10 @@ object GatewayRequests{
                 readResult = StringBuffer()
                 var inputLine = it.readLine()
                 while (inputLine != null) {
+
                     readResult.append(inputLine)
                     inputLine = it.readLine()
                 }
-
                 return JSONObject(readResult.toString())
 
             }
@@ -112,6 +113,7 @@ object GatewayRequests{
     }
 
 
+
     ////////////USER FUNCTIONS
     fun saveUser(user: User){
         val resources="user/create"
@@ -121,11 +123,12 @@ object GatewayRequests{
 
 
     fun readUser(paramID: String) : JSONObject{
+
         val jSonObject= JSONObject()
         val resources="user/read"
         jSonObject.put("userID",paramID)
-        val response =postRequestToRead(jSonObject, api_URL+resources)
-        return response
+        return postRequestToRead(jSonObject, api_URL+resources)
+
 
     }
     //////////BLOCK FUNCTIONS

@@ -40,9 +40,9 @@ class MainActivity : AppCompatActivity() {
             /* Authorization was completed successfully. */
             override fun onSuccess(result : AuthorizeResult){
 
-
-                //GatewayRequests.saveUser(result.user.userId,result.user.userName,result.user.userEmail)
-                viewModel.saveUser(result.user.userId, result.user.userName, result.user.userEmail)
+              if(!(viewModel.isUserPresent(result.user.userId))) {
+                  viewModel.saveUser(result.user.userId, result.user.userName, result.user.userEmail)
+              }
                 startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
             }
             /* There was an error during the attempt to authorize the application. */
