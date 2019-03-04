@@ -25,7 +25,7 @@ class ExampleInstrumentedTest {
 
     @Test
     fun valid() {
-        val uri = "https://abcnews.go.com/abcnews/internationalheadlines"
+        val uri = "https://feedforall.com/sample.xml"
         val uriIsValid = ConnectorFeedRss(uri).valid()
         assertEquals(true, uriIsValid)
     }

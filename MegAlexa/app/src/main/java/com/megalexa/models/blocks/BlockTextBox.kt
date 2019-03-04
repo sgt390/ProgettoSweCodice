@@ -44,9 +44,9 @@ class BlockTextBox(private var textBox: String):Block {
     }
 
     override fun toJSON() : JSONObject{
-        var allBlock : JSONObject = JSONObject()
+        val allBlock : JSONObject = JSONObject()
         allBlock.put("blockType", "textToSpeech")
-        var config : JSONObject = JSONObject()
+        val config : JSONObject = JSONObject()
         config.put("textToSpeech", textBox )
         allBlock.put("config", config)
         return allBlock

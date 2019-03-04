@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
         }
         )
-        var loginButton : View = findViewById(R.id.login_with_amazon)
+        val loginButton : View = findViewById(R.id.login_with_amazon)
         loginButton.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v : View){
                 AuthorizationManager.authorize(

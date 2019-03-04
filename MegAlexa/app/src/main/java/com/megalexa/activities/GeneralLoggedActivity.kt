@@ -91,7 +91,6 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         }
     }
 
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.menu_quit -> {
@@ -111,7 +110,5 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
-
-
 
 }

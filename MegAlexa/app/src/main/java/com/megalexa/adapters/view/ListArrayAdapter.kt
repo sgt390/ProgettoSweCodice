@@ -68,9 +68,6 @@ class ListArrayAdapter(private val context: Context, private val data: List<Pair
        return data.size
     }
 
-
-
-
     class ViewHolderItem(view:View?) {
 
         var textViewItem :TextView= view!!.findViewById(R.id.block_label)

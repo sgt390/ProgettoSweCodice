@@ -28,7 +28,6 @@ class WorkflowViewAdapter(private val dataset: ArrayList<Workflow>, private val 
                 val intent = Intent(context,ViewBlockActivity::class.java)
                 intent.putExtra("workflowName",dataset[position].getName())
                 context.startActivity(intent)
-                Log.d("Dio cane" , "ci sono passato")
             }
 
         })
@@ -44,7 +43,6 @@ class WorkflowViewAdapter(private val dataset: ArrayList<Workflow>, private val 
         return WorkflowViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_workflow, parent, false))
     }
 }
-
 
 
 

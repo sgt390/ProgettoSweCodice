@@ -146,16 +146,15 @@ object GatewayRequests{
 
     ///////////WORKFLOW FUNCTIONS
     fun saveWorkflow(user: User, w: Workflow) {
-        var workflow = JSONObject()
+        val workflow = JSONObject()
         workflow.put("userID", user.getID())
         workflow.put("workflowName", w.getName())
         val blocks = w.getBlocks()
-        var workflowContent = JSONArray()
+        val workflowContent = JSONArray()
         for(item in w.getBlocks()){
             workflowContent.put(item.toJSON())
         }
         workflow.put("workflow", workflowContent)
-        Log.d("Loghjlrgkqenolkgnkjngjkwmbjòkgnòekln aòg,mebdòjkgwre: ", workflow.toString())
         postRequestToWrite(workflow, api_URL + "workflow/create")
     }
 
@@ -174,7 +173,7 @@ object GatewayRequests{
 
 
     fun readWorkflow(user : User) : ArrayList<Workflow>{
-        val listWorkflow : ArrayList<Workflow> = ArrayList<Workflow>()
+        val listWorkflow : ArrayList<Workflow> = ArrayList()
         val userID = JSONObject()
         userID.put("userID", user.getID())
         val resources="workflow/read"

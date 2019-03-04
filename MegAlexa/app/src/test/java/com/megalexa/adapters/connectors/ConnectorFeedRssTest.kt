@@ -6,13 +6,12 @@ import org.junit.Assert.*
 
 class ConnectorFeedRssTest {
 
-   /* @Test
+    @Test
     fun valid() {
-        TODO("test the connection with a correct Feed RSS uri")
-        val uri = ""
+        val uri = "https://feedforall.com/sample.xml"
         val uriIsValid = ConnectorFeedRss(uri).valid()
         assertEquals("ConnectorFeedRss connect test", uriIsValid, true)
-    }*/
+    }
 
 
 }

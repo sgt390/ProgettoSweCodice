@@ -53,19 +53,11 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
 
             when(position){
                 0 -> {
-                    Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
                     fragment = RssFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
-                1 -> {
-                    Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
-                    fragment = AlarmClockFragment()
-                    val transaction = supportFragmentManager.beginTransaction()
-                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
-                }
-                2 -> {
-                    Toast.makeText(this, "position $position", Toast.LENGTH_SHORT).show()
+                1-> {
                     fragment = TextToSpeechFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
@@ -82,7 +74,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
 
 
         if(sender is RssFragment){
-            Log.d("Dove sono?: ", "FragmentFeedRSS")
             val url = sender.getUrl()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
             intent.putExtra("block_type", "FeedRss")
@@ -92,7 +83,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
 
 
         }else if(sender is TextToSpeechFragment){
-            Log.d("Dove sono?: ", "FragmentText")
             val text= sender.getText()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
             intent.putExtra("block_type", "Text to speech")
@@ -122,8 +112,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
         //more pairs to be added
         return listOf(
             Pair(list[0], R.drawable.ic_feed_rss),
-            Pair(list[1], R.drawable.ic_alarm_clock),
-            Pair(list[2], R.drawable.ic_text)
+            Pair(list[1], R.drawable.ic_text)
         )
 
     }
@@ -131,7 +120,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
 
     private fun getTitlesList(): List<String> {
 
-        return listOf("Add FeedRSS", "Add Alarm Clock", "Add Text Block")
+        return listOf("Add FeedRSS","Add Text Block")
 
     }
 

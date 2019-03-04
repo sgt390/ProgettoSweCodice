@@ -26,9 +26,9 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_block)
-        var title: String?="PROVA"
+        val title: String?
 
-        /*if(savedInstanceState == null){
+        if(savedInstanceState == null){
 
             val extras :Bundle? = intent.extras
             if(extras==null){
@@ -41,7 +41,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
             title= savedInstanceState.getSerializable("WORKFLOW_NAME") as String
         }
-        workflow_title.text= title*/
+        workflow_title.text= title
 
         button_add_blockView.setOnClickListener(this)
         button_cancel_workflow_creationView.setOnClickListener(this)

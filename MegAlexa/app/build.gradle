@@ -43,4 +43,5 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation ('com.amazonaws:aws-android-sdk-mobile-client:2.7.+@aar') { transitive = true }
     implementation ('com.amazonaws:aws-android-sdk-ddb-mapper:2.7.+')
+    implementation "org.jetbrains.anko:anko:0.10.4"
 }
