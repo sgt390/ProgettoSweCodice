@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             android:background="@color/colorPrimary"
-            tools:context=".activities.GeneralLoggedActivity">
+            tools:context=".ui.activities.GeneralLoggedActivity">
         <Button
                 android:layout_width="91dp"
                 android:layout_height="87dp"

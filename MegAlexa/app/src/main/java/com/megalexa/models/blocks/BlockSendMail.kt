@@ -1,7 +1,7 @@
 package com.megalexa.models.blocks
 
 import android.provider.ContactsContract.CommonDataKinds.Email
-import com.megalexa.adapters.connectors.Connector
+import com.megalexa.models.connectors.Connector
 import org.json.JSONObject
 
 class BlockSendEmail(private val email: Email):Block {

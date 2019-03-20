@@ -15,8 +15,8 @@
 package com.megalexa.models.blocks
 
 import android.util.Log
-import com.megalexa.adapters.connectors.Connector
-import com.megalexa.adapters.connectors.ConnectorFeedRss
+import com.megalexa.models.connectors.Connector
+import com.megalexa.models.connectors.ConnectorFeedRss
 import org.json.JSONObject
 
 

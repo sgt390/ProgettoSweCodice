@@ -1,23 +1,17 @@
-package com.megalexa.activities
+package com.megalexa.ui.activities
 
 
 import android.app.Activity
-import android.arch.lifecycle.ViewModel
 import android.content.Intent
 import android.os.Bundle
-import android.os.WorkSource
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.view.menu.ActionMenuItem
-import android.util.Log
 import android.view.View
 import android.widget.*
 import com.megalexa.R
 import com.megalexa.adapters.view.ListArrayAdapter
-import com.megalexa.fragments.AlarmClockFragment
-import com.megalexa.fragments.RssFragment
-import com.megalexa.fragments.TextToSpeechFragment
-import com.megalexa.models.MegAlexa
+import com.megalexa.ui.fragments.RssFragment
+import com.megalexa.ui.fragments.TextToSpeechFragment
 import com.megalexa.models.blocks.Block
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.FragmentClickListener

@@ -1,6 +1,4 @@
-package com.megalexa.adapters.connectors
-
-import java.util.*
+package com.megalexa.models.connectors
 
 interface Connector {
     /**

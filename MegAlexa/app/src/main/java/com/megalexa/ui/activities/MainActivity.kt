@@ -1,10 +1,9 @@
-package com.megalexa.activities
+package com.megalexa.ui.activities
 
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.amazon.identity.auth.device.api.workflow.RequestContext
 import com.amazon.identity.auth.device.api.authorization.*
@@ -16,7 +15,6 @@ import com.amazon.identity.auth.device.api.authorization.AuthorizeListener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
 
 import com.megalexa.R
-import com.megalexa.util.GatewayRequests
 
 import com.megalexa.viewModel.ViewModelMain
 

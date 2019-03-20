@@ -1,4 +1,4 @@
-package com.megalexa.activities
+package com.megalexa.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,6 @@ import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.User
 import com.megalexa.R
 import com.megalexa.adapters.view.BlockViewAdapter
-import com.megalexa.adapters.view.WorkflowViewAdapter
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_workflow.*
 import kotlinx.android.synthetic.main.activity_view_block.*

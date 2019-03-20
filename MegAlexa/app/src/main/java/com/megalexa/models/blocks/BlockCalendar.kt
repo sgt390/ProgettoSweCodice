@@ -1,6 +1,5 @@
 package com.megalexa.models.blocks
 
-import com.megalexa.adapters.connectors.Connector
 import org.json.JSONObject
 
 class BlockCalendar(private val userCredential:String): Block {

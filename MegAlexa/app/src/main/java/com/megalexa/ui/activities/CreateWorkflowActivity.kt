@@ -1,4 +1,4 @@
-package com.megalexa.activities
+package com.megalexa.ui.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -20,7 +19,6 @@ import com.megalexa.models.blocks.BlockFeedRss
 import com.megalexa.models.blocks.BlockTextBox
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_workflow.*
-import kotlinx.android.synthetic.main.activity_view_block.*
 import java.io.Serializable
 import kotlin.concurrent.thread
 
