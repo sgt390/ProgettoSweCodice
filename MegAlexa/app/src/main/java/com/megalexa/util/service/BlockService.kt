@@ -9,4 +9,7 @@ abstract class BlockService : Service() {
 
     abstract fun convertToJSON(block:Block): JSONObject
 
+    override val resource: String
+        get() = "block"
+
 }

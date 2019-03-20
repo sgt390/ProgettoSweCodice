@@ -11,20 +11,23 @@ abstract class Service {
 
     protected val APIUrl = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/"
 
-    fun getOperation(jsonObject: JSONObject, url: String): JSONObject {
+    abstract val resource:String
+
+    fun getOperation(jsonObject: JSONObject): JSONObject {
         TODO()
     }
 
-    fun putOperation(jsonObject: JSONObject, url: String): JSONObject {
+    fun putOperation(jsonObject: JSONObject): JSONObject {
         TODO()
     }
 
-    fun deleteOperation(jsonObject: JSONObject, url: String): JSONObject {
+    fun deleteOperation(jsonObject: JSONObject): JSONObject {
         TODO()
     }
 
-    fun postOperation(jsonObject: JSONObject, url: String) {
+    fun postOperation(jsonObject: JSONObject) {
 
+        val url= "$APIUrl$resource/create"
         val myURL = URL(url)
         with(myURL.openConnection() as HttpsURLConnection) {
             setRequestProperty("Content-Type", "application/json")

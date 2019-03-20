@@ -20,7 +20,7 @@ import com.megalexa.models.connectors.ConnectorFeedRss
 import org.json.JSONObject
 
 
-class BlockFeedRss(val url: String): Block,Filtrable {
+class BlockFeedRss(private val url: String): Block,Filtrable {
     init{
         val connector = generateConnector(url)
 
@@ -34,8 +34,6 @@ class BlockFeedRss(val url: String): Block,Filtrable {
     private fun generateConnector(url: String): Connector {
 
         val toReturn=ConnectorFeedRss(url= url)
-
-        Log.d("genero idhfgidhgfgikhdszfkoighsdifhgiousdh", "eccomi")
         if(!toReturn.valid()){
             //throw InvalidBLockException() TODO("custom error handling required ")
         }
@@ -61,4 +59,7 @@ class BlockFeedRss(val url: String): Block,Filtrable {
         allBlock.put("config", config)
         return allBlock
     }
+
+    fun url()= url
+
 }

@@ -25,14 +25,25 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 
 class ConnectorFeedRss(private var url: String):Connector {
-    private var result= AtomicBoolean(false)
+    private val connectionResult:String
     init {
-        url =connect(url)
+        connectionResult =connect(url)
     }
 
 
     override fun connect(url: String):String { 
-            return url
+
+     val result:String
+
+        if(valid()) {
+            result = "connection successful"
+        }
+        else {
+            result = "connection refused: url is invalid"
+        }
+
+     return result
+
     }
 
     /**
@@ -58,7 +69,8 @@ class ConnectorFeedRss(private var url: String):Connector {
         var resource: URL
         var xpp: XmlPullParser
         var iStream: InputStream
-
+        val result = AtomicBoolean()
+        result.set(false)
 
         try {
             resource = URL(url)
@@ -70,8 +82,7 @@ class ConnectorFeedRss(private var url: String):Connector {
                 xpp.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false)
                 xpp.nextTag()
                 if (xpp.name == "rss") {
-                    setResult(AtomicBoolean(true))
-                    return result.get()
+                    result.set(true)
                 }
             }
 
@@ -82,7 +93,7 @@ class ConnectorFeedRss(private var url: String):Connector {
         }
 
 
-        setResult(AtomicBoolean(false))
+
         return result.get()
 
 
@@ -101,9 +112,5 @@ class ConnectorFeedRss(private var url: String):Connector {
         return resource.openConnection().getInputStream()
     }
 
-    fun setResult(b:AtomicBoolean){
-        result=b
-    }
-
-
+    fun printConnectionResult()= url
 }

@@ -29,6 +29,4 @@ class ExampleInstrumentedTest {
         val uriIsValid = ConnectorFeedRss(uri).valid()
         assertEquals(true, uriIsValid)
     }
-
 }
-
