@@ -9,19 +9,24 @@ import javax.net.ssl.HttpsURLConnection
 
 abstract class Service {
 
-    protected val api_Url = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/"
+    protected val APIUrl = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/"
 
-    abstract fun getOperation(jsonObject: JSONObject):JSONObject
+    fun getOperation(jsonObject: JSONObject, url: String): JSONObject {
+        TODO()
+    }
 
-    abstract fun putOperation(jsonObject: JSONObject):JSONObject
+    fun putOperation(jsonObject: JSONObject, url: String): JSONObject {
+        TODO()
+    }
 
-    abstract fun deleteOperation(jsonObject: JSONObject):JSONObject
+    fun deleteOperation(jsonObject: JSONObject, url: String): JSONObject {
+        TODO()
+    }
 
-
-    fun postOperation(jsonObject: JSONObject,url:String) {
+    fun postOperation(jsonObject: JSONObject, url: String) {
 
         val myURL = URL(url)
-        with(myURL.openConnection() as HttpsURLConnection){
+        with(myURL.openConnection() as HttpsURLConnection) {
             setRequestProperty("Content-Type", "application/json")
             requestMethod = "POST"
             doOutput = true
@@ -41,7 +46,6 @@ abstract class Service {
             }
 
         }
-
 
     }
 

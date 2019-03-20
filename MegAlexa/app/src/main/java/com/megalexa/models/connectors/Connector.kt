@@ -9,7 +9,6 @@ interface Connector {
      return type may be less specific.
      */
     fun connect(uri:String):String
-
     /**
      * A connector is valid if connect(..) generates a valid result
      */

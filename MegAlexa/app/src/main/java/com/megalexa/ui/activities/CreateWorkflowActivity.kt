@@ -16,7 +16,7 @@ import com.megalexa.R
 import com.megalexa.adapters.view.BlockViewAdapter
 import com.megalexa.models.blocks.Block
 import com.megalexa.models.blocks.BlockFeedRss
-import com.megalexa.models.blocks.BlockTextBox
+import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_workflow.*
 import java.io.Serializable
@@ -102,7 +102,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                 when(blockType){
 
                     "Text to speech" -> {
-                        val block= BlockTextBox(data!!.extras!!.get("text").toString())
+                        val block= BlockTextToSpeech(data!!.extras!!.get("text").toString())
                         blockList.add(block)
                         blocknames.add(block.getInformation())
                     }

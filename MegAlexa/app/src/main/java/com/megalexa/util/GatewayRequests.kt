@@ -1,13 +1,9 @@
 package com.megalexa.util
 
-import android.util.Log
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.JsonMarshaller
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
 import com.megalexa.models.User
 import com.megalexa.models.blocks.Block
 import com.megalexa.models.blocks.BlockFeedRss
-import com.megalexa.models.blocks.BlockTextBox
+import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.models.workflow.Workflow
 import org.json.JSONArray
 import org.json.JSONObject
@@ -200,7 +196,7 @@ object GatewayRequests{
 
             when(item.getString("blockType")){
 
-                "textToSpeech"-> blocksList.add(BlockTextBox(item.getJSONObject("config").getString("textToSpeech")))
+                "textToSpeech"-> blocksList.add(BlockTextToSpeech(item.getJSONObject("config").getString("textToSpeech")))
 
                 "FeedRSS" -> blocksList.add(BlockFeedRss(item.getJSONObject("config").getString("url")))
                 //MORE BLOCKS TO BE ADDED

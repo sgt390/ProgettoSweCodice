@@ -5,7 +5,7 @@ import org.json.JSONObject
 
 abstract class BlockService : Service() {
 
-    abstract fun convertFromJSON(): Block
+    abstract fun convertFromJSON(jsonObject: JSONObject): Block
 
     abstract fun convertToJSON(block:Block): JSONObject
 
