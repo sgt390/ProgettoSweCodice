@@ -1,8 +1,7 @@
-package com.megalexa.fragments
+package com.megalexa.ui.fragments
 
 import android.support.v4.app.Fragment
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.megalexa.R
-import com.megalexa.activities.CreateBlockActivity
-import com.megalexa.models.blocks.BlockTextBox
+import com.megalexa.ui.activities.CreateBlockActivity
 
 class TextToSpeechFragment: Fragment(){
 

@@ -1,4 +1,4 @@
-package com.megalexa.adapters.connectors
+package com.megalexa.models.connectors
 
 import org.junit.Test
 

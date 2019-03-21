@@ -1,4 +1,4 @@
-package com.megalexa.activities
+package com.megalexa.ui.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -17,10 +16,9 @@ import com.megalexa.R
 import com.megalexa.adapters.view.BlockViewAdapter
 import com.megalexa.models.blocks.Block
 import com.megalexa.models.blocks.BlockFeedRss
-import com.megalexa.models.blocks.BlockTextBox
+import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_workflow.*
-import kotlinx.android.synthetic.main.activity_view_block.*
 import java.io.Serializable
 import kotlin.concurrent.thread
 
@@ -104,7 +102,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                 when(blockType){
 
                     "Text to speech" -> {
-                        val block= BlockTextBox(data!!.extras!!.get("text").toString())
+                        val block= BlockTextToSpeech(data!!.extras!!.get("text").toString())
                         blockList.add(block)
                         blocknames.add(block.getInformation())
                     }

@@ -1,4 +1,4 @@
-package com.megalexa.activities
+package com.megalexa.ui.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -10,30 +10,16 @@ import android.view.View
 import com.megalexa.R
 import kotlinx.android.synthetic.main.activity_workflow.*
 import android.content.Intent
-import android.R.id
-import android.arch.lifecycle.ViewModel
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
-import android.view.Menu
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.Toast
 import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
 import com.amazon.identity.auth.device.api.authorization.User
-import com.amazonaws.mobile.client.AWSMobileClient
 import com.megalexa.adapters.view.WorkflowViewAdapter
 import kotlinx.android.synthetic.main.activity_general_logged.*
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
-import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBQueryExpression
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient
-import com.amazonaws.services.dynamodbv2.model.AttributeValue
-import com.google.gson.internal.bind.ArrayTypeAdapter
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.viewModel.ViewModelMain
-import kotlin.concurrent.thread
 
 
 class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
