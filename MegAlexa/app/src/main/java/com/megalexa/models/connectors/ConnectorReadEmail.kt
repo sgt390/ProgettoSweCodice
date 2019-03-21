@@ -8,11 +8,11 @@
 *
 * History:
 * Author                || Date         || Description
-* Gian Marco Bratzu     || 2019-03-19   || Writing class ConnectorNews
+* Gian Marco Bratzu     || 2019-03-18   || Writing class ConnectorReadEmail
 *      ||    || Verifying code
 */
 
-package com.megalexa.adapters.connectors
+package com.megalexa.models.connectors
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
@@ -25,21 +25,21 @@ import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.concurrent.thread
 
 
-class ConnectorNews(private var account: String):Connector {
+class ConnectorReadEmail(private var city: String):Connector {
     private var result= AtomicBoolean(false)
     init {
-        account ="someAccount";
+       city ="Padova";
 
-        //   TODO
+ //   TODO
 
     }
 
 
-    override fun connect(url: String):String {
+   override fun connect(url: String):String {
 
-        return "stringa";
+return "stringa";
 
-        //  TODO
+       //  TODO
     }
 
 

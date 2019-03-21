@@ -12,7 +12,7 @@
 *      ||    || Verifying code
 */
 
-package com.megalexa.adapters.connectors
+package com.megalexa.models.connectors
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory

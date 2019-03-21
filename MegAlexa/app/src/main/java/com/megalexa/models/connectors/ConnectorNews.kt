@@ -8,12 +8,11 @@
 *
 * History:
 * Author                || Date         || Description
-* Gian Marco Bratzu     || 2019-03-18   || Writing class ConnectorWeather
+* Gian Marco Bratzu     || 2019-03-19   || Writing class ConnectorNews
 *      ||    || Verifying code
 */
 
-package com.megalexa.adapters.connectors
-
+package com.megalexa.models.connectors
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
@@ -26,27 +25,28 @@ import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.concurrent.thread
 
 
-class ConnectorWeather(private var url: String):Connector {
+class ConnectorNews(private var account: String):Connector {
     private var result= AtomicBoolean(false)
     init {
-        url =connect(url)
+        account ="someAccount";
 
-    //   TODO
+        //   TODO
 
     }
 
 
-override fun connect(url: String):String {
+    override fun connect(url: String):String {
 
-    return "stringa";
-    //  TODO
-}
+        return "stringa";
+
+        //  TODO
+    }
 
 
-override fun valid():Boolean {
+    override fun valid():Boolean {
 
-    return true;
-    //      TODO
+        return true;
+//      TODO
     }
 
 }
