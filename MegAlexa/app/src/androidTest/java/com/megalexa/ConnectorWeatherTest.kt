@@ -3,9 +3,7 @@ package com.megalexa
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.adapters.connectors.ConnectorFeedRss
-import com.megalexa.adapters.connectors.ConnectorReadEmail
-import com.megalexa.adapters.connectors.ConnectorWeather
+import com.megalexa.models.connectors.ConnectorWeather
 
 import org.junit.Test
 import org.junit.runner.RunWith
