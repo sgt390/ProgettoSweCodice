@@ -1,5 +1,6 @@
 package com.megalexa.models
 
+import android.arch.lifecycle.MutableLiveData
 import com.megalexa.models.blocks.Block
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.GatewayRequests
@@ -7,20 +8,26 @@ import com.megalexa.util.GatewayRequests
 
 class MegAlexa {
 
-    private var workflows  = ArrayList<Workflow>()
+    private var workflows= ArrayList<Workflow>()
+    private var liveWorkflows= MutableLiveData<List<Workflow>>()
     private  lateinit var user : User
 
-    fun saveUser(user: User){
+    init {
+        liveWorkflows.value=workflows
+    }
+
+    //TODO() SAFELY DELETE THIS FUNCTION
+    fun saveUser(user: User) {
         this.user = user
-        GatewayRequests.saveUser(user)
+        //GatewayRequests.saveUser(user)
     }
 
     fun addWorkflow(w: Workflow){
         workflows.add(w)
+        liveWorkflows.value=workflows
     }
 
     fun getWorkflowList(): ArrayList<Workflow> {
-
         return workflows
     }
 
@@ -32,16 +39,18 @@ class MegAlexa {
         return user
     }
 
-    fun loadWorkflow() : ArrayList<Workflow>{
+    //TODO() SAFELY DELETE THIS FUNCTION
+    fun loadWorkflow() : ArrayList<Workflow> {
         workflows = GatewayRequests.readWorkflow(user)
         return workflows
     }
-
-    fun saveWorkflow(workfloName: String, blockList: ArrayList<Block>){
+    //TODO() REMOVE GATEWAY REQUEST SAFELY
+    fun saveWorkflow(workfloName: String, blockList: ArrayList<Block>) {
         var workflow = Workflow(workfloName)
         workflow.setBlocks(blockList)
         workflows.add(workflow)
-        GatewayRequests.saveWorkflow(user, workflow)
+        //GatewayRequests.saveWorkflow(user, workflow)
+        liveWorkflows.value=workflows
     }
 
     fun getBlock(user: User, w: String) : ArrayList<Block>? {

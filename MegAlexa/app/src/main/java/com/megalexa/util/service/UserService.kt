@@ -3,7 +3,7 @@ package com.megalexa.util.service
 import com.megalexa.models.User
 import org.json.JSONObject
 
-class UserService: Service() {
+object UserService: Service() {
 
     fun convertFromJSON(jsonObject: JSONObject): User{
         TODO()

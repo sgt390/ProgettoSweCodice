@@ -9,7 +9,7 @@ import javax.net.ssl.HttpsURLConnection
 
 abstract class Service {
 
-    protected val APIUrl = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/"
+    private val APIUrl = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/"
 
     abstract val resource:String
 
