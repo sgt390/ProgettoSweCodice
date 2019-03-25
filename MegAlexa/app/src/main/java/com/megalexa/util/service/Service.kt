@@ -27,7 +27,7 @@ abstract class Service {
 
     fun postOperation(jsonObject: JSONObject) {
 
-        val url= "$APIUrl$resource/create"
+        val url= "$APIUrl$resource"
         val myURL = URL(url)
         with(myURL.openConnection() as HttpsURLConnection) {
             setRequestProperty("Content-Type", "application/json")

@@ -1,9 +1,6 @@
 package com.megalexa.models
 
-import android.arch.lifecycle.MutableLiveData
 import com.megalexa.models.blocks.Block
-import com.megalexa.models.blocks.BlockFeedRss
-import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.GatewayRequests
 
@@ -12,7 +9,6 @@ class MegAlexa {
 
     private var workflows= ArrayList<Workflow>()
     private  lateinit var user : User
-
 
     constructor(){
         workflows= ArrayList()

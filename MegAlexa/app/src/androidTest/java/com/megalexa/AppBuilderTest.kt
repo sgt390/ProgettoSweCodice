@@ -43,5 +43,4 @@ class AppBuilderTest {
         assertEquals(true, assert.getCount()==2)
     }
 
-
 }
