@@ -23,7 +23,7 @@ class ViewModelMain{
         app.saveUser(com.megalexa.models.User(userID, name, email))
     }
 
-    fun setUser(user: com.amazon.identity.auth.device.api.authorization.User){
+    fun setUser(user: com.amazon.identity.auth.device.api.authorization.User) {
         app.setUser(com.megalexa.models.User(user.userId, user.userName, user.userEmail))
     }
 

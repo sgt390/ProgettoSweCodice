@@ -9,17 +9,10 @@ import org.json.JSONObject
 
 class Workflow(private val name:String) {
     private  var  blockList: ArrayList<Block> = ArrayList()
-    private var liveBlockList= MutableLiveData<ArrayList<Block>>()
     private  var workflowName = name
-
-    init {
-        liveBlockList.value=blockList
-    }
-
 
     fun addBlock(block: Block){
         blockList.add(block)
-        liveBlockList.value=blockList
 
     }
 
@@ -29,13 +22,10 @@ class Workflow(private val name:String) {
 
 
     fun removeBlockAt(position:Int) {
-        blockList.removeAt(position)
-        liveBlockList.value=blockList
-    }
+        blockList.removeAt(position) }
 
     fun removeBlock(block:Block) {
         blockList.remove(block)
-        liveBlockList.value=blockList
     }
 
     fun getBlocks() : ArrayList<Block>{
@@ -49,7 +39,6 @@ class Workflow(private val name:String) {
 
     fun setBlocks(blockList : ArrayList<Block>){
         this.blockList = blockList
-        liveBlockList.value=blockList
     }
 
     override fun toString(): String {

@@ -2,6 +2,8 @@ package com.megalexa.models
 
 import android.arch.lifecycle.MutableLiveData
 import com.megalexa.models.blocks.Block
+import com.megalexa.models.blocks.BlockFeedRss
+import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.GatewayRequests
 
@@ -9,11 +11,16 @@ import com.megalexa.util.GatewayRequests
 class MegAlexa {
 
     private var workflows= ArrayList<Workflow>()
-    private var liveWorkflows= MutableLiveData<List<Workflow>>()
     private  lateinit var user : User
 
-    init {
-        liveWorkflows.value=workflows
+
+    constructor(){
+        workflows= ArrayList()
+    }
+
+    constructor(user: User,workflows: ArrayList<Workflow>){
+        this.user=user
+        this.workflows=workflows
     }
 
     //TODO() SAFELY DELETE THIS FUNCTION
@@ -24,7 +31,6 @@ class MegAlexa {
 
     fun addWorkflow(w: Workflow){
         workflows.add(w)
-        liveWorkflows.value=workflows
     }
 
     fun getWorkflowList(): ArrayList<Workflow> {
@@ -50,7 +56,6 @@ class MegAlexa {
         workflow.setBlocks(blockList)
         workflows.add(workflow)
         //GatewayRequests.saveWorkflow(user, workflow)
-        liveWorkflows.value=workflows
     }
 
     fun getBlock(user: User, w: String) : ArrayList<Block>? {
@@ -73,4 +78,24 @@ class MegAlexa {
         return isPresent
     }
 
+
+    companion object Builder {
+
+        lateinit var workflows:ArrayList<Workflow>
+        lateinit var user:User
+
+        fun workflows(workflows: ArrayList<Workflow>) = apply {this.workflows= workflows}
+        fun user(user: User) = apply { this.user=user }
+        fun build() = MegAlexa(user,workflows)
+
+    }
+
 }
+
+
+
+
+
+
+
+
