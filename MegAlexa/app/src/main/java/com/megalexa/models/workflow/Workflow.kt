@@ -1,5 +1,6 @@
 package com.megalexa.models.workflow
 
+import android.arch.lifecycle.MutableLiveData
 import com.megalexa.models.User
 import com.megalexa.models.blocks.Block
 import com.megalexa.util.GatewayRequests
@@ -10,10 +11,9 @@ class Workflow(private val name:String) {
     private  var  blockList: ArrayList<Block> = ArrayList()
     private  var workflowName = name
 
-
-
     fun addBlock(block: Block){
         blockList.add(block)
+
     }
 
     fun getCount():Int {
@@ -22,8 +22,7 @@ class Workflow(private val name:String) {
 
 
     fun removeBlockAt(position:Int) {
-        blockList.removeAt(position)
-    }
+        blockList.removeAt(position) }
 
     fun removeBlock(block:Block) {
         blockList.remove(block)
@@ -32,7 +31,7 @@ class Workflow(private val name:String) {
     fun getBlocks() : ArrayList<Block>{
         return blockList
     }
-
+    //TODO() SAFELY DELETE THIS FUNCTION
     fun getBlocks(user: User) : ArrayList<Block>{
         blockList = GatewayRequests.readBlocks(user, this)!!
         return blockList
@@ -50,7 +49,7 @@ class Workflow(private val name:String) {
         return workflowName
     }
 
-    fun toSON() : JSONObject{
+   /* fun toSON() : JSONObject{
         var workflowName = JSONObject()
         var workflow = JSONArray()
         for(block in blockList){
@@ -59,5 +58,5 @@ class Workflow(private val name:String) {
         workflowName.put(name, workflow)
         return workflowName
     }
-    
+ */
 }

@@ -4,7 +4,7 @@ import com.megalexa.models.blocks.Block
 import com.megalexa.models.blocks.BlockFeedRss
 import org.json.JSONObject
 
-class BlockFeedRssService :BlockService() {
+object BlockFeedRssService :BlockService() {
 
     override fun convertFromJSON(jsonObject: JSONObject): Block {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

@@ -7,12 +7,22 @@ import com.megalexa.util.GatewayRequests
 
 class MegAlexa {
 
-    private var workflows  = ArrayList<Workflow>()
+    private var workflows= ArrayList<Workflow>()
     private  lateinit var user : User
 
-    fun saveUser(user: User){
+    constructor(){
+        workflows= ArrayList()
+    }
+
+    constructor(user: User,workflows: ArrayList<Workflow>){
+        this.user=user
+        this.workflows=workflows
+    }
+
+    //TODO() SAFELY DELETE THIS FUNCTION
+    fun saveUser(user: User) {
         this.user = user
-        GatewayRequests.saveUser(user)
+        //GatewayRequests.saveUser(user)
     }
 
     fun addWorkflow(w: Workflow){
@@ -20,7 +30,6 @@ class MegAlexa {
     }
 
     fun getWorkflowList(): ArrayList<Workflow> {
-
         return workflows
     }
 
@@ -32,16 +41,17 @@ class MegAlexa {
         return user
     }
 
-    fun loadWorkflow() : ArrayList<Workflow>{
+    //TODO() SAFELY DELETE THIS FUNCTION
+    fun loadWorkflow() : ArrayList<Workflow> {
         workflows = GatewayRequests.readWorkflow(user)
         return workflows
     }
-
-    fun saveWorkflow(workfloName: String, blockList: ArrayList<Block>){
+    //TODO() REMOVE GATEWAY REQUEST SAFELY
+    fun saveWorkflow(workfloName: String, blockList: ArrayList<Block>) {
         var workflow = Workflow(workfloName)
         workflow.setBlocks(blockList)
         workflows.add(workflow)
-        GatewayRequests.saveWorkflow(user, workflow)
+        //GatewayRequests.saveWorkflow(user, workflow)
     }
 
     fun getBlock(user: User, w: String) : ArrayList<Block>? {
@@ -64,4 +74,24 @@ class MegAlexa {
         return isPresent
     }
 
+
+    companion object Builder {
+
+        lateinit var workflows:ArrayList<Workflow>
+        lateinit var user:User
+
+        fun workflows(workflows: ArrayList<Workflow>) = apply {this.workflows= workflows}
+        fun user(user: User) = apply { this.user=user }
+        fun build() = MegAlexa(user,workflows)
+
+    }
+
 }
+
+
+
+
+
+
+
+

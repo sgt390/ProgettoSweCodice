@@ -4,7 +4,7 @@ import com.megalexa.models.blocks.Block
 import com.megalexa.models.blocks.BlockTextToSpeech
 import org.json.JSONObject
 
-class BlockTextToSpeechService : BlockService() {
+object BlockTextToSpeechService : BlockService() {
 
     override fun convertFromJSON(jsonObject: JSONObject): Block {
         TODO()
