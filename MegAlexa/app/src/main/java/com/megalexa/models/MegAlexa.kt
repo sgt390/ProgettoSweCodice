@@ -5,15 +5,9 @@ import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.GatewayRequests
 
 
-class MegAlexa {
+class MegAlexa private constructor(
+    private var user: User, private var workflows: ArrayList<Workflow>) {
 
-    private var workflows= ArrayList<Workflow>()
-    private var user : User
-
-    private constructor(user: User, workflows: ArrayList<Workflow>){
-        this.user=user
-        this.workflows=workflows
-    }
 
     //TODO() SAFELY DELETE THIS FUNCTION
     fun saveUser(user: User) {
@@ -29,7 +23,7 @@ class MegAlexa {
         return workflows
     }
 
-    fun setUser(user: User){
+    fun setUser(user: User) {
         this.user = user
     }
 
@@ -58,7 +52,6 @@ class MegAlexa {
         }
         return null
     }
-
 
     fun isPresentWorkflow(w: String) : Boolean{
         var isPresent  = false
@@ -92,11 +85,3 @@ class MegAlexa {
     }
 
 }
-
-
-
-
-
-
-
-
