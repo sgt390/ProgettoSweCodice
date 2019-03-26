@@ -8,13 +8,9 @@ import com.megalexa.util.GatewayRequests
 class MegAlexa {
 
     private var workflows= ArrayList<Workflow>()
-    private  lateinit var user : User
+    private lateinit var user : User
 
-    constructor(){
-        workflows= ArrayList()
-    }
-
-    constructor(user: User,workflows: ArrayList<Workflow>){
+    private constructor(user: User, workflows: ArrayList<Workflow>){
         this.user=user
         this.workflows=workflows
     }
@@ -25,7 +21,7 @@ class MegAlexa {
         //GatewayRequests.saveUser(user)
     }
 
-    fun addWorkflow(w: Workflow){
+    fun addWorkflow(w: Workflow) {
         workflows.add(w)
     }
 
@@ -75,13 +71,21 @@ class MegAlexa {
     }
 
 
-    companion object Builder {
+    companion object {
 
-        lateinit var workflows:ArrayList<Workflow>
-        lateinit var user:User
+        @Volatile private var instance: MegAlexa?= null
+        //Singleton instantiation
+        fun getInstance() = instance?: synchronized(this) {
+            instance ?: MegAlexa.build().also { instance = it }
+        }
 
-        fun workflows(workflows: ArrayList<Workflow>) = apply {this.workflows= workflows}
+        var workflows =ArrayList<Workflow>()
+        var user= User("dummyUID","dummyEmail","dummyName")
+
+        fun workflows(workflows: ArrayList<Workflow>) = apply { this.workflows= workflows }
         fun user(user: User) = apply { this.user=user }
+        fun user(userID:String,email:String,name:String) =apply { this.user= User(userID,email,name) }
+
         fun build() = MegAlexa(user,workflows)
 
     }

@@ -14,7 +14,7 @@ class ViewModelMain{
 
 
     companion object {
-        private var app: MegAlexa = MegAlexa()
+        private var app: MegAlexa = MegAlexa.build()
 
     }
 

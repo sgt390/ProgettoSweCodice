@@ -9,8 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.megalexa.R
 import com.megalexa.ui.activities.ViewBlockActivity
-import com.megalexa.models.workflow.Workflow
-import com.megalexa.util.ItemClickListener
+import com.megalexa.util.view.ItemClickListener
 
 
 class WorkflowViewAdapter(private val dataset: ArrayList<String>, private val context: Context):RecyclerView.Adapter<WorkflowViewHolder>(){
@@ -19,7 +18,7 @@ class WorkflowViewAdapter(private val dataset: ArrayList<String>, private val co
     override fun onBindViewHolder(holder: WorkflowViewHolder, position: Int) {
         holder.workflowName?.text = dataset[position]
 
-        holder.setItemClickListener(object: ItemClickListener{
+        holder.setItemClickListener(object: ItemClickListener {
 
             override fun onClick(view: View?, position: Int) {
                 val intent = Intent(context,ViewBlockActivity::class.java)
@@ -46,7 +45,7 @@ class WorkflowViewAdapter(private val dataset: ArrayList<String>, private val co
 class WorkflowViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener {
 
     val  workflowName :TextView? = v.findViewById(R.id.workflow_name)
-    private lateinit var itemClickListener:ItemClickListener
+    private lateinit var itemClickListener: ItemClickListener
 
     init{
         workflowName?.setOnClickListener(this)
