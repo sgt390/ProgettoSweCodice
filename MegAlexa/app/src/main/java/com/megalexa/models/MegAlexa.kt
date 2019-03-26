@@ -8,7 +8,7 @@ import com.megalexa.util.GatewayRequests
 class MegAlexa {
 
     private var workflows= ArrayList<Workflow>()
-    private lateinit var user : User
+    private var user : User
 
     private constructor(user: User, workflows: ArrayList<Workflow>){
         this.user=user
@@ -44,7 +44,7 @@ class MegAlexa {
     }
     //TODO() REMOVE GATEWAY REQUEST SAFELY
     fun saveWorkflow(workfloName: String, blockList: ArrayList<Block>) {
-        var workflow = Workflow(workfloName)
+        val workflow = Workflow(workfloName)
         workflow.setBlocks(blockList)
         workflows.add(workflow)
         //GatewayRequests.saveWorkflow(user, workflow)
@@ -79,13 +79,14 @@ class MegAlexa {
             instance ?: MegAlexa.build().also { instance = it }
         }
 
+
+        //Builder functions
         var workflows =ArrayList<Workflow>()
         var user= User("dummyUID","dummyEmail","dummyName")
 
         fun workflows(workflows: ArrayList<Workflow>) = apply { this.workflows= workflows }
         fun user(user: User) = apply { this.user=user }
         fun user(userID:String,email:String,name:String) =apply { this.user= User(userID,email,name) }
-
         fun build() = MegAlexa(user,workflows)
 
     }
