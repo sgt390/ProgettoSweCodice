@@ -46,8 +46,11 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         button_cancel_workflow_creationView.setOnClickListener(this)
         User.fetch(this, object: Listener<User, AuthError> {
             override fun onSuccess(p0: User) {
-                viewModel.setUser(p0)
-                block_names = viewModel.getBlocks(intent.getStringExtra("workflowName"))
+                //todo() get block information based on  workflow name
+
+                //viewModel.setUser(p0)
+                //block_names = viewModel.getBlocks(intent.getStringExtra("workflowName"))
+
                 runOnUiThread{
                     rec_view = findViewById(R.id.recyclerView_addedBlocksView)
                     rec_view.layoutManager = LinearLayoutManager(applicationContext)

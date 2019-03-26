@@ -25,7 +25,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
     companion object {
         private var viewModel = ViewModelMain()
     }
-    private var blockList = ArrayList<Block>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,7 +98,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
 
     }
 
-
     private fun getBlockList(): List<Pair<String, Int>> {
 
         val list = getTitlesList()
@@ -117,11 +115,5 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
         return listOf("Add FeedRSS","Add Text Block")
 
     }
-
-    fun getModel() : ArrayList<Workflow>{
-        return viewModel.getWorkflow()
-    }
-
-
 
 }

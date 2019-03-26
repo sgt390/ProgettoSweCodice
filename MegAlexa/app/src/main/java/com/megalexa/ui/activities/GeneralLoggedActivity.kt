@@ -28,7 +28,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     }
 
     private lateinit var layoutManager: RecyclerView.LayoutManager
-    private lateinit var listWorkflow: ArrayList<Workflow>
+    private var listWorkflow= ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,8 +56,10 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         })
         User.fetch(this, object: Listener<User, AuthError>{
             override fun onSuccess(p0: User) {
-                viewModel.setUser(p0)
-                listWorkflow = viewModel.fetchWorkflow()
+                //TODO() FETCH AND SET WORKFLOW NAMES
+
+                //viewModel.setUser(p0)
+                //listWorkflow = viewModel.fetchWorkflow()
                 runOnUiThread{
                     recyclerView.adapter= WorkflowViewAdapter(listWorkflow,this@GeneralLoggedActivity)
                 }

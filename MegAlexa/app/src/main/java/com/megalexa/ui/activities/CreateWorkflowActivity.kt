@@ -24,13 +24,11 @@ import kotlin.concurrent.thread
 
 class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
-    private lateinit var block_names:ArrayList<String>
     private lateinit var rec_view: RecyclerView
-
     companion object {
         private var viewModel : ViewModelMain = ViewModelMain()
     }
-    var blockList : ArrayList<Block> = ArrayList()
+
     var blocknames: ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,13 +62,16 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
             button_continue -> {
                 thread (start = true) {
                     val workflowTitle=findViewById<TextView>(R.id.input_title_workflow).text.toString()
-                    val isPresent = viewModel.haveUserWorkflowName(workflowTitle)
+
+                    //todo() check for workflow name: it must be unique
+                    //val isPresent = viewModel.haveUserWorkflowName(workflowTitle)
+                    val isPresent= false
                     runOnUiThread {
                         if (isPresent) {
                            Toast.makeText(this,"workflow name must be unique",Toast.LENGTH_SHORT).show()
                         } else {
                             val newIntent = Intent(this, CreateBlockActivity::class.java)
-                            newIntent.putExtra("blockList", blockList as Serializable)
+                            newIntent.putExtra("blockList", blocknames as Serializable)
                             startActivityForResult(newIntent,1)
                         }
                     }
@@ -78,8 +79,8 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
             }
             button_save_workflow -> {
                 thread (start = true) {
-
-                    viewModel.saveWorkflow(findViewById<TextView>(R.id.input_title_workflow).text.toString(), blockList)
+                    //todo() SAVE WORKFLOW HERE
+                    //viewModel.saveWorkflow(findViewById<TextView>(R.id.input_title_workflow).text.toString(), blockList)
                     runOnUiThread{
                         startActivity(Intent(this, GeneralLoggedActivity::class.java))
                     }
@@ -100,18 +101,17 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                 blockType = data!!.extras!!.getString("block_type")
 
                 when(blockType){
-
+                    //TODO() LET VIEWMODEL HANDLE THE ADDITION OF BLOCKS
                     "Text to speech" -> {
-                        val block= BlockTextToSpeech(data!!.extras!!.get("text").toString())
+                        /*val block= BlockTextToSpeech(data!!.extras!!.get("text").toString())
                         blockList.add(block)
-                        blocknames.add(block.getInformation())
+                        blocknames.add(block.getInformation())*/
                     }
-
                     "FeedRss" -> {
 
-                        val block=BlockFeedRss(data!!.extras!!.get("feedRss").toString())
+                      /*  val block=BlockFeedRss(data!!.extras!!.get("feedRss").toString())
                         blockList.add(block)
-                        blocknames.add(block.getInformation())
+                        blocknames.add(block.getInformation())*/
                     }
 
                 }
@@ -121,11 +121,5 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         }
 
     }
-
-    fun getDebugBlocks(): ArrayList<String>{
-        return arrayListOf("Block1","Block2","Block3","Block4","Block5")
-
-    }
-
 
 }
