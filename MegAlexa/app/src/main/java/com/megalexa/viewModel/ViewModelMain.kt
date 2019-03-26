@@ -7,15 +7,14 @@ import com.megalexa.models.User
 import com.megalexa.models.blocks.Block
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.GatewayRequests
-import org.json.JSONArray
-import org.json.JSONObject
+
 
 
 class ViewModelMain{
 
 
     companion object {
-        private var app: MegAlexa = MegAlexa()
+        private var app: MegAlexa = MegAlexa.build()
 
     }
 

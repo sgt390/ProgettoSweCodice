@@ -12,20 +12,17 @@ import com.megalexa.R
 import com.megalexa.adapters.view.ListArrayAdapter
 import com.megalexa.ui.fragments.RssFragment
 import com.megalexa.ui.fragments.TextToSpeechFragment
-import com.megalexa.models.blocks.Block
-import com.megalexa.models.workflow.Workflow
-import com.megalexa.util.FragmentClickListener
+import com.megalexa.util.view.FragmentClickListener
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_block.*
 
 
-class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentClickListener {
+class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentClickListener {
 
     private lateinit var listView: ListView
     companion object {
         private var viewModel = ViewModelMain()
     }
-    private var blockList = ArrayList<Block>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,7 +96,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
 
     }
 
-
     private fun getBlockList(): List<Pair<String, Int>> {
 
         val list = getTitlesList()
@@ -117,11 +113,5 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
         return listOf("Add FeedRSS","Add Text Block")
 
     }
-
-    fun getModel() : ArrayList<Workflow>{
-        return viewModel.getWorkflow()
-    }
-
-
 
 }
