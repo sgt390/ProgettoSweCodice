@@ -38,4 +38,5 @@
     <string name="setalarm">SET ALARM</string>
     <string name="slash"> / </string>
     <string name="enterdate">Enter date</string>
+    <string name="confirm">Confirm</string>
 </resources>

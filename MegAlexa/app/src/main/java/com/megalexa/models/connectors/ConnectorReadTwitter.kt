@@ -25,10 +25,10 @@ import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.concurrent.thread
 
 
-class ConnectorReadTwitter(private var account: String):Connector {
+class ConnectorReadTwitter(private var mail: String, private var password: String):Connector {
     private var result= AtomicBoolean(false)
     init {
-        account ="someAccount";
+        mail ="someAccount";
 
         //   TODO
 
