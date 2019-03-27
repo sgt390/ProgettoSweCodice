@@ -63,3 +63,12 @@ class BlockSport(private val url: String): Block,Filtrable {
     fun url()= url
 
 }
+
+object suplier {
+    val sports = listOf<BlockSport>(
+        BlockSport(url = "football"),
+        BlockSport(url = "tennis"),
+        BlockSport(url = "formula1"),
+        BlockSport(url = "basket")
+    )
+}

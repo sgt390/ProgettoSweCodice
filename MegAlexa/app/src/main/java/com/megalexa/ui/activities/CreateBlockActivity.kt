@@ -14,6 +14,7 @@ import com.megalexa.ui.fragments.RssFragment
 import com.megalexa.ui.fragments.TextToSpeechFragment
 import com.megalexa.models.blocks.Block
 import com.megalexa.models.workflow.Workflow
+import com.megalexa.ui.fragments.SportFragment
 import com.megalexa.util.FragmentClickListener
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_block.*
@@ -53,6 +54,12 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener,FragmentCli
                 }
                 1-> {
                     fragment = TextToSpeechFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+
+                }
+                2-> {
+                    fragment = SportFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
 
