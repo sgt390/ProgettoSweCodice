@@ -29,6 +29,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
         setContentView(R.layout.activity_create_block)
 
         listView = findViewById(R.id.view_blocks)
+        listView.isScrollContainer=true
         val blockList = getBlockList()
 
 
@@ -43,21 +44,36 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
              _ ,_ ,position, _ ->
 
             when(position){
-                0 -> {
+                0-> {
                     fragment = RssFragment()
                     val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 1-> {
                     fragment = TextToSpeechFragment()
+                    listView.isEnabled=false
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
-
+                }
+                2-> {
+                    //TODO() FILTER FRAGMENT
+                }
+                3-> {
+                    //TODO() PIN FRAGMENT
+                }
+                4-> {
+                    //TODO() EMAIL FRAGMENT
+                }
+                5-> {
+                    //TODO() NEWS FRAGMENT
+                }
+                6-> {
+                    //TODO() SPORT FRAGMENT
                 }
             }
 
         }
-
 
     }
 
@@ -70,6 +86,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             intent.putExtra("block_type", "FeedRss")
             intent.putExtra("feedRss",url)
             setResult(Activity.RESULT_OK, intent)
+            listView.isEnabled=true
             finish()
 
 
@@ -79,6 +96,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             intent.putExtra("block_type", "Text to speech")
             intent.putExtra("text",text)
             setResult(Activity.RESULT_OK,intent)
+            listView.isEnabled=true
             finish()
 
         }
@@ -102,16 +120,25 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
         //more pairs to be added
         return listOf(
             Pair(list[0], R.drawable.ic_feed_rss),
-            Pair(list[1], R.drawable.ic_text)
+            Pair(list[1], R.drawable.ic_text),
+            Pair(list[2], R.drawable.ic_filter),
+            Pair(list[3], R.drawable.ic_lock),
+            Pair(list[4], R.drawable.ic_email),
+            Pair(list[5], R.drawable.ic_news),
+            Pair(list[6], R.drawable.ic_sport)
         )
 
     }
 
-
     private fun getTitlesList(): List<String> {
 
-        return listOf("Add FeedRSS","Add Text Block")
+        return listOf("FeedRSS","Text Block","Filter","PIN","Read Email","News","Sport News")
 
     }
 
+    override fun onBackPressed() {
+        if(!listView.isEnabled)
+            listView.isEnabled=true
+            super.onBackPressed()
+    }
 }
