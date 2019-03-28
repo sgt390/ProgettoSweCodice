@@ -39,4 +39,11 @@
     <string name="slash"> / </string>
     <string name="enterdate">Enter date</string>
     <string name="confirm">Confirm</string>
+    <string name="selectnumber">Select filter's number</string>
+    <string name="inserttext">Insert Text To Speech paragraph</string>
+    <string name="telephonenumber">Insert telephone number</string>
+    <string name="selectsite">Select a news site</string>
+    <string name="youraccount">Insert your Twitter account</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>

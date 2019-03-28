@@ -1,5 +1,5 @@
 /*
-* File: ConnectorFeedRss.kt
+* File: ConnectorSport.kt
 * Version: 1.0.0
 * Date: 2019-03-18
 * Author: Gian Marco Bratzu

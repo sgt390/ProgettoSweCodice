@@ -23,6 +23,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.megalexa.R
+import com.megalexa.models.connectors.ConnectorTelegram
 import com.megalexa.ui.activities.CreateBlockActivity
 
 class TelegramFragment: Fragment() {
@@ -30,28 +31,33 @@ class TelegramFragment: Fragment() {
     private var telephoneNumber = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.twitter_fragment_layout, container, false)
+        val view = inflater.inflate(R.layout.telegram_fragment_layout, container, false)
 
         val button = view.findViewById<Button>(R.id.confirm_button)
-        val editTextEmail = view.findViewById<EditText>(R.id.editMail)
+        val editPhone = view.findViewById<EditText>(R.id.editPhone)
 
         button.setOnClickListener {
 
-            telephoneNumber = editTextEmail.text.toString()
+            telephoneNumber = editPhone.text.toString()
+            val isValid= ConnectorTelegram(telephoneNumber).valid()
 
-            if (telephoneNumber == "") {
-                Toast.makeText(context, "missing number", Toast.LENGTH_SHORT).show()
+            if (telephoneNumber == "" || !isValid) {
+                Toast.makeText(context, "number not valid", Toast.LENGTH_SHORT).show()
             }
-            if(telephoneNumber.length != 10){
-
-            } else {
-                telephoneNumber = editTextEmail.text.toString()
-                /*val activity = activity as CreateBlockActivity
-                activity.onFragmentClick(this)*/
+            else {
+                if(telephoneNumber.length != 10) {
+                    Toast.makeText(context, "number length wrong", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    telephoneNumber = editPhone.text.toString()
+                    /*val activity = activity as CreateBlockActivity
+                    activity.onFragmentClick(this)*/
+                }
             }
 
         }
 
         return view
     }
+    fun getTelephoneNumber() = telephoneNumber
 }
