@@ -41,14 +41,19 @@ class TwitterFragment: Fragment() {
 
             mail = editTextEmail.text.toString()
             password = editTextPassword.text.toString()
+            val isValid = ConnectorReadTwitter(mail, password).valid()
 
             if (mail == "" || password == "") {
                 Toast.makeText(context, "missing mail or password", Toast.LENGTH_SHORT).show()
             } else {
-                mail = editTextEmail.text.toString()
-                password = editTextPassword.text.toString()
-                /*val activity = activity as CreateBlockActivity
-                activity.onFragmentClick(this)*/
+                if(!isValid){
+                    Toast.makeText(context, "account not valid", Toast.LENGTH_SHORT).show()
+                } else {
+                    mail = editTextEmail.text.toString()
+                    password = editTextPassword.text.toString()
+                    /*val activity = activity as CreateBlockActivity
+                    activity.onFragmentClick(this)*/
+                }
             }
 
         }

@@ -25,7 +25,9 @@ import com.megalexa.R
 import com.megalexa.ui.activities.CreateBlockActivity
 
 class NewsFragment: Fragment() {
+
     private var newsSite = ""
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.news_fragment_layout, container, false)
@@ -47,5 +49,5 @@ class NewsFragment: Fragment() {
         return view
     }
 
-    fun getWebSite() = newsSite
+    fun getNewsSite() = newsSite
 }

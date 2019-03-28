@@ -1,5 +1,5 @@
 /*
-* File: ConnectorFeedRss.kt
+* File: ConnectorCalendar.kt
 * Version: 1.0.0
 * Date: 2019-03-18
 * Author: Gian Marco Bratzu
@@ -25,10 +25,10 @@ import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.concurrent.thread
 
 
-class ConnectorCalendar(private var account: String):Connector {
+class ConnectorCalendar(private var email: String, private var password: String):Connector {
     private var result= AtomicBoolean(false)
     init {
-        account ="someAccount";
+        email = "someAccount";
 
         //   TODO
 

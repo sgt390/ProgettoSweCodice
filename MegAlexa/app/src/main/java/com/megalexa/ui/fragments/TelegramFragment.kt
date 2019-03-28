@@ -39,20 +39,15 @@ class TelegramFragment: Fragment() {
         button.setOnClickListener {
 
             telephoneNumber = editPhone.text.toString()
-            val isValid= ConnectorTelegram(telephoneNumber).valid()
+            val isValid = ConnectorTelegram(telephoneNumber).valid()
 
-            if (telephoneNumber == "" || !isValid) {
+            if (telephoneNumber == "" || !isValid || telephoneNumber.length != 10) {
                 Toast.makeText(context, "number not valid", Toast.LENGTH_SHORT).show()
             }
             else {
-                if(telephoneNumber.length != 10) {
-                    Toast.makeText(context, "number length wrong", Toast.LENGTH_SHORT).show()
-                }
-                else{
-                    telephoneNumber = editPhone.text.toString()
-                    /*val activity = activity as CreateBlockActivity
-                    activity.onFragmentClick(this)*/
-                }
+                telephoneNumber = editPhone.text.toString()
+                /*val activity = activity as CreateBlockActivity
+                activity.onFragmentClick(this)*/
             }
 
         }
