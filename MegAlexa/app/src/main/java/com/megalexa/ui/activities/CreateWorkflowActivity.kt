@@ -1,6 +1,7 @@
 package com.megalexa.ui.activities
 
 import android.app.Activity
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -14,9 +15,8 @@ import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.User
 import com.megalexa.R
 import com.megalexa.adapters.view.BlockViewAdapter
-import com.megalexa.models.blocks.Block
-import com.megalexa.models.blocks.BlockFeedRss
-import com.megalexa.models.blocks.BlockTextToSpeech
+import com.megalexa.util.InjectorUtils
+import com.megalexa.viewModel.MegAlexaViewModel
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_workflow.*
 import java.io.Serializable
@@ -26,7 +26,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
     private lateinit var rec_view: RecyclerView
     companion object {
-        private var viewModel : ViewModelMain = ViewModelMain()
+        private lateinit var viewModel : MegAlexaViewModel
     }
 
     var blocknames: ArrayList<String> = ArrayList()
@@ -34,6 +34,8 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_workflow)
+        val factory= InjectorUtils.provideMegAlexaViewModelFactory()
+        viewModel = ViewModelProviders.of(this,factory).get(MegAlexaViewModel::class.java)
 
         val buttonContinue : View=  findViewById(R.id.button_continue)
 
@@ -42,7 +44,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         button_save_workflow.setOnClickListener(this)
         User.fetch(this, object: Listener<User, AuthError> {
             override fun onSuccess(p0: User) {
-                viewModel.setUser(p0)
                 runOnUiThread {
                     rec_view = findViewById(R.id.recyclerView_addedBlocksOnCreation)
                     rec_view.layoutManager = LinearLayoutManager(applicationContext)

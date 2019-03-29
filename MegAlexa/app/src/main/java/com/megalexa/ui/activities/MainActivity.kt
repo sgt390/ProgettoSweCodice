@@ -14,13 +14,9 @@ import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizeResult
 import com.amazon.identity.auth.device.api.authorization.AuthorizeListener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
-
 import com.megalexa.R
 import com.megalexa.util.InjectorUtils
 import com.megalexa.viewModel.MegAlexaViewModel
-
-import com.megalexa.viewModel.ViewModelMain
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         viewModel= ViewModelProviders.of(this,factory).get(MegAlexaViewModel::class.java)
 
         //TODO() OBSERVE LIVEDATA  FROM VIEWMODEL
-        
+
         requestContext = RequestContext.create(this)
         requestContext.registerListener( object :
             AuthorizeListener(){

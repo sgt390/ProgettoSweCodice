@@ -1,5 +1,6 @@
 package com.megalexa.ui.activities
 
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.design.widget.NavigationView
@@ -19,12 +20,14 @@ import com.amazon.identity.auth.device.api.authorization.User
 import com.megalexa.adapters.view.WorkflowViewAdapter
 import kotlinx.android.synthetic.main.activity_general_logged.*
 import com.megalexa.models.workflow.Workflow
+import com.megalexa.util.InjectorUtils
+import com.megalexa.viewModel.MegAlexaViewModel
 import com.megalexa.viewModel.ViewModelMain
 
 
 class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     companion object {
-        private var viewModel : ViewModelMain = ViewModelMain()
+        private lateinit var viewModel : MegAlexaViewModel
     }
 
     private lateinit var layoutManager: RecyclerView.LayoutManager
@@ -33,7 +36,8 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_general_logged)
-
+        val factory= InjectorUtils.provideMegAlexaViewModelFactory()
+        viewModel = ViewModelProviders.of(this,factory).get(MegAlexaViewModel::class.java)
 
         val recyclerView=findViewById<RecyclerView>(R.id.container_workflow)
         recyclerView.setHasFixedSize(true)
