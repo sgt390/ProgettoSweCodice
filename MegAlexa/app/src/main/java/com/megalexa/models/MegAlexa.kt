@@ -63,6 +63,14 @@ class MegAlexa private constructor(
         return isPresent
     }
 
+    fun getWorkflowNames() :ArrayList<String> {
+        val names = ArrayList<String>()
+        for(item in workflows)
+            names.add(item.getName())
+
+        return names
+    }
+
     companion object {
 
         @Volatile private var instance: MegAlexa?= null

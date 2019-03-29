@@ -10,13 +10,12 @@ import com.megalexa.models.blocks.Block
 import org.json.JSONObject
 import java.util.logging.Handler
 import android.support.v4.os.HandlerCompat.postDelayed
-
-
+import com.megalexa.models.workflow.Workflow
 
 
 class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
 
-    private lateinit var wNames: MutableLiveData<ArrayList<String>>
+    private var wNames = MutableLiveData<ArrayList<String>>()
 
 
     /**
@@ -74,6 +73,9 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
         return false
     }
 
+    fun addWorkflow(name:String) {
+        app.addWorkflow(Workflow(name))
+    }
     /**
      * loads the adapter that must be assigned  to activities (with workflow names)
      */
@@ -92,6 +94,10 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
         }, 5000)
     }
     //more functions to be added
+    fun refreshWorkflow() {
+        val names =app.getWorkflowNames()
+        wNames.postValue(names)
+    }
 }
 
 class MegAlexaViewModelFactory(private val app: MegAlexa):
