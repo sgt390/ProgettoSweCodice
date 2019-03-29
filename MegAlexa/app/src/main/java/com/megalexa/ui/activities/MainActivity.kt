@@ -1,6 +1,7 @@
 package com.megalexa.ui.activities
 
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -13,18 +14,16 @@ import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizeResult
 import com.amazon.identity.auth.device.api.authorization.AuthorizeListener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
-
 import com.megalexa.R
-
-import com.megalexa.viewModel.ViewModelMain
-
+import com.megalexa.util.InjectorUtils
+import com.megalexa.viewModel.MegAlexaViewModel
 
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var requestContext: RequestContext
     companion object {
-        private var viewModel : ViewModelMain = ViewModelMain()
+        private lateinit var viewModel : MegAlexaViewModel
     }
 
 
@@ -32,6 +31,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val factory= InjectorUtils.provideMegAlexaViewModelFactory()
+        viewModel= ViewModelProviders.of(this,factory).get(MegAlexaViewModel::class.java)
+
+        //TODO() OBSERVE LIVEDATA  FROM VIEWMODEL
+
         requestContext = RequestContext.create(this)
         requestContext.registerListener( object :
             AuthorizeListener(){

@@ -1,5 +1,8 @@
 package com.megalexa.ui.activities
 
+import android.app.Activity
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.design.widget.NavigationView
@@ -12,30 +15,40 @@ import kotlinx.android.synthetic.main.activity_workflow.*
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.widget.Toast
 import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
 import com.amazon.identity.auth.device.api.authorization.User
 import com.megalexa.adapters.view.WorkflowViewAdapter
 import kotlinx.android.synthetic.main.activity_general_logged.*
-import com.megalexa.models.workflow.Workflow
-import com.megalexa.viewModel.ViewModelMain
+import com.megalexa.util.InjectorUtils
+import com.megalexa.viewModel.MegAlexaViewModel
 
 
 class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     companion object {
-        private var viewModel : ViewModelMain = ViewModelMain()
+        private lateinit var viewModel : MegAlexaViewModel
     }
-
+    private lateinit var recyclerView: RecyclerView
     private lateinit var layoutManager: RecyclerView.LayoutManager
-    private var listWorkflow= ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_general_logged)
+        val factory= InjectorUtils.provideMegAlexaViewModelFactory()
+        viewModel = ViewModelProviders.of(this,factory).get(MegAlexaViewModel::class.java)
 
+        val observer = Observer<ArrayList<String>>{
+            val adapter = WorkflowViewAdapter(it!!,this@GeneralLoggedActivity)
+            Toast.makeText(this, "change UI",Toast.LENGTH_SHORT).show()
+            runOnUiThread{
+                recyclerView.adapter= adapter
+            }
+        }
+        viewModel.getLiveWorkflowNames().observe(this,observer)
 
-        val recyclerView=findViewById<RecyclerView>(R.id.container_workflow)
+        recyclerView=findViewById(R.id.container_workflow)
         recyclerView.setHasFixedSize(true)
         layoutManager= LinearLayoutManager(this)
         recyclerView.layoutManager=layoutManager
@@ -51,18 +64,12 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         nav_view.setNavigationItemSelectedListener(this)
         add_workflow.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                startActivity(Intent(this@GeneralLoggedActivity, CreateWorkflowActivity::class.java))
+                startActivityForResult(Intent(this@GeneralLoggedActivity, CreateWorkflowActivity::class.java),1)
             }
         })
         User.fetch(this, object: Listener<User, AuthError>{
             override fun onSuccess(p0: User) {
-                //TODO() FETCH AND SET WORKFLOW NAMES
-
-                //viewModel.setUser(p0)
-                //listWorkflow = viewModel.fetchWorkflow()
-                runOnUiThread{
-                    recyclerView.adapter= WorkflowViewAdapter(listWorkflow,this@GeneralLoggedActivity)
-                }
+                viewModel.refreshWorkflow()
             }
             override fun onError(p0: AuthError?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -70,8 +77,8 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         })
     }
 
-
     override fun onBackPressed() {
+        viewModel.refreshWorkflow()
         if(drawer_layout.isDrawerOpen(GravityCompat.START)){
             drawer_layout.closeDrawer(GravityCompat.START)
         }else{
@@ -97,6 +104,22 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onResume() {
+        viewModel.refreshWorkflow()
+        super.onResume()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 1) {
+            if(resultCode== Activity.RESULT_OK) {
+                viewModel.refreshWorkflow()
+            }
+        }
+
     }
 
 }

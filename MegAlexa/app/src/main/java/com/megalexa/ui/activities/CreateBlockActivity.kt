@@ -2,6 +2,7 @@ package com.megalexa.ui.activities
 
 
 import android.app.Activity
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -12,7 +13,9 @@ import com.megalexa.R
 import com.megalexa.adapters.view.ListArrayAdapter
 import com.megalexa.ui.fragments.RssFragment
 import com.megalexa.ui.fragments.TextToSpeechFragment
+import com.megalexa.util.InjectorUtils
 import com.megalexa.util.view.FragmentClickListener
+import com.megalexa.viewModel.MegAlexaViewModel
 import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_block.*
 
@@ -21,12 +24,14 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
 
     private lateinit var listView: ListView
     companion object {
-        private var viewModel = ViewModelMain()
+        private lateinit var viewModel :MegAlexaViewModel
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_block)
+        val factory= InjectorUtils.provideMegAlexaViewModelFactory()
+        viewModel = ViewModelProviders.of(this,factory).get(MegAlexaViewModel::class.java)
 
         listView = findViewById(R.id.view_blocks)
         listView.isScrollContainer=true
