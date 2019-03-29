@@ -8,8 +8,6 @@ import android.arch.lifecycle.ViewModelProvider
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.Block
 import org.json.JSONObject
-import java.util.logging.Handler
-import android.support.v4.os.HandlerCompat.postDelayed
 import com.megalexa.models.workflow.Workflow
 
 
@@ -36,8 +34,11 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
         return blockNames
     }
 
+    /**
+     * gets current information regarding a specific workflow and adds it to LiveData Object
+     */
     private fun loadBlocks(wName:String) {
-        
+
         val myHandler = android.os.Handler()
         myHandler.postDelayed({
             val bNames= app.getBlock(wName)

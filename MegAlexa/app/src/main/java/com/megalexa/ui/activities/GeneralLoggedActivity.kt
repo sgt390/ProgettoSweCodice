@@ -26,7 +26,6 @@ import com.megalexa.util.InjectorUtils
 import com.megalexa.viewModel.MegAlexaViewModel
 
 
-
 class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     companion object {
         private lateinit var viewModel : MegAlexaViewModel
@@ -77,7 +76,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             }
         })
     }
-    
+
     override fun onBackPressed() {
         viewModel.refreshWorkflow()
         if(drawer_layout.isDrawerOpen(GravityCompat.START)){
