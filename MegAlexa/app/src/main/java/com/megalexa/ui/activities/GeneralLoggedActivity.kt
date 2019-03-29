@@ -1,5 +1,6 @@
 package com.megalexa.ui.activities
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -19,17 +20,16 @@ import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
 import com.amazon.identity.auth.device.api.authorization.User
 import com.megalexa.adapters.view.WorkflowViewAdapter
 import kotlinx.android.synthetic.main.activity_general_logged.*
-import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.InjectorUtils
 import com.megalexa.viewModel.MegAlexaViewModel
-import com.megalexa.viewModel.ViewModelMain
+
 
 
 class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     companion object {
         private lateinit var viewModel : MegAlexaViewModel
     }
-
+    private lateinit var recyclerView: RecyclerView
     private lateinit var layoutManager: RecyclerView.LayoutManager
     private var listWorkflow= ArrayList<String>()
 
@@ -39,7 +39,17 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         val factory= InjectorUtils.provideMegAlexaViewModelFactory()
         viewModel = ViewModelProviders.of(this,factory).get(MegAlexaViewModel::class.java)
 
-        val recyclerView=findViewById<RecyclerView>(R.id.container_workflow)
+
+        val observer = Observer<ArrayList<String>>{
+            val adapter = WorkflowViewAdapter(it!!,this@GeneralLoggedActivity)
+
+            runOnUiThread{
+                recyclerView.adapter= adapter
+            }
+        }
+        viewModel.getLiveWorkflowNames().observe(this,observer)
+
+        recyclerView=findViewById(R.id.container_workflow)
         recyclerView.setHasFixedSize(true)
         layoutManager= LinearLayoutManager(this)
         recyclerView.layoutManager=layoutManager
