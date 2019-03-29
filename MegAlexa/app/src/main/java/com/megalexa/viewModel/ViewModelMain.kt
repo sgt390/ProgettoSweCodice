@@ -18,10 +18,6 @@ class ViewModelMain{
 
     }
 
-    fun saveUser(userID : String, name: String, email: String){
-        app.saveUser(com.megalexa.models.User(userID, name, email))
-    }
-
     fun setUser(user: com.amazon.identity.auth.device.api.authorization.User) {
         app.setUser(com.megalexa.models.User(user.userId, user.userName, user.userEmail))
     }
@@ -40,12 +36,5 @@ class ViewModelMain{
         return app.getWorkflowList()
     }
 
-    fun isUserPresent(paramID:String):Boolean {
-        val jsonObject= GatewayRequests.readUser(paramID)
 
-        if(jsonObject.toString()== "")
-            return false
-
-        return true
-    }
 }

@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProvider
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.Block
 import org.json.JSONObject
-import java.text.FieldPosition
 
 class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
 
@@ -44,10 +43,16 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
     fun getBlocks(name: String) : ArrayList<String> {
         val blocks = app.getBlock(name)
         val blocksType : ArrayList<String> = ArrayList<String>()
-        for(item in blocks!! ){
+        for(item in blocks!!) {
             blocksType.add(item.getInformation())
         }
         return blocksType
+    }
+
+    fun isUserPresent(paramID:String):Boolean {
+        if(app.getUser().getID()==paramID)
+            return true
+        return false
     }
 
     //more functions to be added

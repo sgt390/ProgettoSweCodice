@@ -1,11 +1,7 @@
 package com.megalexa.models.workflow
 
-import android.arch.lifecycle.MutableLiveData
-import com.megalexa.models.User
+
 import com.megalexa.models.blocks.Block
-import com.megalexa.util.GatewayRequests
-import org.json.JSONArray
-import org.json.JSONObject
 
 class Workflow(private val name:String) {
     private  var  blockList: ArrayList<Block> = ArrayList()

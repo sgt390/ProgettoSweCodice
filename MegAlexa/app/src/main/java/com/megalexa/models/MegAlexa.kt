@@ -8,13 +8,6 @@ import com.megalexa.models.workflow.Workflow
 class MegAlexa private constructor(
     private var user: User, private var workflows: ArrayList<Workflow>) {
 
-
-    //TODO() SAFELY DELETE THIS FUNCTION
-    fun saveUser(user: User) {
-        this.user = user
-        //GatewayRequests.saveUser(user)
-    }
-
     fun addWorkflow(w: Workflow) {
         workflows.add(w)
     }
@@ -44,7 +37,7 @@ class MegAlexa private constructor(
                 item.addBlock(position,block)
         }
     }
-    //TODO() REMOVE GATEWAY REQUEST SAFELY
+
     fun addWorkflow(workfloName: String, blockList: ArrayList<Block>) {
         val workflow = Workflow(workfloName)
         workflow.setBlocks(blockList)
@@ -77,7 +70,6 @@ class MegAlexa private constructor(
         fun getInstance() = instance?: synchronized(this) {
             instance ?: MegAlexa.build().also { instance = it }
         }
-
 
         //Builder functions
         var workflows =ArrayList<Workflow>()
