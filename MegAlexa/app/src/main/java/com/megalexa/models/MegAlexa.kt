@@ -2,7 +2,7 @@ package com.megalexa.models
 
 import com.megalexa.models.blocks.Block
 import com.megalexa.models.workflow.Workflow
-import com.megalexa.util.GatewayRequests
+
 
 
 class MegAlexa private constructor(
@@ -31,23 +31,30 @@ class MegAlexa private constructor(
         return user
     }
 
-    //TODO() SAFELY DELETE THIS FUNCTION
-    fun loadWorkflow() : ArrayList<Workflow> {
-        workflows = GatewayRequests.readWorkflow(user)
-        return workflows
+    fun addBlock(workflowName:String,block:Block) {
+        for(item in workflows) {
+            if(item.getName()== workflowName)
+                item.addBlock(block)
+        }
+    }
+
+    fun addBlock(workflowName: String,block:Block, position: Int) {
+        for(item in workflows) {
+            if(item.getName()== workflowName)
+                item.addBlock(position,block)
+        }
     }
     //TODO() REMOVE GATEWAY REQUEST SAFELY
-    fun saveWorkflow(workfloName: String, blockList: ArrayList<Block>) {
+    fun addWorkflow(workfloName: String, blockList: ArrayList<Block>) {
         val workflow = Workflow(workfloName)
         workflow.setBlocks(blockList)
         workflows.add(workflow)
-        //GatewayRequests.saveWorkflow(user, workflow)
     }
 
-    fun getBlock(user: User, w: String) : ArrayList<Block>? {
+    fun getBlock(w: String) : ArrayList<Block>? {
         for(item in workflows){
             if(item.getName() == w){
-                return item.getBlocks(user)
+                return item.getBlocks()
             }
         }
         return null
@@ -62,7 +69,6 @@ class MegAlexa private constructor(
         }
         return isPresent
     }
-
 
     companion object {
 

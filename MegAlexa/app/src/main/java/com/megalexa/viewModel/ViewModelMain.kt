@@ -26,33 +26,14 @@ class ViewModelMain{
         app.setUser(com.megalexa.models.User(user.userId, user.userName, user.userEmail))
     }
 
-    fun fetchWorkflow() : ArrayList<Workflow>{
-        return app.loadWorkflow()
-    }
-
-    fun haveUserWorkflowName(name: String) : Boolean{
-        app.loadWorkflow()
-        return app.isPresentWorkflow(name)
-    }
 
     fun getBlocks(name: String) : ArrayList<String>{
-        val blocks = app.getBlock(app.getUser(), name)
+        val blocks = app.getBlock(name)
         val blocksType : ArrayList<String> = ArrayList<String>()
         for(item in blocks!! ){
             blocksType.add(item.getInformation())
         }
         return blocksType
-    }
-
-    fun getUser() : User{
-        return app.getUser()
-    }
-    fun saveWorkflow(workflowName : String, blockList: ArrayList<Block>){
-        app.saveWorkflow(workflowName, blockList)
-
-    }
-    override fun toString(): String {
-        return app.getUser().toJSON().toString()
     }
 
     fun getWorkflow() : ArrayList<Workflow>{
