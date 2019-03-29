@@ -77,8 +77,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             }
         })
     }
-
-
+    
     override fun onBackPressed() {
         viewModel.refreshWorkflow()
         if(drawer_layout.isDrawerOpen(GravityCompat.START)){

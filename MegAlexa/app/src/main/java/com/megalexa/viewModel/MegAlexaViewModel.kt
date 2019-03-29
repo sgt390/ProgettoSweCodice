@@ -16,7 +16,7 @@ import com.megalexa.models.workflow.Workflow
 class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
 
     private var wNames = MutableLiveData<ArrayList<String>>()
-
+    private var blockNames = MutableLiveData<ArrayList<String>>()
 
     /**
      * returns the adapter that must be assigned  to activities (with workflow names)
@@ -27,6 +27,27 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
         return wNames
     }
 
+    /**
+     * returns the adapter for the current block names that must be displayed
+     */
+    fun getLiveBlockNames(wName:String): LiveData<ArrayList<String>> {
+        if(blockNames.value == null)
+            loadBlocks(wName)
+        return blockNames
+    }
+
+    private fun loadBlocks(wName:String) {
+        
+        val myHandler = android.os.Handler()
+        myHandler.postDelayed({
+            val bNames= app.getBlock(wName)
+            val names= ArrayList<String>()
+            for(item in bNames!!) {
+                names.add(item.getInformation())
+            }
+            blockNames.value= names
+        }, 5000)
+    }
     /**this functions sets the correct instance for the MegAlexa object
      * fetches from SharedInstances and decides if it' necessary to call api gateway
      * to read the correct instance
@@ -80,7 +101,6 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
      * loads the adapter that must be assigned  to activities (with workflow names)
      */
     private fun loadWorkflow() {
-
         val myHandler = android.os.Handler()
 
         myHandler.postDelayed({
