@@ -22,7 +22,9 @@ class BlockPin(private var pin: Int):Block {
     /* Return the pin
     *  @return pin
     */
-    fun pin()=pin
+    fun pin():Int{
+        return pin
+    }
 
 
     //Set method

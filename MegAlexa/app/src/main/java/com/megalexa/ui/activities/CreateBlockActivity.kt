@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.*
 import com.megalexa.R
 import com.megalexa.adapters.view.ListArrayAdapter
+import com.megalexa.ui.fragments.PinFragment
 import com.megalexa.ui.fragments.RssFragment
 import com.megalexa.ui.fragments.TextToSpeechFragment
 import com.megalexa.util.InjectorUtils
@@ -65,7 +66,10 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     //TODO() FILTER FRAGMENT
                 }
                 3-> {
-                    //TODO() PIN FRAGMENT
+                    fragment = PinFragment()
+                    listView.isEnabled=false
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 4-> {
                     //TODO() EMAIL FRAGMENT
@@ -100,6 +104,15 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             val intent = Intent(this,CreateWorkflowActivity::class.java)
             intent.putExtra("block_type", "Text to speech")
             intent.putExtra("text",text)
+            setResult(Activity.RESULT_OK,intent)
+            listView.isEnabled=true
+            finish()
+
+        }else if(sender is PinFragment){
+            val pin= sender.getPin()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type", "Pin")
+            intent.putExtra("pin",pin)
             setResult(Activity.RESULT_OK,intent)
             listView.isEnabled=true
             finish()

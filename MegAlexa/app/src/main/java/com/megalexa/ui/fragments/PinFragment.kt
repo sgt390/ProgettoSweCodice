@@ -49,6 +49,10 @@ class PinFragment : Fragment(){
 
         return view
     }
+    fun getPin(): String  {
+        return pin
+    }
+
 
 }
 
