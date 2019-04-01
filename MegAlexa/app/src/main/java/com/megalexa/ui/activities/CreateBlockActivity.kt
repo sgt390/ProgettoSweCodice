@@ -10,13 +10,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.*
 import com.megalexa.R
-import com.megalexa.adapters.view.ListArrayAdapter
+import com.megalexa.ui.adapters.ListArrayAdapter
 import com.megalexa.ui.fragments.RssFragment
 import com.megalexa.ui.fragments.TextToSpeechFragment
 import com.megalexa.util.InjectorUtils
 import com.megalexa.util.view.FragmentClickListener
 import com.megalexa.viewModel.MegAlexaViewModel
-import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_block.*
 
 

@@ -14,10 +14,9 @@ import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.User
 import com.megalexa.R
-import com.megalexa.adapters.view.BlockViewAdapter
+import com.megalexa.ui.adapters.BlockViewAdapter
 import com.megalexa.util.InjectorUtils
 import com.megalexa.viewModel.MegAlexaViewModel
-import com.megalexa.viewModel.ViewModelMain
 import kotlinx.android.synthetic.main.activity_create_workflow.*
 import java.io.Serializable
 import kotlin.concurrent.thread

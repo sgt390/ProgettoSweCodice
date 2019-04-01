@@ -20,7 +20,7 @@ import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
 import com.amazon.identity.auth.device.api.authorization.User
-import com.megalexa.adapters.view.WorkflowViewAdapter
+import com.megalexa.ui.adapters.WorkflowViewAdapter
 import kotlinx.android.synthetic.main.activity_general_logged.*
 import com.megalexa.util.InjectorUtils
 import com.megalexa.viewModel.MegAlexaViewModel
@@ -40,7 +40,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         viewModel = ViewModelProviders.of(this,factory).get(MegAlexaViewModel::class.java)
 
         val observer = Observer<ArrayList<String>>{
-            val adapter = WorkflowViewAdapter(it!!,this@GeneralLoggedActivity)
+            val adapter = WorkflowViewAdapter(it!!, this@GeneralLoggedActivity)
             Toast.makeText(this, "change UI",Toast.LENGTH_SHORT).show()
             runOnUiThread{
                 recyclerView.adapter= adapter

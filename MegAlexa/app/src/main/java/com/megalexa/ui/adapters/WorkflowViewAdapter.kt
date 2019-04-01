@@ -1,4 +1,4 @@
-package com.megalexa.adapters.view
+package com.megalexa.ui.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -36,7 +36,13 @@ class WorkflowViewAdapter(private val dataset: ArrayList<String>, private val co
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkflowViewHolder {
-        return WorkflowViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_workflow, parent, false))
+        return WorkflowViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_workflow,
+                parent,
+                false
+            )
+        )
     }
 }
 
