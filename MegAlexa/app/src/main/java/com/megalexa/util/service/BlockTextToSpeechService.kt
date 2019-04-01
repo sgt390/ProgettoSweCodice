@@ -1,21 +1,18 @@
 package com.megalexa.util.service
 
-import com.megalexa.models.blocks.Block
-import com.megalexa.models.blocks.BlockTextToSpeech
 import org.json.JSONObject
 
 object BlockTextToSpeechService : BlockService() {
 
-    override fun convertFromJSON(jsonObject: JSONObject): Block {
-        TODO()
+    override fun <BlockTextToSpeech> convertFromJSON(jsonObject: JSONObject): BlockTextToSpeech {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun convertToJSON(block: Block): JSONObject {
-
-        val textBlock = block as BlockTextToSpeech
-        val allBlock : JSONObject = JSONObject()
+    override fun <BlockTextToSpeech> convertToJSON(t: BlockTextToSpeech): JSONObject {
+        val textBlock = t as com.megalexa.models.blocks.BlockTextToSpeech
+        val allBlock = JSONObject()
         allBlock.put("blockType", "TextToSpeech")
-        val config : JSONObject = JSONObject()
+        val config = JSONObject()
         config.put("TextToSpeech", textBlock.textBox() )
         allBlock.put("config", config)
         return allBlock

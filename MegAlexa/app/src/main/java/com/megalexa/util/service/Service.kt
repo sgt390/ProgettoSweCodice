@@ -7,7 +7,7 @@ import java.io.OutputStreamWriter
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
-abstract class Service {
+abstract class Service : JSONConverter{
 
     private val APIUrl = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/"
 
