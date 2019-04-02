@@ -39,7 +39,7 @@
     <string name="slash"> / </string>
     <string name="enterdate">Enter date</string>
     <string name="confirm">Confirm</string>
-    <string name="selectnumber">Select filter's number</string>
+    <string name="selectnumber">Select filter number</string>
     <string name="inserttext">Insert Text To Speech paragraph</string>
     <string name="telephonenumber">Insert telephone number</string>
     <string name="selectsite">Select a news site</string>
@@ -47,4 +47,8 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="inserturl">Insert Youtube url</string>
+    <string name="insert">add</string>
+    <string name="cancel">Cancel</string>
+    <string name="editTitle">Edit title</string>
+    <string name="editBody">Edit description</string>
 </resources>
