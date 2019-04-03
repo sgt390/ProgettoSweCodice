@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.*
 import com.megalexa.R
 import com.megalexa.adapters.view.ListArrayAdapter
+import com.megalexa.ui.fragments.NewsFragment
 import com.megalexa.ui.fragments.PinFragment
 import com.megalexa.ui.fragments.RssFragment
 import com.megalexa.ui.fragments.TextToSpeechFragment
@@ -75,7 +76,10 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     //TODO() EMAIL FRAGMENT
                 }
                 5-> {
-                    //TODO() NEWS FRAGMENT
+                    fragment = NewsFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled=false
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 6-> {
                     //TODO() SPORT FRAGMENT
@@ -113,6 +117,15 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             val intent = Intent(this,CreateWorkflowActivity::class.java)
             intent.putExtra("block_type", "Pin")
             intent.putExtra("pin",pin)
+            setResult(Activity.RESULT_OK,intent)
+            listView.isEnabled=true
+            finish()
+
+        }else if(sender is NewsFragment){
+            val news= sender.getUrl()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type", "News")
+            intent.putExtra("news",news)
             setResult(Activity.RESULT_OK,intent)
             listView.isEnabled=true
             finish()
