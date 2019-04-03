@@ -14,7 +14,6 @@
 >
 
     <TextView
-            android:id="@+id/Url_News"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:gravity="start"

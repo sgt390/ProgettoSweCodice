@@ -11,10 +11,7 @@ import android.view.View
 import android.widget.*
 import com.megalexa.R
 import com.megalexa.adapters.view.ListArrayAdapter
-import com.megalexa.ui.fragments.NewsFragment
-import com.megalexa.ui.fragments.PinFragment
-import com.megalexa.ui.fragments.RssFragment
-import com.megalexa.ui.fragments.TextToSpeechFragment
+import com.megalexa.ui.fragments.*
 import com.megalexa.util.InjectorUtils
 import com.megalexa.util.view.FragmentClickListener
 import com.megalexa.viewModel.MegAlexaViewModel
@@ -82,7 +79,10 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 6-> {
-                    //TODO() SPORT FRAGMENT
+                    fragment = SportFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled=false
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
             }
 
@@ -130,11 +130,21 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             listView.isEnabled=true
             finish()
 
+        }else if(sender is SportFragment){
+            val sport = sender.getUrl()
+            Toast.makeText(this,sport,Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type", "Sport")
+            intent.putExtra("sport",sport)
+            setResult(Activity.RESULT_OK,intent)
+            listView.isEnabled=true
+            finish()
+
         }
+
     }
 
     override fun onClick(view: View) {
-
 
     when(view.id){
         R.id.button_cancel_block -> {
