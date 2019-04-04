@@ -158,7 +158,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             val sport = sender.getUrl()
             Toast.makeText(this,sport,Toast.LENGTH_SHORT).show()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
-            intent.putExtra("block_type", "Sport")
+            intent.putExtra("block_type", "Crypto")
             intent.putExtra("sport",sport)
             setResult(Activity.RESULT_OK,intent)
             listView.isEnabled=true
@@ -168,7 +168,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             val sport = sender.getUrl()
             Toast.makeText(this,sport,Toast.LENGTH_SHORT).show()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
-            intent.putExtra("block_type", "Sport")
+            intent.putExtra("block_type", "Borsa")
             intent.putExtra("sport",sport)
             setResult(Activity.RESULT_OK,intent)
             listView.isEnabled=true
