@@ -14,7 +14,29 @@ abstract class Service : JSONConverter{
     abstract val resource:String
 
     fun getOperation(param:String): JSONObject {
-        TODO()
+        var json= JSONObject()
+        val url= "$APIUrl$resource/?userID=$param"
+        val myURL = URL(APIUrl+resource)
+        with(myURL.openConnection() as HttpsURLConnection) {
+            setRequestProperty("Content-Type", "application/json")
+            requestMethod= "GET"
+            doOutput = true
+            val wr = OutputStreamWriter(outputStream)
+            wr.flush()
+            println("URL : $url")
+            println("Response Code : $responseCode")
+            BufferedReader(InputStreamReader(inputStream)).use {
+                val response = StringBuffer()
+                var inputLine = it.readLine()
+                while (inputLine != null) {
+                    response.append(inputLine)
+                    inputLine = it.readLine()
+                }
+                json= JSONObject(response.toString())
+            }
+
+        }
+        return json
     }
 
     fun putOperation(jsonObject: JSONObject): JSONObject {
