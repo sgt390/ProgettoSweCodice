@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.Block
+import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.service.WorkflowService
 import org.json.JSONObject
@@ -30,9 +31,9 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     private fun loadBlocks() {
         val myHandler = android.os.Handler()
         myHandler.postDelayed({
-            val bNames= app.getBlock(workflowName)
+            val bNames= workflow.getBlocks()
             val names= ArrayList<String>()
-            for(item in bNames!!) {
+            for(item in bNames) {
                 names.add(item.getInformation())
             }
             blockNames.value= names
@@ -40,9 +41,9 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     }
 
     fun refreshBlocks() {
-        val blocks =app.getBlock(workflowName)
+        val blocks =workflow.getBlocks()
         val names= ArrayList<String>()
-        for(item in blocks!!) {
+        for(item in blocks) {
             names.add(item.getInformation())
         }
         blockNames.postValue(names)
@@ -72,6 +73,11 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
 
     fun addBlock(blockType: String, jsonObject: JSONObject, position: Int) {
         //todo() convert from json and add to block list
+    }
+
+    fun addDebug(param:String) {
+        workflow.addBlock(BlockTextToSpeech(""))
+        refreshBlocks()
     }
 
     fun setName(param : String) {

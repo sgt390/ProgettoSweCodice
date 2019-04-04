@@ -20,6 +20,7 @@ import com.megalexa.util.InjectorUtils
 import com.megalexa.viewModel.MegAlexaViewModel
 import com.megalexa.viewModel.WorkflowViewModel
 import kotlinx.android.synthetic.main.activity_create_workflow.*
+import org.json.JSONObject
 import java.io.Serializable
 import kotlin.concurrent.thread
 
@@ -35,6 +36,8 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_create_workflow)
         val factory= InjectorUtils.provideWorkflowViewModelFactory("")
         viewModel = ViewModelProviders.of(this,factory).get(WorkflowViewModel::class.java)
+        rec_view= findViewById(R.id.recyclerView_addedBlocksOnCreation)
+        rec_view.layoutManager= LinearLayoutManager(this)
         val observer = Observer<ArrayList<String>>{
             val adapter = BlockViewAdapter(it!!, applicationContext)
             runOnUiThread{
@@ -72,11 +75,12 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                         } else {
                             viewModel.setName(workflowTitle)
                             val newIntent = Intent(this, CreateBlockActivity::class.java)
-                            //newIntent.putExtra("blockList", blocknames as Serializable)
                             startActivityForResult(newIntent,1)
                         }
                     }
+
                 }
+
             }
             button_save_workflow -> {
                 thread (start = true) {
