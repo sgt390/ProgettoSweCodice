@@ -155,21 +155,21 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             finish()
 
         }else if(sender is CryptoFragment){
-            val sport = sender.getUrl()
-            Toast.makeText(this,sport,Toast.LENGTH_SHORT).show()
+            val crypto = sender.getUrl()
+            Toast.makeText(this,crypto,Toast.LENGTH_SHORT).show()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
-            intent.putExtra("block_type", "Sport")
-            intent.putExtra("sport",sport)
+            intent.putExtra("block_type", "Crypto")
+            intent.putExtra("crypto",crypto)
             setResult(Activity.RESULT_OK,intent)
             listView.isEnabled=true
             finish()
 
         }else if(sender is BorsaFragment){
-            val sport = sender.getUrl()
-            Toast.makeText(this,sport,Toast.LENGTH_SHORT).show()
+            val borsa = sender.getUrl()
+            Toast.makeText(this,borsa,Toast.LENGTH_SHORT).show()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
-            intent.putExtra("block_type", "Sport")
-            intent.putExtra("sport",sport)
+            intent.putExtra("block_type", "Borsa")
+            intent.putExtra("borsa",borsa)
             setResult(Activity.RESULT_OK,intent)
             listView.isEnabled=true
             finish()
