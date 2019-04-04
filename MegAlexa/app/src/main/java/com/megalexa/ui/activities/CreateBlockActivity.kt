@@ -84,6 +84,20 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
+
+                7-> {
+                    fragment = CryptoFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled=false
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+                }
+
+                8-> {
+                    fragment = BorsaFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled=false
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+                }
             }
 
         }
@@ -140,6 +154,26 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             listView.isEnabled=true
             finish()
 
+        }else if(sender is CryptoFragment){
+            val sport = sender.getUrl()
+            Toast.makeText(this,sport,Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type", "Sport")
+            intent.putExtra("sport",sport)
+            setResult(Activity.RESULT_OK,intent)
+            listView.isEnabled=true
+            finish()
+
+        }else if(sender is BorsaFragment){
+            val sport = sender.getUrl()
+            Toast.makeText(this,sport,Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type", "Sport")
+            intent.putExtra("sport",sport)
+            setResult(Activity.RESULT_OK,intent)
+            listView.isEnabled=true
+            finish()
+
         }
 
     }
@@ -166,14 +200,16 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             Pair(list[3], R.drawable.ic_lock),
             Pair(list[4], R.drawable.ic_email),
             Pair(list[5], R.drawable.ic_news),
-            Pair(list[6], R.drawable.ic_sport)
-        )
+            Pair(list[6], R.drawable.ic_sport),
+            Pair(list[7], R.drawable.ic_news),// TODO CHANGE ICON
+            Pair(list[8], R.drawable.ic_news) // TODO CHANGE ICON
+            )
 
     }
 
     private fun getTitlesList(): List<String> {
 
-        return listOf("FeedRSS","Text Block","Filter","PIN","Read Email","News","Sport News")
+        return listOf("FeedRSS","Text Block","Filter","PIN","Read Email","News","Sport News","Crypto News","Borsa News")
 
     }
 
