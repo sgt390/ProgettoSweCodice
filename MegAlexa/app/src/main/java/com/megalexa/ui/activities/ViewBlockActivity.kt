@@ -21,7 +21,6 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
     companion object {
         private lateinit var viewModel : WorkflowViewModel
     }
-    private lateinit var block_names:ArrayList<String>
     private lateinit var rec_view: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +45,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         val factory= InjectorUtils.provideWorkflowViewModelFactory(title!!)
         viewModel = ViewModelProviders.of(this,factory).get(WorkflowViewModel::class.java)
         val observer = Observer<ArrayList<String>>{
-            val adapter = BlockViewAdapter(block_names, applicationContext)
+            val adapter = BlockViewAdapter(it!!, applicationContext)
             runOnUiThread{
                 rec_view.adapter= adapter
             }

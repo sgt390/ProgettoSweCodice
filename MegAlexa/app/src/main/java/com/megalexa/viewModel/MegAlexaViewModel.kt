@@ -38,7 +38,7 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
 
     fun getBlocks(name: String) : ArrayList<String> {
         val blocks = app.getBlock(name)
-        val blocksType : ArrayList<String> = ArrayList<String>()
+        val blocksType : ArrayList<String> = ArrayList()
         for(item in blocks!!) {
             blocksType.add(item.getInformation())
         }
@@ -75,7 +75,7 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
         val names =app.getWorkflowNames()
         wNames.postValue(names)
     }
-    
+
 }
 
 class MegAlexaViewModelFactory(private val app: MegAlexa):

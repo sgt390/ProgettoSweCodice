@@ -1,6 +1,7 @@
 package com.megalexa.ui.activities
 
 import android.app.Activity
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
@@ -17,6 +18,7 @@ import com.megalexa.R
 import com.megalexa.ui.adapters.BlockViewAdapter
 import com.megalexa.util.InjectorUtils
 import com.megalexa.viewModel.MegAlexaViewModel
+import com.megalexa.viewModel.WorkflowViewModel
 import kotlinx.android.synthetic.main.activity_create_workflow.*
 import java.io.Serializable
 import kotlin.concurrent.thread
@@ -25,16 +27,21 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
     private lateinit var rec_view: RecyclerView
     companion object {
-        private lateinit var viewModel : MegAlexaViewModel
+        private lateinit var viewModel : WorkflowViewModel
     }
-
-    var blocknames: ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_workflow)
-        val factory= InjectorUtils.provideMegAlexaViewModelFactory()
-        viewModel = ViewModelProviders.of(this,factory).get(MegAlexaViewModel::class.java)
+        val factory= InjectorUtils.provideWorkflowViewModelFactory("")
+        viewModel = ViewModelProviders.of(this,factory).get(WorkflowViewModel::class.java)
+        val observer = Observer<ArrayList<String>>{
+            val adapter = BlockViewAdapter(it!!, applicationContext)
+            runOnUiThread{
+                rec_view.adapter= adapter
+            }
+        }
+        viewModel.getLiveBlockNames().observe(this,observer)
 
         val buttonContinue : View=  findViewById(R.id.button_continue)
 
@@ -43,12 +50,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         button_save_workflow.setOnClickListener(this)
         User.fetch(this, object: Listener<User, AuthError> {
             override fun onSuccess(p0: User) {
-                runOnUiThread {
-                    rec_view = findViewById(R.id.recyclerView_addedBlocksOnCreation)
-                    rec_view.layoutManager = LinearLayoutManager(applicationContext)
-                    rec_view.adapter = BlockViewAdapter(blocknames, applicationContext)
-                }
-
+                viewModel.refreshBlocks()
             }
             override fun onError(p0: AuthError?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -63,15 +65,14 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                 thread (start = true) {
                     val workflowTitle=findViewById<TextView>(R.id.input_title_workflow).text.toString()
 
-                    //todo() check for workflow name: it must be unique
-                    //val isPresent = viewModel.haveUserWorkflowName(workflowTitle)
-                    val isPresent= false
+                    val isUnique= viewModel.isUnique(workflowTitle)
                     runOnUiThread {
-                        if (isPresent) {
+                        if (!isUnique) {
                            Toast.makeText(this,"workflow name must be unique",Toast.LENGTH_SHORT).show()
                         } else {
+                            viewModel.setName(workflowTitle)
                             val newIntent = Intent(this, CreateBlockActivity::class.java)
-                            newIntent.putExtra("blockList", blocknames as Serializable)
+                            //newIntent.putExtra("blockList", blocknames as Serializable)
                             startActivityForResult(newIntent,1)
                         }
                     }
@@ -79,8 +80,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
             }
             button_save_workflow -> {
                 thread (start = true) {
-                    //todo() SAVE WORKFLOW HERE
-                    //viewModel.saveWorkflow(findViewById<TextView>(R.id.input_title_workflow).text.toString(), blockList)
+                    viewModel.saveWorkflow()
                     runOnUiThread{
                         startActivity(Intent(this, GeneralLoggedActivity::class.java))
                     }
@@ -97,8 +97,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
         if(requestCode == 1) {
             if(resultCode==Activity.RESULT_OK) {
-                val blockType:String?
-                blockType = data!!.extras!!.getString("block_type")
+                val blockType = data!!.extras!!.getString("block_type")
 
                 when(blockType){
                     //TODO() LET VIEWMODEL HANDLE THE ADDITION OF BLOCKS

@@ -63,7 +63,8 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         nav_view.setNavigationItemSelectedListener(this)
         add_workflow.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                startActivityForResult(Intent(this@GeneralLoggedActivity, CreateWorkflowActivity::class.java),1)
+                val intent = Intent(this@GeneralLoggedActivity, CreateWorkflowActivity::class.java)
+                startActivityForResult(intent,1)
             }
         })
         User.fetch(this, object: Listener<User, AuthError>{

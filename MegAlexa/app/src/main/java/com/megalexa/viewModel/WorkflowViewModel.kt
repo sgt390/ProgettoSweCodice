@@ -6,11 +6,14 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.Block
+import com.megalexa.models.workflow.Workflow
+import com.megalexa.util.service.WorkflowService
 import org.json.JSONObject
 
-class WorkflowViewModel(private val app: MegAlexa, private val workflowName:String) :ViewModel() {
+class WorkflowViewModel(private val app: MegAlexa, private var workflowName:String) :ViewModel() {
 
     private var blockNames = MutableLiveData<ArrayList<String>>()
+    private var workflow = Workflow(workflowName)
 
     /**
      * returns the adapter for the current block names that must be displayed
@@ -45,16 +48,34 @@ class WorkflowViewModel(private val app: MegAlexa, private val workflowName:Stri
         blockNames.postValue(names)
     }
 
-    fun saveWorkflow(blockList: ArrayList<Block>) {
-        //todo()
+    fun saveWorkflow() {
+        if(isUnique(workflow.getName())) {
+            app.addWorkflow(workflow)
+            val json = WorkflowService.convertToJSON(workflow)
+            WorkflowService.postOperation(json)
+        }
     }
 
+    fun isUnique(wName : String): Boolean {
+
+      val list= app.getWorkflowNames()
+
+        for(item in list) {
+            if (wName == item)
+                return false
+        }
+        return true
+    }
     fun addBlock(blockType:String,jsonObject: JSONObject) {
         //todo() convert from json and add to block list
     }
 
     fun addBlock(blockType: String, jsonObject: JSONObject, position: Int) {
         //todo() convert from json and add to block list
+    }
+
+    fun setName(param : String) {
+        this.workflowName= param
     }
 }
 
