@@ -8,7 +8,7 @@
 *
 * History:
 * Author                || Date         || Description
-* Gian Marco Bratzu     || 2019-03-19   || Writing class ConnectorNews
+* Gian Marco Bratzu     || 2019-03-19   || Writing class ConnectorBorsa
 *      ||    || Verifying code
 */
 
@@ -26,7 +26,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.concurrent.thread
 
 
-class ConnectorNews(private var url: String):Connector {
+class ConnectorBorsa(private var url: String):Connector {
     private val connectionResult:String
     init {
         connectionResult =connect(url)
