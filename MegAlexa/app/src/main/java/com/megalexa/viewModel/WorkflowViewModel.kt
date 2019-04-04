@@ -5,7 +5,6 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.megalexa.models.MegAlexa
-import com.megalexa.models.blocks.Block
 import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.service.WorkflowService
@@ -58,9 +57,7 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     }
 
     fun isUnique(wName : String): Boolean {
-
       val list= app.getWorkflowNames()
-
         for(item in list) {
             if (wName == item)
                 return false
@@ -83,6 +80,31 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     fun setName(param : String) {
         this.workflowName= param
     }
+
+    fun updateWorkflow() {
+        val list = app.getWorkflowList()
+        for(item in list) {
+           if(item.getName()== workflowName) {
+               val index= list.indexOf(item)
+               list.remove(item)
+               list.add(index,this.workflow)
+               val json = WorkflowService.convertToJSON(workflow)
+               //not sure, must be tested
+               WorkflowService.putOperation(json)
+           }
+        }
+
+    }
+
+    fun setFromExistingWorkflow() {
+            val list = app.getWorkflowList()
+            for (item in list) {
+                if(item.getName()== workflowName)
+                    this.workflow= item
+            }
+    }
+
+
 }
 
 class WorkflowViewModelFactory(private val app: MegAlexa,private val workflowName: String):

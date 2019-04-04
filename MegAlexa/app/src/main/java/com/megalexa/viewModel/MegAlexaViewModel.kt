@@ -8,6 +8,7 @@ import android.arch.lifecycle.ViewModelProvider
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.service.MegAlexaService
+import com.megalexa.util.service.UserService
 
 
 class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
@@ -61,7 +62,6 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
         val myHandler = android.os.Handler()
 
         myHandler.postDelayed({
-
             val workflowNames= app.getWorkflowList()
             val names= ArrayList<String>()
             for(item in workflowNames) {
@@ -76,6 +76,11 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
         wNames.postValue(names)
     }
 
+    fun saveUser() {
+        val user= app.getUser()
+        val json= UserService.convertToJSON(user)
+        UserService.postOperation(json)
+    }
 }
 
 class MegAlexaViewModelFactory(private val app: MegAlexa):

@@ -36,7 +36,6 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
             } else {
                 title= extras.getString("WORKFLOW_NAME")
             }
-
         }else{
 
             title= savedInstanceState.getSerializable("WORKFLOW_NAME") as String
@@ -44,12 +43,14 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         workflow_title.text= title
         val factory= InjectorUtils.provideWorkflowViewModelFactory(title!!)
         viewModel = ViewModelProviders.of(this,factory).get(WorkflowViewModel::class.java)
+        viewModel.setFromExistingWorkflow()
         val observer = Observer<ArrayList<String>>{
             val adapter = BlockViewAdapter(it!!, applicationContext)
             runOnUiThread{
                 rec_view.adapter= adapter
             }
         }
+        viewModel.refreshBlocks()
         viewModel.getLiveBlockNames().observe(this,observer)
         button_add_blockView.setOnClickListener(this)
         button_cancel_workflow_creationView.setOnClickListener(this)
@@ -66,6 +67,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v) {
+            button_save_workflowView -> viewModel.updateWorkflow()
             button_continue -> startActivityForResult(Intent(this, CreateBlockActivity::class.java),1)
             button_cancel_workflow_creation -> startActivityForResult(Intent(this, GeneralLoggedActivity::class.java),9)
         }

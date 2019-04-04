@@ -31,7 +31,6 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         private lateinit var viewModel : MegAlexaViewModel
     }
     private lateinit var recyclerView: RecyclerView
-    private lateinit var layoutManager: RecyclerView.LayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +48,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
         recyclerView=findViewById(R.id.container_workflow)
         recyclerView.setHasFixedSize(true)
-        layoutManager= LinearLayoutManager(this)
-        recyclerView.layoutManager=layoutManager
+        recyclerView.layoutManager= LinearLayoutManager(this)
 
         val navigationView  : View = findViewById(R.id.nav_view)
         navigationView.bringToFront()
