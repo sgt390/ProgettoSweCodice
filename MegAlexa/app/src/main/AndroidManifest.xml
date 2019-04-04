@@ -8,16 +8,22 @@
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:label="@string/app_name"
             android:theme="@style/AppTheme">
+        <service
+                android:name=".util.service.BlockPinService"
+                android:enabled="true"
+                android:exported="true">
+        </service>
+
         <activity
-                android:name="com.megalexa.ui.activities.GeneralLoggedActivity"
+                android:name=".ui.activities.GeneralLoggedActivity"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name="com.megalexa.ui.activities.MainActivity"
+                android:name=".ui.activities.MainActivity"
                 android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -26,15 +32,15 @@
             </intent-filter>
         </activity>
         <activity
-                android:name="com.megalexa.ui.activities.CreateWorkflowActivity"
+                android:name=".ui.activities.CreateWorkflowActivity"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name="com.megalexa.ui.activities.CreateBlockActivity"
+                android:name=".ui.activities.CreateBlockActivity"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name="com.megalexa.ui.activities.ViewBlockActivity"
+                android:name=".ui.activities.ViewBlockActivity"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
