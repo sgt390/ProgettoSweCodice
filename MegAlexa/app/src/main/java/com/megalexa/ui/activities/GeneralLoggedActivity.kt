@@ -41,7 +41,6 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
         val observer = Observer<ArrayList<String>>{
             val adapter = WorkflowViewAdapter(it!!, this@GeneralLoggedActivity)
-            Toast.makeText(this, "change UI",Toast.LENGTH_SHORT).show()
             runOnUiThread{
                 recyclerView.adapter= adapter
             }

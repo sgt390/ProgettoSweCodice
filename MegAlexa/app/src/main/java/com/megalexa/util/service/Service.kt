@@ -13,7 +13,7 @@ abstract class Service : JSONConverter{
 
     abstract val resource:String
 
-    fun getOperation(jsonObject: JSONObject): JSONObject {
+    fun getOperation(param:String): JSONObject {
         TODO()
     }
 

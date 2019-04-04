@@ -6,9 +6,8 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.megalexa.models.MegAlexa
-import com.megalexa.models.blocks.Block
-import org.json.JSONObject
 import com.megalexa.models.workflow.Workflow
+import com.megalexa.util.service.MegAlexaService
 
 
 class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
@@ -25,24 +24,16 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
     }
 
     /**this functions sets the correct instance for the MegAlexa object
-     * fetches from SharedInstances and decides if it' necessary to call api gateway
-     * to read the correct instance
+     * calls the API with a GET function using Service classes
      */
-    fun loadAppContext(userID: String) {
-      //todo()
-    }
-
-    /**
-     * saves information in SharedPreferences when the app closes
-     */
-    fun saveAppContext(){
-       //todo()
+    fun loadAppContext() {
+        val jsonObject=MegAlexaService.getOperation(app.getUser().getID())
+        app.setInstance(MegAlexaService.convertFromJSON(jsonObject))
     }
 
     fun setUser(user: com.amazon.identity.auth.device.api.authorization.User) {
         app.setUser(com.megalexa.models.User(user.userId, user.userName, user.userEmail))
     }
-
 
 
     fun getBlocks(name: String) : ArrayList<String> {
@@ -84,6 +75,7 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
         val names =app.getWorkflowNames()
         wNames.postValue(names)
     }
+    
 }
 
 class MegAlexaViewModelFactory(private val app: MegAlexa):

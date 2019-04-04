@@ -6,7 +6,8 @@ import com.megalexa.models.workflow.Workflow
 
 
 class MegAlexa private constructor(
-    private var user: User, private var workflows: ArrayList<Workflow>) {
+    private var user: User,
+    private var workflows: ArrayList<Workflow>) {
 
     fun addWorkflow(w: Workflow) {
         workflows.add(w)
@@ -69,6 +70,13 @@ class MegAlexa private constructor(
             names.add(item.getName())
 
         return names
+    }
+
+
+    fun setInstance(param : MegAlexa) {
+        this.user = param.user
+        this.workflows= param.workflows
+
     }
 
     companion object {
