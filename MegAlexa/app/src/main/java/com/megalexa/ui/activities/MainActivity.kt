@@ -42,8 +42,8 @@ class MainActivity : AppCompatActivity() {
             /* Authorization was completed successfully. */
             override fun onSuccess(result : AuthorizeResult){
 
-              //TODO() LOAD APP CONTEXT VIA REPOSITORY OBJECT
-
+                viewModel.setUser(result.user)
+                viewModel.loadAppContext()
               /*if(!(viewModel.isUserPresent(result.user.userId))) {
                   viewModel.saveUser(result.user.userId, result.user.userName, result.user.userEmail)
               }*/

@@ -20,7 +20,7 @@ import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
 import com.amazon.identity.auth.device.api.authorization.User
-import com.megalexa.adapters.view.WorkflowViewAdapter
+import com.megalexa.ui.adapters.WorkflowViewAdapter
 import kotlinx.android.synthetic.main.activity_general_logged.*
 import com.megalexa.util.InjectorUtils
 import com.megalexa.viewModel.MegAlexaViewModel
@@ -31,7 +31,6 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         private lateinit var viewModel : MegAlexaViewModel
     }
     private lateinit var recyclerView: RecyclerView
-    private lateinit var layoutManager: RecyclerView.LayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +39,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         viewModel = ViewModelProviders.of(this,factory).get(MegAlexaViewModel::class.java)
 
         val observer = Observer<ArrayList<String>>{
-            val adapter = WorkflowViewAdapter(it!!,this@GeneralLoggedActivity)
-            Toast.makeText(this, "change UI",Toast.LENGTH_SHORT).show()
+            val adapter = WorkflowViewAdapter(it!!, this@GeneralLoggedActivity)
             runOnUiThread{
                 recyclerView.adapter= adapter
             }
@@ -50,8 +48,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
         recyclerView=findViewById(R.id.container_workflow)
         recyclerView.setHasFixedSize(true)
-        layoutManager= LinearLayoutManager(this)
-        recyclerView.layoutManager=layoutManager
+        recyclerView.layoutManager= LinearLayoutManager(this)
 
         val navigationView  : View = findViewById(R.id.nav_view)
         navigationView.bringToFront()
@@ -64,7 +61,8 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         nav_view.setNavigationItemSelectedListener(this)
         add_workflow.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                startActivityForResult(Intent(this@GeneralLoggedActivity, CreateWorkflowActivity::class.java),1)
+                val intent = Intent(this@GeneralLoggedActivity, CreateWorkflowActivity::class.java)
+                startActivityForResult(intent,1)
             }
         })
         User.fetch(this, object: Listener<User, AuthError>{

@@ -1,4 +1,4 @@
-package com.megalexa.adapters.view
+package com.megalexa.ui.adapters
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -19,7 +19,13 @@ class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): Rec
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BlockViewHolder {
-        return BlockViewHolder(LayoutInflater.from(context).inflate(R.layout.item_workflow, parent, false))
+        return BlockViewHolder(
+            LayoutInflater.from(context).inflate(
+                R.layout.item_workflow,
+                parent,
+                false
+            )
+        )
     }
 
 }
