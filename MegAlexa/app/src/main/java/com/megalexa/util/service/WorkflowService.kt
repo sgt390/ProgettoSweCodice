@@ -9,7 +9,7 @@ object WorkflowService: Service() {
     override val resource: String
         get() = "workflow"
 
-    override fun <Workflow> convertFromJSON(jsonObject: JSONObject): Workflow {
+    override fun convertFromJSON(jsonObject: JSONObject): Workflow {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

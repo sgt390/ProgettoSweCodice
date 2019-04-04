@@ -6,7 +6,7 @@ import org.json.JSONObject
 
 object BlockSportService :BlockService() {
 
-    override fun <BlockSport> convertFromJSON(jsonObject: JSONObject): BlockSport {
+    override fun convertFromJSON(jsonObject: JSONObject): BlockSport {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

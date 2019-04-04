@@ -6,7 +6,7 @@ import org.json.JSONObject
 
 object BlockFeedRssService :BlockService() {
 
-    override fun <BlockFeedRss> convertFromJSON(jsonObject: JSONObject): BlockFeedRss {
+    override fun convertFromJSON(jsonObject: JSONObject): BlockFeedRss {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

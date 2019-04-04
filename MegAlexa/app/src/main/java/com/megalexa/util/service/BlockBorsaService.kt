@@ -6,7 +6,7 @@ import org.json.JSONObject
 
 object BlockBorsaService :BlockService() {
 
-    override fun <BlockBorsa> convertFromJSON(jsonObject: JSONObject): BlockBorsa {
+    override fun convertFromJSON(jsonObject: JSONObject): BlockBorsa {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

@@ -28,7 +28,7 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
      * calls the API with a GET function using Service classes
      */
     fun loadAppContext() {
-        val jsonObject=MegAlexaService.getOperation(app.getUser().getID())
+        val jsonObject=MegAlexaService.getOperation(listOf(Pair("userID",app.getUser().getID())))
         app.setInstance(MegAlexaService.convertFromJSON(jsonObject))
     }
 

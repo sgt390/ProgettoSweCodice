@@ -1,10 +1,11 @@
 package com.megalexa.util.service
 
+import com.megalexa.models.blocks.BlockPin
 import org.json.JSONObject
 
 object BlockPinService : BlockService() {
 
-    override fun <BlockPin> convertFromJSON(jsonObject: JSONObject): BlockPin {
+    override fun convertFromJSON(jsonObject: JSONObject): BlockPin {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

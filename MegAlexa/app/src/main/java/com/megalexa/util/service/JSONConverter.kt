@@ -6,6 +6,6 @@ interface JSONConverter {
 
     fun <T> convertToJSON(t:T): JSONObject
 
-    fun <T>convertFromJSON(jsonObject: JSONObject):T
+    fun convertFromJSON(jsonObject: JSONObject):Any
 
 }

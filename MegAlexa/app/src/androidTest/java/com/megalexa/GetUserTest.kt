@@ -29,7 +29,7 @@ class GetUserTest {
     fun valid() {
         val param= "amzn1.account.AEFN6PFSKLCCFNVOH6GXZFGND5HA"
 
-        val response =UserService.getOperation(param)
+        val response =UserService.getOperation(listOf(Pair("userID",param)))
         val json= JSONObject("{\n" +
                 "  \"userID\": \"amzn1.account.AEFN6PFSKLCCFNVOH6GXZFGND5HA\",\n" +
                 "  \"name\": \"mirko.franco@icloud.com\",\n" +

@@ -1,10 +1,12 @@
 package com.megalexa.util.service
 
+import android.util.Log
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import java.net.URL
+import java.net.URLEncoder
 import javax.net.ssl.HttpsURLConnection
 
 abstract class Service : JSONConverter{
@@ -13,16 +15,18 @@ abstract class Service : JSONConverter{
 
     abstract val resource:String
 
-    fun getOperation(param:String): JSONObject {
+    fun getOperation(params:List<Pair<String,String>>): JSONObject {
         var json= JSONObject()
-        val url= "$APIUrl$resource/?userID=$param"
-        val myURL = URL(APIUrl+resource)
+        val query = StringBuilder()
+        for (item in params) {
+            query.append(URLEncoder.encode(item.first,"UTF-8")+"="+URLEncoder.encode(item.second,"UTF-8")+ "&")
+        }
+        val string=query.substring(0,query.length-1)
+        val url= "$APIUrl$resource/"
+        val myURL = URL("$url?$string")
         with(myURL.openConnection() as HttpsURLConnection) {
             setRequestProperty("Content-Type", "application/json")
             requestMethod= "GET"
-            doOutput = true
-            val wr = OutputStreamWriter(outputStream)
-            wr.flush()
             println("URL : $url")
             println("Response Code : $responseCode")
             BufferedReader(InputStreamReader(inputStream)).use {
@@ -34,7 +38,6 @@ abstract class Service : JSONConverter{
                 }
                 json= JSONObject(response.toString())
             }
-
         }
         return json
     }

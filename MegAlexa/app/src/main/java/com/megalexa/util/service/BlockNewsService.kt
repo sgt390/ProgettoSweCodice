@@ -6,7 +6,7 @@ import org.json.JSONObject
 
 object BlockNewsService :BlockService() {
 
-    override fun <BlockNews> convertFromJSON(jsonObject: JSONObject): BlockNews {
+    override fun convertFromJSON(jsonObject: JSONObject): BlockNews {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
