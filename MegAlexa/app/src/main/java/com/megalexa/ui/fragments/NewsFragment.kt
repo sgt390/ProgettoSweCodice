@@ -19,22 +19,17 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import com.megalexa.R
 import com.megalexa.ui.activities.CreateBlockActivity
 import com.megalexa.models.connectors.ConnectorNews
-import org.jetbrains.anko.support.v4.find
-import org.jetbrains.anko.support.v4.findOptional
 
 class NewsFragment : Fragment() {
     private var url = ""
 //      TODO IMPORTAN change feed... matteo si sta occupando di procurare i nuovi feed
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.fragment_news, container, false)
+        val view = inflater.inflate(R.layout.news_fragment_layout, container, false)
 
         val bbc = view.findViewById<TextView>(R.id.BBC_News)
         val sky = view.findViewById<TextView>(R.id.Sky_News)

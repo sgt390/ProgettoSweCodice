@@ -19,39 +19,52 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import com.megalexa.R
 import com.megalexa.ui.activities.CreateBlockActivity
-import com.megalexa.models.connectors.ConnectorSport
+import com.megalexa.models.connectors.ConnectorCrypto
 import org.jetbrains.anko.support.v4.find
 import org.jetbrains.anko.support.v4.findOptional
 
-class SportFragment : Fragment() {
+class CryptoFragment : Fragment() {
     private var url = ""
     //      TODO IMPORTAN change feed... matteo si sta occupando di procurare i nuovi feed
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.sport_fragment_layout, container, false)
+        val view = inflater.inflate(R.layout.crypto_fragment_layout, container, false)
 
-        val tennis = view.findViewById<LinearLayout>(R.id.Tennis_News)
-        val calcio = view.findViewById<LinearLayout>(R.id.Calcio_News)
+        val first = view.findViewById<TextView>(R.id.firstCryptoURL)
+        val second = view.findViewById<TextView>(R.id.secondCryptoURL)
+        val third = view.findViewById<TextView>(R.id.thirdCryptoURL)
 
-        tennis.setOnClickListener {
+        first.setOnClickListener {
 
-            url = "Tennis url"
-            val isValid = ConnectorSport(url).valid()
+            url = "first URL"
+            val isValid = ConnectorCrypto(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
 
 
-        calcio.setOnClickListener {
+        second.setOnClickListener {
 
-            url = "calcio url"
-            val isValid = ConnectorSport(url).valid()
+            url = "second URL"
+            val isValid = ConnectorCrypto(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
+
+        third.setOnClickListener {
+
+            url = "third URL"
+            val isValid = ConnectorCrypto(url).valid()
+            val activity = activity as CreateBlockActivity
+            activity.onFragmentClick(this)
+        }
+
 
         return view
     }
