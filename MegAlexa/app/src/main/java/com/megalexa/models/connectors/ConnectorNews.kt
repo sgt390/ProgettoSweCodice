@@ -14,31 +14,89 @@
 
 package com.megalexa.models.connectors
 
+
+import org.jetbrains.anko.doAsyncResult
+import org.xmlpull.v1.XmlPullParser
+import org.xmlpull.v1.XmlPullParserException
+import org.xmlpull.v1.XmlPullParserFactory
+import java.io.IOException
+import java.io.InputStream
+import java.net.MalformedURLException
+import java.net.URL
+import java.net.URLConnection
 import java.util.concurrent.atomic.AtomicBoolean
 
 
-class ConnectorNews(private var webSite: String):Connector {
-    private var result= AtomicBoolean(false)
+class ConnectorNews(private var url: String):Connector {
+    private val connectionResult:String
     init {
-        webSite ="someSite";
-
-        //   TODO
-
+        connectionResult =connect(url)
     }
 
 
     override fun connect(url: String):String {
 
-        return "stringa";
+        val result:String
 
-        //  TODO
+        if(valid()) {
+            result = "connection successful"
+        }
+        else {
+            result = "connection refused: url is invalid"
+        }
+
+        return result
+
     }
 
 
     override fun valid():Boolean {
+        val operation = doAsyncResult {
+            isRssFeed()
+        }
 
-        return true;
-//      TODO
+        return operation.get()
     }
+
+    private fun isRssFeed() :Boolean {
+
+        var resource: URL
+        var xpp: XmlPullParser
+        var iStream: InputStream
+        val result = AtomicBoolean()
+        result.set(false)
+        try {
+            resource = URL(url)
+            val factory = XmlPullParserFactory.newInstance()
+            xpp = factory.newPullParser()
+            iStream = resource.openConnection().getInputStream()
+            iStream.use { x ->
+                xpp.setInput(x, "UTF_8")
+                xpp.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false)
+                xpp.nextTag()
+                if (xpp.name == "rss") {
+                    result.set(true)
+                }
+            }
+
+        } catch (err: MalformedURLException) {
+            err.printStackTrace()
+        } catch (err: XmlPullParserException) {
+            err.printStackTrace()
+        }
+        return result.get()
+
+    }
+
+    private fun getInputStream(resource: URL) : InputStream {
+
+        try {
+            return resource.openConnection().getInputStream()
+        }catch (err: IOException){
+            err.printStackTrace()
+        }
+        return resource.openConnection().getInputStream()
+    }
+
 
 }

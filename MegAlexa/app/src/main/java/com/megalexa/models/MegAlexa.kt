@@ -2,24 +2,12 @@ package com.megalexa.models
 
 import com.megalexa.models.blocks.Block
 import com.megalexa.models.workflow.Workflow
-import com.megalexa.util.GatewayRequests
 
 
-class MegAlexa {
 
-    private var workflows= ArrayList<Workflow>()
-    private var user : User
-
-    private constructor(user: User, workflows: ArrayList<Workflow>){
-        this.user=user
-        this.workflows=workflows
-    }
-
-    //TODO() SAFELY DELETE THIS FUNCTION
-    fun saveUser(user: User) {
-        this.user = user
-        //GatewayRequests.saveUser(user)
-    }
+class MegAlexa private constructor(
+    private var user: User,
+    private var workflows: ArrayList<Workflow>) {
 
     fun addWorkflow(w: Workflow) {
         workflows.add(w)
@@ -29,7 +17,7 @@ class MegAlexa {
         return workflows
     }
 
-    fun setUser(user: User){
+    fun setUser(user: User) {
         this.user = user
     }
 
@@ -37,28 +25,34 @@ class MegAlexa {
         return user
     }
 
-    //TODO() SAFELY DELETE THIS FUNCTION
-    fun loadWorkflow() : ArrayList<Workflow> {
-        workflows = GatewayRequests.readWorkflow(user)
-        return workflows
+    fun addBlock(workflowName:String,block:Block) {
+        for(item in workflows) {
+            if(item.getName()== workflowName)
+                item.addBlock(block)
+        }
     }
-    //TODO() REMOVE GATEWAY REQUEST SAFELY
-    fun saveWorkflow(workfloName: String, blockList: ArrayList<Block>) {
+
+    fun addBlock(workflowName: String,block:Block, position: Int) {
+        for(item in workflows) {
+            if(item.getName()== workflowName)
+                item.addBlock(position,block)
+        }
+    }
+
+    fun addWorkflow(workfloName: String, blockList: ArrayList<Block>) {
         val workflow = Workflow(workfloName)
         workflow.setBlocks(blockList)
         workflows.add(workflow)
-        //GatewayRequests.saveWorkflow(user, workflow)
     }
 
-    fun getBlock(user: User, w: String) : ArrayList<Block>? {
+    fun getBlock(w: String) : ArrayList<Block>? {
         for(item in workflows){
             if(item.getName() == w){
-                return item.getBlocks(user)
+                return item.getBlocks()
             }
         }
         return null
     }
-
 
     fun isPresentWorkflow(w: String) : Boolean{
         var isPresent  = false
@@ -70,6 +64,20 @@ class MegAlexa {
         return isPresent
     }
 
+    fun getWorkflowNames() :ArrayList<String> {
+        val names = ArrayList<String>()
+        for(item in workflows)
+            names.add(item.getName())
+
+        return names
+    }
+
+
+    fun setInstance(param : MegAlexa) {
+        this.user = param.user
+        this.workflows= param.workflows
+
+    }
 
     companion object {
 
@@ -78,7 +86,6 @@ class MegAlexa {
         fun getInstance() = instance?: synchronized(this) {
             instance ?: MegAlexa.build().also { instance = it }
         }
-
 
         //Builder functions
         var workflows =ArrayList<Workflow>()
@@ -92,11 +99,3 @@ class MegAlexa {
     }
 
 }
-
-
-
-
-
-
-
-

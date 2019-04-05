@@ -6,12 +6,12 @@ import org.json.JSONObject
 
 object BlockFeedRssService :BlockService() {
 
-    override fun convertFromJSON(jsonObject: JSONObject): Block {
+    override fun convertFromJSON(jsonObject: JSONObject): BlockFeedRss {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun convertToJSON(block: Block): JSONObject {
-        val blockFeedRss= block as BlockFeedRss
+    override fun <BlockFeedRss> convertToJSON(t: BlockFeedRss): JSONObject {
+        val blockFeedRss= t as com.megalexa.models.blocks.BlockFeedRss
         val allBlock = JSONObject()
         allBlock.put("blockType", "FeedRSS" )
         val config = JSONObject()

@@ -9,11 +9,12 @@ object WorkflowService: Service() {
     override val resource: String
         get() = "workflow"
 
-    fun convertFromJSON(jsonObject: JSONObject): Workflow {
-        TODO()
+    override fun convertFromJSON(jsonObject: JSONObject): Workflow {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    fun convertToJSON(workflow: Workflow):JSONObject {
+    override fun <Workflow> convertToJSON(t: Workflow): JSONObject {
+        val workflow= t as com.megalexa.models.workflow.Workflow
         val workflowName = JSONObject()
         val workflowArray = JSONArray()
         val blocklist= workflow.getBlocks()
@@ -23,5 +24,4 @@ object WorkflowService: Service() {
         workflowName.put(workflow.getName(), workflow)
         return workflowName
     }
-
 }

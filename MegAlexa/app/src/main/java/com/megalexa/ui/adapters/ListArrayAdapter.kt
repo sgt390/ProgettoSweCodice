@@ -1,4 +1,4 @@
-package com.megalexa.adapters.view
+package com.megalexa.ui.adapters
 
 /*
 * File: ListArrayAdapter.kt
@@ -32,13 +32,13 @@ class ListArrayAdapter(private val context: Context, private val data: List<Pair
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-        val viewHolder:ViewHolderItem
+        val viewHolder: ViewHolderItem
         val rowView:View
 
         if(convertView ==null) {
             rowView = inflater.inflate(R.layout.recycler_view_item,parent,false)
 
-            viewHolder=ViewHolderItem(rowView)
+            viewHolder= ViewHolderItem(rowView)
             rowView.tag= viewHolder
         }else{
 

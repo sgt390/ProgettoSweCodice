@@ -25,10 +25,10 @@ import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.concurrent.thread
 
 
-class ConnectorSport(private var account: String):Connector {
+class ConnectorSport(private var url: String):Connector {
     private var result= AtomicBoolean(false)
     init {
-        account ="someAccount";
+        url ="someAccount";
 
         //   TODO
 
