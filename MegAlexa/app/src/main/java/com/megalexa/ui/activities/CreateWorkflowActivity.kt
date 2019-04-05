@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -62,20 +63,15 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v) {
             button_continue -> {
-                thread (start = true) {
-                    val workflowTitle=findViewById<TextView>(R.id.input_title_workflow).text.toString()
-
-                    val isUnique= viewModel.isUnique(workflowTitle)
-                    runOnUiThread {
-                        if (!isUnique) {
-                           Toast.makeText(this,"workflow name must be unique",Toast.LENGTH_SHORT).show()
-                        } else {
-                            viewModel.setName(workflowTitle)
-                            val newIntent = Intent(this, CreateBlockActivity::class.java)
-                            startActivityForResult(newIntent,1)
-                        }
-                    }
-
+                val workflowTitle=findViewById<TextView>(R.id.input_title_workflow).text.toString()
+                val isUnique= viewModel.isUnique(workflowTitle)
+                if (!isUnique) {
+                    Toast.makeText(this,"workflow name must be unique",Toast.LENGTH_SHORT).show()
+                } else {
+                    Log.d("onClick vediamo che fa", "ci sono passato")
+                    viewModel.setName(workflowTitle)
+                    val newIntent = Intent(this, CreateBlockActivity::class.java)
+                    startActivityForResult(newIntent,1)
                 }
 
             }

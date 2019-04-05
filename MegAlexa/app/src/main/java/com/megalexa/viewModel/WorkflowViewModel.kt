@@ -109,7 +109,8 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     }
 
     fun setName(param : String) {
-        this.workflowName= param
+        this.workflowName = param
+        workflow.setName(param)
     }
 
     fun updateWorkflow() {
