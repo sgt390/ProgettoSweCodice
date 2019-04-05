@@ -1,5 +1,5 @@
 /*
-* File: ConnectorFeedRss.kt
+* File: ConnectorReadMail.kt
 * Version: 1.0.0
 * Date: 2019-03-18
 * Author: Gian Marco Bratzu
@@ -13,31 +13,22 @@
 */
 
 package com.megalexa.models.connectors
-import org.xmlpull.v1.XmlPullParser
-import org.xmlpull.v1.XmlPullParserException
-import org.xmlpull.v1.XmlPullParserFactory
-import java.io.IOException
-import java.io.InputStream
-import java.net.MalformedURLException
-import java.net.URL
-import java.net.URLConnection
+
 import java.util.concurrent.atomic.AtomicBoolean
-import kotlin.concurrent.thread
 
 
-class ConnectorReadEmail(private var city: String):Connector {
+class ConnectorReadEmail(private var email: String, private var password: String):Connector {
     private var result= AtomicBoolean(false)
     init {
-       city ="Padova";
-
- //   TODO
+       email ="qualcosa@gmail.com"
+        //  TODO
 
     }
 
 
    override fun connect(url: String):String {
 
-return "stringa";
+    return "stringa"
 
        //  TODO
     }

@@ -21,7 +21,7 @@
             android:textStyle="bold"
             tools:text="Insert Text To Speech paragraph"
             android:padding="2dp"
-            android:text="Insert Text To Speech paragraph"/>
+            android:text="@string/inserttext"/>
 
 
     <EditText
