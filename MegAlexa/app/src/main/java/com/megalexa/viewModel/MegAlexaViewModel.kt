@@ -5,6 +5,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import android.util.Log
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.service.MegAlexaService

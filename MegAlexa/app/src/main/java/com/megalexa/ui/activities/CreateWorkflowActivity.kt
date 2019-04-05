@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -17,11 +18,8 @@ import com.amazon.identity.auth.device.api.authorization.User
 import com.megalexa.R
 import com.megalexa.ui.adapters.BlockViewAdapter
 import com.megalexa.util.InjectorUtils
-import com.megalexa.viewModel.MegAlexaViewModel
 import com.megalexa.viewModel.WorkflowViewModel
 import kotlinx.android.synthetic.main.activity_create_workflow.*
-import org.json.JSONObject
-import java.io.Serializable
 import kotlin.concurrent.thread
 
 class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
@@ -65,29 +63,23 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v) {
             button_continue -> {
-                thread (start = true) {
-                    val workflowTitle=findViewById<TextView>(R.id.input_title_workflow).text.toString()
-
-                    val isUnique= viewModel.isUnique(workflowTitle)
-                    runOnUiThread {
-                        if (!isUnique) {
-                           Toast.makeText(this,"workflow name must be unique",Toast.LENGTH_SHORT).show()
-                        } else {
-                            viewModel.setName(workflowTitle)
-                            val newIntent = Intent(this, CreateBlockActivity::class.java)
-                            startActivityForResult(newIntent,1)
-                        }
-                    }
-
+                val workflowTitle=findViewById<TextView>(R.id.input_title_workflow).text.toString()
+                val isUnique= viewModel.isUnique(workflowTitle)
+                if (!isUnique) {
+                    Toast.makeText(this,"workflow name must be unique",Toast.LENGTH_SHORT).show()
+                } else {
+                    Log.d("onClick vediamo che fa", "ci sono passato")
+                    viewModel.setName(workflowTitle)
+                    val newIntent = Intent(this, CreateBlockActivity::class.java)
+                    startActivityForResult(newIntent,1)
                 }
 
             }
             button_save_workflow -> {
                 thread (start = true) {
                     viewModel.saveWorkflow()
-                    runOnUiThread{
-                        startActivity(Intent(this, GeneralLoggedActivity::class.java))
-                    }
+                    setResult(Activity.RESULT_OK)
+                    finish()
                 }
             }
             button_cancel_workflow_creation -> startActivity(Intent(this, GeneralLoggedActivity::class.java))
@@ -106,17 +98,34 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                 when(blockType){
                     //TODO() LET VIEWMODEL HANDLE THE ADDITION OF BLOCKS
                     "Text to speech" -> {
-                        /*val block= BlockTextToSpeech(data!!.extras!!.get("text").toString())
-                        blockList.add(block)
-                        blocknames.add(block.getInformation())*/
+                        val text= data!!.extras!!.get("text").toString()
+                        viewModel.addOneArgBlock("Text to speech",text)
                     }
                     "FeedRss" -> {
+                        val url=data!!.extras!!.get("FeedUrl").toString()
+                        viewModel.addOneArgBlock("FeedRss",url)
 
-                      /*  val block=BlockFeedRss(data!!.extras!!.get("feedRss").toString())
-                        blockList.add(block)
-                        blocknames.add(block.getInformation())*/
                     }
-
+                    "News" -> {
+                        val news=data!!.extras!!.get("news").toString()
+                        viewModel.addOneArgBlock("News",news)
+                    }
+                    "Pin" -> {
+                        val pin= data!!.extras!!.get(("pin")).toString()
+                        viewModel.addOneArgBlock("Pin",pin)
+                    }
+                    "Sport" -> {
+                        val sport= data!!.extras!!.get(("sport")).toString()
+                        viewModel.addOneArgBlock("Sport",sport)
+                    }
+                    "Crypto" -> {
+                        val crypto= data!!.extras!!.get(("crypto")).toString()
+                        viewModel.addOneArgBlock("Crypto",crypto)
+                    }
+                    "Borsa" -> {
+                        val borsa= data!!.extras!!.get(("borsa")).toString()
+                        viewModel.addOneArgBlock("Borsa", borsa)
+                    }
                 }
             }
 

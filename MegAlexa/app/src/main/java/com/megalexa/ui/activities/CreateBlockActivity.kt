@@ -11,8 +11,7 @@ import android.view.View
 import android.widget.*
 import com.megalexa.R
 import com.megalexa.ui.adapters.ListArrayAdapter
-import com.megalexa.ui.fragments.RssFragment
-import com.megalexa.ui.fragments.TextToSpeechFragment
+import com.megalexa.ui.fragments.*
 import com.megalexa.util.InjectorUtils
 import com.megalexa.util.view.FragmentClickListener
 import com.megalexa.viewModel.MegAlexaViewModel
@@ -64,20 +63,41 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     //TODO() FILTER FRAGMENT
                 }
                 3-> {
-                    //TODO() PIN FRAGMENT
+                    fragment = PinFragment()
+                    listView.isEnabled=false
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 4-> {
                     //TODO() EMAIL FRAGMENT
                 }
                 5-> {
-                    //TODO() NEWS FRAGMENT
+                    fragment = NewsFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled=false
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 6-> {
-                    //TODO() SPORT FRAGMENT
+                    fragment = SportFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled=false
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
 
-            }
+                7-> {
+                    fragment = CryptoFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled=false
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+                }
 
+                8-> {
+                    fragment = BorsaFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled=false
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+                }
+            }
         }
 
     }
@@ -89,7 +109,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             val url = sender.getUrl()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
             intent.putExtra("block_type", "FeedRss")
-            intent.putExtra("feedRss",url)
+            intent.putExtra("FeedUrl",url)
             setResult(Activity.RESULT_OK, intent)
             listView.isEnabled=true
             finish()
@@ -104,18 +124,66 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             listView.isEnabled=true
             finish()
 
+        }else if(sender is PinFragment){
+            val pin= sender.getPin()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type", "Pin")
+            intent.putExtra("pin",pin)
+            setResult(Activity.RESULT_OK,intent)
+            listView.isEnabled=true
+            finish()
+
+        }else if(sender is NewsFragment){
+            val news= sender.getUrl()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type", "News")
+            intent.putExtra("news",news)
+            setResult(Activity.RESULT_OK,intent)
+            listView.isEnabled=true
+            finish()
+
+        }else if(sender is SportFragment){
+            val sport = sender.getUrl()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type", "Sport")
+            intent.putExtra("sport",sport)
+            setResult(Activity.RESULT_OK,intent)
+            listView.isEnabled=true
+            finish()
+
+        }else if(sender is CryptoFragment){
+            val crypto = sender.getUrl()
+            Toast.makeText(this,crypto,Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type", "Crypto")
+            intent.putExtra("crypto",crypto)
+            setResult(Activity.RESULT_OK,intent)
+            listView.isEnabled=true
+            finish()
+
+        }else if(sender is BorsaFragment){
+            val borsa = sender.getUrl()
+            Toast.makeText(this,borsa,Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type", "Borsa")
+            intent.putExtra("borsa",borsa)
+            setResult(Activity.RESULT_OK,intent)
+            listView.isEnabled=true
+            finish()
+
         }
+
     }
+
 
     override fun onClick(view: View) {
 
-
     when(view.id){
         R.id.button_cancel_block -> {
+            setResult(Activity.RESULT_CANCELED)
             this.finish()
         }
     }
-
 
     }
 
@@ -130,16 +198,20 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             Pair(list[3], R.drawable.ic_lock),
             Pair(list[4], R.drawable.ic_email),
             Pair(list[5], R.drawable.ic_news),
-            Pair(list[6], R.drawable.ic_sport)
+            Pair(list[6], R.drawable.ic_sport),
+            Pair(list[7], R.drawable.ic_news),
+            Pair(list[8], R.drawable.ic_news)
         )
 
     }
 
     private fun getTitlesList(): List<String> {
 
-        return listOf("FeedRSS","Text Block","Filter","PIN","Read Email","News","Sport News")
+        return listOf("FeedRSS","Text Block","Filter","PIN",
+            "Read Email","News","Sport News","Crypto News","Stock News")
 
     }
+
 
     override fun onBackPressed() {
         if(!listView.isEnabled)

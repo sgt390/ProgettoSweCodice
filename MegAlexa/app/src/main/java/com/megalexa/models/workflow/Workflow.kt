@@ -43,4 +43,8 @@ class Workflow(private val name:String) {
         return workflowName
     }
 
+    fun setName(newName : String) {
+        this.workflowName = newName
+    }
+
 }
