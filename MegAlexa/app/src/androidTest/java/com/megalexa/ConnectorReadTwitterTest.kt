@@ -27,7 +27,8 @@ class ConnectorReadTwitterTest {
     @Test
     fun valid() {
         val someaccount = "someAccount@gmail.com"
-        val accountIsValid = ConnectorReadTwitter(someaccount).valid()
+        val password=""
+        val accountIsValid = ConnectorReadTwitter(someaccount,password).valid()
         assertEquals(true, accountIsValid)
     }
 

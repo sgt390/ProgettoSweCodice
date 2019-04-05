@@ -15,7 +15,7 @@ abstract class Service : JSONConverter{
 
     abstract val resource:String
 
-    fun getOperation(params:List<Pair<String,String>>): JSONObject {
+    open fun getOperation(params:List<Pair<String,String>>): JSONObject {
         var json= JSONObject()
         val query = StringBuilder()
         for (item in params) {
@@ -42,15 +42,15 @@ abstract class Service : JSONConverter{
         return json
     }
 
-    fun putOperation(jsonObject: JSONObject): JSONObject {
+    open fun putOperation(jsonObject: JSONObject): JSONObject {
         TODO()
     }
 
-    fun deleteOperation(jsonObject: JSONObject): JSONObject {
+    open fun deleteOperation(jsonObject: JSONObject): JSONObject {
         TODO()
     }
 
-    fun postOperation(jsonObject: JSONObject) {
+    open fun postOperation(jsonObject: JSONObject) {
 
         val url= "$APIUrl$resource"
         val myURL = URL(url)
@@ -75,6 +75,9 @@ abstract class Service : JSONConverter{
 
         }
 
+    }
+    fun getURL():String {
+        return APIUrl
     }
 
 }
