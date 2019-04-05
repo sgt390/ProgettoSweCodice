@@ -40,10 +40,11 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
             title= savedInstanceState.getSerializable("WORKFLOW_NAME") as String
         }
+        rec_view=findViewById(R.id.recyclerView_addedBlocksView)
         workflow_title.text= title
         val factory= InjectorUtils.provideWorkflowViewModelFactory(title!!)
         viewModel = ViewModelProviders.of(this,factory).get(WorkflowViewModel::class.java)
-        viewModel.setFromExistingWorkflow()
+        viewModel.setFromExistingWorkflow(title)
         val observer = Observer<ArrayList<String>>{
             val adapter = BlockViewAdapter(it!!, applicationContext)
             runOnUiThread{

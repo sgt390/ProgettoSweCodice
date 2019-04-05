@@ -121,18 +121,20 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                list.remove(item)
                list.add(index,this.workflow)
                val json = WorkflowService.convertToJSON(workflow)
-               //not sure, must be tested
                WorkflowService.putOperation(json)
            }
         }
 
     }
 
-    fun setFromExistingWorkflow() {
+    fun setFromExistingWorkflow(wName: String) {
             val list = app.getWorkflowList()
             for (item in list) {
-                if(item.getName()== workflowName)
+                if(item.getName()== wName) {
                     this.workflow= item
+                    this.workflowName=wName
+                }
+
             }
     }
 

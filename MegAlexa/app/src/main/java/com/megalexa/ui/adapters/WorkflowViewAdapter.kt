@@ -3,6 +3,7 @@ package com.megalexa.ui.adapters
 import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +23,7 @@ class WorkflowViewAdapter(private val dataset: ArrayList<String>, private val co
 
             override fun onClick(view: View?, position: Int) {
                 val intent = Intent(context,ViewBlockActivity::class.java)
-                intent.putExtra("workflowName",dataset[position])
+                intent.putExtra("WORKFLOW_NAME",dataset[position])
                 context.startActivity(intent)
             }
 
