@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.amazon.identity.auth.device.AuthError
@@ -40,18 +41,21 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
             title= savedInstanceState.getSerializable("WORKFLOW_NAME") as String
         }
+        rec_view=findViewById(R.id.recyclerView_addedBlocksView)
+        rec_view.layoutManager= LinearLayoutManager(this)
         workflow_title.text= title
         val factory= InjectorUtils.provideWorkflowViewModelFactory(title!!)
+
         viewModel = ViewModelProviders.of(this,factory).get(WorkflowViewModel::class.java)
-        viewModel.setFromExistingWorkflow()
+        viewModel.setFromExistingWorkflow(title)
         val observer = Observer<ArrayList<String>>{
             val adapter = BlockViewAdapter(it!!, applicationContext)
             runOnUiThread{
                 rec_view.adapter= adapter
             }
         }
-        viewModel.refreshBlocks()
         viewModel.getLiveBlockNames().observe(this,observer)
+
         button_add_blockView.setOnClickListener(this)
         button_cancel_workflow_creationView.setOnClickListener(this)
         User.fetch(this, object: Listener<User, AuthError> {
