@@ -17,11 +17,8 @@ import com.amazon.identity.auth.device.api.authorization.User
 import com.megalexa.R
 import com.megalexa.ui.adapters.BlockViewAdapter
 import com.megalexa.util.InjectorUtils
-import com.megalexa.viewModel.MegAlexaViewModel
 import com.megalexa.viewModel.WorkflowViewModel
 import kotlinx.android.synthetic.main.activity_create_workflow.*
-import org.json.JSONObject
-import java.io.Serializable
 import kotlin.concurrent.thread
 
 class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
@@ -106,17 +103,35 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                 when(blockType){
                     //TODO() LET VIEWMODEL HANDLE THE ADDITION OF BLOCKS
                     "Text to speech" -> {
-                        /*val block= BlockTextToSpeech(data!!.extras!!.get("text").toString())
-                        blockList.add(block)
-                        blocknames.add(block.getInformation())*/
+                        val text= data!!.extras!!.get("text").toString()
+                        viewModel.addOneArgBlock("Text to speech",text)
                     }
                     "FeedRss" -> {
+                        val url=data!!.extras!!.get("FeedUrl").toString()
+                        viewModel.addOneArgBlock("FeedRss",url)
 
-                      /*  val block=BlockFeedRss(data!!.extras!!.get("feedRss").toString())
-                        blockList.add(block)
-                        blocknames.add(block.getInformation())*/
+                    }
+                    "News" -> {
+                        val news=data!!.extras!!.get("news").toString()
+                        viewModel.addOneArgBlock("News",news)
+                    }
+                    "Pin" -> {
+                        val pin= data!!.extras!!.get(("pin")).toString()
+                        viewModel.addOneArgBlock("Pin",pin)
                     }
 
+                    "Sport" -> {
+                        val sport= data!!.extras!!.get(("sport")).toString()
+                        viewModel.addOneArgBlock("Sport",sport)
+                    }
+                    "Crypto" -> {
+                        val crypto= data!!.extras!!.get(("crypto")).toString()
+                        viewModel.addOneArgBlock("Crypto",crypto)
+                    }
+                    "Borsa" -> {
+                        val borsa= data!!.extras!!.get(("borsa")).toString()
+                        viewModel.addOneArgBlock("Borsa", borsa)
+                    }
                 }
             }
 

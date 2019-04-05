@@ -5,7 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.megalexa.models.MegAlexa
-import com.megalexa.models.blocks.BlockTextToSpeech
+import com.megalexa.models.blocks.*
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.service.WorkflowService
 import org.json.JSONObject
@@ -64,17 +64,45 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         }
         return true
     }
-    fun addBlock(blockType:String,jsonObject: JSONObject) {
-        //todo() convert from json and add to block list
+    fun addOneArgBlock(blockType:String,param:String) {
+        val block:Block
+        when(blockType) {
+
+            "FeedRss"-> {
+                block = BlockFeedRss(param)
+                workflow.addBlock(block)
+            }
+            "News" -> {
+                block= BlockNews(param)
+                workflow.addBlock(block)
+            }
+            "Sport" -> {
+                block = BlockSport(param)
+                workflow.addBlock(block)
+            }
+            "Pin" -> {
+                block = BlockPin(param.toInt())
+                workflow.addBlock(block)
+            }
+            "Text to speech" -> {
+                block = BlockTextToSpeech(param)
+                workflow.addBlock(block)
+            }
+            "Crypto" -> {
+                block=BlockCrypto(param)
+                workflow.addBlock(block)
+            }
+            "Borsa" -> {
+                block=BlockBorsa(param)
+                workflow.addBlock(block)
+            }
+
+        }
+        refreshBlocks()
     }
 
     fun addBlock(blockType: String, jsonObject: JSONObject, position: Int) {
         //todo() convert from json and add to block list
-    }
-
-    fun addDebug(param:String) {
-        workflow.addBlock(BlockTextToSpeech(""))
-        refreshBlocks()
     }
 
     fun setName(param : String) {
