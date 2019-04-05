@@ -75,6 +75,9 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                 6-> {
                     //TODO() SPORT FRAGMENT
                 }
+                7-> {
+                    //TODO() LIST ACTIVITY
+                }
 
             }
 
