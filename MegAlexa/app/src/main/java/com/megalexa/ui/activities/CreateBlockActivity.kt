@@ -144,7 +144,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
 
         }else if(sender is SportFragment){
             val sport = sender.getUrl()
-            Toast.makeText(this,sport,Toast.LENGTH_SHORT).show()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
             intent.putExtra("block_type", "Sport")
             intent.putExtra("sport",sport)
@@ -179,14 +178,12 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
 
     override fun onClick(view: View) {
 
-
     when(view.id){
         R.id.button_cancel_block -> {
             setResult(Activity.RESULT_CANCELED)
             this.finish()
         }
     }
-
 
     }
 

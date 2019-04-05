@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import android.util.Log
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.*
 import com.megalexa.models.workflow.Workflow
@@ -49,7 +50,9 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     }
 
     fun saveWorkflow() {
-        if(isUnique(workflow.getName())) {
+        val res=isUnique(workflow.getName())
+        Log.d("hagdjagjagd",res.toString())
+        if(res) {
             app.addWorkflow(workflow)
             val json = WorkflowService.convertToJSON(workflow)
             WorkflowService.postOperation(json)

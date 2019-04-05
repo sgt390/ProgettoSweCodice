@@ -82,9 +82,8 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
             button_save_workflow -> {
                 thread (start = true) {
                     viewModel.saveWorkflow()
-                    runOnUiThread{
-                        startActivity(Intent(this, GeneralLoggedActivity::class.java))
-                    }
+                    setResult(Activity.RESULT_OK)
+                    finish()
                 }
             }
             button_cancel_workflow_creation -> startActivity(Intent(this, GeneralLoggedActivity::class.java))
@@ -119,7 +118,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                         val pin= data!!.extras!!.get(("pin")).toString()
                         viewModel.addOneArgBlock("Pin",pin)
                     }
-
                     "Sport" -> {
                         val sport= data!!.extras!!.get(("sport")).toString()
                         viewModel.addOneArgBlock("Sport",sport)
