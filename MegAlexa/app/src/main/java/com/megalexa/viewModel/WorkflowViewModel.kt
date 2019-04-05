@@ -51,7 +51,6 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
 
     fun saveWorkflow() {
         val res=isUnique(workflow.getName())
-        Log.d("hagdjagjagd",res.toString())
         if(res) {
             app.addWorkflow(workflow)
             val json = WorkflowService.convertToJSON(workflow)

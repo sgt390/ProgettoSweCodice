@@ -48,7 +48,6 @@ class WorkflowViewAdapter(private val dataset: ArrayList<String>, private val co
 }
 
 
-
 class WorkflowViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener {
 
     val  workflowName :TextView? = v.findViewById(R.id.workflow_name)
