@@ -50,8 +50,20 @@
     <string name="insert">add</string>
     <string name="cancel">Cancel</string>
     <string name="editTitle">Edit title</string>
-    <string name="editBody">Edit description</string>
     <string name="done">Done</string>
     <string name="inserttitle">Insert item</string>
     <string name="title_activity_list">ListActivity</string>
+    <string name="calcio">Calcio</string>
+    <string name="selectnews">Select News for Sport</string>
+    <string name="nfl">Football</string>
+    <string name="tennis">Tennis</string>
+    <string name="f1">Formula1</string>
+    <string name="nba">Basket</string>
+    <string name="motorcycle">Motorcycle</string>
+    <string name="bbc">BBC</string>
+    <string name="googlenews">Google News</string>
+    <string name="sky">SKY</string>
+    <string name="cnbc">CNBC</string>
+    <string name="wallstreet">Wall Street</string>
+    <string name="ansa">Ansa</string>
 </resources>

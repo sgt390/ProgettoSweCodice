@@ -83,9 +83,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
-                7-> {
-                    //TODO() LIST ACTIVITY
-                }
 
                 7-> {
                     fragment = CryptoFragment()
@@ -99,6 +96,9 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+                }
+                9->{
+                    //TODO() ADD LIST ACTIVITY
                 }
             }
         }
