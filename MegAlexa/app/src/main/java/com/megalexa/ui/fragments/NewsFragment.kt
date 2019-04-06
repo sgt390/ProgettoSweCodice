@@ -19,9 +19,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Spinner
-import android.widget.Toast
 import com.megalexa.R
 import com.megalexa.ui.activities.CreateBlockActivity
 import android.widget.TextView
@@ -29,41 +26,54 @@ import com.megalexa.models.connectors.ConnectorNews
 
 class NewsFragment : Fragment() {
     private var url = ""
-//      TODO IMPORTAN change feed... matteo si sta occupando di procurare i nuovi feed
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.news_fragment_layout, container, false)
 
         val bbc = view.findViewById<TextView>(R.id.BBC_News)
         val sky = view.findViewById<TextView>(R.id.Sky_News)
-        val google_news = view.findViewById<TextView>(R.id.Google_News)
+        val googleNews = view.findViewById<TextView>(R.id.Google_News)
+        val cnbc = view.findViewById<TextView>(R.id.Cnbc_News)
+        val wallStreet = view.findViewById<TextView>(R.id.Wallstreet_News)
+        val ansa = view.findViewById<TextView>(R.id.Ansa_News)
 
         bbc.setOnClickListener {
-
             url = "http://feeds.bbci.co.uk/news/video_and_audio/world/rss.xml"
             val isValid = ConnectorNews(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
-
-
         sky.setOnClickListener {
-
-            url = "http://feeds.bbci.co.uk/news/video_and_audio/world/rss.xml"
+            url = "http://feeds.skynews.com/feeds/rss/world.xml"
             val isValid = ConnectorNews(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
-
-        google_news.setOnClickListener {
-
+        googleNews.setOnClickListener {
             url = "https://news.google.com/rss?hl=it&gl=IT&ceid=IT:it"
             val isValid = ConnectorNews(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
-
-
+        cnbc.setOnClickListener {
+            url = "https://www.cnbc.com/id/100727362/device/rss/rss.html"
+            val isValid = ConnectorNews(url).valid()
+            val activity = activity as CreateBlockActivity
+            activity.onFragmentClick(this)
+        }
+        wallStreet.setOnClickListener{
+            url = "https://feeds.a.dj.com/rss/RSSWorldNews.xml"
+            val isValid = ConnectorNews(url).valid()
+            val activity = activity as CreateBlockActivity
+            activity.onFragmentClick(this)
+        }
+        ansa.setOnClickListener {
+            url = "https://www.ansa.it/sito/ansait_rss.xml"
+            val isValid = ConnectorNews(url).valid()
+            val activity = activity as CreateBlockActivity
+            activity.onFragmentClick(this)
+        }
         return view
     }
     fun getUrl(): String {
