@@ -36,14 +36,15 @@ class BorsaFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.borsa_fragment_layout, container, false)
 
-        val first = view.findViewById<TextView>(R.id.firstBorsaURL)
-        val second = view.findViewById<TextView>(R.id.secondBorsaURL)
-        val third = view.findViewById<TextView>(R.id.thirdBorsaURL)
+        val first = view.findViewById<TextView>(R.id.CNBC_id)
+        val second = view.findViewById<TextView>(R.id.CNBC_INVESTING_id)
+        val third = view.findViewById<TextView>(R.id.CNBC_PERSONALFINANCE_id)
+        val fourth = view.findViewById<TextView>(R.id.CNBC_FINANCIALADVISOR_id)
+        val fifth = view.findViewById<TextView>(R.id.CNBC_MARKETINSIDER_id)
 
         first.setOnClickListener {
 
-            url = "first URL"
-            val isValid = ConnectorBorsa(url).valid()
+            url = "https://www.cnbc.com/id/20910258/device/rss/rss.html"
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
@@ -51,20 +52,30 @@ class BorsaFragment : Fragment() {
 
         second.setOnClickListener {
 
-            url = "second URL"
-            val isValid = ConnectorBorsa(url).valid()
+            url = "https://www.cnbc.com/id/15839069/device/rss/rss.html"
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
 
         third.setOnClickListener {
 
-            url = "third URL"
-            val isValid = ConnectorBorsa(url).valid()
+            url = "https://www.cnbc.com/id/21324812/device/rss/rss.html"
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
 
+        fourth.setOnClickListener {
+
+            url = "https://www.cnbc.com/id/100646281/device/rss/rss.html"
+            val activity = activity as CreateBlockActivity
+            activity.onFragmentClick(this)
+        }
+        fifth.setOnClickListener {
+
+            url = "https://www.cnbc.com/id/20409666/device/rss/rss.html"
+            val activity = activity as CreateBlockActivity
+            activity.onFragmentClick(this)
+        }
 
         return view
     }

@@ -40,37 +40,31 @@ class NewsFragment : Fragment() {
 
         bbc.setOnClickListener {
             url = "http://feeds.bbci.co.uk/news/video_and_audio/world/rss.xml"
-            val isValid = ConnectorNews(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
         sky.setOnClickListener {
             url = "http://feeds.skynews.com/feeds/rss/world.xml"
-            val isValid = ConnectorNews(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
         googleNews.setOnClickListener {
             url = "https://news.google.com/rss?hl=it&gl=IT&ceid=IT:it"
-            val isValid = ConnectorNews(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
         cnbc.setOnClickListener {
             url = "https://www.cnbc.com/id/100727362/device/rss/rss.html"
-            val isValid = ConnectorNews(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
         wallStreet.setOnClickListener{
             url = "https://feeds.a.dj.com/rss/RSSWorldNews.xml"
-            val isValid = ConnectorNews(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
         ansa.setOnClickListener {
             url = "https://www.ansa.it/sito/ansait_rss.xml"
-            val isValid = ConnectorNews(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }

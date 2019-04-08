@@ -36,14 +36,18 @@ class CryptoFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.crypto_fragment_layout, container, false)
 
-        val first = view.findViewById<TextView>(R.id.firstCryptoURL)
-        val second = view.findViewById<TextView>(R.id.secondCryptoURL)
-        val third = view.findViewById<TextView>(R.id.thirdCryptoURL)
+        val first = view.findViewById<TextView>(R.id.COINDESK_id)
+        val second = view.findViewById<TextView>(R.id.CRYPTOCONTROL_TOPNEWS_id)
+        val third = view.findViewById<TextView>(R.id.CRYPTOCONTROL_LATESTNEWS_id)
+        val fourth = view.findViewById<TextView>(R.id.CRYPTOCONTROL_GENERALCRYPTO_id)
+        val fifth = view.findViewById<TextView>(R.id.CRYPTOCONTROL_BLOCKCHAIN_id)
+        val sixth = view.findViewById<TextView>(R.id.CRYPTOCONTROL_MINING_id)
+        val seventh = view.findViewById<TextView>(R.id.CRYPTOCONTROL_BITCOIN_id)
+        val eighth = view.findViewById<TextView>(R.id.CRYPTOCONTROL_EUTHEREUM_id)
 
         first.setOnClickListener {
 
-            url = "first URL"
-            val isValid = ConnectorCrypto(url).valid()
+            url = "https://www.coindesk.com/feed"
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
@@ -51,16 +55,44 @@ class CryptoFragment : Fragment() {
 
         second.setOnClickListener {
 
-            url = "second URL"
-            val isValid = ConnectorCrypto(url).valid()
+            url = "https://cryptocontrol.io/feed"
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
 
         third.setOnClickListener {
 
-            url = "third URL"
-            val isValid = ConnectorCrypto(url).valid()
+            url = "https://cryptocontrol.io/feed?latest=true"
+            val activity = activity as CreateBlockActivity
+            activity.onFragmentClick(this)
+        }
+        fourth.setOnClickListener {
+
+            url = "https://cryptocontrol.io/feed/category/general"
+            val activity = activity as CreateBlockActivity
+            activity.onFragmentClick(this)
+        }
+        fifth.setOnClickListener {
+
+            url = "https://cryptocontrol.io/feed/category/blockchain"
+            val activity = activity as CreateBlockActivity
+            activity.onFragmentClick(this)
+        }
+        sixth.setOnClickListener {
+
+            url = "https://cryptocontrol.io/feed/category/mining"
+            val activity = activity as CreateBlockActivity
+            activity.onFragmentClick(this)
+        }
+        seventh.setOnClickListener {
+
+            url = "https://cryptocontrol.io/feed/coin/bitcoin"
+            val activity = activity as CreateBlockActivity
+            activity.onFragmentClick(this)
+        }
+        eighth.setOnClickListener {
+
+            url = "https://cryptocontrol.io/feed/coin/ethereum"
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }

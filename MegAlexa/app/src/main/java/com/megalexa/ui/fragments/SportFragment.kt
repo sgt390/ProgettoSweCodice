@@ -42,37 +42,31 @@ class SportFragment : Fragment() {
 
         tennis.setOnClickListener {
             url = "https://www.atptour.com/en/media/rss-feed/xml-feed"
-            val isValid = ConnectorSport(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
         calcio.setOnClickListener {
             url = "https://www.goal.com/feeds/en/news"
-            val isValid = ConnectorSport(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
         basket.setOnClickListener {
             url = "http://www.espn.com/espn/rss/nba/news"
-            val isValid = ConnectorSport(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
         nfl.setOnClickListener {
             url = "http://www.espn.com/espn/rss/nfl/news"
-            val isValid = ConnectorSport(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
         formula1.setOnClickListener {
             url = "http://www.autosport.com/rss/feed/f1"
-            val isValid = ConnectorSport(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
         motorcycle.setOnClickListener {
             url = "http://www.espn.com/espn/rss/rpm/news"
-            val isValid = ConnectorSport(url).valid()
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }

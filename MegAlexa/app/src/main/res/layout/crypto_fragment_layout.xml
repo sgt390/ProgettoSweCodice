@@ -42,12 +42,12 @@
                 android:padding="5dp">
 
             <TextView
-                    android:id="@+id/firstCryptoURL"
+                    android:id="@+id/COINDESK_id"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:text="Litecoin"
+                    android:text="COINDESK"
                     android:textColor="#616161"
                     android:textSize="18sp"
                     android:textAlignment="center"
@@ -75,12 +75,12 @@
                 android:padding="5dp">
 
             <TextView
-                    android:id="@+id/secondCryptoURL"
+                    android:id="@+id/CRYPTOCONTROL_TOPNEWS_id"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:text="Bitcoin"
+                    android:text="CRYPTOCONTROL TOPNEWS"
                     android:textColor="#616161"
                     android:textSize="18sp"
                     android:textAlignment="center"
@@ -108,12 +108,12 @@
                 android:padding="5dp">
 
             <TextView
-                    android:id="@+id/thirdCryptoURL"
+                    android:id="@+id/CRYPTOCONTROL_LATESTNEWS_id"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:text="Ethereum"
+                    android:text="CRYPTOCONTROL LATESTNEWS"
                     android:textColor="#616161"
                     android:textSize="18sp"
                     android:textAlignment="center"
@@ -123,6 +123,175 @@
 
     </android.support.v7.widget.CardView>
 
+    <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="5dp"
+            card_view:cardCornerRadius="5dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+            <TextView
+                    android:id="@+id/CRYPTOCONTROL_GENERALCRYPTO_id"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="CRYPTOCONTROL GENERALCRYPTO"
+                    android:textColor="#616161"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="5dp"
+            card_view:cardCornerRadius="5dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+            <TextView
+                    android:id="@+id/CRYPTOCONTROL_BLOCKCHAIN_id"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="CRYPTOCONTROL BLOCKCHAIN"
+                    android:textColor="#616161"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="5dp"
+            card_view:cardCornerRadius="5dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+            <TextView
+                    android:id="@+id/CRYPTOCONTROL_MINING_id"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="CRYPTOCONTROL MINING"
+                    android:textColor="#616161"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="5dp"
+            card_view:cardCornerRadius="5dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+            <TextView
+                    android:id="@+id/CRYPTOCONTROL_BITCOIN_id"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="CRYPTOCONTROL BITCOIN"
+                    android:textColor="#616161"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="5dp"
+            card_view:cardCornerRadius="5dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+            <TextView
+                    android:id="@+id/CRYPTOCONTROL_EUTHEREUM_id"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="CRYPTOCONTROL ETHEREUM"
+                    android:textColor="#616161"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>
 
