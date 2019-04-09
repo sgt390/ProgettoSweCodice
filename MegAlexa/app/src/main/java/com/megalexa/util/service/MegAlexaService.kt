@@ -35,7 +35,7 @@ object MegAlexaService:Service() {
                 workflows.add(WorkflowService.convertFromJSON(toAdd))
             }
         }
-        
+
         return MegAlexa.workflows(workflows).user(user).build()
     }
 
