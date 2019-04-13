@@ -2,7 +2,9 @@ package com.megalexa
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.models.blocks.BlockPin
+import com.megalexa.models.blocks.BlockBorsa
+import com.megalexa.models.blocks.BlockFeedRss
+import com.megalexa.util.service.BlockBorsaService
 import com.megalexa.util.service.BlockPinService
 import com.megalexa.util.service.WorkflowService
 import org.json.JSONArray
@@ -14,7 +16,7 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 
 @RunWith(AndroidJUnit4::class)
-class BlockPinServiceTest {
+class BlockBorsaServiceTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -24,12 +26,12 @@ class BlockPinServiceTest {
 
     @Test
     fun valid() {
-        val expected = BlockPin(1234)
-        val json = BlockPinService.convertToJSON(expected)
+        val expected = BlockBorsa("https://www.goal.com/feeds/en/news")
+        val json = BlockBorsaService.convertToJSON(expected)
         assertEquals(json.toString(),"{\n" +
-                "        \"blockType\": \"PIN\",\n" +
+                "        \"blockType\": \"Borsa\",\n" +
                 "        \"config\": {\n" +
-                "          \"PIN\": \"1234\"\n" +
+                "          \"URL\": \"https://www.goal.com/feeds/en/news\"\n" +
                 "        }\n" +
                 "      }")
     }
