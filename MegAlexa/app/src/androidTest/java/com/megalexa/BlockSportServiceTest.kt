@@ -28,12 +28,8 @@ class BlockSportServiceTest {
     fun valid() {
         val expected = BlockSport("https://www.goal.com/feeds/en/news")
         val json = BlockSportService.convertToJSON(expected)
-        assertEquals(json.toString(),"{\n" +
-                "        \"blockType\": \"Sport\",\n" +
-                "        \"config\": {\n" +
-                "          \"URL\": \" https://www.goal.com/feeds/en/news\"\n" +
-                "        }\n" +
-                "      }")
+        assertEquals(json.toString(),
+            "{\"blockType\":\"Sport\",\"config\":{\"URL\":\"https://www.goal.com/feeds/en/news\"}}")
     }
 
 }

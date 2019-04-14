@@ -26,12 +26,7 @@ class BlockPinServiceTest {
     fun valid() {
         val expected = BlockPin(1234)
         val json = BlockPinService.convertToJSON(expected)
-        assertEquals(json.toString(),"{\n" +
-                "        \"blockType\": \"PIN\",\n" +
-                "        \"config\": {\n" +
-                "          \"PIN\": \"1234\"\n" +
-                "        }\n" +
-                "      }")
+        assertEquals(json.toString(),"{\"blockType\":\"PIN\",\"config\":{\"PIN\":\"1234\"}}")
     }
 
 }
