@@ -26,8 +26,9 @@ class ConnectorReadEmailTest {
 
     @Test
     fun valid() {
-           val email = "zerosevenswe@gmail.com"
-           val emailIsValid = ConnectorReadEmail(email).valid()
+        val email = "zerosevenswe@gmail.com"
+        val password=""
+        val emailIsValid = ConnectorReadEmail(email,password).valid()
         assertEquals(true, emailIsValid)
     }
 

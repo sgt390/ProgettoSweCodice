@@ -28,7 +28,7 @@ class BlockPin(private var pin: Int):Block {
 
 
     //Set method
-    fun setPin(newPin: Int){
+    fun setPin(newPin: Int) {
         pin = newPin
     }
 

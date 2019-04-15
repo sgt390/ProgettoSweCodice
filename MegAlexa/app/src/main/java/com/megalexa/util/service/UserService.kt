@@ -7,8 +7,7 @@ import org.json.JSONObject
 object UserService: Service() {
 
     override fun convertFromJSON(jsonObject: JSONObject): User {
-        val user= com.megalexa.models.User(jsonObject.get("userID").toString(),jsonObject.get("name").toString(),jsonObject.get("email").toString())
-        return user
+        return  com.megalexa.models.User(jsonObject.get("userID").toString(),jsonObject.get("name").toString(),jsonObject.get("email").toString())
     }
 
     override fun <User> convertToJSON(t: User): JSONObject {

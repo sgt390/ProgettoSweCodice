@@ -1,13 +1,12 @@
 package com.megalexa.util.service
 
-import com.megalexa.models.blocks.Block
 import com.megalexa.models.blocks.BlockSport
 import org.json.JSONObject
 
 object BlockSportService :BlockService() {
 
     override fun convertFromJSON(jsonObject: JSONObject): BlockSport {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return BlockSport(jsonObject.getJSONObject("config").getString("URL"))
     }
 
     override fun <BlockSport> convertToJSON(t: BlockSport): JSONObject {
@@ -15,7 +14,7 @@ object BlockSportService :BlockService() {
         val allBlock = JSONObject()
         allBlock.put("blockType", "Sport" )
         val config = JSONObject()
-        config.put("url" , blockSport.url())
+        config.put("URL" , blockSport.url())
         allBlock.put("config", config)
         return allBlock
 

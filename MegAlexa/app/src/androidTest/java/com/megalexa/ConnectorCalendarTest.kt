@@ -27,7 +27,8 @@ class ConnectorCalendarTest {
     @Test
     fun valid() {
         val someaccount = "someAccount@gmail.com"
-        val accountIsValid = ConnectorCalendar(someaccount).valid()
+        val password=""
+        val accountIsValid = ConnectorCalendar(someaccount,password).valid()
         assertEquals(true, accountIsValid)
     }
 

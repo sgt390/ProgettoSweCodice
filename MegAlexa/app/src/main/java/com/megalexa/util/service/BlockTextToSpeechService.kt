@@ -6,7 +6,7 @@ import org.json.JSONObject
 object BlockTextToSpeechService : BlockService() {
 
     override fun convertFromJSON(jsonObject: JSONObject): BlockTextToSpeech {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return BlockTextToSpeech(jsonObject.getJSONObject("config").getString("TextToSpeech"))
     }
 
     override fun <BlockTextToSpeech> convertToJSON(t: BlockTextToSpeech): JSONObject {

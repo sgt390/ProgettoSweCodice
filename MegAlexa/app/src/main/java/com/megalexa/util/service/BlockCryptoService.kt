@@ -7,7 +7,7 @@ import org.json.JSONObject
 object BlockCryptoService :BlockService() {
 
     override fun convertFromJSON(jsonObject: JSONObject): BlockCrypto {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return BlockCrypto(jsonObject.getJSONObject("config").getString("URL"))
     }
 
     override fun <BlockCrypto> convertToJSON(t: BlockCrypto): JSONObject {
@@ -15,7 +15,7 @@ object BlockCryptoService :BlockService() {
         val allBlock = JSONObject()
         allBlock.put("blockType", "Crypto")
         val config = JSONObject()
-        config.put("url", blockCrypto.url())
+        config.put("URL", blockCrypto.url())
         allBlock.put("config", config)
         return allBlock
 
