@@ -1,5 +1,6 @@
 package com.megalexa.ui.activities
 
+import android.app.Activity
 import android.app.Dialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -80,9 +81,16 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v) {
-            button_save_workflowView -> viewModel.updateWorkflow()
-            button_continue -> startActivityForResult(Intent(this, CreateBlockActivity::class.java),1)
-            button_cancel_workflow_creation -> startActivityForResult(Intent(this, GeneralLoggedActivity::class.java),9)
+            button_save_workflowView -> {
+                viewModel.saveWorkflow()
+                setResult(Activity.RESULT_OK)
+                finish()
+            }
+            button_add_blockView -> startActivityForResult(Intent(this, CreateBlockActivity::class.java),1)
+            button_cancel_workflow_creation -> {
+                setResult(Activity.RESULT_CANCELED)
+                finish()
+            }
         }
     }
 
