@@ -1,13 +1,22 @@
 package com.megalexa.ui.activities
 
+import android.app.Dialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.ContextThemeWrapper
 import android.view.View
+import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.User
@@ -17,6 +26,7 @@ import com.megalexa.util.InjectorUtils
 import com.megalexa.viewModel.WorkflowViewModel
 import kotlinx.android.synthetic.main.activity_create_workflow.*
 import kotlinx.android.synthetic.main.activity_view_block.*
+import org.jetbrains.anko.AlertBuilderFactory
 
 class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
     companion object {
@@ -38,7 +48,6 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
                 title= extras.getString("WORKFLOW_NAME")
             }
         }else{
-
             title= savedInstanceState.getSerializable("WORKFLOW_NAME") as String
         }
         rec_view=findViewById(R.id.recyclerView_addedBlocksView)
@@ -77,4 +86,35 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         }
     }
 
+
+    fun showPopup(v: View?){
+
+        val builder= AlertDialog.Builder(ContextThemeWrapper(this@ViewBlockActivity,R.style.AlertDialogCustom))
+        val inflater= layoutInflater
+
+        val alertDialog= inflater.inflate(R.layout.simple_edit_text,null)
+        val edit=alertDialog.findViewById<EditText>(R.id.dialog_edit)
+
+        with(builder){
+            setTitle("Change Workflow Name")
+            setView(alertDialog)
+            setPositiveButton("OK",object: DialogInterface.OnClickListener{
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    viewModel.setName(edit.text.toString())
+                    val title=findViewById<TextView>(R.id.workflow_title)
+                    title.text=edit.text.toString()
+                    dialog!!.dismiss()
+                }
+            })
+            setNegativeButton("Cancel", object :DialogInterface.OnClickListener {
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    dialog!!.dismiss()
+                }
+
+            })
+
+
+        }
+        builder.show()
+    }
 }
