@@ -111,10 +111,31 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 1) {
             if(resultCode== Activity.RESULT_OK) {
                 Toast.makeText(this@GeneralLoggedActivity,"your workflow was saved", Toast.LENGTH_SHORT).show()
                 viewModel.refreshWorkflow()
             }
+
+            if(resultCode == Activity.RESULT_CANCELED)
+                Toast.makeText(this@GeneralLoggedActivity,"Workflow creation canceled", Toast.LENGTH_SHORT).show()
+        }
+
+        if(requestCode == 5) {
+            if(resultCode== Activity.RESULT_OK) {
+                Toast.makeText(this@GeneralLoggedActivity,"your workflow was modified", Toast.LENGTH_SHORT).show()
+                viewModel.refreshWorkflow()
+            }
+
+            if(resultCode == Activity.RESULT_CANCELED)
+                Toast.makeText(this@GeneralLoggedActivity,"Workflow modification canceled", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
+
+    fun passIntentForResult(intent:Intent) {
+        startActivityForResult(intent,5)
+    }
 }

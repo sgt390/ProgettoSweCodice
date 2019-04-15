@@ -65,9 +65,9 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
             }
         }
         viewModel.getLiveBlockNames().observe(this,observer)
-
+        button_confirm_modification.setOnClickListener(this)
         button_add_blockView.setOnClickListener(this)
-        button_cancel_workflow_creationView.setOnClickListener(this)
+        button_cancel_modify.setOnClickListener(this)
         User.fetch(this, object: Listener<User, AuthError> {
             override fun onSuccess(p0: User) {
                 viewModel.refreshBlocks()
@@ -81,13 +81,15 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v) {
-            button_save_workflowView -> {
-                viewModel.saveWorkflow()
+            button_confirm_modification -> {
+                val name= findViewById<TextView>(R.id.workflow_title)
+                viewModel.setName(name.text.toString())
+                viewModel.updateWorkflow()
                 setResult(Activity.RESULT_OK)
                 finish()
             }
             button_add_blockView -> startActivityForResult(Intent(this, CreateBlockActivity::class.java),1)
-            button_cancel_workflow_creation -> {
+            button_cancel_modify -> {
                 setResult(Activity.RESULT_CANCELED)
                 finish()
             }
@@ -95,7 +97,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
     }
 
 
-    fun showPopup(v: View?){
+    fun showPopup(v: View?) {
 
         val builder= AlertDialog.Builder(ContextThemeWrapper(this@ViewBlockActivity,R.style.AlertDialogCustom))
         val inflater= layoutInflater
@@ -108,7 +110,6 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
             setView(alertDialog)
             setPositiveButton("OK",object: DialogInterface.OnClickListener{
                 override fun onClick(dialog: DialogInterface?, which: Int) {
-                    viewModel.setName(edit.text.toString())
                     val title=findViewById<TextView>(R.id.workflow_title)
                     title.text=edit.text.toString()
                     dialog!!.dismiss()

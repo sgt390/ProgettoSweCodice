@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.megalexa.R
+import com.megalexa.ui.activities.GeneralLoggedActivity
 import com.megalexa.ui.activities.ViewBlockActivity
 import com.megalexa.util.view.ItemClickListener
 
@@ -24,7 +25,8 @@ class WorkflowViewAdapter(private val dataset: ArrayList<String>, private val co
             override fun onClick(view: View?, position: Int) {
                 val intent = Intent(context,ViewBlockActivity::class.java)
                 intent.putExtra("WORKFLOW_NAME",dataset[position])
-                context.startActivity(intent)
+                val activity= context as GeneralLoggedActivity
+                activity.passIntentForResult(intent)
             }
 
         })

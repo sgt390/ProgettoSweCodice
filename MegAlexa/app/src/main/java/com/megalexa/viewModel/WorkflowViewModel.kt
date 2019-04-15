@@ -120,7 +120,7 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                list.remove(item)
                list.add(index,this.workflow)
                val json = WorkflowService.convertToJSON(workflow)
-               WorkflowService.putOperation(json)
+               //WorkflowService.putOperation(json)
            }
         }
 
