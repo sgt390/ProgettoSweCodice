@@ -5,7 +5,7 @@ import org.json.JSONObject
 /*
     Check if predecessor is Filtrable in Workflow class!
  */
-internal class Filter(private val limit:Short):Block {
+class Filter(private val limit:Short):Block {
     private var filteringResult= false
     private lateinit var attachedBlock: Block
 

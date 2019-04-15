@@ -6,6 +6,7 @@ import com.megalexa.models.blocks.BlockFeedRss
 import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.models.blocks.Filter
 import com.megalexa.models.connectors.ConnectorAmazonMusic
+import com.megalexa.util.service.FilterService
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -42,6 +43,22 @@ class BlockFilterTest {
         filter.attachTo(block)
         assertEquals(false,filter.getResult())
 
+    }
+
+    @Test
+    fun validToJSON() {
+        val expected = Filter(5)
+        val json = FilterService.convertToJSON(expected)
+        assertEquals(json.toString(), "{\"blockType\":\"Filter\",\"config\":{\"limit\":5}}")
+    }
+
+    @Test
+    fun validFromJSON(){
+        val expected = Filter(5)
+        val json = FilterService.convertToJSON(expected)
+        val block = FilterService.convertFromJSON(json)
+        val num: Short = 5
+        assertTrue(block.limit() == num)
     }
 
 }
