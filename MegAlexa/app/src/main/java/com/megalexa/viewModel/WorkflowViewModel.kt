@@ -136,9 +136,14 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
 
             }
     }
-
+    fun removeBlockAt(position: Int) {
+        val list = workflow.getBlocks()
+        list.removeAt(position)
+    }
 
 }
+
+
 
 class WorkflowViewModelFactory(private val app: MegAlexa,private val workflowName: String):
     ViewModelProvider.NewInstanceFactory() {

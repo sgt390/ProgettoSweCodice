@@ -1,8 +1,10 @@
 package com.megalexa.ui.activities
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.design.widget.NavigationView
@@ -15,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_workflow.*
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.ContextThemeWrapper
 import android.widget.Toast
 import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
@@ -137,5 +140,25 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
     fun passIntentForResult(intent:Intent) {
         startActivityForResult(intent,5)
+    }
+
+    fun notifiyDeleteInteraction(position :Int) {
+
+        val builder= android.support.v7.app.AlertDialog.Builder(ContextThemeWrapper(this@GeneralLoggedActivity,R.style.AlertDialogCustom))
+      val confirmDeletion={
+              _: DialogInterface, _: Int -> viewModel.removeWorkflow(position)
+      }
+      val cancelDeletion= {
+          _:DialogInterface,_:Int ->
+      }
+
+        with(builder) {
+
+            setTitle("Delete Workflow")
+            setPositiveButton("Confirm", confirmDeletion)
+            setNegativeButton("Cancel", cancelDeletion)
+        }
+
+        builder.show()
     }
 }
