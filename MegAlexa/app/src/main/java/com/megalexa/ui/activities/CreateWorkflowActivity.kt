@@ -72,7 +72,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                     val newIntent = Intent(this, CreateBlockActivity::class.java)
                     startActivityForResult(newIntent,1)
                 }
-
             }
             button_save_workflow -> {
                 thread (start = true) {

@@ -1,8 +1,10 @@
 package com.megalexa.ui.activities
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.design.widget.NavigationView
@@ -15,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_workflow.*
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.ContextThemeWrapper
 import android.widget.Toast
 import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
@@ -111,10 +114,51 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 1) {
             if(resultCode== Activity.RESULT_OK) {
                 Toast.makeText(this@GeneralLoggedActivity,"your workflow was saved", Toast.LENGTH_SHORT).show()
                 viewModel.refreshWorkflow()
             }
+
+            if(resultCode == Activity.RESULT_CANCELED)
+                Toast.makeText(this@GeneralLoggedActivity,"Workflow creation canceled", Toast.LENGTH_SHORT).show()
+        }
+
+        if(requestCode == 5) {
+            if(resultCode== Activity.RESULT_OK) {
+                Toast.makeText(this@GeneralLoggedActivity,"your workflow was modified", Toast.LENGTH_SHORT).show()
+                viewModel.refreshWorkflow()
+            }
+
+            if(resultCode == Activity.RESULT_CANCELED)
+                Toast.makeText(this@GeneralLoggedActivity,"Workflow modification canceled", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
+
+    fun passIntentForResult(intent:Intent) {
+        startActivityForResult(intent,5)
+    }
+
+    fun notifiyDeleteInteraction(position :Int) {
+
+        val builder= android.support.v7.app.AlertDialog.Builder(ContextThemeWrapper(this@GeneralLoggedActivity,R.style.AlertDialogCustom))
+      val confirmDeletion={
+              _: DialogInterface, _: Int -> viewModel.removeWorkflow(position)
+      }
+      val cancelDeletion= {
+          _:DialogInterface,_:Int ->
+      }
+
+        with(builder) {
+
+            setTitle("Delete Workflow")
+            setPositiveButton("Confirm", confirmDeletion)
+            setNegativeButton("Cancel", cancelDeletion)
+        }
+
+        builder.show()
+    }
 }

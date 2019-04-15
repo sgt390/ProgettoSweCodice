@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.megalexa.R
+import com.megalexa.ui.activities.GeneralLoggedActivity
 import com.megalexa.ui.activities.ViewBlockActivity
 import com.megalexa.util.view.ItemClickListener
 
@@ -24,10 +25,18 @@ class WorkflowViewAdapter(private val dataset: ArrayList<String>, private val co
             override fun onClick(view: View?, position: Int) {
                 val intent = Intent(context,ViewBlockActivity::class.java)
                 intent.putExtra("WORKFLOW_NAME",dataset[position])
-                context.startActivity(intent)
+                val activity= context as GeneralLoggedActivity
+                activity.passIntentForResult(intent)
             }
 
+
+            override fun onLongClick(view: View?, position: Int) {
+                val activity = context as GeneralLoggedActivity
+                activity.notifiyDeleteInteraction(position)
+            }
         })
+
+
 
     }
 
@@ -48,13 +57,14 @@ class WorkflowViewAdapter(private val dataset: ArrayList<String>, private val co
 }
 
 
-class WorkflowViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener {
+class WorkflowViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener,View.OnLongClickListener {
 
     val  workflowName :TextView? = v.findViewById(R.id.workflow_name)
     private lateinit var itemClickListener: ItemClickListener
 
     init{
         workflowName?.setOnClickListener(this)
+        workflowName?.setOnLongClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -65,4 +75,8 @@ class WorkflowViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListen
         this.itemClickListener= itemClickListener
     }
 
+    override fun onLongClick(v: View?): Boolean {
+        itemClickListener.onLongClick(v,adapterPosition)
+        return true
+    }
 }
