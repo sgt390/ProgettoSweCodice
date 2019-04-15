@@ -25,11 +25,22 @@ class BlockCryptoServiceTest {
     }
 
     @Test
-    fun valid() {
+    fun validToJSON() {
         val expected = BlockCrypto("http://feeds.reuters.com/Reuters/PoliticsNews")
         val json = BlockCryptoService.convertToJSON(expected)
-        assertEquals(json.toString(),
-            "{\"blockType\":\"Crypto\",\"config\":{\"URL\":\"http://feeds.reuters.com/Reuters/PoliticsNews\"}}")
+        val url = json.getJSONObject("config").getString("URL")
+        val config = "{\"blockType\":\"Crypto\",\"config\":{\"URL\":\"\"}}"
+        json.getJSONObject("config").put("URL","")
+
+        assertTrue(url.equals("http://feeds.reuters.com/Reuters/PoliticsNews")
+                && json.toString().equals(config))
     }
 
+    @Test
+    fun validFromJSON() {
+        val expected = BlockCrypto("http://feeds.reuters.com/Reuters/PoliticsNews")
+        val json = BlockCryptoService.convertToJSON(expected)
+        val block = BlockCryptoService.convertFromJSON(json)
+        assertEquals(block.url(),"http://feeds.reuters.com/Reuters/PoliticsNews")
+    }
 }

@@ -1,6 +1,5 @@
 package com.megalexa.util.service
 
-import com.megalexa.models.blocks.Block
 import com.megalexa.models.blocks.BlockSport
 import org.json.JSONObject
 

@@ -24,11 +24,22 @@ class BlockFeedRssServiceTest {
     }
 
     @Test
-    fun valid() {
+    fun validToJSON() {
         val expected = BlockFeedRss("http://feeds.reuters.com/Reuters/PoliticsNews")
         val json = BlockFeedRssService.convertToJSON(expected)
-        assertEquals(json.toString(),
-            "{\"blockType\":\"FeedRSS\",\"config\":{\"URL\":\"http://feeds.reuters.com/Reuters/PoliticsNews\"}}")
+        val url = json.getJSONObject("config").getString("URL")
+        val config = "{\"blockType\":\"FeedRSS\",\"config\":{\"URL\":\"\"}}"
+        json.getJSONObject("config").put("URL","")
+
+        assertTrue(url.equals("http://feeds.reuters.com/Reuters/PoliticsNews")
+                && json.toString().equals(config))
     }
 
+    @Test
+    fun validFromJSON() {
+        val expected = BlockFeedRss("http://feeds.reuters.com/Reuters/PoliticsNews")
+        val json = BlockFeedRssService.convertToJSON(expected)
+        val block = BlockFeedRssService.convertFromJSON(json)
+        assertEquals(block.url(),"http://feeds.reuters.com/Reuters/PoliticsNews")
+    }
 }

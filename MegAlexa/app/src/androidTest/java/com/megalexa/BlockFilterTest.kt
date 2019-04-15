@@ -46,10 +46,19 @@ class BlockFilterTest {
     }
 
     @Test
-    fun valid() {
+    fun validToJSON() {
         val expected = Filter(5)
         val json = FilterService.convertToJSON(expected)
-        assertEquals(json.toString(), "{\"blockType\":\"Filter\",\"config\":{\"limit\":\"5\"}}")
+        assertEquals(json.toString(), "{\"blockType\":\"Filter\",\"config\":{\"limit\":5}}")
+    }
+
+    @Test
+    fun validFromJSON(){
+        val expected = Filter(5)
+        val json = FilterService.convertToJSON(expected)
+        val block = FilterService.convertFromJSON(json)
+        val num: Short = 5
+        assertTrue(block.limit() == num)
     }
 
 }

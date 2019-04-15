@@ -25,10 +25,17 @@ class BlockTextToSpeechServiceTest {
     }
 
     @Test
-    fun valid() {
+    fun validToJSON() {
         val expected = BlockTextToSpeech("This is the first block")
         val json = BlockTextToSpeechService.convertToJSON(expected)
         assertEquals(json.toString(),"{\"blockType\":\"TextToSpeech\",\"config\":{\"TextToSpeech\":\"This is the first block\"}}")
     }
 
+    @Test
+    fun validFromJSON() {
+        val expected = BlockTextToSpeech("This is the first block")
+        val json = BlockTextToSpeechService.convertToJSON(expected)
+        val block = BlockTextToSpeechService.convertFromJSON(json)
+        assertEquals(block.textBox(),"This is the first block")
+    }
 }

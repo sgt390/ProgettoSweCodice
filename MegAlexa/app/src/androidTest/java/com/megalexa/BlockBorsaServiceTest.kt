@@ -3,12 +3,8 @@ package com.megalexa
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.blocks.BlockBorsa
-import com.megalexa.models.blocks.BlockFeedRss
 import com.megalexa.util.service.BlockBorsaService
-import com.megalexa.util.service.BlockPinService
-import com.megalexa.util.service.WorkflowService
-import org.json.JSONArray
-import org.json.JSONObject
+
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -25,11 +21,23 @@ class BlockBorsaServiceTest {
     }
 
     @Test
-    fun valid() {
+    fun validToJSON() {
         val expected = BlockBorsa("https://www.goal.com/feeds/en/news")
         val json = BlockBorsaService.convertToJSON(expected)
-        assertEquals(json.toString(),
-            "{\"blockType\":\"Borsa\",\"config\":{\"URL\":\"https://www.goal.com/feeds/en/news\"}}")
+        val url = json.getJSONObject("config").getString("URL")
+        val config = "{\"blockType\":\"Borsa\",\"config\":{\"URL\":\"\"}}"
+        json.getJSONObject("config").put("URL","")
+
+        assertTrue(url.equals("https://www.goal.com/feeds/en/news")
+                && json.toString().equals(config))
+    }
+
+    @Test
+    fun validFromJSON() {
+        val expected = BlockBorsa("https://www.goal.com/feeds/en/news")
+        val json = BlockBorsaService.convertToJSON(expected)
+        val block = BlockBorsaService.convertFromJSON(json)
+        assertEquals(block.url(),"https://www.goal.com/feeds/en/news")
     }
 
 }
