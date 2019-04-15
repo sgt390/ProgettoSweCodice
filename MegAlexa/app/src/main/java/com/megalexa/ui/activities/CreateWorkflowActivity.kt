@@ -68,7 +68,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                 if (!isUnique) {
                     Toast.makeText(this,"workflow name must be unique",Toast.LENGTH_SHORT).show()
                 } else {
-                    Log.d("onClick vediamo che fa", "ci sono passato")
                     viewModel.setName(workflowTitle)
                     val newIntent = Intent(this, CreateBlockActivity::class.java)
                     startActivityForResult(newIntent,1)
