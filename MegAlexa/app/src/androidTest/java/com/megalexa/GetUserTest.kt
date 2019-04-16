@@ -2,7 +2,7 @@ package com.megalexa
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.models.connectors.ConnectorSport
+
 import com.megalexa.util.service.UserService
 import org.json.JSONObject
 

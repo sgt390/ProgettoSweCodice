@@ -22,15 +22,18 @@ object WorkflowService: Service() {
 
     override fun <Workflow> convertToJSON(t: Workflow): JSONObject {
         val workflow= t as com.megalexa.models.workflow.Workflow
-        val workflowName = JSONObject()
-        val workflowArray = JSONArray()
+        val jsonArray = JSONArray()
         val blocklist= workflow.getBlocks()
         for(block in blocklist) {
-            workflowArray.put(convertBlock(block))
+            jsonArray.put(convertBlock(block))
         }
-        workflowName.put(workflow.getName(), workflow)
-        return workflowName
+        val jsonObject= JSONObject()
+        jsonObject.put("workflowName",workflow.getName())
+        jsonObject.put("workflowName",jsonArray)
+
+        return jsonObject
     }
+
     private fun convertBlock(block: Block):JSONObject{
         var result=JSONObject()
         when(block) {
