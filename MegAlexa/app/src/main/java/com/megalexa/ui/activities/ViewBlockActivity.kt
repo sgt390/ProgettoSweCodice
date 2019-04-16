@@ -59,7 +59,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         viewModel = ViewModelProviders.of(this,factory).get(WorkflowViewModel::class.java)
         viewModel.setFromExistingWorkflow(title)
         val observer = Observer<ArrayList<String>>{
-            val adapter = BlockViewAdapter(it!!, applicationContext)
+            val adapter = BlockViewAdapter(it!!, this@ViewBlockActivity)
             runOnUiThread{
                 rec_view.adapter= adapter
             }
@@ -122,8 +122,29 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
             })
 
-
         }
         builder.show()
     }
+
+    fun notifyDeleteBlockInteraction(position: Int) {
+
+
+        val builder= android.support.v7.app.AlertDialog.Builder(ContextThemeWrapper(this@ViewBlockActivity,R.style.AlertDialogCustom))
+        val confirmDeletion={
+                _: DialogInterface, _: Int -> viewModel.removeBlockAt(position)
+        }
+        val cancelDeletion= {
+                _:DialogInterface,_:Int ->
+        }
+
+        with(builder) {
+
+            setTitle("Delete Block")
+            setPositiveButton("Confirm", confirmDeletion)
+            setNegativeButton("Cancel", cancelDeletion)
+        }
+
+        builder.show()
+    }
+
 }
