@@ -65,14 +65,19 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
             button_continue -> {
                 val workflowTitle=findViewById<TextView>(R.id.input_title_workflow).text.toString()
                 val isUnique= viewModel.isUnique(workflowTitle)
-                if (!isUnique) {
-                    Toast.makeText(this,"workflow name must be unique",Toast.LENGTH_SHORT).show()
-                } else {
-                    viewModel.setName(workflowTitle)
-                    val newIntent = Intent(this, CreateBlockActivity::class.java)
-                    startActivityForResult(newIntent,1)
+                if(workflowTitle.isEmpty()){
+                    Toast.makeText(this,"workflow name must not be empty",Toast.LENGTH_SHORT).show()
+                }else {
+                        if (!isUnique) {
+                            Toast.makeText(this,"workflow name must be unique",Toast.LENGTH_SHORT).show()
+                        } else {
+                            viewModel.setName(workflowTitle)
+                            val newIntent = Intent(this, CreateBlockActivity::class.java)
+                            startActivityForResult(newIntent,1)
+                        }
+
+                    }
                 }
-            }
             button_save_workflow -> {
                 thread (start = true) {
                     viewModel.saveWorkflow()
@@ -136,7 +141,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                     }
                 }
             }
-
 
         }
 

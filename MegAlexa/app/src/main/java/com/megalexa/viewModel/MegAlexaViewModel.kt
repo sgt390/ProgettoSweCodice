@@ -29,23 +29,14 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
      * calls the API with a GET function using Service classes
      */
     fun loadAppContext() {
-    //    val jsonObject=MegAlexaService.getOperation(listOf(Pair("userID",app.getUser().getID())))
-    //    app.setInstance(MegAlexaService.convertFromJSON(jsonObject))
+        val jsonObject=MegAlexaService.getOperation(listOf(Pair("userID",app.getUser().getID())))
+        app.setInstance(MegAlexaService.convertFromJSON(jsonObject))
     }
 
     fun setUser(user: com.amazon.identity.auth.device.api.authorization.User) {
         app.setUser(com.megalexa.models.User(user.userId, user.userName, user.userEmail))
     }
 
-
-    fun getBlocks(name: String) : ArrayList<String> {
-        val blocks = app.getBlock(name)
-        val blocksType : ArrayList<String> = ArrayList()
-        for(item in blocks!!) {
-            blocksType.add(item.getInformation())
-        }
-        return blocksType
-    }
 
     fun isUserPresent(paramID:String):Boolean {
         if(app.getUser().getID()==paramID)
