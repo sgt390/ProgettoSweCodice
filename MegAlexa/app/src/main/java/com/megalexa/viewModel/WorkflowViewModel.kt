@@ -66,23 +66,20 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         }
         return true
     }
-    fun addOneArgBlock(blockType:String,param:String, cardinality: Short=10) {
+    fun addOneArgBlock(blockType:String,param:String) {
         val block:Block
         when(blockType) {
 
             "FeedRss"-> {
                 block = BlockFeedRss(param)
-                workflow.addBlock(Filter(cardinality))
                 workflow.addBlock(block)
             }
             "News" -> {
                 block= BlockNews(param)
-                workflow.addBlock(Filter(cardinality))
                 workflow.addBlock(block)
             }
             "Sport" -> {
                 block = BlockSport(param)
-                workflow.addBlock(Filter(cardinality))
                 workflow.addBlock(block)
             }
             "Pin" -> {
@@ -95,21 +92,15 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
             }
             "Crypto" -> {
                 block=BlockCrypto(param)
-                workflow.addBlock(Filter(cardinality))
                 workflow.addBlock(block)
             }
             "Borsa" -> {
                 block=BlockBorsa(param)
-                workflow.addBlock(Filter(cardinality))
                 workflow.addBlock(block)
             }
 
         }
         refreshBlocks()
-    }
-
-    fun addBlock(blockType: String, jsonObject: JSONObject, position: Int) {
-        //todo() convert from json and add to block list
     }
 
     fun setName(param : String) {
@@ -146,9 +137,13 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         list.removeAt(position)
         refreshBlocks()
     }
+
+    fun addFilter(cardinality: Short) {
+        val list=workflow.getBlocks()
+        list.add(Filter(cardinality))
+    }
+
 }
-
-
 
 class WorkflowViewModelFactory(private val app: MegAlexa,private val workflowName: String):
     ViewModelProvider.NewInstanceFactory() {

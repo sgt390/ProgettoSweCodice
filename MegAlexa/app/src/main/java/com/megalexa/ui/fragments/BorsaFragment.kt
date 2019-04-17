@@ -109,9 +109,6 @@ class BorsaFragment : Fragment() {
 
         return view
     }
-    fun getUrl(): String {
-        return url
-    }
-
+    fun getUrl()=url
     fun getCardinality()=cardinality
 }

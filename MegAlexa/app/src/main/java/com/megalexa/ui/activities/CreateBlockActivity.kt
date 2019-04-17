@@ -59,45 +59,43 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
+
                 2-> {
-                    //TODO() FILTER FRAGMENT
-                }
-                3-> {
                     fragment = PinFragment()
                     listView.isEnabled=false
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
-                4-> {
+                3-> {
                     //TODO() EMAIL FRAGMENT
                 }
-                5-> {
+                4-> {
                     fragment = NewsFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
-                6-> {
+                5-> {
                     fragment = SportFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
 
-                7-> {
+                6-> {
                     fragment = CryptoFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
 
-                8-> {
+                7-> {
                     fragment = BorsaFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
-                9->{
+                8-> {
                     //TODO() ADD LIST ACTIVITY
                 }
             }
@@ -111,6 +109,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
         if(sender is RssFragment){
             val url = sender.getUrl()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("cardinality",sender.getCardinality())
             intent.putExtra("block_type", "FeedRss")
             intent.putExtra("FeedUrl",url)
             setResult(Activity.RESULT_OK, intent)
@@ -139,6 +138,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
         }else if(sender is NewsFragment){
             val news= sender.getUrl()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("cardinality",sender.getCardinality())
             intent.putExtra("block_type", "News")
             intent.putExtra("news",news)
             setResult(Activity.RESULT_OK,intent)
@@ -148,6 +148,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
         }else if(sender is SportFragment){
             val sport = sender.getUrl()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("cardinality",sender.getCardinality())
             intent.putExtra("block_type", "Sport")
             intent.putExtra("sport",sport)
             setResult(Activity.RESULT_OK,intent)
@@ -158,6 +159,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             val crypto = sender.getUrl()
             Toast.makeText(this,crypto,Toast.LENGTH_SHORT).show()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("cardinality",sender.getCardinality())
             intent.putExtra("block_type", "Crypto")
             intent.putExtra("crypto",crypto)
             setResult(Activity.RESULT_OK,intent)
@@ -168,6 +170,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             val borsa = sender.getUrl()
             Toast.makeText(this,borsa,Toast.LENGTH_SHORT).show()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("cardinality",sender.getCardinality())
             intent.putExtra("block_type", "Borsa")
             intent.putExtra("borsa",borsa)
             setResult(Activity.RESULT_OK,intent)
@@ -197,20 +200,19 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
         return listOf(
             Pair(list[0], R.drawable.ic_feed_rss),
             Pair(list[1], R.drawable.ic_text),
-            Pair(list[2], R.drawable.ic_filter),
-            Pair(list[3], R.drawable.ic_lock),
-            Pair(list[4], R.drawable.ic_email),
-            Pair(list[5], R.drawable.ic_news),
-            Pair(list[6], R.drawable.ic_sport),
-            Pair(list[7], R.drawable.ic_news),
-            Pair(list[8], R.drawable.ic_news)
+            Pair(list[2], R.drawable.ic_lock),
+            Pair(list[3], R.drawable.ic_email),
+            Pair(list[4], R.drawable.ic_news),
+            Pair(list[5], R.drawable.ic_sport),
+            Pair(list[6], R.drawable.ic_news),
+            Pair(list[7], R.drawable.ic_news)
         )
 
     }
 
     private fun getTitlesList(): List<String> {
 
-        return listOf("FeedRSS","Text Block","Filter","PIN",
+        return listOf("FeedRSS","Text Block","PIN",
             "Read Email","News","Sport News","Crypto News","Stock News")
 
     }

@@ -100,12 +100,16 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                         viewModel.addOneArgBlock("Text to speech",text)
                     }
                     "FeedRss" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
                         val url=data!!.extras!!.get("FeedUrl").toString()
+                        viewModel.addFilter(cardinality)
                         viewModel.addOneArgBlock("FeedRss",url)
 
                     }
                     "News" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
                         val news=data!!.extras!!.get("news").toString()
+                        viewModel.addFilter(cardinality)
                         viewModel.addOneArgBlock("News",news)
                     }
                     "Pin" -> {
@@ -113,15 +117,21 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                         viewModel.addOneArgBlock("Pin",pin)
                     }
                     "Sport" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
                         val sport= data!!.extras!!.get(("sport")).toString()
+                        viewModel.addFilter(cardinality)
                         viewModel.addOneArgBlock("Sport",sport)
                     }
                     "Crypto" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
                         val crypto= data!!.extras!!.get(("crypto")).toString()
+                        viewModel.addFilter(cardinality)
                         viewModel.addOneArgBlock("Crypto",crypto)
                     }
                     "Borsa" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
                         val borsa= data!!.extras!!.get(("borsa")).toString()
+                        viewModel.addFilter(cardinality)
                         viewModel.addOneArgBlock("Borsa", borsa)
                     }
                 }
