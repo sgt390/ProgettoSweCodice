@@ -70,6 +70,9 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         })
         User.fetch(this, object: Listener<User, AuthError>{
             override fun onSuccess(p0: User) {
+                viewModel.setUser(p0)
+                viewModel.loadAppContext()
+
                 viewModel.refreshWorkflow()
             }
             override fun onError(p0: AuthError?) {

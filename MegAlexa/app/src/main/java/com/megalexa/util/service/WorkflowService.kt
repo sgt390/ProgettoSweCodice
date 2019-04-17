@@ -18,12 +18,22 @@ object WorkflowService: Service() {
         get() = "workflow"
 
     override fun convertFromJSON(jsonObject: JSONObject): Workflow {
-        var workflow : Workflow = Workflow(jsonObject.get("wokrflowName").toString())
-        var blocks : JSONArray = jsonObject.getJSONArray(jsonObject.get("workflowName").toString())
+        var workflow : Workflow = Workflow(jsonObject.get("workflowName").toString())
+        var blocks : JSONArray = jsonObject.getJSONArray("workflow")
         for (i in 0.. (blocks.length() - 1)){
             workflow.addBlock(
                 when(blocks.getJSONObject(i).get("blockType")){
                     "TextToSpeech" -> BlockTextToSpeechService.convertFromJSON(blocks.getJSONObject(i))
+                    //"Stock" -> BlockBorsaService.convertFromJSON(blocks.getJSONObject(i))
+                    //"Crypto" -> BlockCryptoService.convertFromJSON(blocks.getJSONObject(i))
+                    "FeedRSS" -> BlockFeedRssService.convertFromJSON(blocks.getJSONObject(i))
+                    //"News" -> BlockNewsService.convertFromJSON(blocks.getJSONObject(i))
+                    "PIN" -> BlockPinService.convertFromJSON(blocks.getJSONObject(i))
+                   // "ReadMail" -> BlockReadEmailService.convertFromJSON(blocks.getJSONObject(i))
+                    //"Sport" -> BlockSportService.convertFromJSON(blocks.getJSONObject(i))
+                    //"Twitter" -> BlockTwitterService.convertFromJSON(blocks.getJSONObject(i))
+                    //"Weather" -> BlockWeatherService.convertFromJSON(blocks.getJSONObject(i))
+                    //"Filter" -> FilterService.convertFromJSON(blocks.getJSONObject(i))
                     else -> BlockTextToSpeech("Undefined")
                 }
             )

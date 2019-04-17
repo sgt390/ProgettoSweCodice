@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
             AuthorizeListener(){
             /* Authorization was completed successfully. */
             override fun onSuccess(result : AuthorizeResult){
-
                 viewModel.setUser(result.user)
                 viewModel.loadAppContext()
               if(!(viewModel.isUserPresent(result.user.userId))) {
