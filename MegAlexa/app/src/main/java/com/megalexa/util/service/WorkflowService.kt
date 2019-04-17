@@ -1,6 +1,7 @@
 package com.megalexa.util.service
 
 
+import android.speech.tts.TextToSpeech
 import com.megalexa.models.blocks.*
 import com.megalexa.models.workflow.Workflow
 import org.json.JSONArray
@@ -17,7 +18,17 @@ object WorkflowService: Service() {
         get() = "workflow"
 
     override fun convertFromJSON(jsonObject: JSONObject): Workflow {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        var workflow : Workflow = Workflow(jsonObject.get("wokrflowName").toString())
+        var blocks : JSONArray = jsonObject.getJSONArray(jsonObject.get("workflowName").toString())
+        for (i in 0.. (blocks.length() - 1)){
+            workflow.addBlock(
+                when(blocks.getJSONObject(i).get("blockType")){
+                    "TextToSpeech" -> BlockTextToSpeechService.convertFromJSON(blocks.getJSONObject(i))
+                    else -> BlockTextToSpeech("Undefined")
+                }
+            )
+        }
+        return workflow
     }
 
     override fun <Workflow> convertToJSON(t: Workflow): JSONObject {

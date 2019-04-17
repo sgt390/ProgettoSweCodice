@@ -29,8 +29,8 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
      * calls the API with a GET function using Service classes
      */
     fun loadAppContext() {
-    //    val jsonObject=MegAlexaService.getOperation(listOf(Pair("userID",app.getUser().getID())))
-    //    app.setInstance(MegAlexaService.convertFromJSON(jsonObject))
+        val jsonObject=MegAlexaService.getOperation(listOf(Pair("userID",app.getUser().getID())))
+        app.setInstance(MegAlexaService.convertFromJSON(jsonObject))
     }
 
     fun setUser(user: com.amazon.identity.auth.device.api.authorization.User) {
