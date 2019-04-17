@@ -146,6 +146,12 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         list.removeAt(position)
         refreshBlocks()
     }
+
+    fun addFilter(cardinality: Short) {
+        val list=workflow.getBlocks()
+        list.add(Filter(cardinality))
+    }
+
 }
 
 
