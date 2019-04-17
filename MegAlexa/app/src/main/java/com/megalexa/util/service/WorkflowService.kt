@@ -49,9 +49,8 @@ object WorkflowService: Service() {
             jsonArray.put(convertBlock(block))
         }
         val jsonObject= JSONObject()
-        jsonObject.put("workflowName",workflow.getName())
-        jsonObject.put("workflowName",jsonArray)
-
+        jsonObject.put("workflowName", workflow.getName())
+        jsonObject.put("workflow",jsonArray)
         return jsonObject
     }
 

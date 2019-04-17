@@ -66,20 +66,23 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         }
         return true
     }
-    fun addOneArgBlock(blockType:String,param:String) {
+    fun addOneArgBlock(blockType:String,param:String, cardinality: Short=10) {
         val block:Block
         when(blockType) {
 
             "FeedRss"-> {
                 block = BlockFeedRss(param)
+                workflow.addBlock(Filter(cardinality))
                 workflow.addBlock(block)
             }
             "News" -> {
                 block= BlockNews(param)
+                workflow.addBlock(Filter(cardinality))
                 workflow.addBlock(block)
             }
             "Sport" -> {
                 block = BlockSport(param)
+                workflow.addBlock(Filter(cardinality))
                 workflow.addBlock(block)
             }
             "Pin" -> {
@@ -92,10 +95,12 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
             }
             "Crypto" -> {
                 block=BlockCrypto(param)
+                workflow.addBlock(Filter(cardinality))
                 workflow.addBlock(block)
             }
             "Borsa" -> {
                 block=BlockBorsa(param)
+                workflow.addBlock(Filter(cardinality))
                 workflow.addBlock(block)
             }
 
@@ -141,7 +146,6 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         list.removeAt(position)
         refreshBlocks()
     }
-
 }
 
 
