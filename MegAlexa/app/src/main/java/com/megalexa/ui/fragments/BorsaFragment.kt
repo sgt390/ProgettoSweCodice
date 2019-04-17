@@ -48,7 +48,7 @@ class BorsaFragment : Fragment() {
 
 
         filter.setOnClickListener{
-            val builder = AlertDialog.Builder(activity)
+            val builder = AlertDialog.Builder(ContextThemeWrapper(context,R.style.Theme_AppCompat_Dialog))
             val pickerLayout =inflater.inflate(R.layout.simple_number_picker,null)
             val picker=pickerLayout.findViewById<NumberPicker>(R.id.number_picker)
             picker.minValue=0
@@ -63,7 +63,6 @@ class BorsaFragment : Fragment() {
             }
 
            with(builder) {
-               setTitle("Set filter")
                setView(pickerLayout)
                setPositiveButton("Confirm",confirmFilter)
                setNegativeButton("Cancel",cancelFilter)
