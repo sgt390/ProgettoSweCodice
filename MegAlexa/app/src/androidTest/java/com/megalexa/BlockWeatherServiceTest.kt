@@ -43,7 +43,7 @@ class BlockWeatherServiceTest {
         val json = BlockWeatherService.convertToJSON(expected)
         val block = BlockWeatherService.convertFromJSON(json)
 
-        assertTrue(block.APIKey().equals("4b1ea0b33edc40ba538b366b98484801") &&
+        assertTrue(block.getApiKey().equals("4b1ea0b33edc40ba538b366b98484801") &&
                     block.getLatitude().equals("45.4064") &&
                     block.getLongitude().equals("11.8768"))
     }

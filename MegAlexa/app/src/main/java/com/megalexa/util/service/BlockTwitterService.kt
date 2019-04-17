@@ -11,14 +11,7 @@ object BlockTwitterService :BlockService() {
 
     /*
     override fun convertFromJSON(jsonObject: JSONObject): BlockTwitter {
-        val access_token_key = json.getJSONObject("config").getString("access_token_key")
-        val access_token_secret = json.getJSONObject("config").getString("access_token_secret")
-        val consumer_key = json.getJSONObject("config").getString("consumer_key")
-        val consumer_secret = json.getJSONObject("config").getString("consumer_secret")
-        val screenName = json.getJSONObject("config").getString("screenName")
-
-        return BlockTwitter(access_token_key,access_token_secret,consumer_key
-                            consumer_secret,screenName)
+        return BlockTwitter(json.getJSONObject("config").getString("screenName"))
     }
 
     override fun <BlockTwitter> convertToJSON(t: BlockTwitter): JSONObject {
@@ -26,11 +19,13 @@ object BlockTwitterService :BlockService() {
         val allBlock = JSONObject()
         allBlock.put("blockType", "Twitter")
         val config = JSONObject()
-        config.put("access_token_key", blockTwitter.get)
-        config.put("access_token_secret", blockTwitter.get)
-        config.put("consumer_key", blockTwitter.get)
-        config.put("consumer_secret", blockTwitter.get)
-        config.put("screenName", blockTwitter.get)
+        //le 4 seguenti chiavi come campi statici nella classe blocco
+            dato che sempre uguali(?)
+        config.put("access_token_key", blockTwitter.getAccessKey())
+        config.put("access_token_secret", blockTwitter.getAccessSecret())
+        config.put("consumer_key", blockTwitter.getConsumerKey())
+        config.put("consumer_secret", blockTwitter.getConsumerSecret())
+        config.put("screenName", blockTwitter.getScreenName())
         allBlock.put("config", config)
         return allBlock
     }

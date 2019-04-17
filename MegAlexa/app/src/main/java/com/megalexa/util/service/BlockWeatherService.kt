@@ -22,7 +22,7 @@ object BlockWeatherService :BlockService() {
         val allBlock = JSONObject()
         allBlock.put("blockType", "Weather")
         val config = JSONObject()
-        config.put("APIKey", blockWeather.apiKey())
+        config.put("APIKey", blockWeather.getApiKey())
         config.put("Latitude", blockWeather.getLatitude())
         config.put("Longitude", blockWeather.getLongitude())
         allBlock.put("config", config)

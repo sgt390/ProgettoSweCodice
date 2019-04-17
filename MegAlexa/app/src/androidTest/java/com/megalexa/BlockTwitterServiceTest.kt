@@ -31,10 +31,7 @@ class BlockTwitterServiceTest {
     /*
     @Test
     fun validToJSON() {
-        val expected = BlockTwitter("1110935101561556992-b9BpCfXw3NqSbzhEpMtvmvbVMqGE2N",
-                            "OMVvSqVFjCOC0uFQkelIycpvCgUvOWFht8COIkXSUWXUH","Bdc0zcGkYm6ykEoiw4NJUZxMO",
-                            "FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP","@BillGates")
-
+        val expected = BlockTwitter("@BillGates")
         val json = BlockTwitterService.convertToJSON(expected)
         val config = "{\"blockType\":\"Twitter\",\"config\":{\"access_token_key\":
                 \"1110935101561556992-b9BpCfXw3NqSbzhEpMtvmvbVMqGE2N\",\"access_token_secret\":
@@ -47,18 +44,15 @@ class BlockTwitterServiceTest {
 
     @Test
     fun validFromJSON() {
-        val expected = BlockTwitter("1110935101561556992-b9BpCfXw3NqSbzhEpMtvmvbVMqGE2N",
-                            "OMVvSqVFjCOC0uFQkelIycpvCgUvOWFht8COIkXSUWXUH","Bdc0zcGkYm6ykEoiw4NJUZxMO",
-                            "FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP","@BillGates")
-
+        val expected = BlockTwitter("@BillGates")
         val json = BlockTwitterService.convertToJSON(expected)
         val block = BlockTwitterService.convertFromJSON(json)
 
-        assertTrue(block.get.equals("1110935101561556992-b9BpCfXw3NqSbzhEpMtvmvbVMqGE2N") &&
-                    block.get.equals("OMVvSqVFjCOC0uFQkelIycpvCgUvOWFht8COIkXSUWXUH") &&
-                    block.get.equals("Bdc0zcGkYm6ykEoiw4NJUZxMO") &&
-                    block.get.equals("FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP") &&
-                    block.get.equals("@BillGates"))
+        assertTrue(block.getAccessKey().equals("1110935101561556992-b9BpCfXw3NqSbzhEpMtvmvbVMqGE2N") &&
+                    block.getAccessSecret().equals("OMVvSqVFjCOC0uFQkelIycpvCgUvOWFht8COIkXSUWXUH") &&
+                    block.getConsumerKey().equals("Bdc0zcGkYm6ykEoiw4NJUZxMO") &&
+                    block.getConsumerSecret().equals("FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP") &&
+                    block.getScreenName().equals("@BillGates"))
     }
      */
 }
