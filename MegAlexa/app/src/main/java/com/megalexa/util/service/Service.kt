@@ -51,7 +51,6 @@ abstract class Service : JSONConverter{
     }
 
     open fun postOperation(jsonObject: JSONObject) {
-
         val url= "$APIUrl$resource"
         val myURL = URL(url)
         with(myURL.openConnection() as HttpsURLConnection) {

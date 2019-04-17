@@ -4,11 +4,12 @@ package com.megalexa
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import android.util.Log
-import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.models.blocks.Filter
 import com.megalexa.models.workflow.Workflow
+import com.megalexa.util.service.UserService
 import com.megalexa.util.service.WorkflowService
+import org.json.JSONObject
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -35,8 +36,9 @@ class PostWorkflowTest {
         Log.d("fhfhhfhfhhfhf",json.toString())
         json.put("userID","amzn1.account.AEUNVRHMHE2VKRFZWW72HELB4ZBQ")
         WorkflowService.postOperation(json)
-
+        Log.d("json da copiare", json.toString())
         println(json.toString())
+
     }
 
 
