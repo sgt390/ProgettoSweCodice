@@ -38,15 +38,6 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
     }
 
 
-    fun getBlocks(name: String) : ArrayList<String> {
-        val blocks = app.getBlock(name)
-        val blocksType : ArrayList<String> = ArrayList()
-        for(item in blocks!!) {
-            blocksType.add(item.getInformation())
-        }
-        return blocksType
-    }
-
     fun isUserPresent(paramID:String):Boolean {
         if(app.getUser().getID()==paramID)
             return true

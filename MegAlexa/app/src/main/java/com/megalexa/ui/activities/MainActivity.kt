@@ -44,9 +44,9 @@ class MainActivity : AppCompatActivity() {
 
                 viewModel.setUser(result.user)
                 viewModel.loadAppContext()
-              /*if(!(viewModel.isUserPresent(result.user.userId))) {
-                  viewModel.saveUser(result.user.userId, result.user.userName, result.user.userEmail)
-              }*/
+              if(!(viewModel.isUserPresent(result.user.userId))) {
+                  viewModel.saveUser()
+              }
                 startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
             }
             /* There was an error during the attempt to authorize the application. */
