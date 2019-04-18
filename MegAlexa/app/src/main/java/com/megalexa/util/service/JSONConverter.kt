@@ -4,8 +4,8 @@ import org.json.JSONObject
 
 interface JSONConverter {
 
-    fun <T> convertToJSON(t:T): JSONObject
+    fun <T> convertToJSON(t:T, userID : String = "undefined"): JSONObject
 
-    fun convertFromJSON(jsonObject: JSONObject):Any
+    open fun convertFromJSON(jsonObject: JSONObject):Any
 
 }

@@ -9,7 +9,7 @@ object BlockCalendarService: BlockService() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun <T> convertToJSON(t: T): JSONObject {
+    override fun <T> convertToJSON(t: T, userID : String): JSONObject {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

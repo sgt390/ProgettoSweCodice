@@ -9,7 +9,7 @@ object FilterService: BlockService() {
         return Filter(limit)
     }
 
-    override fun <Filter> convertToJSON(t: Filter): JSONObject {
+    override fun <Filter> convertToJSON(t: Filter, userID : String): JSONObject {
         val filter = t as com.megalexa.models.blocks.Filter
         val allBlock = JSONObject()
         allBlock.put("blockType", "Filter" )

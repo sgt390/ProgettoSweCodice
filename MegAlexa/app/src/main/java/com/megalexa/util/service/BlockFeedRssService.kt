@@ -9,7 +9,7 @@ object BlockFeedRssService :BlockService() {
         return BlockFeedRss(jsonObject.getJSONObject("config").getString("URL"))
     }
 
-    override fun <BlockFeedRss> convertToJSON(t: BlockFeedRss): JSONObject {
+    override fun <BlockFeedRss> convertToJSON(t: BlockFeedRss, userID: String): JSONObject {
         val blockFeedRss= t as com.megalexa.models.blocks.BlockFeedRss
         val allBlock = JSONObject()
         allBlock.put("blockType", "FeedRSS" )
