@@ -13,6 +13,7 @@
 
 package com.megalexa.models.blocks
 
+import android.content.res.Resources
 import android.util.Log
 import com.megalexa.R
 import com.megalexa.models.connectors.Connector
@@ -22,17 +23,17 @@ import org.json.JSONObject
 
 class BlockTwitter(private val screenName: String): Block,Filtrable {
 
-    private val consumer_key = R.string.consumer_api_key_twitter //"INSERT CONSUMER API KEYS"
-    private val consumer_secret = R.string.consumer_api_key_secret_twitter //"INSERT CONSUMER API KEYS SECRET"
-    private val access_token_key = R.string.access_token_twitter //"INSERT ACCESS TOKEN"
-    private val access_token_secret = R.string.access_token_secret_twitter //"INSERT ACCESS TOKEN SECRET"
+    private val consumer_key = "INSERT CONSUMER API KEYS"
+    private val consumer_secret = "INSERT CONSUMER API KEYS SECRET"
+    private val access_token_key = "INSERT ACCESS TOKEN"
+    private val access_token_secret = "INSERT ACCESS TOKEN SECRET"
 
     override fun getInformation():String {
         return "Twitter block created "
     }
 
     fun getAccessKey()=access_token_key
-    fun getAccessSecret()=consumer_secret
+    fun getAccessSecret()=access_token_secret
     fun getConsumerKey()=consumer_key
     fun getConsumerSecret()=consumer_secret
     fun getScreenName() = screenName

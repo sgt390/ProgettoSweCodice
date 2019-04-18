@@ -34,10 +34,10 @@ class TwitterFragment: Fragment() {
     var screenName : String = ""
     private var cardinality=10
 
-    val consumer_api_key = R.string.consumer_api_key_twitter //"INSERT CONSUMER API KEY IN RES/VALUE/STRINGS"
-    val consumer_api_secret_key = R.string.consumer_api_key_secret_twitter //"INSERT CONSUMER API KEYS SECRET IN RES/VALUE/STRINGS"
-    val access_token_twit = R.string.access_token_twitter //"INSERT ACCESS TOKEN"
-    val access_token_twit_secret = R.string.access_token_secret_twitter //"INSERT ACCESS TOKEN SECRET"
+    val consumer_api_key = "INSERT CONSUMER API KEY IN RES/VALUE/STRINGS"
+    val consumer_api_secret_key = "INSERT CONSUMER API KEYS SECRET IN RES/VALUE/STRINGS"
+    val access_token_twit = "INSERT ACCESS TOKEN"
+    val access_token_twit_secret = "INSERT ACCESS TOKEN SECRET"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.twitter_fragment_layout, container, false)
