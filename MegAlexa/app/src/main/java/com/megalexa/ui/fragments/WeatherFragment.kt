@@ -11,6 +11,8 @@ import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.google.gson.JsonObject
 import com.megalexa.R
 import com.megalexa.ui.activities.CreateBlockActivity
@@ -33,8 +35,9 @@ class WeatherFragment: Fragment(){
             }
             else{
                 city= editText.text.toString()
-                val activity= activity as CreateBlockActivity
-                activity.onFragmentClick(this)
+find_weather()
+//                val activity= activity as CreateBlockActivity
+//                activity.onFragmentClick(this)
             }
 
         }
@@ -44,6 +47,21 @@ find_weather()
     }
 
     private fun find_weather() {
+
+        val queue = Volley.newRequestQueue(context)
+        val url = "https://api.openweathermap.org/data/2.5/weather?q=Padova&APPID=4b1ea0b33edc40ba538b366b98484801"
+
+// Request a string response from the provided URL.
+        val stringRequest = StringRequest(Request.Method.GET, url,
+            Response.Listener<String> { response ->
+                // Display the first 500 characters of the response string.
+                 Toast.makeText(context,"Response is: ${response.substring(0, 500)}",Toast.LENGTH_LONG).show()
+            },
+            Response.ErrorListener { Toast.makeText(context,"error",Toast.LENGTH_LONG).show() })
+
+// Add the request to the RequestQueue.
+        queue.add(stringRequest)
+
 //        val api ="api.openweathermap.org/data/2.5/weather?q="
 //        var url: URL = api + city + "&APPID=4b1ea0b33edc40ba538b366b98484801"
 //
