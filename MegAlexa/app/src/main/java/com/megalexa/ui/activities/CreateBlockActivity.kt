@@ -96,7 +96,10 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 8-> {
-                    //TODO() ADD LIST ACTIVITY
+                    fragment = TwitterFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled=false
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
             }
         }
@@ -177,6 +180,25 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             listView.isEnabled=true
             finish()
 
+        }else if(sender is TwitterFragment){
+            val hashtag = sender.getTwit()
+            val access_token_key = sender.getAccess_token_()
+            val access_token_secret = sender.getAccess_token_twit_()
+            val consumer_key = sender.getConsumer_api()
+            val consumer_secret = sender.getConsumer_api_secret()
+            Toast.makeText(this,hashtag,Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("cardinality",sender.getCardinality())
+            intent.putExtra("block_type", "Twitter")
+            intent.putExtra("access_token_key",access_token_key)
+            intent.putExtra("access_token_secret",access_token_secret)
+            intent.putExtra("consumer_key",consumer_key)
+            intent.putExtra("consumer_secret",consumer_secret)
+            intent.putExtra("screenName",hashtag)
+            setResult(Activity.RESULT_OK,intent)
+            listView.isEnabled=true
+            finish()
+
         }
 
     }
@@ -205,15 +227,16 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             Pair(list[4], R.drawable.ic_news),
             Pair(list[5], R.drawable.ic_sport),
             Pair(list[6], R.drawable.ic_news),
-            Pair(list[7], R.drawable.ic_news)
-        )
+            Pair(list[7], R.drawable.ic_news),
+            Pair(list[8], R.drawable.ic_text)
+            )
 
     }
 
     private fun getTitlesList(): List<String> {
 
         return listOf("FeedRSS","Text Block","PIN",
-            "Read Email","News","Sport News","Crypto News","Stock News")
+            "Read Email","News","Sport News","Crypto News","Stock News","Read Tweet")
 
     }
 
