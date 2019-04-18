@@ -10,7 +10,7 @@ object BlockPinService : BlockService() {
         return BlockPin(pin)
     }
 
-    override fun <BlockPin> convertToJSON(t: BlockPin, userID: String): JSONObject {
+    override fun <BlockPin> convertToJSON(t: BlockPin): JSONObject {
         val pinBlock = t as com.megalexa.models.blocks.BlockPin
         val allBlock = JSONObject()
         allBlock.put("blockType", "PIN")

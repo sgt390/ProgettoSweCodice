@@ -53,7 +53,7 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         val res=isUnique(workflow.getName())
         if(res) {
             app.addWorkflow(workflow)
-            val json = WorkflowService.convertToJSON(workflow, app.getUser().getID())
+            val json = WorkflowService.convertToJSON(workflow)
             Log.d("saveWorkflow", json.toString())
             WorkflowService.postOperation(json)
         }
@@ -120,7 +120,7 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                val index= list.indexOf(item)
                list.remove(item)
                list.add(index,this.workflow)
-               val json = WorkflowService.convertToJSON(workflow, app.getUser().getID())
+               val json = WorkflowService.convertToJSON(workflow)
                //WorkflowService.putOperation(json)
            }
         }

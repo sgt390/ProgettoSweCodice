@@ -9,7 +9,7 @@ object BlockBorsaService :BlockService() {
         return BlockBorsa(jsonObject.getJSONObject("config").getString("URL"))
     }
 
-    override fun <BlockBorsa> convertToJSON(t: BlockBorsa, userID : String): JSONObject {
+    override fun <BlockBorsa> convertToJSON(t: BlockBorsa): JSONObject {
         val blockBorsa = t as com.megalexa.models.blocks.BlockBorsa
         val allBlock = JSONObject()
         allBlock.put("blockType", "Borsa")

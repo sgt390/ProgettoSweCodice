@@ -2,6 +2,7 @@ package com.megalexa.util.service
 
 
 import android.speech.tts.TextToSpeech
+import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.*
 import com.megalexa.models.workflow.Workflow
 import org.json.JSONArray
@@ -41,43 +42,43 @@ object WorkflowService: Service() {
         return workflow
     }
 
-    override fun <Workflow> convertToJSON(t: Workflow, userID: String): JSONObject {
+    override fun <Workflow> convertToJSON(t: Workflow): JSONObject {
         val workflow= t as com.megalexa.models.workflow.Workflow
         val jsonArray = JSONArray()
         val blocklist= workflow.getBlocks()
         for(block in blocklist) {
-            jsonArray.put(convertBlock(block, userID))
+            jsonArray.put(convertBlock(block))
         }
         val jsonObject= JSONObject()
-        jsonObject.put("userID", userID)
+        jsonObject.put("userID", MegAlexa.getInstance().getUser().getID())
         jsonObject.put("workflowName", workflow.getName())
         jsonObject.put("workflow",jsonArray)
         return jsonObject
     }
 
-    private fun convertBlock(block: Block, userID : String):JSONObject{
+    private fun convertBlock(block: Block):JSONObject{
         var result=JSONObject()
         when(block) {
 
-            is BlockTextToSpeech -> result=BlockTextToSpeechService.convertToJSON(block, userID)
+            is BlockTextToSpeech -> result=BlockTextToSpeechService.convertToJSON(block)
 
-            is BlockFeedRss -> result=BlockFeedRssService.convertToJSON(block, userID)
+            is BlockFeedRss -> result=BlockFeedRssService.convertToJSON(block)
 
-            is BlockBorsa -> result=BlockBorsaService.convertToJSON(block, userID)
+            is BlockBorsa -> result=BlockBorsaService.convertToJSON(block)
 
-            is BlockCrypto -> result=BlockCryptoService.convertToJSON(block, userID)
+            is BlockCrypto -> result=BlockCryptoService.convertToJSON(block)
 
-            is BlockPin -> result=BlockPinService.convertToJSON(block, userID)
+            is BlockPin -> result=BlockPinService.convertToJSON(block)
 
-            is BlockSport -> result=BlockSportService.convertToJSON(block, userID)
+            is BlockSport -> result=BlockSportService.convertToJSON(block)
 
-            is Filter ->result= FilterService.convertToJSON(block, userID)
+            is Filter ->result= FilterService.convertToJSON(block)
 
-            is BlockNews -> result=BlockNewsService.convertToJSON(block, userID)
+            is BlockNews -> result=BlockNewsService.convertToJSON(block)
 
-            is BlockCalendar -> result= BlockCalendarService.convertToJSON(block, userID)
+            is BlockCalendar -> result= BlockCalendarService.convertToJSON(block)
 
-            is BlockReadEmail -> result =BlockReadEmailService.convertToJSON(block, userID)
+            is BlockReadEmail -> result =BlockReadEmailService.convertToJSON(block)
 
         }
         return result

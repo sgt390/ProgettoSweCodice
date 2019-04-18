@@ -36,7 +36,7 @@ object MegAlexaService:Service() {
         return MegAlexa.workflows(workflows).user(user).build()
     }
 
-    override fun <MegAlexa> convertToJSON(t: MegAlexa, userID : String): JSONObject {
+    override fun <MegAlexa> convertToJSON(t: MegAlexa): JSONObject {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

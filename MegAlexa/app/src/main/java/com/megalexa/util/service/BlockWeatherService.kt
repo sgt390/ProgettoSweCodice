@@ -9,7 +9,7 @@ object BlockWeatherService :BlockService() {
         TODO()
     }
 
-    override fun <T> convertToJSON(t: T, userID : String): JSONObject {
+    override fun <T> convertToJSON(t: T): JSONObject {
         TODO()
     }
 }

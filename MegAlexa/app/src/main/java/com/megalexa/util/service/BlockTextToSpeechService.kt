@@ -9,7 +9,7 @@ object BlockTextToSpeechService : BlockService() {
         return BlockTextToSpeech(jsonObject.getJSONObject("config").getString("TextToSpeech"))
     }
 
-    override fun <BlockTextToSpeech> convertToJSON(t: BlockTextToSpeech, userID : String): JSONObject {
+    override fun <BlockTextToSpeech> convertToJSON(t: BlockTextToSpeech): JSONObject {
         val textBlock = t as com.megalexa.models.blocks.BlockTextToSpeech
         val allBlock = JSONObject()
         allBlock.put("blockType", "TextToSpeech")

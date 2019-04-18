@@ -10,7 +10,7 @@ object UserService: Service() {
         return  com.megalexa.models.User(jsonObject.get("userID").toString(),jsonObject.get("name").toString(),jsonObject.get("email").toString())
     }
 
-    override fun <User> convertToJSON(t: User, userID : String): JSONObject {
+    override fun <User> convertToJSON(t: User): JSONObject {
         val userJ = JSONObject()
         val user= t as com.megalexa.models.User
         userJ.put("userID", user.getID())

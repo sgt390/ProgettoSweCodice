@@ -10,7 +10,7 @@ object BlockCryptoService :BlockService() {
         return BlockCrypto(jsonObject.getJSONObject("config").getString("URL"))
     }
 
-    override fun <BlockCrypto> convertToJSON(t: BlockCrypto, userID : String): JSONObject {
+    override fun <BlockCrypto> convertToJSON(t: BlockCrypto): JSONObject {
         val blockCrypto = t as com.megalexa.models.blocks.BlockCrypto
         val allBlock = JSONObject()
         allBlock.put("blockType", "Crypto")

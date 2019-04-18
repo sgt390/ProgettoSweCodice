@@ -8,7 +8,7 @@ object BlockReadEmailService:BlockService() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun <BlockReadEmail> convertToJSON(t: BlockReadEmail, userID : String): JSONObject {
+    override fun <BlockReadEmail> convertToJSON(t: BlockReadEmail): JSONObject {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
