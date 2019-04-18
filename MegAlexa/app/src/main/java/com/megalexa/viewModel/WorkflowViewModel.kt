@@ -99,6 +99,10 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                 block=BlockBorsa(param)
                 workflow.addBlock(block)
             }
+            "Twitter" -> {
+                block=BlockTwitter(param)
+                workflow.addBlock(block)
+            }
 
         }
         refreshBlocks()
