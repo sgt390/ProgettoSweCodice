@@ -31,6 +31,13 @@ class BlockTwitter(private val screenName: String): Block,Filtrable {
         return "Twitter block created "
     }
 
+    fun getAccessKey()=access_token_key
+    fun getAccessSecret()=consumer_secret
+    fun getConsumerKey()=consumer_key
+    fun getConsumerSecret()=consumer_secret
+    fun getScreenName() = screenName
+
+
     override fun toJSON() : JSONObject {
         val allBlock = JSONObject()
         allBlock.put("blockType", "Twitter" )
