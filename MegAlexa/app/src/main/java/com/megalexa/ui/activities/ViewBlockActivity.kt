@@ -1,7 +1,6 @@
 package com.megalexa.ui.activities
 
 import android.app.Activity
-import android.app.Dialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.DialogInterface
@@ -13,11 +12,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.ContextThemeWrapper
 import android.view.View
-import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.User
@@ -25,9 +21,9 @@ import com.megalexa.R
 import com.megalexa.ui.adapters.BlockViewAdapter
 import com.megalexa.util.InjectorUtils
 import com.megalexa.viewModel.WorkflowViewModel
-import kotlinx.android.synthetic.main.activity_create_workflow.*
 import kotlinx.android.synthetic.main.activity_view_block.*
-import org.jetbrains.anko.AlertBuilderFactory
+import android.support.v7.widget.helper.ItemTouchHelper;
+import com.megalexa.util.view.ItemMoveCallback
 
 class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
     companion object {
@@ -60,6 +56,9 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         viewModel.setFromExistingWorkflow(title)
         val observer = Observer<ArrayList<String>>{
             val adapter = BlockViewAdapter(it!!, this@ViewBlockActivity)
+            val callback= ItemMoveCallback(adapter,this,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
+            val touchHelper= ItemTouchHelper(callback)
+            touchHelper.attachToRecyclerView(rec_view)
             runOnUiThread{
                 rec_view.adapter= adapter
             }

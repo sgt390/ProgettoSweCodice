@@ -1,6 +1,7 @@
 package com.megalexa.ui.adapters
 
 import android.content.Context
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,8 +11,11 @@ import android.widget.TextView
 import com.megalexa.R
 import com.megalexa.ui.activities.ViewBlockActivity
 import com.megalexa.util.view.ItemClickListener
+import com.megalexa.util.view.ItemMoveCallback
+import java.util.*
 
 class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): RecyclerView.Adapter<BlockViewHolder>(){
+
 
     override fun onBindViewHolder(holder: BlockViewHolder, position: Int) {
         holder.tView?.text = dataset[position]
@@ -41,17 +45,35 @@ class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): Rec
             )
         )
     }
+    /**
+     * Function called to swap dragged items
+     */
+    fun swapItems(fromPosition: Int, toPosition: Int) {
+        if (fromPosition < toPosition) {
+            for (i in fromPosition..toPosition - 1) {
+                dataset.set(i, dataset.set(i+1, dataset.get(i)))
+            }
+        } else {
+            for (i in fromPosition..toPosition + 1) {
+                dataset.set(i, dataset.set(i-1, dataset.get(i)))
+            }
+        }
+
+        notifyItemMoved(fromPosition, toPosition)
+    }
 
 }
 
-class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener,View.OnLongClickListener{
+
+
+
+class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener{
 
     val  tView = v.findViewById<TextView>(R.id.workflow_name)
     private lateinit var itemClickListener:ItemClickListener
 
     init{
         tView?.setOnClickListener(this)
-        tView?.setOnLongClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -60,11 +82,6 @@ class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener,
 
     fun setItemClickListener(itemClickListener: ItemClickListener) {
         this.itemClickListener= itemClickListener
-    }
-
-    override fun onLongClick(v: View?): Boolean {
-        itemClickListener.onLongClick(v,adapterPosition)
-        return true
     }
 
 }
