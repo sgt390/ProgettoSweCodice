@@ -126,6 +126,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         builder.show()
     }
 
+
     fun notifyDeleteBlockInteraction(position: Int) {
 
 
@@ -146,5 +147,4 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
         builder.show()
     }
-
 }
