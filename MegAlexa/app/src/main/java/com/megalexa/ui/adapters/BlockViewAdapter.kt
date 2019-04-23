@@ -1,12 +1,16 @@
 package com.megalexa.ui.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import com.megalexa.R
 import com.megalexa.ui.activities.ViewBlockActivity
@@ -36,14 +40,26 @@ class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): Rec
         return dataset.size
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BlockViewHolder {
-        return BlockViewHolder(
+
+        val holder= BlockViewHolder(
             LayoutInflater.from(context).inflate(
-                R.layout.item_workflow,
+                R.layout.block_item,
                 parent,
                 false
             )
         )
+
+        holder.button.setOnTouchListener{_,event ->
+
+            if (event.actionMasked==MotionEvent.ACTION_DOWN && context is ViewBlockActivity) {
+                context.touchHelper?.startDrag(holder)
+            }
+            false
+        }
+
+        return holder
     }
     /**
      * Function called to swap dragged items
@@ -62,6 +78,7 @@ class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): Rec
         notifyItemMoved(fromPosition, toPosition)
     }
 
+
 }
 
 
@@ -69,8 +86,11 @@ class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): Rec
 
 class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener{
 
-    val  tView = v.findViewById<TextView>(R.id.workflow_name)
+    val  tView = v.findViewById<TextView>(R.id.block_name)
+    val  button= v.findViewById<ImageView>(R.id.mv_block)
     private lateinit var itemClickListener:ItemClickListener
+
+
 
     init{
         tView?.setOnClickListener(this)

@@ -30,6 +30,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         private lateinit var viewModel : WorkflowViewModel
     }
     private lateinit var rec_view: RecyclerView
+    var touchHelper:ItemTouchHelper?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,8 +58,8 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         val observer = Observer<ArrayList<String>>{
             val adapter = BlockViewAdapter(it!!, this@ViewBlockActivity)
             val callback= ItemMoveCallback(adapter,this,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
-            val touchHelper= ItemTouchHelper(callback)
-            touchHelper.attachToRecyclerView(rec_view)
+            touchHelper= ItemTouchHelper(callback)
+            touchHelper?.attachToRecyclerView(rec_view)
             runOnUiThread{
                 rec_view.adapter= adapter
             }
