@@ -62,7 +62,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                 return
             }
             override fun onError(p0: AuthError?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                return
             }
         })
 
@@ -83,7 +83,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                             val newIntent = Intent(this, CreateBlockActivity::class.java)
                             startActivityForResult(newIntent,1)
                         }
-
                     }
                 }
             button_save_workflow -> {

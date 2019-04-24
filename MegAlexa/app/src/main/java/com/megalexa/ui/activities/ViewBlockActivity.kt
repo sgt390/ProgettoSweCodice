@@ -55,6 +55,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
         viewModel = ViewModelProviders.of(this,factory).get(WorkflowViewModel::class.java)
         viewModel.setFromExistingWorkflow(title)
+
         val observer = Observer<ArrayList<String>>{
             val adapter = BlockViewAdapter(it!!, this@ViewBlockActivity)
             val callback= ItemMoveCallback(adapter,this,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
@@ -70,10 +71,10 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         button_cancel_modify.setOnClickListener(this)
         User.fetch(this, object: Listener<User, AuthError> {
             override fun onSuccess(p0: User) {
-                viewModel.refreshBlocks()
+                return
             }
             override fun onError(p0: AuthError?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                return
             }
         })
 
@@ -81,6 +82,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when(v) {
+
             button_confirm_modification -> {
                 val name= findViewById<TextView>(R.id.workflow_title)
                 viewModel.setName(name.text.toString())

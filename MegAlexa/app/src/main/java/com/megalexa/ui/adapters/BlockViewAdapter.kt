@@ -89,7 +89,7 @@ class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): Rec
 }
 
 
-class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener,View.OnLongClickListener{
+class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener,View.OnLongClickListener {
 
     val  tView = v.findViewById<TextView>(R.id.block_name)
     val  button= v.findViewById<ImageView>(R.id.mv_block)

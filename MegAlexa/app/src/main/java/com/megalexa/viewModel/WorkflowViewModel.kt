@@ -109,18 +109,20 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
 
     fun setName(param : String) {
         this.workflowName = param
-        workflow.setName(param)
     }
 
     fun updateWorkflow() {
+
         val list = app.getWorkflowList()
         for(item in list) {
-           if(item.getName()== workflowName) {
+           if(item.getName()== workflow.getName()) {
+               workflow.setName(workflowName)
                val index= list.indexOf(item)
+               //WorkflowService.deleteOperation(WorkflowService.convertToJSON(item))
                list.remove(item)
                list.add(index,this.workflow)
                val json = WorkflowService.convertToJSON(workflow)
-               //WorkflowService.putOperation(json)
+               //WorkflowService.postOperation(json)
            }
         }
 
@@ -130,12 +132,14 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
             val list = app.getWorkflowList()
             for (item in list) {
                 if(item.getName()== wName) {
-                    this.workflow= item
+                    this.workflow= Workflow.clone(item)
                     this.workflowName=wName
                 }
 
             }
     }
+
+
     fun removeBlockAt(position: Int) {
         val list = workflow.getBlocks()
         list.removeAt(position)
