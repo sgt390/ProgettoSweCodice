@@ -66,9 +66,4 @@
     <string name="cnbc">CNBC</string>
     <string name="wallstreet">Wall Street</string>
     <string name="ansa">Ansa</string>
-    <string name="consumer_api_key_twitter">INSERT CONSUMER API KEY</string>
-    <string name="consumer_api_key_secret_twitter">INSERT CONSUMER API KEY SECRET</string>
-    <string name="access_token_twitter">INSERT ACCESS TOKEN</string>
-    <string name="access_token_secret_twitter">INSERT ACCESS TOKEN SECRET</string>
-
 </resources>
