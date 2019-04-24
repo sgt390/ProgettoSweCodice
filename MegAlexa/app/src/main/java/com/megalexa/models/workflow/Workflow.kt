@@ -2,7 +2,6 @@ package com.megalexa.models.workflow
 
 
 import com.megalexa.models.blocks.Block
-import java.util.*
 import kotlin.collections.ArrayList
 
 class Workflow(private val name:String) {
@@ -52,10 +51,12 @@ class Workflow(private val name:String) {
     companion object {
         fun clone(workflow: Workflow): Workflow {
             val result= Workflow(workflow.getName())
-            val list= ArrayList<Block>()
-            result.setName(workflow.getName())
-            Collections.copy(list,workflow.getBlocks())
-            result.setBlocks(list)
+            Thread{
+                val arrayCopy = ArrayList<Block>()
+                arrayCopy.addAll(workflow.getBlocks())
+                result.setBlocks(arrayCopy)
+            }.start()
+
             return result
 
         }

@@ -37,7 +37,7 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                 names.add(item.getInformation())
             }
             blockNames.value= names
-        }, 5000)
+        }, 0)
     }
 
     fun refreshBlocks() {
@@ -114,18 +114,18 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     fun updateWorkflow() {
 
         val list = app.getWorkflowList()
-        for(item in list) {
-           if(item.getName()== workflow.getName()) {
-               workflow.setName(workflowName)
-               val index= list.indexOf(item)
-               //WorkflowService.deleteOperation(WorkflowService.convertToJSON(item))
-               list.remove(item)
-               list.add(index,this.workflow)
-               val json = WorkflowService.convertToJSON(workflow)
-               //WorkflowService.postOperation(json)
-           }
+        val iterator= list.iterator()
+        while (iterator.hasNext()) {
+             iterator.forEach {
+                 if (it.getName() == workflow.getName()) {
+                     iterator.remove()
+                     //WorkflowService.deleteOperation(WorkflowService.convertToJSON(iterator))
+                 }
+             }
+            workflow.setName(workflowName)
+            list.add(workflow)
         }
-
+        refreshBlocks()
     }
 
     fun setFromExistingWorkflow(wName: String) {
