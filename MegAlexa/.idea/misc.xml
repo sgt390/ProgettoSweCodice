@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/app/src/main/java/com/megalexa/util/view/OpenWeatherAPI.kt" />
-  </component>
   <component name="ProjectResources">
     <resource url="http://schemas.android.com/tools" location="$PROJECT_DIR$" />
     <resource url="urn:oasis:names:tc:xliff:document:1.2" location="$PROJECT_DIR$" />

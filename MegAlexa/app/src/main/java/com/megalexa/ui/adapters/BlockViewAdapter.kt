@@ -1,18 +1,28 @@
 package com.megalexa.ui.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.megalexa.R
+import com.megalexa.ui.activities.CreateWorkflowActivity
 import com.megalexa.ui.activities.ViewBlockActivity
 import com.megalexa.util.view.ItemClickListener
+import com.megalexa.util.view.ItemMoveCallback
+import java.util.*
 
 class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): RecyclerView.Adapter<BlockViewHolder>(){
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(holder: BlockViewHolder, position: Int) {
         holder.tView?.text = dataset[position]
 
@@ -22,10 +32,25 @@ class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): Rec
             }
 
             override fun onLongClick(view: View?, position: Int) {
-                val activity = context as ViewBlockActivity
-                activity.notifyDeleteBlockInteraction(position)
+
+                if(context is ViewBlockActivity) {
+                    context.notifyDeleteBlockInteraction(position)
+
+                }
+
+                if (context is CreateWorkflowActivity) {
+                    context.notifyDeleteBlockInteraction(position)
+                }
             }
         })
+
+        holder.button.setOnTouchListener{_,event ->
+
+            if (event.actionMasked==MotionEvent.ACTION_DOWN && context is ViewBlockActivity) {
+                context.touchHelper?.startDrag(holder)
+            }
+            false
+        }
     }
 
     override fun getItemCount(): Int {
@@ -33,21 +58,44 @@ class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): Rec
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BlockViewHolder {
+
         return BlockViewHolder(
             LayoutInflater.from(context).inflate(
-                R.layout.item_workflow,
+                R.layout.block_item,
                 parent,
                 false
             )
         )
+
     }
+    /**
+     * Function called to swap dragged items
+     */
+    fun swapItems(fromPosition: Int, toPosition: Int) {
+        if (fromPosition < toPosition) {
+            for (i in fromPosition..toPosition - 1) {
+                dataset.set(i, dataset.set(i+1, dataset.get(i)))
+            }
+        } else {
+            for (i in fromPosition..toPosition + 1) {
+                dataset.set(i, dataset.set(i-1, dataset.get(i)))
+            }
+        }
+
+        notifyItemMoved(fromPosition, toPosition)
+    }
+
 
 }
 
-class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener,View.OnLongClickListener{
 
-    val  tView = v.findViewById<TextView>(R.id.workflow_name)
+class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener,View.OnLongClickListener {
+
+    val  tView = v.findViewById<TextView>(R.id.block_name)
+    val  button= v.findViewById<ImageView>(R.id.mv_block)
     private lateinit var itemClickListener:ItemClickListener
+
+
 
     init{
         tView?.setOnClickListener(this)
@@ -58,13 +106,13 @@ class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener,
         itemClickListener.onClick(v,adapterPosition)
     }
 
-    fun setItemClickListener(itemClickListener: ItemClickListener) {
-        this.itemClickListener= itemClickListener
-    }
-
     override fun onLongClick(v: View?): Boolean {
         itemClickListener.onLongClick(v,adapterPosition)
         return true
+    }
+
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListener= itemClickListener
     }
 
 }

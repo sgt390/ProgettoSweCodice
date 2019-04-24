@@ -37,7 +37,7 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                 names.add(item.getInformation())
             }
             blockNames.value= names
-        }, 5000)
+        }, 0)
     }
 
     fun refreshBlocks() {
@@ -54,7 +54,6 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         if(res) {
             app.addWorkflow(workflow)
             val json = WorkflowService.convertToJSON(workflow)
-            Log.d("saveWorkflow", json.toString())
             WorkflowService.postOperation(json)
         }
     }
@@ -110,33 +109,37 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
 
     fun setName(param : String) {
         this.workflowName = param
-        workflow.setName(param)
     }
 
     fun updateWorkflow() {
-        val list = app.getWorkflowList()
-        for(item in list) {
-           if(item.getName()== workflowName) {
-               val index= list.indexOf(item)
-               list.remove(item)
-               list.add(index,this.workflow)
-               val json = WorkflowService.convertToJSON(workflow)
-               //WorkflowService.putOperation(json)
-           }
-        }
 
+        val list = app.getWorkflowList()
+        val iterator= list.iterator()
+        while (iterator.hasNext()) {
+             iterator.forEach {
+                 if (it.getName() == workflow.getName()) {
+                     iterator.remove()
+                     //WorkflowService.deleteOperation(WorkflowService.convertToJSON(iterator))
+                 }
+             }
+            workflow.setName(workflowName)
+            list.add(workflow)
+        }
+        refreshBlocks()
     }
 
     fun setFromExistingWorkflow(wName: String) {
             val list = app.getWorkflowList()
             for (item in list) {
                 if(item.getName()== wName) {
-                    this.workflow= item
+                    this.workflow= Workflow.clone(item)
                     this.workflowName=wName
                 }
 
             }
     }
+
+
     fun removeBlockAt(position: Int) {
         val list = workflow.getBlocks()
         list.removeAt(position)

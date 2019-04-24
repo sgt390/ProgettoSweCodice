@@ -3,12 +3,15 @@ package com.megalexa.ui.activities
 import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -18,12 +21,14 @@ import com.amazon.identity.auth.device.api.authorization.User
 import com.megalexa.R
 import com.megalexa.ui.adapters.BlockViewAdapter
 import com.megalexa.util.InjectorUtils
+import com.megalexa.util.view.ItemMoveCallback
 import com.megalexa.viewModel.WorkflowViewModel
 import kotlinx.android.synthetic.main.activity_create_workflow.*
 import kotlin.concurrent.thread
 
 class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
+    var touchHelper:ItemTouchHelper?= null
     private lateinit var rec_view: RecyclerView
     companion object {
         private lateinit var viewModel : WorkflowViewModel
@@ -37,7 +42,10 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         rec_view= findViewById(R.id.recyclerView_addedBlocksOnCreation)
         rec_view.layoutManager= LinearLayoutManager(this)
         val observer = Observer<ArrayList<String>>{
-            val adapter = BlockViewAdapter(it!!, applicationContext)
+            val adapter = BlockViewAdapter(it!!, this@CreateWorkflowActivity)
+            val callback= ItemMoveCallback(adapter,this,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
+            touchHelper= ItemTouchHelper(callback)
+            touchHelper?.attachToRecyclerView(rec_view)
             runOnUiThread{
                 rec_view.adapter= adapter
             }
@@ -51,10 +59,10 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         button_save_workflow.setOnClickListener(this)
         User.fetch(this, object: Listener<User, AuthError> {
             override fun onSuccess(p0: User) {
-                viewModel.refreshBlocks()
+                return
             }
             override fun onError(p0: AuthError?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                return
             }
         })
 
@@ -75,7 +83,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                             val newIntent = Intent(this, CreateBlockActivity::class.java)
                             startActivityForResult(newIntent,1)
                         }
-
                     }
                 }
             button_save_workflow -> {
@@ -99,7 +106,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                 val blockType = data!!.extras!!.getString("block_type")
 
                 when(blockType){
-                    //TODO() LET VIEWMODEL HANDLE THE ADDITION OF BLOCKS
                     "Text to speech" -> {
                         val text= data!!.extras!!.get("text").toString()
                         viewModel.addOneArgBlock("Text to speech",text)
@@ -151,6 +157,28 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
         }
 
+    }
+
+
+    fun notifyDeleteBlockInteraction(position: Int) {
+
+
+        val builder= android.support.v7.app.AlertDialog.Builder(ContextThemeWrapper(this@CreateWorkflowActivity,R.style.AlertDialogCustom))
+        val confirmDeletion={
+                _: DialogInterface, _: Int -> viewModel.removeBlockAt(position)
+        }
+        val cancelDeletion= {
+                _: DialogInterface, _:Int ->
+        }
+
+        with(builder) {
+
+            setTitle("Delete Block")
+            setPositiveButton("Confirm", confirmDeletion)
+            setNegativeButton("Cancel", cancelDeletion)
+        }
+
+        builder.show()
     }
 
 }
