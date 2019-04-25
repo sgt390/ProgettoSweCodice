@@ -4,12 +4,12 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import android.util.Log
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.*
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.service.WorkflowService
-import org.json.JSONObject
+
+import java.util.*
 
 class WorkflowViewModel(private val app: MegAlexa, private var workflowName:String) :ViewModel() {
 
@@ -139,7 +139,6 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
             }
     }
 
-
     fun removeBlockAt(position: Int) {
         val list = workflow.getBlocks()
         list.removeAt(position)
@@ -151,6 +150,11 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         list.add(Filter(cardinality))
     }
 
+    fun swapItems(fromPosition: Int, toPosition: Int) {
+        val list = workflow.getBlocks()
+        Collections.swap(list,fromPosition,toPosition)
+        refreshBlocks()
+    }
 }
 
 class WorkflowViewModelFactory(private val app: MegAlexa,private val workflowName: String):

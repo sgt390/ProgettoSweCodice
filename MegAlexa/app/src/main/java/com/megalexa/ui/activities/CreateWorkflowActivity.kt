@@ -42,13 +42,15 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         rec_view= findViewById(R.id.recyclerView_addedBlocksOnCreation)
         rec_view.layoutManager= LinearLayoutManager(this)
         val observer = Observer<ArrayList<String>>{
-            val adapter = BlockViewAdapter(it!!, this@CreateWorkflowActivity)
-            val callback= ItemMoveCallback(adapter,this,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
+            val adapter = BlockViewAdapter(this@CreateWorkflowActivity)
+            adapter.dataset=it!!
+            val callback= ItemMoveCallback(this@CreateWorkflowActivity,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
             touchHelper= ItemTouchHelper(callback)
             touchHelper?.attachToRecyclerView(rec_view)
             runOnUiThread{
                 rec_view.adapter= adapter
             }
+
         }
         viewModel.getLiveBlockNames().observe(this,observer)
 
@@ -96,7 +98,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
         }
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -159,10 +160,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
     }
 
-
     fun notifyDeleteBlockInteraction(position: Int) {
-
-
         val builder= android.support.v7.app.AlertDialog.Builder(ContextThemeWrapper(this@CreateWorkflowActivity,R.style.AlertDialogCustom))
         val confirmDeletion={
                 _: DialogInterface, _: Int -> viewModel.removeBlockAt(position)
@@ -170,15 +168,17 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         val cancelDeletion= {
                 _: DialogInterface, _:Int ->
         }
-
         with(builder) {
-
             setTitle("Delete Block")
             setPositiveButton("Confirm", confirmDeletion)
             setNegativeButton("Cancel", cancelDeletion)
         }
-
         builder.show()
     }
 
+    fun swapItems(fromPosition:Int, toPosition:Int) {
+        val mAdapter= rec_view.adapter as BlockViewAdapter
+        mAdapter.swapItems(fromPosition,toPosition)
+        viewModel.swapItems(fromPosition,toPosition)
+    }
 }

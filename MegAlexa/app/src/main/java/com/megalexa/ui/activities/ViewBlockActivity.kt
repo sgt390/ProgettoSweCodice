@@ -23,6 +23,7 @@ import com.megalexa.util.InjectorUtils
 import com.megalexa.viewModel.WorkflowViewModel
 import kotlinx.android.synthetic.main.activity_view_block.*
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.widget.Toast
 import com.megalexa.util.view.ItemMoveCallback
 
 class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
@@ -57,8 +58,9 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         viewModel.setFromExistingWorkflow(title)
 
         val observer = Observer<ArrayList<String>>{
-            val adapter = BlockViewAdapter(it!!, this@ViewBlockActivity)
-            val callback= ItemMoveCallback(adapter,this,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
+            val adapter = BlockViewAdapter(this@ViewBlockActivity)
+            adapter.dataset=it!!
+            val callback= ItemMoveCallback(this@ViewBlockActivity,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
             touchHelper= ItemTouchHelper(callback)
             touchHelper?.attachToRecyclerView(rec_view)
             runOnUiThread{
@@ -66,6 +68,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
             }
         }
         viewModel.getLiveBlockNames().observe(this,observer)
+
         button_confirm_modification.setOnClickListener(this)
         button_add_blockView.setOnClickListener(this)
         button_cancel_modify.setOnClickListener(this)
@@ -148,5 +151,12 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         }
 
         builder.show()
+    }
+
+
+    fun swapItems(fromPosition:Int, toPosition:Int) {
+        val mAdapter= rec_view.adapter as BlockViewAdapter
+        mAdapter.swapItems(fromPosition,toPosition)
+        viewModel.swapItems(fromPosition,toPosition)
     }
 }
