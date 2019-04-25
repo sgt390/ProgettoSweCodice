@@ -36,8 +36,6 @@ class WorkflowViewAdapter(private val dataset: ArrayList<String>, private val co
             }
         })
 
-
-
     }
 
     override fun getItemCount(): Int {
