@@ -43,7 +43,6 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
                 if (context is CreateWorkflowActivity) {
                     context.notifyDeleteBlockInteraction(position)
                 }
-
             }
 
             override fun onLongClick(view: View?, position: Int) {
@@ -53,7 +52,10 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
 
         holder.button.setOnTouchListener{_,event ->
 
-            if (event.actionMasked==MotionEvent.ACTION_DOWN && context is ViewBlockActivity) {
+            if (event.actionMasked==MotionEvent.ACTION_DOWN && (context is ViewBlockActivity)) {
+                context.touchHelper?.startDrag(holder)
+            }
+            if (event.actionMasked==MotionEvent.ACTION_DOWN && context is CreateWorkflowActivity) {
                 context.touchHelper?.startDrag(holder)
             }
             false
