@@ -107,6 +107,12 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
+                10 -> {
+                    fragment = TwitterReadTimeLineUser()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled=false
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+                }
             }
         }
 
@@ -205,6 +211,15 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             listView.isEnabled=true
             finish()
 
+        }else if(sender is TwitterReadTimeLineUser){
+            Toast.makeText(this, "Twitter read user timeline",Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,CreateWorkflowActivity::class.java)
+            intent.putExtra("username", "tim_cook")
+            intent.putExtra("block_type", "TwitterReadUserTimeline")
+            intent.putExtra("cardinality", sender.getCardinality())
+            setResult(Activity.RESULT_OK,intent)
+            listView.isEnabled=true
+            finish()
         }
 
     }
@@ -235,16 +250,15 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             Pair(list[6], R.drawable.ic_news),
             Pair(list[7], R.drawable.ic_news),
             Pair(list[8], R.drawable.ic_text),
-            Pair(list[9], R.drawable.ic_text)
+            Pair(list[9], R.drawable.ic_text),
+            Pair(list[10], R.drawable.ic_text)
             )
 
     }
 
     private fun getTitlesList(): List<String> {
-
         return listOf("FeedRSS","Text Block","PIN",
-            "Read Email","News","Sport News","Crypto News","Stock News","Read Tweet","Weather")
-
+            "Read Email","News","Sport News","Crypto News","Stock News","Read Tweet","Weather", "TwitterReadUserTimeline")
     }
 
 
