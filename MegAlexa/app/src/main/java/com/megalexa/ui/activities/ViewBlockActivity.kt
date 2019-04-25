@@ -68,6 +68,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
             }
         }
         viewModel.getLiveBlockNames().observe(this,observer)
+
         button_confirm_modification.setOnClickListener(this)
         button_add_blockView.setOnClickListener(this)
         button_cancel_modify.setOnClickListener(this)
@@ -156,5 +157,6 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
     fun swapItems(fromPosition:Int, toPosition:Int) {
         val mAdapter= rec_view.adapter as BlockViewAdapter
         mAdapter.swapItems(fromPosition,toPosition)
+        viewModel.swapItems(fromPosition,toPosition)
     }
 }

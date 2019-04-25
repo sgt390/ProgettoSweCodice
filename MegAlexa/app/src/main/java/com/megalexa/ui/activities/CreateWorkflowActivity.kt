@@ -29,7 +29,6 @@ import kotlin.concurrent.thread
 class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
     var touchHelper:ItemTouchHelper?= null
-    private lateinit var callback:ItemMoveCallback
     private lateinit var rec_view: RecyclerView
     companion object {
         private lateinit var viewModel : WorkflowViewModel
@@ -45,12 +44,13 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         val observer = Observer<ArrayList<String>>{
             val adapter = BlockViewAdapter(this@CreateWorkflowActivity)
             adapter.dataset=it!!
-            callback= ItemMoveCallback(this@CreateWorkflowActivity,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
+            val callback= ItemMoveCallback(this@CreateWorkflowActivity,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
             touchHelper= ItemTouchHelper(callback)
             touchHelper?.attachToRecyclerView(rec_view)
             runOnUiThread{
                 rec_view.adapter= adapter
             }
+
         }
         viewModel.getLiveBlockNames().observe(this,observer)
 
@@ -98,7 +98,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
         }
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -162,8 +161,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
     }
 
     fun notifyDeleteBlockInteraction(position: Int) {
-
-
         val builder= android.support.v7.app.AlertDialog.Builder(ContextThemeWrapper(this@CreateWorkflowActivity,R.style.AlertDialogCustom))
         val confirmDeletion={
                 _: DialogInterface, _: Int -> viewModel.removeBlockAt(position)
@@ -171,19 +168,17 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         val cancelDeletion= {
                 _: DialogInterface, _:Int ->
         }
-
         with(builder) {
-
             setTitle("Delete Block")
             setPositiveButton("Confirm", confirmDeletion)
             setNegativeButton("Cancel", cancelDeletion)
         }
-
         builder.show()
     }
 
     fun swapItems(fromPosition:Int, toPosition:Int) {
         val mAdapter= rec_view.adapter as BlockViewAdapter
         mAdapter.swapItems(fromPosition,toPosition)
+        viewModel.swapItems(fromPosition,toPosition)
     }
 }

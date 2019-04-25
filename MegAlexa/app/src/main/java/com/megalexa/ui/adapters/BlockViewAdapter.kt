@@ -47,7 +47,7 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
             }
 
             override fun onLongClick(view: View?, position: Int) {
-                TODO("")
+                return
             }
         })
 
@@ -78,43 +78,35 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
      * Function called to swap dragged items
      */
     fun swapItems(fromPosition: Int, toPosition: Int) {
-        Toast.makeText(context,dataset.size.toString(),Toast.LENGTH_SHORT).show()
         if (fromPosition < toPosition) {
-            for (i in fromPosition..toPosition - 1) {
+            for (i in fromPosition until(toPosition - 1)) {
                 dataset.set(i, dataset.set(i+1, dataset.get(i)))
             }
         } else {
-            for (i in fromPosition..toPosition + 1) {
+            for (i in fromPosition until(toPosition + 1)) {
                 dataset.set(i, dataset.set(i-1, dataset.get(i)))
             }
         }
-
         notifyItemMoved(fromPosition, toPosition)
     }
 
 }
 
-class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener,View.OnLongClickListener {
+class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener {
 
     val  tView = v.findViewById<TextView>(R.id.block_name)
     val  button= v.findViewById<ImageView>(R.id.mv_block)
+
     private lateinit var itemClickListener:ItemClickListener
-
-
 
     init{
         tView?.setOnClickListener(this)
-        tView?.setOnLongClickListener(this)
     }
 
     override fun onClick(v: View?) {
         itemClickListener.onClick(v,adapterPosition)
     }
 
-    override fun onLongClick(v: View?): Boolean {
-        itemClickListener.onLongClick(v,adapterPosition)
-        return true
-    }
 
     fun setItemClickListener(itemClickListener: ItemClickListener) {
         this.itemClickListener= itemClickListener
