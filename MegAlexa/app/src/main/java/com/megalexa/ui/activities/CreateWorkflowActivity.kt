@@ -29,6 +29,7 @@ import kotlin.concurrent.thread
 class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
     var touchHelper:ItemTouchHelper?= null
+    private lateinit var callback:ItemMoveCallback
     private lateinit var rec_view: RecyclerView
     companion object {
         private lateinit var viewModel : WorkflowViewModel
@@ -42,8 +43,9 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         rec_view= findViewById(R.id.recyclerView_addedBlocksOnCreation)
         rec_view.layoutManager= LinearLayoutManager(this)
         val observer = Observer<ArrayList<String>>{
-            val adapter = BlockViewAdapter(it!!, this@CreateWorkflowActivity)
-            val callback= ItemMoveCallback(adapter,this,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
+            val adapter = BlockViewAdapter(this@CreateWorkflowActivity)
+            adapter.dataset=it!!
+            callback= ItemMoveCallback(this@CreateWorkflowActivity,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
             touchHelper= ItemTouchHelper(callback)
             touchHelper?.attachToRecyclerView(rec_view)
             runOnUiThread{
@@ -159,7 +161,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
     }
 
-
     fun notifyDeleteBlockInteraction(position: Int) {
 
 
@@ -181,4 +182,8 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         builder.show()
     }
 
+    fun swapItems(fromPosition:Int, toPosition:Int) {
+        val mAdapter= rec_view.adapter as BlockViewAdapter
+        mAdapter.swapItems(fromPosition,toPosition)
+    }
 }

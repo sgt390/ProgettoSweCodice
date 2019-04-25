@@ -20,7 +20,14 @@ import com.megalexa.util.view.ItemClickListener
 import com.megalexa.util.view.ItemMoveCallback
 import java.util.*
 
-class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): RecyclerView.Adapter<BlockViewHolder>(){
+class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHolder>(){
+
+
+    var dataset = ArrayList<String>()
+        set(value){
+            field= value
+            notifyDataSetChanged()
+        }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(holder: BlockViewHolder, position: Int) {
@@ -28,11 +35,6 @@ class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): Rec
 
         holder.setItemClickListener(object: ItemClickListener {
             override fun onClick(view: View?, position: Int) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onLongClick(view: View?, position: Int) {
-
                 if(context is ViewBlockActivity) {
                     context.notifyDeleteBlockInteraction(position)
 
@@ -41,6 +43,11 @@ class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): Rec
                 if (context is CreateWorkflowActivity) {
                     context.notifyDeleteBlockInteraction(position)
                 }
+
+            }
+
+            override fun onLongClick(view: View?, position: Int) {
+                TODO("")
             }
         })
 
@@ -66,12 +73,12 @@ class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): Rec
                 false
             )
         )
-
     }
     /**
      * Function called to swap dragged items
      */
     fun swapItems(fromPosition: Int, toPosition: Int) {
+        Toast.makeText(context,dataset.size.toString(),Toast.LENGTH_SHORT).show()
         if (fromPosition < toPosition) {
             for (i in fromPosition..toPosition - 1) {
                 dataset.set(i, dataset.set(i+1, dataset.get(i)))
@@ -85,9 +92,7 @@ class BlockViewAdapter(val dataset: ArrayList<String>,val context: Context): Rec
         notifyItemMoved(fromPosition, toPosition)
     }
 
-
 }
-
 
 class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener,View.OnLongClickListener {
 
