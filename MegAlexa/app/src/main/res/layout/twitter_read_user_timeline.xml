@@ -8,21 +8,14 @@
               android:padding="16dp"
               android:background="@color/colorSecondaryAccent"
               android:gravity="start">
-    <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation = "horizontal">
 
         <Button
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:background="@drawable/ic_filter"
                 android:id="@+id/button_filter"
-                android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
-                android:layout_marginStart="110dp"
-
-        />
-    </LinearLayout>
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="260dp"/>
 
     <Button
             android:text="@string/confirm"

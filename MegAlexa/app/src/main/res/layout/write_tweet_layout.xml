@@ -9,40 +9,38 @@
               android:orientation="vertical"
               tools:openDrawer="start"
               android:background="@color/colorSecondaryAccent"
-              android:gravity="start">
+              android:gravity="start"
+
+>
 
     <TextView
-            android:id="@+id/insert_tts"
+            android:id="@+id/insert_tweet"
             android:layout_width="236dp"
             android:layout_height="wrap_content"
             android:gravity="start"
             android:textStyle="bold"
-            tools:text="Insert Text To Speech paragraph"
+            tools:text="Insert Tweet Text"
             android:padding="2dp"
-            android:text="@string/inserttext"/>
+            android:text="@string/inserttexttweet"/>
 
 
     <EditText
-            android:id="@+id/insert_text"
+            android:id="@+id/insert_text_tweet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:labelFor="@id/insert_tts"
             android:layout_marginTop="8dp"
             android:singleLine="false"
             android:inputType="textMultiLine"
             android:lines="5"
             android:autofillHints=""
             tools:targetApi="o"
-            android:hint="@string/insert_text_here"
     />
 
     <Button
             android:id="@+id/confirm_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add"
-            android:layout_marginTop="8dp"
-    />
+            android:text="@string/done"
+            android:layout_marginTop="8dp"/>
+
 </LinearLayout>
-
-

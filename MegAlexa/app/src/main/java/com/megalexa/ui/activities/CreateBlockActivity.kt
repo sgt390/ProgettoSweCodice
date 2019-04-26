@@ -120,7 +120,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
 
     override fun onFragmentClick(sender: Fragment) {
 
-
         if(sender is RssFragment){
             val url = sender.getUrl()
             val intent = Intent(this,CreateWorkflowActivity::class.java)

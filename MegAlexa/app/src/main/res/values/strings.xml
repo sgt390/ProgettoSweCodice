@@ -66,4 +66,10 @@
     <string name="cnbc">CNBC</string>
     <string name="wallstreet">Wall Street</string>
     <string name="ansa">Ansa</string>
+    <string name="selectblockTwitter">Select a Twitter block</string>
+    <string name="homeTwitter">Users Tweets</string>
+    <string name="userTwitter">My tweets</string>
+    <string name="searchHashtag">Search tweets for #</string>
+    <string name="WriteTweet">Write a Tweet</string>
+    <string name="inserttexttweet">Insert tweet text</string>
 </resources>
