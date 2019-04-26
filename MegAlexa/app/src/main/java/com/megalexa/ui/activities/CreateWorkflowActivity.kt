@@ -156,7 +156,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                         val cardinality = data!!.extras!!.get("cardinality").toString().toShort()
                         val username =  data!!.extras!!.get("username").toString()
                         viewModel.addFilter(cardinality)
-                        viewModel.addOneArgBlock("Twitter",username)
+                        viewModel.addOneArgBlock("TwitterUserTL",username)
                     }
                 }
             }
