@@ -53,8 +53,8 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
             Toast.makeText(this,anotherUser,Toast.LENGTH_SHORT).show()
             val intent = Intent(this,CreateBlockActivity::class.java)
             intent.putExtra("cardinality",sender.getCardinality())
-            intent.putExtra("block_type", "TwitterAnotherUser")
-            intent.putExtra("anotherUser",anotherUser)
+            intent.putExtra("block_type", "TwitterUserTL")
+            intent.putExtra("username",anotherUser)
             setResult(Activity.RESULT_OK,intent)
             finish()
         }else if (sender is TwitterFragment){

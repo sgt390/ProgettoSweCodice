@@ -124,7 +124,22 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK) {
-            val list: ArrayList<String> = data!!.getStringArrayListExtra("result")
+            //val list: ArrayList<String> = data!!.getStringArrayListExtra("result")
+            val blockType = data!!.extras!!.getString("block_type")
+            when(blockType){
+                "TwitterUserTL" -> {
+                    val anotherUser = data!!.extras!!.get("username")
+                    val intent = Intent(this, CreateWorkflowActivity::class.java)
+                    intent.putExtra("cardinality",data!!.extras!!.get("cardinality").toString())
+                    intent.putExtra("block_type", "TwitterUserTL")
+                    intent.putExtra("username" ,anotherUser.toString())
+                    /*var intent = Intent(this,CreateWorkflowActivity::class.java)
+                    intent = data*/
+                    setResult(Activity.RESULT_OK,intent)
+                    //startActivity(intent)
+                    finish()
+                }
+            }
         }
     }
     override fun onFragmentClick(sender: Fragment) {
