@@ -258,15 +258,14 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             Pair(list[6], R.drawable.ic_news),
             Pair(list[7], R.drawable.ic_news),
             Pair(list[8], R.drawable.ic_text),
-            Pair(list[9], R.drawable.ic_text),
-            Pair(list[10], R.drawable.ic_text)
+            Pair(list[9], R.drawable.ic_text)
             )
 
     }
 
     private fun getTitlesList(): List<String> {
         return listOf("FeedRSS","Text Block","PIN",
-            "Read Email","News","Sport News","Crypto News","Stock News","Read Tweet","Weather", "TwitterReadUserTimeline")
+            "Read Email","News","Sport News","Crypto News","Stock News", "Weather", "Twitter")
     }
 
 
