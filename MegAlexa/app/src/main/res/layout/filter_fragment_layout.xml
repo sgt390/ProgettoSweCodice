@@ -24,7 +24,7 @@
     <Button android:text="@string/confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/confirm_button"
+            android:id="@+id/confirmItemBotton"
             tools:text="Confirm"
             android:layout_gravity="center"/>
 

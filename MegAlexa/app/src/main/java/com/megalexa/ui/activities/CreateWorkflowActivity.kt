@@ -153,6 +153,9 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                         viewModel.addFilter(cardinality)
                         viewModel.addOneArgBlock("Twitter", twit)
                     }
+                    "List" -> {
+                        viewModel.addOneArgBlock("List", "")
+                    }
                 }
             }
 

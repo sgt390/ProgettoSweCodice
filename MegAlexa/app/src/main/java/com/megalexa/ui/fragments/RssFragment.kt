@@ -39,7 +39,7 @@ class RssFragment : Fragment() {
         val view = inflater.inflate(R.layout.rss_fragment_layout,container,false)
 
         val filter= view.findViewById<Button>(R.id.button_filter)
-        val button= view.findViewById<Button>(R.id.confirm_button)
+        val button= view.findViewById<Button>(R.id.confirmItemBotton)
         val editText= view.findViewById<EditText>(R.id.insert_URL)
 
 

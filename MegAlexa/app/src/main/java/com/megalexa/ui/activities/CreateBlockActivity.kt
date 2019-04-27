@@ -12,6 +12,7 @@ import android.widget.*
 import com.megalexa.R
 import com.megalexa.ui.adapters.ListArrayAdapter
 import com.megalexa.ui.fragments.*
+import com.megalexa.util.ApplicationContextProvider.Companion.context
 import com.megalexa.util.InjectorUtils
 import com.megalexa.util.view.FragmentClickListener
 import com.megalexa.viewModel.MegAlexaViewModel
@@ -103,6 +104,14 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                 }
                 9-> {
                     fragment = WeatherFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled=false
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+                }
+                10-> {
+                    //startActivityForResult(Intent(this, ListActivity::class.java), 0)
+
+                    fragment = ListFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
@@ -205,6 +214,12 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             listView.isEnabled=true
             finish()
 
+        } else if(sender is ListFragment) {
+            val intent = Intent(this, CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type", "List")
+            setResult(Activity.RESULT_OK, intent)
+            listView.isEnabled = true
+            finish()
         }
 
     }
@@ -235,7 +250,8 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             Pair(list[6], R.drawable.ic_news),
             Pair(list[7], R.drawable.ic_news),
             Pair(list[8], R.drawable.ic_text),
-            Pair(list[9], R.drawable.ic_text)
+            Pair(list[9], R.drawable.ic_text),
+            Pair(list[10], R.drawable.ic_list)
             )
 
     }
@@ -243,7 +259,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
     private fun getTitlesList(): List<String> {
 
         return listOf("FeedRSS","Text Block","PIN",
-            "Read Email","News","Sport News","Crypto News","Stock News","Read Tweet","Weather")
+            "Read Email","News","Sport News","Crypto News","Stock News","Read Tweet","Weather", "List")
 
     }
 

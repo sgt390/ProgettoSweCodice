@@ -35,6 +35,7 @@ object WorkflowService: Service() {
                     //"Twitter" -> BlockTwitterService.convertFromJSON(blocks.getJSONObject(i))
                     //"Weather" -> BlockWeatherService.convertFromJSON(blocks.getJSONObject(i))
                     //"Filter" -> FilterService.convertFromJSON(blocks.getJSONObject(i))
+                    "List" -> BlockListService.convertFromJSON(blocks.getJSONObject(i))
                     else -> BlockTextToSpeech("Undefined")
                 }
             )
@@ -81,6 +82,8 @@ object WorkflowService: Service() {
             is BlockReadEmail -> result =BlockReadEmailService.convertToJSON(block)
 
             is BlockTwitter -> result =BlockTwitterService.convertToJSON(block)
+
+            is BlockList -> result =BlockListService.convertToJSON(block)
         }
         return result
     }
