@@ -95,19 +95,19 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
-                8-> {
+                /*8-> {
                     fragment = TwitterFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
-                }
-                9-> {
+                }*/
+                8-> {
                     fragment = WeatherFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
-                10 -> {
+                9 -> {
                     /*fragment = TwitterReadTimeLineUser()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
