@@ -15,15 +15,18 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.JsonObject
 import com.megalexa.R
+import com.megalexa.ui.activities.CreateBlockActivity
 import com.megalexa.util.service.BlockWeatherService
 import com.megalexa.util.service.BlockWeatherService.getOperation
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.doAsyncResult
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.URL
 import java.net.URLEncoder
+import java.util.concurrent.Future
 import javax.net.ssl.HttpsURLConnection
 
 class WeatherFragment: Fragment(){
@@ -43,13 +46,8 @@ class WeatherFragment: Fragment(){
             }
             else{
                 city= editText.text.toString()
-//                val activity= activity as CreateBlockActivity
-//                activity.onFragmentClick(this)
-
-               val prova : JSONObject = doAsync { BlockWeatherService.getOperation(city) }
-//                Toast.makeText(context, prova, Toast.LENGTH_SHORT).show()
-//                val prova = FromJSON(getOperation("Padova"))
-//                Toast.makeText(context,prova , Toast.LENGTH_SHORT).show()
+                val activity= activity as CreateBlockActivity
+                activity.onFragmentClick(this)
             }
         }
         return view
@@ -87,9 +85,7 @@ class WeatherFragment: Fragment(){
 //    }
 
 
-    fun getText(): String{
-        return city
-    }
+    fun getCity()= city
 
 }
 

@@ -152,6 +152,11 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                         viewModel.addFilter(cardinality)
                         viewModel.addOneArgBlock("Twitter", twit)
                     }
+
+                    "Weather" -> {
+                        val city= data!!.extras!!.get("city").toString().toString()
+                        viewModel.addOneArgBlock("Weather",city)
+                    }
                 }
             }
 
