@@ -22,8 +22,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.NumberPicker
 import com.megalexa.R
-import com.megalexa.ui.activities.CreateBlockActivity
-import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class FilterFragment: Fragment() {
 
@@ -32,7 +30,7 @@ class FilterFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.filter_fragment_layout, container, false)
-        val button = view.findViewById<Button>(R.id.confirm_button)
+        val button = view.findViewById<Button>(R.id.confirmItemBotton)
         val numberPicker = view.findViewById<NumberPicker>(R.id.numberpicker)
 
         button.setOnClickListener {

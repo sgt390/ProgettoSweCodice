@@ -1,4 +1,17 @@
-package com.megalexa.ui.activities
+/*
+* File: ListActivity.kt
+* Version: 1.0.0
+* Date: 2019-04-27
+* Author: Andrea Deidda
+*
+* License:
+*
+* History:
+* Author                || Date         || Description
+* Andrea Deidda         || 2019-02-17   || Create file
+*                       ||              ||
+*/
+//package com.megalexa.ui.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +21,7 @@ import android.widget.*
 import com.megalexa.R
 import com.megalexa.ui.adapters.ItemAdapter
 import kotlinx.android.synthetic.main.list_fragment_layout.*
-
+/*
 class ListActivity: AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +39,8 @@ class ListActivity: AppCompatActivity()  {
 
         }
 
-        val buttonAdd = findViewById<Button>(R.id.add_button)
-        val buttonConfirm = findViewById<Button>(R.id.confirm_button)
+        val buttonAdd = findViewById<Button>(R.id.addListItemButton)
+        val buttonConfirm = findViewById<Button>(R.id.confirmItemBotton)
 
         (recyclerView.adapter as ItemAdapter).setOnClickListener(object : ItemAdapter.OnItemClickListener {
             override fun onDeleteClick(position: Int) {
@@ -80,7 +93,7 @@ class ListActivity: AppCompatActivity()  {
         })
 
         buttonAdd.setOnClickListener {
-            val editTitle = findViewById<EditText>(R.id.insertTitle)
+            val editTitle = findViewById<EditText>(R.id.insertItemText)
             if(editTitle.text.toString() == "")
                 Toast.makeText(this, "Field empty!", Toast.LENGTH_SHORT).show()
             else{
@@ -95,4 +108,4 @@ class ListActivity: AppCompatActivity()  {
                 Toast.makeText(this, "Missing items!", Toast.LENGTH_SHORT).show()
         }
     }
-}
+}*/

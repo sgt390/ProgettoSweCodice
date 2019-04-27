@@ -19,7 +19,7 @@ class TextToSpeechFragment: Fragment(){
 
         val view = inflater.inflate(R.layout.text_to_speech_fragment_layout,container,false)
 
-        val button= view.findViewById<Button>(R.id.confirm_button)
+        val button= view.findViewById<Button>(R.id.confirmItemBotton)
         val editText= view.findViewById<EditText>(R.id.insert_text)
 
         button.setOnClickListener {
