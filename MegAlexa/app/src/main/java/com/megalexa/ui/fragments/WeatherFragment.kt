@@ -15,6 +15,9 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.JsonObject
 import com.megalexa.R
+import com.megalexa.util.service.BlockWeatherService
+import com.megalexa.util.service.BlockWeatherService.getOperation
+import org.jetbrains.anko.doAsync
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -42,64 +45,47 @@ class WeatherFragment: Fragment(){
                 city= editText.text.toString()
 //                val activity= activity as CreateBlockActivity
 //                activity.onFragmentClick(this)
-                val prova = FromJSON(getOperation())
-                Toast.makeText(context,prova , Toast.LENGTH_SHORT).show()
+
+               val prova : JSONObject = doAsync { BlockWeatherService.getOperation(city) }
+//                Toast.makeText(context, prova, Toast.LENGTH_SHORT).show()
+//                val prova = FromJSON(getOperation("Padova"))
+//                Toast.makeText(context,prova , Toast.LENGTH_SHORT).show()
             }
-
         }
-
-
         return view
     }
 
-     fun FromJSON(jsonObject: JSONObject): String? {
-        return jsonObject.getJSONObject("coord").getString("lon")
-    }
-    fun getOperation(): JSONObject {
-
-
-        val api ="api.openweathermap.org/data/2.5/weather?q="
-        var url = api + city + "&APPID=4b1ea0b33edc40ba538b366b98484801"
-
-
-
-
-            var json= JSONArray()
-
-            //  val url= "api.openweathermap.org/data/2.5/weather?q="
-            val myURL = URL("$url")
-            with(myURL.openConnection() as HttpsURLConnection) {
-    //            setRequestProperty("Content-Type", "application/json")
-    //            requestMethod= "GET"
-    //            println("URL : $url")
-    //            println("Response Code : $responseCode")
-    //            BufferedReader(InputStreamReader(inputStream)).use {
-    //                val response = StringBuffer()
-    //                var inputLine = it.readLine()
-    //                while (inputLine != null) {
-    //                    response.append(inputLine)
-    //                    inputLine = it.readLine()
-    //                }
-    //                json= JSONArray(response.toString())
-    //            }
-            }
-            return JSONObject().put("content",json)
-        }
-//        val queue = Volley.newRequestQueue(context)
-//        val url = "https://api.openweathermap.org/data/2.5/weather?q=Padova&APPID=4b1ea0b33edc40ba538b366b98484801"
-//
-//// Request a string response from the provided URL.
-//        val stringRequest = StringRequest(Request.Method.GET, url,
-//            Response.Listener<String> { response ->
-//                // Display the first 500 characters of the response string.
-//                 Toast.makeText(context,"Response is: ${response.substring(0, 500)}",Toast.LENGTH_LONG).show()
-//            },
-//            Response.ErrorListener { Toast.makeText(context,"error",Toast.LENGTH_LONG).show() })
-//
-//// Add the request to the RequestQueue.
-//        queue.add(stringRequest)
-//
+//    fun FromJSON(jsonObject: JSONObject): String? {
+//        return jsonObject.getJSONObject("coord").getString("lon")
 //    }
+
+//    fun getOperation(city : String): JSONObject {
+//        var json= JSONArray()
+//        val query = StringBuilder()
+//        query.append(URLEncoder.encode("q=","UTF-8"))
+//        query.append(URLEncoder.encode(city,"UTF-8"))
+//        query.append(URLEncoder.encode("&APPID=4b1ea0b33edc40ba538b366b98484801","UTF-8"))
+//        val string=query.substring(0,query.length-1)
+//        val url= "api.openweathermap.org/data/2.5/weather"
+//        val myURL = URL("$url?$string")
+//        with(myURL.openConnection() as HttpsURLConnection) {
+//            setRequestProperty("Content-Type", "application/json")
+//            requestMethod= "GET"
+//            println("URL : $url")
+//            println("Response Code : $responseCode")
+//            BufferedReader(InputStreamReader(inputStream)).use {
+//                val response = StringBuffer()
+//                var inputLine = it.readLine()
+//                while (inputLine != null) {
+//                    response.append(inputLine)
+//                    inputLine = it.readLine()
+//                }
+//                json= JSONArray(response.toString())
+//            }
+//        }
+//        return JSONObject().put("content",json)
+//    }
+
 
     fun getText(): String{
         return city
