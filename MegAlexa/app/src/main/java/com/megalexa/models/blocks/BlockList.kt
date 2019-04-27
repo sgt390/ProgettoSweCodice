@@ -16,12 +16,16 @@ package com.megalexa.models.blocks
 
 import org.json.JSONObject
 
-class BlockList : Block {
+class BlockList() : Block {
     override fun getInformation(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return ""
     }
 
     override fun toJSON(): JSONObject {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return JSONObject()
+    }
+
+    fun listUtilities(): List<String>{
+        return listOf()
     }
 }

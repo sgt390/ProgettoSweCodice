@@ -14,24 +14,25 @@
 
 package com.megalexa.util.service
 
+import com.megalexa.models.blocks.BlockList
 import com.megalexa.models.blocks.BlockPin
 import org.json.JSONObject
 
 object BlockListService : BlockService() {
 
     //TODO
-    override fun convertFromJSON(jsonObject: JSONObject): BlockPin {
-        val pin = jsonObject.getJSONObject("config").getString("PIN").toInt()
-        return BlockPin(pin)
+    override fun convertFromJSON(jsonObject: JSONObject): BlockList {
+        val list = jsonObject.getJSONObject("config").getString("List")
+        return BlockList()
     }
 
     //TODO
-    override fun <BlockPin> convertToJSON(t: BlockPin): JSONObject {
-        val pinBlock = t as com.megalexa.models.blocks.BlockPin
+    override fun <BlockList> convertToJSON(t: BlockList): JSONObject {
+        val listBlock = t as com.megalexa.models.blocks.BlockList
         val allBlock = JSONObject()
-        allBlock.put("blockType", "PIN")
+        allBlock.put("blockType", "List")
         val config = JSONObject()
-        config.put("PIN", pinBlock.pin().toString() )
+        config.put("List", listBlock.listUtilities())
         allBlock.put("config", config)
         return allBlock
     }
