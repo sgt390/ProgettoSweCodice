@@ -108,16 +108,25 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 10 -> {
-                    fragment = TwitterReadTimeLineUser()
+                    /*fragment = TwitterReadTimeLineUser()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
-                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()*/
+
+                    val intent = Intent(this@CreateBlockActivity, TwitterActivity::class.java)
+                    startActivityForResult(intent, 1)
                 }
             }
         }
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK) {
+            val list: ArrayList<String> = data!!.getStringArrayListExtra("result")
+        }
+    }
     override fun onFragmentClick(sender: Fragment) {
 
         if(sender is RssFragment){

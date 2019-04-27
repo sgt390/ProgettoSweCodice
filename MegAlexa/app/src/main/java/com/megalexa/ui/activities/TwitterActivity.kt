@@ -28,22 +28,22 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         user.setOnClickListener {
             val fragment = TwitterReadTimeLineUser()
             val transaction = supportFragmentManager.beginTransaction()
-            //transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
+            transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
         }
         anotherUser.setOnClickListener {
             val fragment = TwitterAnotherUserFragment()
             val transaction = supportFragmentManager.beginTransaction()
-            //transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
+            transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
         }
         hashtag.setOnClickListener {
             val fragment = TwitterFragment()
             val transaction = supportFragmentManager.beginTransaction()
-            //transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
+            transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
         }
         writeTweet.setOnClickListener {
             val fragment = WriteTweetFragment()
             val transaction = supportFragmentManager.beginTransaction()
-            //transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
+            transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
         }
     }
 
