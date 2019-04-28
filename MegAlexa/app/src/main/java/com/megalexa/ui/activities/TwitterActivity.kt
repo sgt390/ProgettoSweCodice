@@ -31,8 +31,10 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         val hashtag = findViewById<LinearLayout>(R.id.SearchHashtag)
         val writeTweet = findViewById<LinearLayout>(R.id.writeTweet)
 
-        showLoginPopup()
-
+        //showLoginPopup()
+        /*
+        * Sistemare layout fragment
+        * e correggere un null nel popup*/
         user.setOnClickListener {
             val fragment = TwitterReadTimeLineUser()
             val transaction = supportFragmentManager.beginTransaction()
@@ -70,7 +72,7 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
             Toast.makeText(this,hashtag,Toast.LENGTH_SHORT).show()
             val intent = Intent(this,CreateBlockActivity::class.java)
             intent.putExtra("cardinality",sender.getCardinality())
-            intent.putExtra("block_type", "Twitter")
+            intent.putExtra("block_type", "TwitterHashtag")
             intent.putExtra("screenName",hashtag)
             setResult(Activity.RESULT_OK,intent)
             finish()
@@ -78,7 +80,7 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
             Toast.makeText(this, "Twitter read user timeline", Toast.LENGTH_SHORT).show()
             val intent = Intent(this,CreateBlockActivity::class.java)
             intent.putExtra("cardinality", sender.getCardinality())
-            intent.putExtra("block_type", "TwitterReadUserTimeline")
+            intent.putExtra("block_type", "TwitterHomeTL")
             intent.putExtra("username", "tim_cook")
             setResult(Activity.RESULT_OK,intent)
             finish()
@@ -96,7 +98,7 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
     fun showLoginPopup() {
         val inflater: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-        val view = inflater.inflate(R.layout.twitter_login_popup, null)
+        val view = inflater.inflate(R.layout.twitter_login_popup, twitter_activity)
         val popupWindow = PopupWindow(
             view, // Custom view to show in popup window
             LinearLayout.LayoutParams.WRAP_CONTENT, // Width of popup window

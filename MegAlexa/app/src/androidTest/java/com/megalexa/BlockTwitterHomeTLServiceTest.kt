@@ -23,7 +23,7 @@ class BlockTwitterHomeTLServiceTest {
     fun validToJSON() {
         val expected = BlockTwitter("@BillGates")
         val json = BlockTwitterHomeTLService.convertToJSON(expected)
-        val config = "{\"blockType\":\"TwitterUserTL\",\"config\":{\"access_token_key\":\"" +
+        val config = "{\"blockType\":\"TwitterHomeTL\",\"config\":{\"access_token_key\":\"" +
                 "1110935101561556992-b9BpCfXw3NqSbzhEpMtvmvbVMqGE2N\",\"access_token_secret\":\"" +
                 "OMVvSqVFjCOC0uFQkelIycpvCgUvOWFht8COIkXSUWXUH\",\"consumer_key\":\"Bdc0zcGkYm6ykEoiw4NJUZxMO\",\"" +
                 "consumer_secret\":\"FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP\",\"screenName\":\"" +
