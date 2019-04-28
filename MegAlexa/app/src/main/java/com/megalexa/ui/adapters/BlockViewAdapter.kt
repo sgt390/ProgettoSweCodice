@@ -2,7 +2,9 @@ package com.megalexa.ui.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,8 +18,8 @@ import android.widget.Toast
 import com.megalexa.R
 import com.megalexa.ui.activities.CreateWorkflowActivity
 import com.megalexa.ui.activities.ViewBlockActivity
+import com.megalexa.ui.activities.ViewBlockListActivity
 import com.megalexa.util.view.ItemClickListener
-import com.megalexa.util.view.ItemMoveCallback
 import java.util.*
 
 class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHolder>(){
@@ -36,8 +38,8 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
         holder.setItemClickListener(object: ItemClickListener {
             override fun onClick(view: View?, position: Int) {
                 if(context is ViewBlockActivity) {
+                    //TODO("maybe start here ViewBlockListActivity")
                     context.notifyDeleteBlockInteraction(position)
-
                 }
 
                 if (context is CreateWorkflowActivity) {
@@ -106,9 +108,15 @@ class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener 
     }
 
     override fun onClick(v: View?) {
+        //TODO("maybe start here ViewBlockListActivity")
+        Log.d("he", tView?.text.toString())
+        //if(tView?.text.toString() == "List")
+
+        //need to start ViewBlockListActivity here
+        //startActivity(Intent(this, ViewBlockListActivity::class.java))
+        //else
         itemClickListener.onClick(v,adapterPosition)
     }
-
 
     fun setItemClickListener(itemClickListener: ItemClickListener) {
         this.itemClickListener= itemClickListener

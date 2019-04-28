@@ -11,7 +11,7 @@ import com.megalexa.R
 import com.megalexa.ui.activities.CreateBlockActivity
 import com.megalexa.util.view.FragmentClickListener
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), View.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -27,5 +27,9 @@ class ListFragment : Fragment() {
         }
 
         return view
+    }
+
+    override fun onClick(v: View?) {
+        TODO("is it here? idk") //To change body of created functions use File | Settings | File Templates.
     }
 }

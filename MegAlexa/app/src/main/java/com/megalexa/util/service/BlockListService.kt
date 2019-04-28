@@ -15,18 +15,15 @@
 package com.megalexa.util.service
 
 import com.megalexa.models.blocks.BlockList
-import com.megalexa.models.blocks.BlockPin
 import org.json.JSONObject
 
 object BlockListService : BlockService() {
 
-    //TODO
     override fun convertFromJSON(jsonObject: JSONObject): BlockList {
         val list = jsonObject.getJSONObject("config").getString("List")
         return BlockList()
     }
 
-    //TODO
     override fun <BlockList> convertToJSON(t: BlockList): JSONObject {
         val listBlock = t as com.megalexa.models.blocks.BlockList
         val allBlock = JSONObject()
