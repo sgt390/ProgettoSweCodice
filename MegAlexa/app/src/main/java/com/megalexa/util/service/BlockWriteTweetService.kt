@@ -13,7 +13,7 @@ object BlockWriteTweetService :BlockService() {
     override fun <BlockTwitter> convertToJSON(t: BlockTwitter): JSONObject {
         val blockTwitter = t as com.megalexa.models.blocks.BlockTwitter
         val allBlock = JSONObject()
-        allBlock.put("blockType", "WriteTweet")
+        allBlock.put("blockType", "TwitterWrite")
         val config = JSONObject()
         config.put("access_token_key", blockTwitter.getAccessKey())
         config.put("access_token_secret", blockTwitter.getAccessSecret())

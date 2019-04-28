@@ -124,19 +124,44 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK) {
-            //val list: ArrayList<String> = data!!.getStringArrayListExtra("result")
             val blockType = data!!.extras!!.getString("block_type")
             when(blockType){
                 "TwitterUserTL" -> {
-                    val anotherUser = data!!.extras!!.get("username")
+                    val anotherUser = data.extras!!.get("username")
                     val intent = Intent(this, CreateWorkflowActivity::class.java)
-                    intent.putExtra("cardinality",data!!.extras!!.get("cardinality").toString())
+                    intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
                     intent.putExtra("block_type", "TwitterUserTL")
-                    intent.putExtra("username" ,anotherUser.toString())
-                    /*var intent = Intent(this,CreateWorkflowActivity::class.java)
-                    intent = data*/
+                    intent.putExtra("username" ,anotherUser?.toString())
                     setResult(Activity.RESULT_OK,intent)
-                    //startActivity(intent)
+                    finish()
+                }
+                "Twitter" -> {
+                    val hashtag = data.extras!!.get("screenName")
+                    val intent = Intent(this, CreateWorkflowActivity::class.java)
+                    intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
+                    intent.putExtra("block_type", "Twitter")
+                    intent.putExtra("screenName" ,hashtag?.toString())
+                    setResult(Activity.RESULT_OK,intent)
+                    finish()
+                }
+
+                "TwitterReadUserTimeline" -> {
+                    val myUsername = data.extras!!.get("username")
+                    val intent = Intent(this, CreateWorkflowActivity::class.java)
+                    intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
+                    intent.putExtra("block_type", "TwitterReadUserTimeline")
+                    intent.putExtra("username" ,myUsername?.toString())
+                    setResult(Activity.RESULT_OK,intent)
+                    finish()
+                }
+
+                "WriteTweet" -> {
+                    val textTweet = data.extras!!.get("newTweet")
+                    val intent = Intent(this, CreateWorkflowActivity::class.java)
+                    intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
+                    intent.putExtra("block_type", "WriteTwitter")
+                    intent.putExtra("newTweet" ,textTweet?.toString())
+                    setResult(Activity.RESULT_OK,intent)
                     finish()
                 }
             }

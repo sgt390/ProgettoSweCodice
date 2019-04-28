@@ -150,19 +150,23 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                         val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
                         val twit= data!!.extras!!.get(("screenName")).toString()
                         viewModel.addFilter(cardinality)
-                        viewModel.addOneArgBlock("Twitter", twit)
+                        viewModel.addOneArgBlock("TwitterHashtag", twit)
                     }
                     "TwitterReadUserTimeline" -> {
                         val cardinality = data!!.extras!!.get("cardinality").toString().toShort()
                         val username =  data!!.extras!!.get("username").toString()
                         viewModel.addFilter(cardinality)
-                        viewModel.addOneArgBlock("TwitterUserTL",username)
+                        viewModel.addOneArgBlock("TwitterReadUserTimeline",username)
                     }
                     "TwitterUserTL" -> {
                         val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
                         val user = data!!.extras!!.get(("username")).toString()
                         viewModel.addFilter(cardinality)
                         viewModel.addOneArgBlock("TwitterUserTL",user)
+                    }
+                    "WriteTweet" -> {
+                        val textTweet = data.extras?.get(("newTweet")).toString()
+                        viewModel.addOneArgBlock("TwitterWrite",textTweet)
                     }
                 }
             }

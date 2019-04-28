@@ -2,7 +2,8 @@ package com.megalexa
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.util.service.BlockTwitterService
+import com.megalexa.models.blocks.BlockTwitter
+import com.megalexa.util.service.BlockTwitterHashtagService
 
 import org.junit.Test
 import org.junit.runner.RunWith

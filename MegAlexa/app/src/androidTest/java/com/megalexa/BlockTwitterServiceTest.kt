@@ -2,6 +2,7 @@ package com.megalexa
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.megalexa.models.blocks.BlockTwitter
 import com.megalexa.util.service.BlockTwitterService
 
 import org.junit.Test

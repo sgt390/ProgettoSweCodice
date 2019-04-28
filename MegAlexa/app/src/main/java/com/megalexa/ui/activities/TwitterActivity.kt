@@ -1,18 +1,24 @@
 package com.megalexa.ui.activities
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.transition.TransitionManager
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.widget.*
 import com.megalexa.R
 import com.megalexa.ui.fragments.TwitterAnotherUserFragment
 import com.megalexa.ui.fragments.TwitterFragment
 import com.megalexa.ui.fragments.TwitterReadTimeLineUser
 import com.megalexa.ui.fragments.WriteTweetFragment
 import com.megalexa.util.view.FragmentClickListener
+import kotlinx.android.synthetic.main.activity_twitter.*
 
 class TwitterActivity : AppCompatActivity(), FragmentClickListener {
 
@@ -24,6 +30,8 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         val anotherUser = findViewById<LinearLayout>(R.id.homeTwitter)
         val hashtag = findViewById<LinearLayout>(R.id.SearchHashtag)
         val writeTweet = findViewById<LinearLayout>(R.id.writeTweet)
+
+        showLoginPopup()
 
         user.setOnClickListener {
             val fragment = TwitterReadTimeLineUser()
@@ -83,5 +91,46 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
             setResult(Activity.RESULT_OK,intent)
             finish()
         }
+    }
+
+    fun showLoginPopup() {
+        val inflater: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+
+        val view = inflater.inflate(R.layout.twitter_login_popup, null)
+        val popupWindow = PopupWindow(
+            view, // Custom view to show in popup window
+            LinearLayout.LayoutParams.WRAP_CONTENT, // Width of popup window
+            LinearLayout.LayoutParams.WRAP_CONTENT // Window height
+        )
+        // Settings window popup
+        popupWindow.setBackgroundDrawable(ColorDrawable(Color.WHITE)) //Background color
+        popupWindow.isFocusable = true //for click EditText
+
+        val buttonLogin = view.findViewById<Button>(R.id.save_button)
+        val fieldUsername = view.findViewById<EditText>(R.id.editUsername)
+        val fieldPassword = view.findViewById<EditText>(R.id.editPassword)
+        buttonLogin.setOnClickListener{
+            if(fieldUsername.equals("") && fieldPassword.equals(""))
+                Toast.makeText(this, "Fields empties", Toast.LENGTH_SHORT).show()
+            else if(fieldUsername.equals("") || fieldPassword.equals(""))
+                Toast.makeText(this, "Username or password field empty", Toast.LENGTH_SHORT).show()
+            else {
+                //controllo credenziali
+                popupWindow.dismiss()
+            }
+        }
+        popupWindow.setOnDismissListener {
+            Toast.makeText(applicationContext,"Login Done",Toast.LENGTH_SHORT).show()
+        }
+
+        // Finally, show the popup window on app
+        TransitionManager.beginDelayedTransition(twitter_activity)
+        popupWindow.showAtLocation(
+            twitter_activity, // Location to display popup window
+            Gravity.CENTER_HORIZONTAL, // Exact position of layout to display popup
+            0, // X offset
+            0 // Y offset
+        )
+
     }
 }

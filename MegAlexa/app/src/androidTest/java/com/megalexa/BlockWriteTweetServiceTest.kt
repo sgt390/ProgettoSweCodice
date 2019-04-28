@@ -2,7 +2,8 @@ package com.megalexa
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.util.service.BlockTwitterService
+import com.megalexa.models.blocks.BlockTwitter
+import com.megalexa.util.service.BlockWriteTweetService
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -22,7 +23,7 @@ class BlockWriteTweetServiceTest {
     fun validToJSON() {
         val expected = BlockTwitter("This is a tweet #vero")
         val json = BlockWriteTweetService.convertToJSON(expected)
-        val config = "{\"blockType\":\"TwitterUserTL\",\"config\":{\"access_token_key\":\"" +
+        val config = "{\"blockType\":\"TwitterWrite\",\"config\":{\"access_token_key\":\"" +
                 "1110935101561556992-b9BpCfXw3NqSbzhEpMtvmvbVMqGE2N\",\"access_token_secret\":\"" +
                 "OMVvSqVFjCOC0uFQkelIycpvCgUvOWFht8COIkXSUWXUH\",\"consumer_key\":\"Bdc0zcGkYm6ykEoiw4NJUZxMO\",\"" +
                 "consumer_secret\":\"FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP\",\"TweetText\":\"" +

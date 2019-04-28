@@ -108,7 +108,14 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                 block=BlockTwitter(param)
                 workflow.addBlock(block)
             }
-
+            "TwitterReadUserTimeline" -> {
+                block=BlockTwitter(param)
+                workflow.addBlock(block)
+            }
+            "TwitterWrite" -> {
+                block=BlockTwitter(param)
+                workflow.addBlock(block)
+            }
         }
         refreshBlocks()
     }
