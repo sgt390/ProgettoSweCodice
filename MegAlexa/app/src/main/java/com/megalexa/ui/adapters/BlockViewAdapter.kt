@@ -3,8 +3,6 @@ package com.megalexa.ui.adapters
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,7 +36,6 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
         holder.setItemClickListener(object: ItemClickListener {
             override fun onClick(view: View?, position: Int) {
                 if(context is ViewBlockActivity) {
-                    //TODO("maybe start here ViewBlockListActivity")
                     context.notifyDeleteBlockInteraction(position)
                 }
 
@@ -110,6 +107,7 @@ class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener 
     override fun onClick(v: View?) {
         //TODO("maybe start here ViewBlockListActivity")
         Log.d("he", tView?.text.toString())
+        startActivityForResult(Intent(this, ViewBlockListActivity::class.java), 0)
         //if(tView?.text.toString() == "List")
 
         //need to start ViewBlockListActivity here
