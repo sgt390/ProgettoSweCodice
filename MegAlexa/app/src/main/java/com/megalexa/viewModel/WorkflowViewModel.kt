@@ -164,7 +164,11 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         val list=workflow.getBlocks()
         list.add(Filter(cardinality))
     }
-
+fun swapItems(fromPosition:Int,toPosition:Int){
+    val list = workflow.getBlocks()
+    Collections.swap(list,fromPosition,toPosition)
+    refreshBlocks()
+}
 
     private fun getWeatherInfo(city:String): JSONObject {
         

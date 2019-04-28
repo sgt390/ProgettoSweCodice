@@ -159,7 +159,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                         val city= data!!.extras!!.get("city").toString()
                             viewModel.addOneArgBlock("Weather",city)
 
-
                     }
                 }
             }
