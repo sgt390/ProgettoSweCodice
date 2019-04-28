@@ -24,6 +24,7 @@ import com.megalexa.util.InjectorUtils
 import com.megalexa.util.view.ItemMoveCallback
 import com.megalexa.viewModel.WorkflowViewModel
 import kotlinx.android.synthetic.main.activity_create_workflow.*
+import java.io.FileNotFoundException
 import kotlin.concurrent.thread
 
 class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
@@ -154,8 +155,10 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                     }
 
                     "Weather" -> {
-                        val city= data!!.extras!!.get("city").toString().toString()
-                        viewModel.addOneArgBlock("Weather",city)
+                        val city= data!!.extras!!.get("city").toString()
+                            viewModel.addOneArgBlock("Weather",city)
+
+
                     }
                 }
             }

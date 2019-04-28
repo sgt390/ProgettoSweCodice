@@ -30,7 +30,7 @@ class BlockTwitter(private val screenName: String): Block,Filtrable {
     private val access_token_secret = ApplicationContextProvider.context!!.resources!!.getString(R.string.access_token_secret_twitter)//"INSERT ACCESS TOKEN SECRET"
 
     override fun getInformation():String {
-        return "Twitter block created "
+        return "Twitter"
     }
 
     fun getAccessKey()=access_token_key

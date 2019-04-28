@@ -213,7 +213,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             val city= sender.getCity()
             val intent= Intent(this, CreateWorkflowActivity::class.java)
             intent.putExtra("block_type","Weather")
-            intent.putExtra("City",city)
+            intent.putExtra("city",city)
             setResult(Activity.RESULT_OK,intent)
             listView.isEnabled=true
             finish()

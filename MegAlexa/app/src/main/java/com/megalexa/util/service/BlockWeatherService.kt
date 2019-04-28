@@ -1,9 +1,10 @@
 package com.megalexa.util.service
 
 
+
 import android.util.Log
 import com.megalexa.models.blocks.BlockWeather
-import org.json.JSONArray
+import org.jetbrains.anko.doAsyncResult
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -13,16 +14,27 @@ import javax.net.ssl.HttpsURLConnection
 
 object BlockWeatherService :BlockService() {
 
+
     override fun convertFromJSON(jsonObject: JSONObject): BlockWeather {
-        TODO()
+        return BlockWeather(jsonObject.getJSONObject("config"))
     }
 
-    override fun <T> convertToJSON(t: T): JSONObject {
-        TODO()
+
+    override fun <BlockWeather> convertToJSON(t: BlockWeather): JSONObject {
+        val blockWeather = t as com.megalexa.models.blocks.BlockWeather
+        val allBlock = JSONObject()
+        allBlock.put("blockType", "Weather")
+        val config = JSONObject()
+        config.put("APIKey", blockWeather.getAPIKey())
+        config.put("Latitude", blockWeather.getLatitude())
+        config.put("Longitude", blockWeather.getLongitude())
+        allBlock.put("config", config)
+        return allBlock
     }
+
 
      fun getOperation(city : String): JSONObject {
-        var json= JSONArray()
+        var json= JSONObject()
         val query = StringBuilder()
         query.append(URLEncoder.encode("q","UTF-8")+ "=")
         query.append(URLEncoder.encode(city,"UTF-8"))
@@ -40,13 +52,16 @@ object BlockWeatherService :BlockService() {
             BufferedReader(InputStreamReader(inputStream)).use {
                 val response = StringBuffer()
                 var inputLine = it.readLine()
+
                 while (inputLine != null) {
                     response.append(inputLine)
                     inputLine = it.readLine()
                 }
-                json= JSONArray(response.toString())
-            }
+                json.put("Latitude",JSONObject(response.toString()).getJSONObject("coord").get("lat"))
+                json.put("Longitude",JSONObject(response.toString()).getJSONObject("coord").get("lon"))
+               }
         }
-        return JSONObject().put("content",json)
+        return json
     }
+
 }

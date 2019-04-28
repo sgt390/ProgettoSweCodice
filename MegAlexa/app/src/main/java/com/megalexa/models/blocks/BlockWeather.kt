@@ -14,51 +14,49 @@
 package com.megalexa.models.blocks
 
 import android.util.Log
+import com.megalexa.R
 import com.megalexa.models.connectors.Connector
 import com.megalexa.models.connectors.ConnectorWeather
+import com.megalexa.util.ApplicationContextProvider
 import org.json.JSONObject
 
 
-class BlockWeather(private val url: String): Block,Filtrable {
-    init{
-        val connector = generateConnector(url)
-
-    }
+class BlockWeather(private val OpenWeatherObj : JSONObject): Block {
 
 
-    /** generateConnector(url) returns an object that represents the connector for the desidered feed for Weather
-     * @param url is the url for the feedRSS
-     * @return ConnectorWeather for the url(if the URL is valid)
-     */
-    private fun generateConnector(url: String): Connector {
-
-        val toReturn=ConnectorWeather(url= url)
-        if(!toReturn.valid()){
-            //throw InvalidBLockException() TODO("custom error handling required ")
-        }
-
-        return toReturn
-
-    }
+    private val APIKey = ApplicationContextProvider.context!!.getResources()!!.getString(R.string.OpenWeather_API_Key)
 
 
     /** getInformation()
-     * @return  String that sums up the information for the given feedRSS
+     * @return  String that sums up the information for the given weather
      *
      */
     override fun getInformation():String {
-        return "Feed Weather block created for $url URL "
+        Log.d("oggettoJson",OpenWeatherObj.toString())
+        return "Weather "
     }
 
     override fun toJSON() : JSONObject {
         val allBlock = JSONObject()
         allBlock.put("blockType", "Weather" )
         val config = JSONObject()
-        config.put("url" , url)
+        config.put("APIKey", getAPIKey())
+        config.put("Latitude", getLatitude())
+        config.put("Longitude", getLongitude())
         allBlock.put("config", config)
         return allBlock
     }
 
-    fun url()= url
+        fun getAPIKey(): String? {
+            return APIKey
+        }
 
-}
+        fun getLatitude(): String? {
+            return OpenWeatherObj.getString("Latitude")
+        }
+
+        fun getLongitude(): String? {
+            return OpenWeatherObj.getString("Longitude")
+        }
+    }
+

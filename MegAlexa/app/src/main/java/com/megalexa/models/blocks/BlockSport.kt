@@ -47,7 +47,7 @@ class BlockSport(private val url: String): Block,Filtrable {
      *
      */
     override fun getInformation():String {
-        return "Feed Sport block created for $url URL "
+        return " Sport Feed "
     }
 
     override fun toJSON() : JSONObject {

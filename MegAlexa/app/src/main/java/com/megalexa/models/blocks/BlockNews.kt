@@ -47,7 +47,7 @@ class BlockNews(private val url: String): Block,Filtrable {
      *
      */
     override fun getInformation():String {
-        return "Feed News block created for $url URL "
+        return "News"
     }
 
     override fun toJSON() : JSONObject {

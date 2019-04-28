@@ -41,11 +41,12 @@ class WeatherFragment: Fragment(){
         val editText= view.findViewById<EditText>(R.id.insert_city)
 
         button.setOnClickListener {
+            city = editText.text.toString()
             if(editText.text.toString() == "") {
                 Toast.makeText(context, "city is empty", Toast.LENGTH_SHORT).show()
             }
             else{
-                city= editText.text.toString()
+                city = editText.text.toString()
                 val activity= activity as CreateBlockActivity
                 activity.onFragmentClick(this)
             }
@@ -53,39 +54,6 @@ class WeatherFragment: Fragment(){
         return view
     }
 
-//    fun FromJSON(jsonObject: JSONObject): String? {
-//        return jsonObject.getJSONObject("coord").getString("lon")
-//    }
-
-//    fun getOperation(city : String): JSONObject {
-//        var json= JSONArray()
-//        val query = StringBuilder()
-//        query.append(URLEncoder.encode("q=","UTF-8"))
-//        query.append(URLEncoder.encode(city,"UTF-8"))
-//        query.append(URLEncoder.encode("&APPID=4b1ea0b33edc40ba538b366b98484801","UTF-8"))
-//        val string=query.substring(0,query.length-1)
-//        val url= "api.openweathermap.org/data/2.5/weather"
-//        val myURL = URL("$url?$string")
-//        with(myURL.openConnection() as HttpsURLConnection) {
-//            setRequestProperty("Content-Type", "application/json")
-//            requestMethod= "GET"
-//            println("URL : $url")
-//            println("Response Code : $responseCode")
-//            BufferedReader(InputStreamReader(inputStream)).use {
-//                val response = StringBuffer()
-//                var inputLine = it.readLine()
-//                while (inputLine != null) {
-//                    response.append(inputLine)
-//                    inputLine = it.readLine()
-//                }
-//                json= JSONArray(response.toString())
-//            }
-//        }
-//        return JSONObject().put("content",json)
-//    }
-
-
     fun getCity()= city
-
 }
 

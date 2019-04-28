@@ -25,16 +25,16 @@ object WorkflowService: Service() {
             workflow.addBlock(
                 when(blocks.getJSONObject(i).get("blockType")){
                     "TextToSpeech" -> BlockTextToSpeechService.convertFromJSON(blocks.getJSONObject(i))
-                    //"Stock" -> BlockBorsaService.convertFromJSON(blocks.getJSONObject(i))
-                    //"Crypto" -> BlockCryptoService.convertFromJSON(blocks.getJSONObject(i))
+                    "Stock" -> BlockBorsaService.convertFromJSON(blocks.getJSONObject(i))
+                    "Crypto" -> BlockCryptoService.convertFromJSON(blocks.getJSONObject(i))
                     "FeedRSS" -> BlockFeedRssService.convertFromJSON(blocks.getJSONObject(i))
-                    //"News" -> BlockNewsService.convertFromJSON(blocks.getJSONObject(i))
+                    "News" -> BlockNewsService.convertFromJSON(blocks.getJSONObject(i))
                     "PIN" -> BlockPinService.convertFromJSON(blocks.getJSONObject(i))
                    // "ReadMail" -> BlockReadEmailService.convertFromJSON(blocks.getJSONObject(i))
-                    //"Sport" -> BlockSportService.convertFromJSON(blocks.getJSONObject(i))
-                    //"Twitter" -> BlockTwitterService.convertFromJSON(blocks.getJSONObject(i))
-                    //"Weather" -> BlockWeatherService.convertFromJSON(blocks.getJSONObject(i))
-                    //"Filter" -> FilterService.convertFromJSON(blocks.getJSONObject(i))
+                    "Sport" -> BlockSportService.convertFromJSON(blocks.getJSONObject(i))
+                    "Twitter" -> BlockTwitterService.convertFromJSON(blocks.getJSONObject(i))
+                    "Weather" -> BlockWeatherService.convertFromJSON(blocks.getJSONObject(i))
+                    "Filter" -> FilterService.convertFromJSON(blocks.getJSONObject(i))
                     else -> BlockTextToSpeech("Undefined")
                 }
             )
@@ -81,6 +81,8 @@ object WorkflowService: Service() {
             is BlockReadEmail -> result =BlockReadEmailService.convertToJSON(block)
 
             is BlockTwitter -> result =BlockTwitterService.convertToJSON(block)
+
+            is BlockWeather -> result =BlockWeatherService.convertToJSON(block)
         }
         return result
     }

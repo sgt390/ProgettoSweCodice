@@ -72,6 +72,7 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         }
         return true
     }
+
     fun addOneArgBlock(blockType:String,param:String) {
         val block:Block
         when(blockType) {
@@ -109,9 +110,8 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                 workflow.addBlock(block)
             }
             "Weather" -> {
-
-                val json= getWeatherInfo(param)
-                block=BlockWeather(param)
+                val json :JSONObject = getWeatherInfo(param)
+                block=BlockWeather(json)
                 //set all informations
                 workflow.addBlock(block)
             }
@@ -167,11 +167,11 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
 
     private fun getWeatherInfo(city:String): JSONObject {
         
-        fun foo(city:String) =doAsyncResult{
+        fun parseOpenweather(city:String) =doAsyncResult{
             return@doAsyncResult BlockWeatherService.getOperation(city)
         }
 
-        return foo(city).get()
+        return parseOpenweather(city).get()
     }
 }
 
