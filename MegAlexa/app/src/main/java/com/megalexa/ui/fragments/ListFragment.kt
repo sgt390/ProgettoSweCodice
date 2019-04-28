@@ -26,7 +26,6 @@ class ListFragment : Fragment() {
 
         }
 
-
         return view
     }
 }
