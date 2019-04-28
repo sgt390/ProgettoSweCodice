@@ -48,7 +48,7 @@ class BlockFeedRss(private val url: String): Block,Filtrable {
      *
      */
     override fun getInformation():String {
-        return "Feed RSS block created for $url URL "
+        return "Feed RSS "
     }
 
     override fun toJSON() : JSONObject {

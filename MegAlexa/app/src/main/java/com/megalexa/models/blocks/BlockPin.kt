@@ -16,7 +16,7 @@ import org.json.JSONObject
 class BlockPin(private var pin: Int):Block {
 
     override fun getInformation(): String {
-        return "Contains pin to block workflow activity"
+        return "PIN"
     }
 
     /* Return the pin

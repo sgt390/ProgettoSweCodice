@@ -47,7 +47,7 @@ class BlockCrypto(private val url: String): Block,Filtrable {
      *
      */
     override fun getInformation():String {
-        return "Feed Crypto block created for $url URL "
+        return " Crypto news"
     }
 
     override fun toJSON() : JSONObject {

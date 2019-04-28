@@ -10,13 +10,16 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.*
 import com.megalexa.R
+import com.megalexa.models.blocks.BlockWeather
 import com.megalexa.ui.adapters.ListArrayAdapter
 import com.megalexa.ui.fragments.*
 import com.megalexa.util.ApplicationContextProvider.Companion.context
 import com.megalexa.util.InjectorUtils
+import com.megalexa.util.service.BlockWeatherService
 import com.megalexa.util.view.FragmentClickListener
 import com.megalexa.viewModel.MegAlexaViewModel
 import kotlinx.android.synthetic.main.activity_create_block.*
+import org.json.JSONObject
 
 
 class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentClickListener {
@@ -214,6 +217,15 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             listView.isEnabled=true
             finish()
 
+        }else if(sender is WeatherFragment) {
+
+            val city= sender.getCity()
+            val intent= Intent(this, CreateWorkflowActivity::class.java)
+            intent.putExtra("block_type","Weather")
+            intent.putExtra("city",city)
+            setResult(Activity.RESULT_OK,intent)
+            listView.isEnabled=true
+            finish()
         } else if(sender is ListFragment) {
             val intent = Intent(this, CreateWorkflowActivity::class.java)
             intent.putExtra("block_type", "List")

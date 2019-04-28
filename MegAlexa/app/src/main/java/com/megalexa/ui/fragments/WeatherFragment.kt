@@ -16,7 +16,18 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.JsonObject
 import com.megalexa.R
 import com.megalexa.ui.activities.CreateBlockActivity
+import com.megalexa.util.service.BlockWeatherService
+import com.megalexa.util.service.BlockWeatherService.getOperation
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.doAsyncResult
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.net.URL
+import java.net.URLEncoder
+import java.util.concurrent.Future
+import javax.net.ssl.HttpsURLConnection
 
 class WeatherFragment: Fragment(){
 
@@ -30,48 +41,19 @@ class WeatherFragment: Fragment(){
         val editText= view.findViewById<EditText>(R.id.insert_city)
 
         button.setOnClickListener {
+            city = editText.text.toString()
             if(editText.text.toString() == "") {
                 Toast.makeText(context, "city is empty", Toast.LENGTH_SHORT).show()
             }
             else{
-                city= editText.text.toString()
-find_weather()
-//                val activity= activity as CreateBlockActivity
-//                activity.onFragmentClick(this)
+                city = editText.text.toString()
+                val activity= activity as CreateBlockActivity
+                activity.onFragmentClick(this)
             }
-
         }
-
-find_weather()
         return view
     }
 
-    private fun find_weather() {
-
-        val queue = Volley.newRequestQueue(context)
-        val url = "https://api.openweathermap.org/data/2.5/weather?q=Padova&APPID=4b1ea0b33edc40ba538b366b98484801"
-
-// Request a string response from the provided URL.
-        val stringRequest = StringRequest(Request.Method.GET, url,
-            Response.Listener<String> { response ->
-                // Display the first 500 characters of the response string.
-                 Toast.makeText(context,"Response is: ${response.substring(0, 500)}",Toast.LENGTH_LONG).show()
-            },
-            Response.ErrorListener { Toast.makeText(context,"error",Toast.LENGTH_LONG).show() })
-
-// Add the request to the RequestQueue.
-        queue.add(stringRequest)
-
-//        val api ="api.openweathermap.org/data/2.5/weather?q="
-//        var url: URL = api + city + "&APPID=4b1ea0b33edc40ba538b366b98484801"
-//
-//     url.openConnection().getInputStream()
-
-    }
-
-    fun getText(): String{
-        return city
-    }
-
+    fun getCity()= city
 }
 

@@ -4,10 +4,17 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import android.util.Log
+import com.google.gson.JsonParser
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.*
 import com.megalexa.models.workflow.Workflow
+import com.megalexa.util.service.BlockWeatherService
 import com.megalexa.util.service.WorkflowService
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.doAsyncResult
+import org.json.JSONObject
+import java.util.concurrent.*
 
 import java.util.*
 
@@ -67,7 +74,7 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         }
         return true
     }
-    
+
     fun addOneArgBlock(blockType:String,param:String) {
         val block:Block
         when(blockType) {
@@ -104,8 +111,10 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                 block=BlockTwitter(param)
                 workflow.addBlock(block)
             }
-            "List" -> {
-                block = BlockList()
+            "Weather" -> {
+                val json :JSONObject = getWeatherInfo(param)
+                block=BlockWeather(json)
+                //set all informations
                 workflow.addBlock(block)
             }
 
@@ -156,10 +165,14 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         list.add(Filter(cardinality))
     }
 
-    fun swapItems(fromPosition: Int, toPosition: Int) {
-        val list = workflow.getBlocks()
-        Collections.swap(list,fromPosition,toPosition)
-        refreshBlocks()
+
+    private fun getWeatherInfo(city:String): JSONObject {
+        
+        fun parseOpenweather(city:String) =doAsyncResult{
+            return@doAsyncResult BlockWeatherService.getOperation(city)
+        }
+
+        return parseOpenweather(city).get()
     }
 }
 

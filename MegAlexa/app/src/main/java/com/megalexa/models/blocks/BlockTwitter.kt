@@ -35,7 +35,7 @@ class BlockTwitter(private val screenName: String): Block,Filtrable {
     private val access_token_secret =" "
 
     override fun getInformation():String {
-        return "Twitter block created "
+        return "Twitter"
     }
 
     fun getAccessKey()=access_token_key
