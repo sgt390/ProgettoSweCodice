@@ -35,17 +35,18 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
 
         holder.setItemClickListener(object: ItemClickListener {
             override fun onClick(view: View?, position: Int) {
-                if(context is ViewBlockActivity) {
-                    context.notifyDeleteBlockInteraction(position)
-                }
-
-                if (context is CreateWorkflowActivity) {
-                    context.notifyDeleteBlockInteraction(position)
+                if(context is ViewBlockActivity && holder.tView?.text.toString() == "List") {
+                    context.startViewListActivity()
                 }
             }
 
             override fun onLongClick(view: View?, position: Int) {
-                return
+                if(context is ViewBlockActivity) {
+                    context.notifyDeleteBlockInteraction(position)
+                }
+                if (context is CreateWorkflowActivity) {
+                    context.notifyDeleteBlockInteraction(position)
+                }
             }
         })
 
@@ -106,8 +107,8 @@ class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener 
 
     override fun onClick(v: View?) {
         //TODO("maybe start here ViewBlockListActivity")
-        Log.d("he", tView?.text.toString())
-        startActivityForResult(Intent(this, ViewBlockListActivity::class.java), 0)
+        //Log.d("he", tView?.text.toString())
+        //startActivityForResult(Intent(this, ViewBlockListActivity::class.java), 0)
         //if(tView?.text.toString() == "List")
 
         //need to start ViewBlockListActivity here
