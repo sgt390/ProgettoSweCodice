@@ -86,7 +86,6 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
             val intent = Intent(this,CreateBlockActivity::class.java)
             intent.putExtra("cardinality", sender.getCardinality())
             intent.putExtra("block_type", "TwitterHomeTL")
-            intent.putExtra("username", "")
             setResult(Activity.RESULT_OK,intent)
             finish()
         }else if (sender is WriteTweetFragment){
