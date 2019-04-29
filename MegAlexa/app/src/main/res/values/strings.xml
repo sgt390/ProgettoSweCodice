@@ -77,4 +77,7 @@
     <string name="login">Login</string>
     <string name="es">es. #picoftheday</string>
     <string name="ese">es. @donald_trump</string>
+    <string name="listTitle">Confirm Block List</string>
+    <string name="confirmBlockList">Confirm</string>
+    <string name="titleListItem">List</string>
 </resources>

@@ -310,7 +310,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
 
     private fun getTitlesList(): List<String> {
         return listOf("FeedRSS","Text Block","PIN",
-            "Read Email","News","Sport News","Crypto News","Stock News","Read Tweet","Weather", "List")
+            "Read Email","News","Sport News","Twitter","Stock News","Weather","Crypto News", "List")
 
     }
 
