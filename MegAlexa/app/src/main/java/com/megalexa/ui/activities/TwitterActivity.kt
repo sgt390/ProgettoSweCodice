@@ -108,6 +108,9 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         // Settings window popup
         popupWindow.setBackgroundDrawable(ColorDrawable(Color.WHITE)) //Background color
         popupWindow.isFocusable = true //for click EditText
+        popupWindow.setOnDismissListener {
+            supportFragmentManager.popBackStackImmediate()
+        }
         twitterLoginButton = view.findViewById(R.id.login_twitter_button)
         val x = 5
         twitterLoginButton.callback = object : Callback<TwitterSession>() {
@@ -133,9 +136,7 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
 
             }
         })
-        popupWindow.setOnDismissListener {
-            Toast.makeText(applicationContext, "Login Done", Toast.LENGTH_SHORT).show()
-        }
+
         // Finally, show the popup window on app
         TransitionManager.beginDelayedTransition(twitter_activity)
         popupWindow.showAtLocation(
