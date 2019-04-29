@@ -21,12 +21,6 @@
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
-        <service
-                android:name=".util.service.BlockPinService"
-                android:enabled="true"
-                android:exported="true">
-        </service>
-
         <activity
                 android:name=".ui.activities.GeneralLoggedActivity"
                 android:theme="@style/AppTheme.NoActionBar">
