@@ -9,10 +9,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.transition.TransitionManager
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import com.megalexa.R
 import com.megalexa.ui.fragments.TwitterAnotherUserFragment
@@ -20,9 +19,14 @@ import com.megalexa.ui.fragments.TwitterFragment
 import com.megalexa.ui.fragments.TwitterReadTimeLineUser
 import com.megalexa.ui.fragments.WriteTweetFragment
 import com.megalexa.util.view.FragmentClickListener
+import com.twitter.sdk.android.core.*
+import com.twitter.sdk.android.core.identity.TwitterLoginButton
+import com.twitter.sdk.android.core.models.User
 import kotlinx.android.synthetic.main.activity_twitter.*
 
 class TwitterActivity : AppCompatActivity(), FragmentClickListener {
+
+    lateinit var  twitterLoginButton : TwitterLoginButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +86,7 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
             val intent = Intent(this,CreateBlockActivity::class.java)
             intent.putExtra("cardinality", sender.getCardinality())
             intent.putExtra("block_type", "TwitterHomeTL")
-            //intent.putExtra("username", "tim_cook")
+            intent.putExtra("username", "")
             setResult(Activity.RESULT_OK,intent)
             finish()
         }else if (sender is WriteTweetFragment){
@@ -96,7 +100,7 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
 
     fun showLoginPopup() {
         val inflater: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.twitter_login_popup,  null)
+        val view = inflater.inflate(R.layout.twitter_login_popup, null)
         val popupWindow = PopupWindow(
             view, // Custom view to show in popup window
             LinearLayout.LayoutParams.WRAP_CONTENT, // Width of popup window
@@ -105,24 +109,36 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         // Settings window popup
         popupWindow.setBackgroundDrawable(ColorDrawable(Color.WHITE)) //Background color
         popupWindow.isFocusable = true //for click EditText
-
-        val buttonLogin = view.findViewById<Button>(R.id.save_button)
         val fieldUsername = view.findViewById<EditText>(R.id.editUsername)
         val fieldPassword = view.findViewById<EditText>(R.id.editPassword)
-        buttonLogin.setOnClickListener{
-            if(fieldUsername.equals("") && fieldPassword.equals(""))
-                Toast.makeText(this, "Fields empties", Toast.LENGTH_SHORT).show()
-            else if(fieldUsername.equals("") || fieldPassword.equals(""))
-                Toast.makeText(this, "Username or password field empty", Toast.LENGTH_SHORT).show()
-            else {
-                //controllo credenziali
+        twitterLoginButton = view.findViewById(R.id.login_twitter_button)
+        val x = 5
+        twitterLoginButton.callback = object : Callback<TwitterSession>() {
+            override fun success(result: Result<TwitterSession>) {
+                Log.d("Twitter", "Login eseguito")
                 popupWindow.dismiss()
             }
-        }
-        popupWindow.setOnDismissListener {
-            Toast.makeText(applicationContext,"Login Done",Toast.LENGTH_SHORT).show()
-        }
 
+            override fun failure(e: TwitterException) {
+                Log.d("Twitter", "Login fallito")
+            }
+        }
+        val twitterApiClient = TwitterCore.getInstance().apiClient
+        val call = twitterApiClient.accountService.verifyCredentials(true, false, true)
+        call.enqueue(object : Callback<User>() {
+            override fun success(result: Result<User>?) {
+                val user = result!!.data
+                val x = 5
+
+            }
+
+            override fun failure(exception: TwitterException?) {
+
+            }
+        })
+        popupWindow.setOnDismissListener {
+            Toast.makeText(applicationContext, "Login Done", Toast.LENGTH_SHORT).show()
+        }
         // Finally, show the popup window on app
         TransitionManager.beginDelayedTransition(twitter_activity)
         popupWindow.showAtLocation(
@@ -131,8 +147,13 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
             0, // X offset
             0 // Y offset
         )
-
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        twitterLoginButton.onActivityResult(requestCode, resultCode, data)
+    }
+
 }
 
 
