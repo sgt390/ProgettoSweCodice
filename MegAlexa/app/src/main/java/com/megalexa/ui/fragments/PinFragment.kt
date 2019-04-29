@@ -37,7 +37,7 @@ class PinFragment : Fragment(){
         button.setOnClickListener {
             pin = editText.text.toString()
             if(pin == "") {
-                Toast.makeText(context, "error whith your pin", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.Error_with_pin, Toast.LENGTH_SHORT).show()
             }
             else{
                 Toast.makeText(context,pin, Toast.LENGTH_SHORT).show()
