@@ -75,4 +75,6 @@
     <string name="textInsert">Insert your Twitter account</string>
     <string name="usernameormail">Username or mail</string>
     <string name="login">Login</string>
+    <string name="es">es. #picoftheday</string>
+    <string name="ese">es. @donald_trump</string>
 </resources>

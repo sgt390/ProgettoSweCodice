@@ -38,6 +38,7 @@
             android:id="@+id/twitter_anotherUser"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:hint="@string/ese"
             android:layout_marginBottom="20dp"/>
     <Button
             android:text="@string/confirm"
