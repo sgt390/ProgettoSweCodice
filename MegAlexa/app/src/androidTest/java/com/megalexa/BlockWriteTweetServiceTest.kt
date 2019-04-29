@@ -3,6 +3,7 @@ package com.megalexa
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.blocks.BlockTwitter
+import com.megalexa.models.blocks.BlockTwitterWrite
 import com.megalexa.util.service.BlockWriteTweetService
 
 import org.junit.Test
@@ -21,20 +22,19 @@ class BlockWriteTweetServiceTest {
 
     @Test
     fun validToJSON() {
-        val expected = BlockTwitter("This is a tweet #vero")
+        val expected = BlockTwitterWrite()
         val json = BlockWriteTweetService.convertToJSON(expected)
         val config = "{\"blockType\":\"TwitterWrite\",\"config\":{\"access_token_key\":\"" +
                 "1110935101561556992-b9BpCfXw3NqSbzhEpMtvmvbVMqGE2N\",\"access_token_secret\":\"" +
                 "OMVvSqVFjCOC0uFQkelIycpvCgUvOWFht8COIkXSUWXUH\",\"consumer_key\":\"Bdc0zcGkYm6ykEoiw4NJUZxMO\",\"" +
-                "consumer_secret\":\"FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP\",\"TweetText\":\"" +
-                "This is a tweet #vero\"}}"
+                "consumer_secret\":\"FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP\"}}"
 
         assertEquals(json.toString(),config)
     }
 
     @Test
     fun validFromJSON() {
-        val expected = BlockTwitter("This is a tweet #vero")
+        val expected = BlockTwitterWrite()
         val json = BlockWriteTweetService.convertToJSON(expected)
         val block = BlockWriteTweetService.convertFromJSON(json)
 
@@ -42,8 +42,7 @@ class BlockWriteTweetServiceTest {
             block.getAccessKey().equals("1110935101561556992-b9BpCfXw3NqSbzhEpMtvmvbVMqGE2N") &&
                     block.getAccessSecret().equals("OMVvSqVFjCOC0uFQkelIycpvCgUvOWFht8COIkXSUWXUH") &&
                     block.getConsumerKey().equals("Bdc0zcGkYm6ykEoiw4NJUZxMO") &&
-                    block.getConsumerSecret().equals("FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP") &&
-                    block.getScreenName().equals("This is a tweet #vero")
+                    block.getConsumerSecret().equals("FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP")
         )
     }
 }

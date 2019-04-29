@@ -135,21 +135,19 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                 }
 
                 "TwitterHomeTL" -> {
-                    val myUsername = data.extras!!.get("username")
+                    //val myUsername = data.extras!!.get("username")
                     val intent = Intent(this, CreateWorkflowActivity::class.java)
                     intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
                     intent.putExtra("block_type", "TwitterHomeTL")
-                    intent.putExtra("username" ,myUsername?.toString())
+                    //intent.putExtra("username" ,myUsername?.toString())
                     setResult(Activity.RESULT_OK,intent)
                     finish()
                 }
 
                 "WriteTweet" -> {
-                    val textTweet = data.extras!!.get("newTweet")
                     val intent = Intent(this, CreateWorkflowActivity::class.java)
                     intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
                     intent.putExtra("block_type", "WriteTwitter")
-                    intent.putExtra("newTweet" ,textTweet?.toString())
                     setResult(Activity.RESULT_OK,intent)
                     finish()
                 }
@@ -229,34 +227,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             listView.isEnabled=true
             finish()
 
-        }else if(sender is TwitterFragment){
-            val hashtag = sender.getTwit()
-            val access_token_key = sender.getAccess_token_()
-            val access_token_secret = sender.getAccess_token_twit_()
-            val consumer_key = sender.getConsumer_api()
-            val consumer_secret = sender.getConsumer_api_secret()
-            Toast.makeText(this,hashtag,Toast.LENGTH_SHORT).show()
-            val intent = Intent(this,CreateWorkflowActivity::class.java)
-            intent.putExtra("cardinality",sender.getCardinality())
-            intent.putExtra("block_type", "TwitterHashtag")
-            intent.putExtra("access_token_key",access_token_key)
-            intent.putExtra("access_token_secret",access_token_secret)
-            intent.putExtra("consumer_key",consumer_key)
-            intent.putExtra("consumer_secret",consumer_secret)
-            intent.putExtra("screenName",hashtag)
-            setResult(Activity.RESULT_OK,intent)
-            listView.isEnabled=true
-            finish()
-
-        }else if(sender is TwitterReadTimeLineUser){
-            Toast.makeText(this, "Twitter read user timeline",Toast.LENGTH_SHORT).show()
-            val intent = Intent(this,CreateWorkflowActivity::class.java)
-            intent.putExtra("username", "tim_cook")
-            intent.putExtra("block_type", "TwitterReadUserTimeline")
-            intent.putExtra("cardinality", sender.getCardinality())
-            setResult(Activity.RESULT_OK,intent)
-            listView.isEnabled=true
-            finish()
         }
 
     }

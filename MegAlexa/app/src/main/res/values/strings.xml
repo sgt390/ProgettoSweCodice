@@ -71,7 +71,7 @@
     <string name="userTwitter">My tweets</string>
     <string name="searchHashtag">Search tweets for #</string>
     <string name="WriteTweet">Write a Tweet</string>
-    <string name="inserttexttweet">Insert tweet text</string>
+    <string name="inserttexttweet">Insert a new tweet through Alexa</string>
     <string name="textInsert">Insert your Twitter account</string>
     <string name="usernameormail">Username or mail</string>
     <string name="login">Login</string>

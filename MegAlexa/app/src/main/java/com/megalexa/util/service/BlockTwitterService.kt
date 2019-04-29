@@ -16,7 +16,7 @@ object BlockTwitterService :BlockService() {
         allBlock.put("blockType", "TwitterUserTL")
         val config = JSONObject()
         config.put("access_token_key", blockTwitter.getAccessKey())
-        config.put("ac cess_token_secret", blockTwitter.getAccessSecret())
+        config.put("access_token_secret", blockTwitter.getAccessSecret())
         config.put("consumer_key", blockTwitter.getConsumerKey())
         config.put("consumer_secret", blockTwitter.getConsumerSecret())
         config.put("screenName", blockTwitter.getScreenName())

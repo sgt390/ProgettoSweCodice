@@ -32,7 +32,10 @@ object WorkflowService: Service() {
                     "PIN" -> BlockPinService.convertFromJSON(blocks.getJSONObject(i))
                    // "ReadMail" -> BlockReadEmailService.convertFromJSON(blocks.getJSONObject(i))
                     //"Sport" -> BlockSportService.convertFromJSON(blocks.getJSONObject(i))
-                    //"Twitter" -> BlockTwitterService.convertFromJSON(blocks.getJSONObject(i))
+                    //"TwitterUserTL" -> BlockTwitterService.convertFromJSON(blocks.getJSONObject(i))
+                    //"TwitterHashtag" -> BlockTwitterHashtagService.convertFromJSON(blocks.getJSONObject(i))
+                    //"TwitterHomeTL" -> BlockTwitterHomeTLService.convertFromJSON(blocks.getJSONObject(i))
+                    //"TwitterWrite" -> BlockWriteTweetService.convertFromJSON(blocks.getJSONObject(i))
                     //"Weather" -> BlockWeatherService.convertFromJSON(blocks.getJSONObject(i))
                     //"Filter" -> FilterService.convertFromJSON(blocks.getJSONObject(i))
                     else -> BlockTextToSpeech("Undefined")
@@ -83,6 +86,10 @@ object WorkflowService: Service() {
             is BlockTwitter -> result =BlockTwitterService.convertToJSON(block)
 
             is BlockTwitterHashtag -> result = BlockTwitterHashtagService.convertToJSON(block)
+
+            is BlockTwitterHomeTL -> result = BlockTwitterHomeTLService.convertToJSON(block)
+
+            is BlockTwitterWrite -> result = BlockWriteTweetService.convertToJSON(block)
         }
         return result
     }

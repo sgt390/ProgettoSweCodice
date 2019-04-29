@@ -82,15 +82,13 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
             val intent = Intent(this,CreateBlockActivity::class.java)
             intent.putExtra("cardinality", sender.getCardinality())
             intent.putExtra("block_type", "TwitterHomeTL")
-            intent.putExtra("username", "tim_cook")
+            //intent.putExtra("username", "tim_cook")
             setResult(Activity.RESULT_OK,intent)
             finish()
         }else if (sender is WriteTweetFragment){
-            val newTweet = sender.getTextTweet()
             Toast.makeText(this, "New Tweet added", Toast.LENGTH_SHORT).show()
             val intent = Intent(this,CreateBlockActivity::class.java)
             intent.putExtra("block_type", "WriteTweet")
-            intent.putExtra("newTweet",newTweet)
             setResult(Activity.RESULT_OK,intent)
             finish()
         }
@@ -98,7 +96,7 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
 
     fun showLoginPopup() {
         val inflater: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.twitter_login_popup,  twitter_activity)
+        val view = inflater.inflate(R.layout.twitter_login_popup,  null)
         val popupWindow = PopupWindow(
             view, // Custom view to show in popup window
             LinearLayout.LayoutParams.WRAP_CONTENT, // Width of popup window

@@ -1,17 +1,16 @@
 package com.megalexa.util.service
 
-import com.megalexa.models.blocks.BlockTwitter
 import com.megalexa.models.blocks.BlockTwitterHashtag
 import org.json.JSONObject
 
 object BlockTwitterHashtagService :BlockService() {
 
 
-    override fun convertFromJSON(jsonObject: JSONObject): BlockTwitter {
-        return BlockTwitter(jsonObject.getJSONObject("config").getString("screenName"))
+    override fun convertFromJSON(jsonObject: JSONObject): BlockTwitterHashtag {
+        return BlockTwitterHashtag(jsonObject.getJSONObject("config").getString("hashtag"))
     }
 
-    override fun <BlockTwitter> convertToJSON(t: BlockTwitter): JSONObject {
+    override fun <BlockTwitterHashtag> convertToJSON(t: BlockTwitterHashtag): JSONObject {
         val blockTwitter = t as com.megalexa.models.blocks.BlockTwitterHashtag
         val allBlock = JSONObject()
         allBlock.put("blockType", "TwitterHashtag")

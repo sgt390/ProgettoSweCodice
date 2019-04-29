@@ -35,7 +35,7 @@ import com.megalexa.util.ApplicationContextProvider
 class TwitterFragment: Fragment() {
 
     var screenName : String = ""
-    private var cardinality=10
+    private var cardinality=0
 
     //val consumer_api_key = ApplicationContextProvider.context!!.getResources()!!.getString(R.string.consumer_api_key_twitter) //"INSERT CONSUMER API KEY IN RES/VALUE/STRINGS"
     //val consumer_api_secret_key = ApplicationContextProvider.context!!.resources!!.getString(R.string.consumer_api_key_secret_twitter)//"INSERT CONSUMER API KEYS SECRET IN RES/VALUE/STRINGS"
@@ -79,20 +79,18 @@ class TwitterFragment: Fragment() {
 
         }
 
-
         button.setOnClickListener {
 
             screenName = editText.text.toString()
 
-            if (screenName == "") {
+            if (screenName == "" || screenName[0] != '#') {
                 Toast.makeText(context, "invalid hashtag", Toast.LENGTH_SHORT).show()
             } else {
-                    screenName = "#" + editText.text.toString()
                     val activity = activity as TwitterActivity
                     activity.onFragmentClick(this)
                 }
             }
-        return view
+            return view
         }
 
     fun getTwit() = screenName

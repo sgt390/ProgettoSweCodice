@@ -109,11 +109,11 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                 workflow.addBlock(block)
             }
             "TwitterHomeTL" -> {
-                block= BlockTwitter(param)
+                block= BlockTwitterHomeTL()
                 workflow.addBlock(block)
             }
             "TwitterWrite" -> {
-                block=BlockTwitter(param)
+                block=BlockTwitterWrite()
                 workflow.addBlock(block)
             }
         }

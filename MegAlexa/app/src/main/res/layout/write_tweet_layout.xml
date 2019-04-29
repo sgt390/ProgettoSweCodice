@@ -21,23 +21,13 @@
             android:textStyle="bold"
             tools:text="Insert Tweet Text"
             android:padding="2dp"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
             android:text="@string/inserttexttweet"/>
-
-
-    <EditText
-            android:id="@+id/insert_text_tweet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:singleLine="false"
-            android:inputType="textMultiLine"
-            android:lines="5"
-            android:autofillHints=""
-            tools:targetApi="o"
-    />
 
     <Button
             android:id="@+id/twitter_confirm_button"
+            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/done"

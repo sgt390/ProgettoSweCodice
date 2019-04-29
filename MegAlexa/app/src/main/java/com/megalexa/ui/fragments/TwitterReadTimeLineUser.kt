@@ -11,12 +11,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.NumberPicker
 import com.megalexa.R
-import com.megalexa.ui.activities.CreateBlockActivity
+import com.megalexa.ui.activities.TwitterActivity
 
 class TwitterReadTimeLineUser: Fragment() {
 
-    var screenName : String = ""
-    private var cardinality=10
+    private var cardinality=0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.twitter_read_user_timeline, container, false)
@@ -48,17 +47,8 @@ class TwitterReadTimeLineUser: Fragment() {
         }
 
         button.setOnClickListener {
-            val activity = activity as CreateBlockActivity
+            val activity = activity as TwitterActivity
             activity.onFragmentClick(this)
-            // screenName = editText.text.toString()
-
-            /*if (screenName == "") {
-                Toast.makeText(context, "invalid hashtag", Toast.LENGTH_SHORT).show()
-            } else {
-                screenName = "@" + editText.text.toString()
-                val activity = activity as CreateBlockActivity
-                activity.onFragmentClick(this)
-            }*/
         }
         return view
     }

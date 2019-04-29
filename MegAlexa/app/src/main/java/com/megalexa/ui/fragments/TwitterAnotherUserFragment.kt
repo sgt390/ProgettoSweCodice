@@ -32,7 +32,7 @@ import com.megalexa.ui.activities.TwitterActivity
 class TwitterAnotherUserFragment: Fragment() {
 
     var username : String = ""
-    private var cardinality = 10
+    private var cardinality = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.twitter_another_user_layout, container, false)
@@ -67,7 +67,7 @@ class TwitterAnotherUserFragment: Fragment() {
 
             username = editText.text.toString()
 
-            if (username == "") {
+            if (username == "" || username[0] != '@') {
                 Toast.makeText(context, "invalid username", Toast.LENGTH_SHORT).show()
             } else {
                 val activity = activity as TwitterActivity
