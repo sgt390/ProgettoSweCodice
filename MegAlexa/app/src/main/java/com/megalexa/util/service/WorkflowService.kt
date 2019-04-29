@@ -83,6 +83,12 @@ object WorkflowService: Service() {
 
             is BlockTwitter -> result =BlockTwitterService.convertToJSON(block)
 
+            is BlockTwitterHashtag -> result = BlockTwitterHashtagService.convertToJSON(block)
+
+            is BlockTwitterHomeTL -> result = BlockTwitterHomeTLService.convertToJSON(block)
+
+            is BlockTwitterWrite -> result = BlockWriteTweetService.convertToJSON(block)
+
             is BlockWeather -> result =BlockWeatherService.convertToJSON(block)
 
             is BlockList -> result =BlockListService.convertToJSON(block)

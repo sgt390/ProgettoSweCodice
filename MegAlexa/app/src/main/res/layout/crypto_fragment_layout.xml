@@ -22,9 +22,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:textStyle="bold"
-                android:text="@string/insert_url"
-                tools:text="Select News site"
-                android:hint="@string/insert_url_hint"
+                android:text="@string/Select_site"
+                tools:text="@string/Select_site"
+                android:hint="@string/Select_site"
                 android:padding="2dp"
         />
 

@@ -9,7 +9,7 @@
 >
 
     <TextView
-            android:text="Enter your Pin"
+            android:text="@string/Enter_your_Pin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/PinTextview"
@@ -28,7 +28,7 @@
             android:id="@+id/pinID"
             tools:ignore="MissingConstraints"/>
     <Button
-            android:text="Save"
+            android:text="@string/save"
             android:layout_marginLeft="150dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
