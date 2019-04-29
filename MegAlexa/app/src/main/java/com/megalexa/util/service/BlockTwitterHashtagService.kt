@@ -1,6 +1,7 @@
 package com.megalexa.util.service
 
 import com.megalexa.models.blocks.BlockTwitter
+import com.megalexa.models.blocks.BlockTwitterHashtag
 import org.json.JSONObject
 
 object BlockTwitterHashtagService :BlockService() {
@@ -11,7 +12,7 @@ object BlockTwitterHashtagService :BlockService() {
     }
 
     override fun <BlockTwitter> convertToJSON(t: BlockTwitter): JSONObject {
-        val blockTwitter = t as com.megalexa.models.blocks.BlockTwitter
+        val blockTwitter = t as com.megalexa.models.blocks.BlockTwitterHashtag
         val allBlock = JSONObject()
         allBlock.put("blockType", "TwitterHashtag")
         val config = JSONObject()
@@ -19,7 +20,7 @@ object BlockTwitterHashtagService :BlockService() {
         config.put("access_token_secret", blockTwitter.getAccessSecret())
         config.put("consumer_key", blockTwitter.getConsumerKey())
         config.put("consumer_secret", blockTwitter.getConsumerSecret())
-        config.put("screenName", blockTwitter.getScreenName())
+        config.put("hashtag", blockTwitter.getHashtag())
         allBlock.put("config", config)
         return allBlock
     }

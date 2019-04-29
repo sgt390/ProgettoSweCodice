@@ -81,6 +81,8 @@ object WorkflowService: Service() {
             is BlockReadEmail -> result =BlockReadEmailService.convertToJSON(block)
 
             is BlockTwitter -> result =BlockTwitterService.convertToJSON(block)
+
+            is BlockTwitterHashtag -> result = BlockTwitterHashtagService.convertToJSON(block)
         }
         return result
     }

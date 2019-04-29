@@ -29,6 +29,7 @@ import android.widget.NumberPicker
 import android.widget.Toast
 import com.megalexa.R
 import com.megalexa.ui.activities.CreateBlockActivity
+import com.megalexa.ui.activities.TwitterActivity
 import com.megalexa.util.ApplicationContextProvider
 
 class TwitterFragment: Fragment() {
@@ -86,8 +87,8 @@ class TwitterFragment: Fragment() {
             if (screenName == "") {
                 Toast.makeText(context, "invalid hashtag", Toast.LENGTH_SHORT).show()
             } else {
-                    screenName = "@" + editText.text.toString()
-                    val activity = activity as CreateBlockActivity
+                    screenName = "#" + editText.text.toString()
+                    val activity = activity as TwitterActivity
                     activity.onFragmentClick(this)
                 }
             }

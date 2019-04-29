@@ -238,7 +238,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             Toast.makeText(this,hashtag,Toast.LENGTH_SHORT).show()
             val intent = Intent(this,CreateWorkflowActivity::class.java)
             intent.putExtra("cardinality",sender.getCardinality())
-            intent.putExtra("block_type", "Twitter")
+            intent.putExtra("block_type", "TwitterHashtag")
             intent.putExtra("access_token_key",access_token_key)
             intent.putExtra("access_token_secret",access_token_secret)
             intent.putExtra("consumer_key",consumer_key)

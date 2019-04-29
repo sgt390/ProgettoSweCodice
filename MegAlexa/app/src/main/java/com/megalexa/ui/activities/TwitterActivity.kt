@@ -32,7 +32,7 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         val hashtag = findViewById<LinearLayout>(R.id.SearchHashtag)
         val writeTweet = findViewById<LinearLayout>(R.id.writeTweet)
 
-        showLoginPopup()
+        //showLoginPopup()
         /*
         * Sistemare layout fragment
         * e correggere un null nel popup*/
