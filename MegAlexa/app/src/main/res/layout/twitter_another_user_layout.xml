@@ -12,22 +12,22 @@
             android:layout_height="match_parent"
             android:orientation = "horizontal">
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              tools:text="Search post for hashtag"
-              android:layout_gravity="center"
-              android:textStyle="bold"
-              android:textSize="18sp"
-              android:layout_marginStart="20dp"
-              android:textAlignment="center"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  tools:text="Search post for user"
+                  android:layout_gravity="center"
+                  android:textStyle="bold"
+                  android:textSize="18sp"
+                  android:layout_marginStart="20dp"
+                  android:textAlignment="center"/>
 
-    <Button
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/ic_filter"
-            android:id="@+id/button_filter"
-            android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
-            android:layout_marginStart="90dp"/>
+        <Button
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_filter"
+                android:id="@+id/button_filter"
+                android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
+                android:layout_marginStart="90dp"/>
     </LinearLayout>
 
     <EditText
@@ -35,10 +35,10 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:ems="10"
-            android:hint="@string/es"
-            android:id="@+id/twitter_screenName"
+            android:id="@+id/twitter_anotherUser"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:hint="@string/ese"
             android:layout_marginBottom="20dp"/>
     <Button
             android:text="@string/confirm"

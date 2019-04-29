@@ -24,12 +24,12 @@ class ConnectorReadTwitterTest {
         assertEquals("com.megalexa", appContext.packageName)
     }
 
-    @Test
-    fun valid() {
+    //@Test
+    /*fun valid() {
         val someaccount = "someAccount@gmail.com"
         val password=""
         val accountIsValid = ConnectorReadTwitter(someaccount,password).valid()
         assertEquals(true, accountIsValid)
-    }
+    }*/
 
 }

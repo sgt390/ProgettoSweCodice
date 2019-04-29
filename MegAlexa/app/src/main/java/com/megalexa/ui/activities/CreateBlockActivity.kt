@@ -87,10 +87,8 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                 }
 
                 6-> {
-                    fragment = CryptoFragment()
-                    val transaction = supportFragmentManager.beginTransaction()
-                    listView.isEnabled=false
-                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+                    val intent = Intent(this@CreateBlockActivity, TwitterActivity::class.java)
+                    startActivityForResult(intent, 1)
                 }
 
                 7-> {
@@ -100,13 +98,13 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 8-> {
-                    fragment = TwitterFragment()
+                    fragment = WeatherFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
-                9-> {
-                    fragment = WeatherFragment()
+                9 -> {
+                    fragment = CryptoFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
@@ -124,8 +122,50 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
 
     }
 
-    override fun onFragmentClick(sender: Fragment) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK) {
+            val blockType = data!!.extras!!.getString("block_type")
+            when(blockType){
+                "TwitterUserTL" -> {
+                    val anotherUser = data.extras!!.get("username")
+                    val intent = Intent(this, CreateWorkflowActivity::class.java)
+                    intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
+                    intent.putExtra("block_type", "TwitterUserTL")
+                    setResult(Activity.RESULT_OK,intent)
+                    finish()
+                }
+                "TwitterHashtag" -> {
+                    val hashtag = data.extras!!.get("screenName")
+                    val intent = Intent(this, CreateWorkflowActivity::class.java)
+                    intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
+                    intent.putExtra("block_type", "TwitterHashtag")
+                    intent.putExtra("screenName" ,hashtag?.toString())
+                    setResult(Activity.RESULT_OK,intent)
+                    finish()
+                }
 
+                "TwitterHomeTL" -> {
+                    //val myUsername = data.extras!!.get("username")
+                    val intent = Intent(this, CreateWorkflowActivity::class.java)
+                    intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
+                    intent.putExtra("block_type", "TwitterHomeTL")
+                    //intent.putExtra("username" ,myUsername?.toString())
+                    setResult(Activity.RESULT_OK,intent)
+                    finish()
+                }
+
+                "WriteTweet" -> {
+                    val intent = Intent(this, CreateWorkflowActivity::class.java)
+                    intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
+                    intent.putExtra("block_type", "WriteTwitter")
+                    setResult(Activity.RESULT_OK,intent)
+                    finish()
+                }
+            }
+        }
+    }
+    override fun onFragmentClick(sender: Fragment) {
 
         if(sender is RssFragment){
             val url = sender.getUrl()
@@ -269,7 +309,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
     }
 
     private fun getTitlesList(): List<String> {
-
         return listOf("FeedRSS","Text Block","PIN",
             "Read Email","News","Sport News","Crypto News","Stock News","Read Tweet","Weather", "List")
 

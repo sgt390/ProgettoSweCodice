@@ -41,7 +41,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         val factory= InjectorUtils.provideWorkflowViewModelFactory("")
         viewModel = ViewModelProviders.of(this,factory).get(WorkflowViewModel::class.java)
         rec_view= findViewById(R.id.recyclerView_addedBlocksOnCreation)
-        rec_view.layoutManager= LinearLayoutManager(this)
+        rec_view.layoutManager = LinearLayoutManager(this)
         val observer = Observer<ArrayList<String>>{
             val adapter = BlockViewAdapter(this@CreateWorkflowActivity)
             adapter.dataset=it!!
@@ -147,12 +147,26 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                         viewModel.addFilter(cardinality)
                         viewModel.addOneArgBlock("Borsa", borsa)
                     }
-
-                    "Twitter" -> {
+                    "TwitterHashtag" -> {
                         val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
                         val twit= data!!.extras!!.get(("screenName")).toString()
                         viewModel.addFilter(cardinality)
-                        viewModel.addOneArgBlock("Twitter", twit)
+                        viewModel.addOneArgBlock("TwitterHashtag", twit)
+                    }
+                    "TwitterHomeTL" -> {
+                        val cardinality = data!!.extras!!.get("cardinality").toString().toShort()
+                        //val username =  data!!.extras!!.get("username").toString()
+                        viewModel.addFilter(cardinality)
+                        viewModel.addOneArgBlock("TwitterHomeTL", "")
+                    }
+                    "TwitterUserTL" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
+                        val user = data!!.extras!!.get(("username")).toString()
+                        viewModel.addFilter(cardinality)
+                        viewModel.addOneArgBlock("TwitterUserTL",user)
+                    }
+                    "WriteTwitter" -> {
+                        viewModel.addOneArgBlock("TwitterWrite","")
                     }
 
                     "Weather" -> {

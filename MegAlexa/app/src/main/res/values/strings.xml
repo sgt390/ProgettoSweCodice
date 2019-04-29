@@ -66,10 +66,15 @@
     <string name="cnbc">CNBC</string>
     <string name="wallstreet">Wall Street</string>
     <string name="ansa">Ansa</string>
-    <string name="listTitle">Confirm Block List</string>
-    <string name="confirmBlockList">Confirm</string>
-    <string name="titleListItem">List</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="selectblockTwitter">Select a Twitter block</string>
+    <string name="homeTwitter">Users Tweets</string>
+    <string name="userTwitter">My tweets</string>
+    <string name="searchHashtag">Search tweets for #</string>
+    <string name="WriteTweet">Write a Tweet</string>
+    <string name="inserttexttweet">Insert a new tweet through Alexa</string>
+    <string name="textInsert">Insert your Twitter account</string>
+    <string name="usernameormail">Username or mail</string>
+    <string name="login">Login</string>
+    <string name="es">es. #picoftheday</string>
+    <string name="ese">es. @donald_trump</string>
 </resources>

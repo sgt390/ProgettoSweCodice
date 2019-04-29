@@ -1,3 +1,4 @@
+
 /*
 * File: BlockTwitter.kt
 * Version: 1.0.0
@@ -22,7 +23,7 @@ import com.megalexa.util.ApplicationContextProvider
 import org.json.JSONObject
 
 
-class BlockTwitter(private val screenName: String): Block,Filtrable {
+class BlockTwitterHashtag(private val screenName: String): Block,Filtrable {
 
     private val consumer_key = ApplicationContextProvider.context!!.getResources()!!.getString(R.string.consumer_api_key_twitter)//"INSERT CONSUMER API KEYS"
     private val consumer_secret = ApplicationContextProvider.context!!.resources!!.getString(R.string.consumer_api_key_secret_twitter) //"INSERT CONSUMER API KEYS SECRET"
@@ -35,19 +36,19 @@ class BlockTwitter(private val screenName: String): Block,Filtrable {
     //private val access_token_secret =" "
 
     override fun getInformation():String {
-        return "Twitter user block created"
+        return "Twitter hashtag block created "
     }
 
     fun getAccessKey()=access_token_key
     fun getAccessSecret()=access_token_secret
     fun getConsumerKey()=consumer_key
     fun getConsumerSecret()=consumer_secret
-    fun getScreenName() = screenName
+    fun getHashtag() = screenName
 
 
     override fun toJSON() : JSONObject {
         val allBlock = JSONObject()
-        allBlock.put("blockType", "Twitter" )
+        allBlock.put("blockType", "TwitterHashtag" )
         val config = JSONObject()
         config.put("access_token_key" , access_token_key )
         config.put("access_token_secret" , access_token_secret)

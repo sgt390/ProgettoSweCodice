@@ -107,8 +107,20 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                 block=BlockBorsa(param)
                 workflow.addBlock(block)
             }
-            "Twitter" -> {
-                block=BlockTwitter(param)
+            "TwitterHashtag" -> {
+                block= BlockTwitterHashtag(param)
+                workflow.addBlock(block)
+            }
+            "TwitterUserTL" -> {
+                block= BlockTwitter(param)
+                workflow.addBlock(block)
+            }
+            "TwitterHomeTL" -> {
+                block= BlockTwitterHomeTL()
+                workflow.addBlock(block)
+            }
+            "TwitterWrite" -> {
+                block=BlockTwitterWrite()
                 workflow.addBlock(block)
             }
             "Weather" -> {
@@ -171,7 +183,7 @@ fun swapItems(fromPosition:Int,toPosition:Int){
 }
 
     private fun getWeatherInfo(city:String): JSONObject {
-        
+
         fun parseOpenweather(city:String) =doAsyncResult{
             return@doAsyncResult BlockWeatherService.getOperation(city)
         }
