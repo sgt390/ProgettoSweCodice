@@ -160,6 +160,11 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                             viewModel.addOneArgBlock("Weather",city)
 
                     }
+
+                    "List" -> {
+                        viewModel.addOneArgBlock("List", "")
+
+                    }
                 }
             }
 

@@ -13,6 +13,7 @@ import com.megalexa.util.service.BlockWeatherService
 import com.megalexa.util.service.WorkflowService
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.doAsyncResult
+import org.json.JSONArray
 import org.json.JSONObject
 import java.util.concurrent.*
 
@@ -115,6 +116,10 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                 val json :JSONObject = getWeatherInfo(param)
                 block=BlockWeather(json)
                 //set all informations
+                workflow.addBlock(block)
+            }
+            "List" -> {
+                block=BlockList(JSONArray())
                 workflow.addBlock(block)
             }
 

@@ -106,14 +106,6 @@ class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener 
     }
 
     override fun onClick(v: View?) {
-        //TODO("maybe start here ViewBlockListActivity")
-        //Log.d("he", tView?.text.toString())
-        //startActivityForResult(Intent(this, ViewBlockListActivity::class.java), 0)
-        //if(tView?.text.toString() == "List")
-
-        //need to start ViewBlockListActivity here
-        //startActivity(Intent(this, ViewBlockListActivity::class.java))
-        //else
         itemClickListener.onClick(v,adapterPosition)
     }
 
