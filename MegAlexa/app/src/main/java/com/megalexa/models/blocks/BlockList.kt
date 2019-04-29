@@ -18,7 +18,7 @@ import org.json.JSONObject
 
 class BlockList() : Block {
     override fun getInformation(): String {
-        return ""
+        return "List"
     }
 
     override fun toJSON(): JSONObject {

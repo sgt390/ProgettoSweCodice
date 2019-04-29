@@ -16,16 +16,10 @@
             android:usesCleartextTraffic="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".ui.activities.ListActivity"
-                android:label="@string/title_activity_list"
+                android:name=".ui.activities.ViewBlockListActivity"
+                android:label="ViewBlockListActivity"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-
-        <service
-                android:name=".util.service.BlockPinService"
-                android:enabled="true"
-                android:exported="true">
-        </service>
 
         <activity
                 android:name=".ui.activities.GeneralLoggedActivity"

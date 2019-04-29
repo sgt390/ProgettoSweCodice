@@ -2,7 +2,7 @@ package com.megalexa.ui.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,8 +16,8 @@ import android.widget.Toast
 import com.megalexa.R
 import com.megalexa.ui.activities.CreateWorkflowActivity
 import com.megalexa.ui.activities.ViewBlockActivity
+import com.megalexa.ui.activities.ViewBlockListActivity
 import com.megalexa.util.view.ItemClickListener
-import com.megalexa.util.view.ItemMoveCallback
 import java.util.*
 
 class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHolder>(){
@@ -35,18 +35,18 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
 
         holder.setItemClickListener(object: ItemClickListener {
             override fun onClick(view: View?, position: Int) {
-                if(context is ViewBlockActivity) {
-                    context.notifyDeleteBlockInteraction(position)
-
-                }
-
-                if (context is CreateWorkflowActivity) {
-                    context.notifyDeleteBlockInteraction(position)
+                if(context is ViewBlockActivity && holder.tView?.text.toString() == "List") {
+                    context.startViewListActivity()
                 }
             }
 
             override fun onLongClick(view: View?, position: Int) {
-                return
+                if(context is ViewBlockActivity) {
+                    context.notifyDeleteBlockInteraction(position)
+                }
+                if (context is CreateWorkflowActivity) {
+                    context.notifyDeleteBlockInteraction(position)
+                }
             }
         })
 
@@ -106,9 +106,16 @@ class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener 
     }
 
     override fun onClick(v: View?) {
+        //TODO("maybe start here ViewBlockListActivity")
+        //Log.d("he", tView?.text.toString())
+        //startActivityForResult(Intent(this, ViewBlockListActivity::class.java), 0)
+        //if(tView?.text.toString() == "List")
+
+        //need to start ViewBlockListActivity here
+        //startActivity(Intent(this, ViewBlockListActivity::class.java))
+        //else
         itemClickListener.onClick(v,adapterPosition)
     }
-
 
     fun setItemClickListener(itemClickListener: ItemClickListener) {
         this.itemClickListener= itemClickListener
