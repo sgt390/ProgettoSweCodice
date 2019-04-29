@@ -160,7 +160,9 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         viewModel.swapItems(fromPosition,toPosition)
     }
 
-    fun startViewListActivity() {
-        startActivityForResult(Intent(this, ViewBlockListActivity::class.java), 0)
+    fun startViewListActivity(position: Int) {
+        val intent = Intent(this, ViewBlockListActivity::class.java)
+        intent.putExtra("blockPosition", position)
+        startActivityForResult(intent, 0)
     }
 }

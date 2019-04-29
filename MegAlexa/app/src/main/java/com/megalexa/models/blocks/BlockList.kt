@@ -14,6 +14,7 @@
 
 package com.megalexa.models.blocks
 
+import com.google.gson.JsonArray
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -28,5 +29,9 @@ class BlockList(private var list: JSONArray) : Block {
 
     fun listUtilities(): List<String>{
         return listOf()
+    }
+
+    fun getList(): JSONArray{
+        return list
     }
 }
