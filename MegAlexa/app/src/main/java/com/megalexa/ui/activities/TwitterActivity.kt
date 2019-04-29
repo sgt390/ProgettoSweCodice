@@ -32,29 +32,29 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         val hashtag = findViewById<LinearLayout>(R.id.SearchHashtag)
         val writeTweet = findViewById<LinearLayout>(R.id.writeTweet)
 
-        //showLoginPopup()
-        /*
-        * Sistemare layout fragment
-        * e correggere un null nel popup*/
         user.setOnClickListener {
             val fragment = TwitterReadTimeLineUser()
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
+            showLoginPopup()
         }
         anotherUser.setOnClickListener {
             val fragment = TwitterAnotherUserFragment()
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
+            showLoginPopup()
         }
         hashtag.setOnClickListener {
             val fragment = TwitterFragment()
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
+            showLoginPopup()
         }
         writeTweet.setOnClickListener {
             val fragment = WriteTweetFragment()
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
+            showLoginPopup()
         }
     }
 
