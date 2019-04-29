@@ -11,6 +11,8 @@ import android.support.v4.app.Fragment
 import android.transition.TransitionManager
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import com.megalexa.R
 import com.megalexa.ui.fragments.TwitterAnotherUserFragment
@@ -25,13 +27,12 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_twitter)
-
         val user = findViewById<LinearLayout>(R.id.userTwitter)
         val anotherUser = findViewById<LinearLayout>(R.id.homeTwitter)
         val hashtag = findViewById<LinearLayout>(R.id.SearchHashtag)
         val writeTweet = findViewById<LinearLayout>(R.id.writeTweet)
 
-        //showLoginPopup()
+        showLoginPopup()
         /*
         * Sistemare layout fragment
         * e correggere un null nel popup*/
@@ -97,8 +98,7 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
 
     fun showLoginPopup() {
         val inflater: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-
-        val view = inflater.inflate(R.layout.twitter_login_popup, twitter_activity)
+        val view = inflater.inflate(R.layout.twitter_login_popup,  twitter_activity)
         val popupWindow = PopupWindow(
             view, // Custom view to show in popup window
             LinearLayout.LayoutParams.WRAP_CONTENT, // Width of popup window
@@ -136,3 +136,5 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
 
     }
 }
+
+
