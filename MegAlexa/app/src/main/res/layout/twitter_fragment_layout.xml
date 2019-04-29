@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:ems="10"
+            android:hint="@string/es"
             android:id="@+id/twitter_screenName"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
