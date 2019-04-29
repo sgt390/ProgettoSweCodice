@@ -87,9 +87,11 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                 }
 
                 6-> {
-                    val intent = Intent(this@CreateBlockActivity, TwitterActivity::class.java)
-                    startActivityForResult(intent, 1)
-                }
+
+                    fragment = CryptoFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled=false
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()                }
 
                 7-> {
                     fragment = BorsaFragment()
@@ -98,13 +100,11 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 8-> {
-                    fragment = WeatherFragment()
-                    val transaction = supportFragmentManager.beginTransaction()
-                    listView.isEnabled=false
-                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+                    val intent = Intent(this@CreateBlockActivity, TwitterActivity::class.java)
+                    startActivityForResult(intent, 1)
                 }
                 9 -> {
-                    fragment = CryptoFragment()
+                    fragment = WeatherFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
