@@ -108,8 +108,6 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         // Settings window popup
         popupWindow.setBackgroundDrawable(ColorDrawable(Color.WHITE)) //Background color
         popupWindow.isFocusable = true //for click EditText
-        val fieldUsername = view.findViewById<EditText>(R.id.editUsername)
-        val fieldPassword = view.findViewById<EditText>(R.id.editPassword)
         twitterLoginButton = view.findViewById(R.id.login_twitter_button)
         val x = 5
         twitterLoginButton.callback = object : Callback<TwitterSession>() {
