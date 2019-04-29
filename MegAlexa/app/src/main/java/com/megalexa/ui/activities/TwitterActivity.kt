@@ -46,13 +46,13 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
             val fragment = TwitterAnotherUserFragment()
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
-            showLoginPopup()
+            //showLoginPopup()
         }
         hashtag.setOnClickListener {
             val fragment = TwitterFragment()
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
-            showLoginPopup()
+            //showLoginPopup()
         }
         writeTweet.setOnClickListener {
             val fragment = WriteTweetFragment()
