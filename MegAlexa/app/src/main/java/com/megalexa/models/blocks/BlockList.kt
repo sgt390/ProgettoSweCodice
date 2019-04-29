@@ -14,9 +14,10 @@
 
 package com.megalexa.models.blocks
 
+import org.json.JSONArray
 import org.json.JSONObject
 
-class BlockList() : Block {
+class BlockList(private var list: JSONArray) : Block {
     override fun getInformation(): String {
         return "List"
     }
