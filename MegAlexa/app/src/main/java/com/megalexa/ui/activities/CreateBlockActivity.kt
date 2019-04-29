@@ -110,8 +110,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 10-> {
-                    //startActivityForResult(Intent(this, ListActivity::class.java), 0)
-
                     fragment = ListFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false

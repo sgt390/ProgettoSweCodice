@@ -14,14 +14,17 @@
 
 package com.megalexa.util.service
 
+import android.util.Log
 import com.megalexa.models.blocks.BlockList
+import org.json.JSONArray
 import org.json.JSONObject
 
 object BlockListService : BlockService() {
 
     override fun convertFromJSON(jsonObject: JSONObject): BlockList {
         val list = jsonObject.getJSONObject("config").getString("List")
-        return BlockList()
+        //TODO
+        return BlockList(JSONArray())
     }
 
     override fun <BlockList> convertToJSON(t: BlockList): JSONObject {
@@ -31,6 +34,7 @@ object BlockListService : BlockService() {
         val config = JSONObject()
         config.put("List", listBlock.listUtilities())
         allBlock.put("config", config)
+
         return allBlock
     }
 }
