@@ -8,7 +8,6 @@ import com.megalexa.viewModel.WorkflowViewModelFactory
 object InjectorUtils {
 
     fun provideMegAlexaViewModelFactory():MegAlexaViewModelFactory {
-
         val app = MegAlexa.getInstance()
         return MegAlexaViewModelFactory(app)
     }

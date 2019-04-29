@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
         val logo= findViewById<ImageView>(R.id.imageView9)
         val animation = AlphaAnimation(0.0f , 1.0f)
-        animation.duration=1200
+        animation.duration=2400
         logo.animation=animation
         logo.startAnimation(animation)
 
