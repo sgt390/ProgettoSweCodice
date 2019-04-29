@@ -53,9 +53,8 @@ class ConnectorFeedRss(private var url: String):Connector {
     override fun valid():Boolean {
 
         val operation = doAsyncResult {
-            isRssFeed()
+            return@doAsyncResult isRssFeed()
         }
-
         return operation.get()
     }
 

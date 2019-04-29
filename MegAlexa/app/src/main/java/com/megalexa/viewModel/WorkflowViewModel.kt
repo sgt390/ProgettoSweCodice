@@ -120,7 +120,6 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                 try{
                     val json :JSONObject = getWeatherInfo(param)
                     block=BlockWeather(json)
-
                     workflow.addBlock(block)
                 }catch(err:FileNotFoundException){
                     liveError("City seems to be invalid")
