@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.NumberPicker
 import com.megalexa.R
 import com.megalexa.ui.activities.CreateBlockActivity
+import com.megalexa.ui.activities.TwitterActivity
 
 class TwitterReadTimeLineUser: Fragment() {
 
@@ -48,7 +49,7 @@ class TwitterReadTimeLineUser: Fragment() {
         }
 
         button.setOnClickListener {
-            val activity = activity as CreateBlockActivity
+            val activity = activity as TwitterActivity
             activity.onFragmentClick(this)
             // screenName = editText.text.toString()
 
