@@ -23,6 +23,7 @@ import com.megalexa.util.InjectorUtils
 import com.megalexa.viewModel.WorkflowViewModel
 import kotlinx.android.synthetic.main.activity_view_block.*
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.widget.Toast
 import com.megalexa.util.view.ItemMoveCallback
 
 class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
@@ -31,6 +32,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
     }
     private lateinit var rec_view: RecyclerView
     var touchHelper:ItemTouchHelper?= null
+    private lateinit var errorMessage:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +67,15 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
                 rec_view.adapter= adapter
             }
         }
+
+        val errObserver = Observer<String> {
+            errorMessage= it!!
+            Toast.makeText(this,it,Toast.LENGTH_SHORT).show()
+        }
+
+        viewModel.getLiveErrorMessage().observe(this,errObserver)
         viewModel.getLiveBlockNames().observe(this,observer)
+
         button_confirm_modification.setOnClickListener(this)
         button_add_blockView.setOnClickListener(this)
         button_cancel_modify.setOnClickListener(this)
@@ -127,7 +137,6 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         }
         builder.show()
     }
-
 
     fun notifyDeleteBlockInteraction(position: Int) {
 

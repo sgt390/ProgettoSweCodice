@@ -14,12 +14,14 @@ import com.megalexa.util.service.WorkflowService
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.doAsyncResult
 import org.json.JSONObject
+import java.io.FileNotFoundException
 import java.util.concurrent.*
 
 class WorkflowViewModel(private val app: MegAlexa, private var workflowName:String) :ViewModel() {
 
     private var blockNames = MutableLiveData<ArrayList<String>>()
     private var workflow = Workflow(workflowName)
+    private var error= MutableLiveData<String>()
 
     /**
      * returns the adapter for the current block names that must be displayed
@@ -30,6 +32,11 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         return blockNames
     }
 
+    fun getLiveErrorMessage():LiveData<String> {
+        if(error.value == null)
+            error.value= " "
+         return error
+    }
     /**
      * gets current information regarding a specific workflow and adds it to LiveData Object
      */
@@ -110,10 +117,14 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                 workflow.addBlock(block)
             }
             "Weather" -> {
-                val json :JSONObject = getWeatherInfo(param)
-                block=BlockWeather(json)
-                //set all informations
-                workflow.addBlock(block)
+                try{
+                    val json :JSONObject = getWeatherInfo(param)
+                    block=BlockWeather(json)
+
+                    workflow.addBlock(block)
+                }catch(err:FileNotFoundException){
+                    liveError("City seems to be invalid")
+                }
             }
 
         }
@@ -172,6 +183,10 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         }
 
         return parseOpenweather(city).get()
+    }
+
+    private fun liveError(param: String){
+        error.postValue(param)
     }
 }
 
