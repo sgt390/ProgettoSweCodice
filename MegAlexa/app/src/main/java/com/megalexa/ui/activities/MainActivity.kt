@@ -3,11 +3,8 @@ package com.megalexa.ui.activities
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
-import android.support.design.animation.AnimationUtils
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.widget.ImageView
@@ -22,10 +19,6 @@ import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
 import com.megalexa.R
 import com.megalexa.util.InjectorUtils
 import com.megalexa.viewModel.MegAlexaViewModel
-import android.view.animation.AnimationUtils.loadAnimation
-
-
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private lateinit var viewModel : MegAlexaViewModel
     }
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,10 +94,11 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
                 } else {
                     /* The user is not signed in */
+                    return
                 }
             }
             override fun onError(ae: AuthError) {
-                /* The user is not signed in */
+                return
             }
         })
     }

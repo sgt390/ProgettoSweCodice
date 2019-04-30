@@ -38,6 +38,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_general_logged)
+        supportActionBar?.hide()
         val factory= InjectorUtils.provideMegAlexaViewModelFactory()
         viewModel = ViewModelProviders.of(this,factory).get(MegAlexaViewModel::class.java)
 

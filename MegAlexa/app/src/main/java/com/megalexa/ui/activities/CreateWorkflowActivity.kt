@@ -37,6 +37,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_workflow)
+        supportActionBar?.hide()
         val factory= InjectorUtils.provideWorkflowViewModelFactory("")
         viewModel = ViewModelProviders.of(this,factory).get(WorkflowViewModel::class.java)
         rec_view= findViewById(R.id.recyclerView_addedBlocksOnCreation)
