@@ -84,4 +84,6 @@
     <string name="confirmBlockList">Conferma</string>
     <string name="titleListItem">Lista</string>
     <string name="Select_site">Seleziona un sito per le news</string>
+    <string name="insertaccount">Inserisci il tuo account Gmail</string>
+    <string name="mail">Email</string>
 </resources>

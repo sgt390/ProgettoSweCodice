@@ -2,9 +2,9 @@ package com.megalexa.models.blocks
 
 import org.json.JSONObject
 
-class BlockCalendar(private val userCredential:String): Block {
+class BlockCalendar(): Block, Filtrable {
     override fun getInformation() :String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return "Calendar block"
     }
 
     fun testConnection(): Boolean{

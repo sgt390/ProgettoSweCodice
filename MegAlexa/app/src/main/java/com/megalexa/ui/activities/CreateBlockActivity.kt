@@ -20,6 +20,7 @@ import com.megalexa.util.view.FragmentClickListener
 import com.megalexa.viewModel.MegAlexaViewModel
 import kotlinx.android.synthetic.main.activity_create_block.*
 import org.json.JSONObject
+import java.util.*
 
 
 class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentClickListener {
@@ -71,7 +72,10 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 3-> {
-                    //TODO() EMAIL FRAGMENT
+                    fragment = MailFragment()
+                    listView.isEnabled=false
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 4-> {
                     fragment = NewsFragment()
@@ -115,6 +119,12 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
+                11 -> {
+                    fragment = CalendarFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled=false
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+                }
             }
         }
 
@@ -142,7 +152,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     setResult(Activity.RESULT_OK,intent)
                     finish()
                 }
-
                 "TwitterHomeTL" -> {
                     //val myUsername = data.extras!!.get("username")
                     val intent = Intent(this, CreateWorkflowActivity::class.java)
@@ -152,7 +161,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     setResult(Activity.RESULT_OK,intent)
                     finish()
                 }
-
                 "WriteTweet" -> {
                     val intent = Intent(this, CreateWorkflowActivity::class.java)
                     intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
@@ -270,20 +278,31 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             setResult(Activity.RESULT_OK, intent)
             listView.isEnabled = true
             finish()
+        } else if(sender is MailFragment){
+            val intent = Intent(this, CreateWorkflowActivity::class.java)
+            intent.putExtra("cardinality",sender.getCardinality())
+            intent.putExtra("block_type", "Read Mail")
+            setResult(Activity.RESULT_OK, intent)
+            listView.isEnabled = true
+            finish()
+        } else if(sender is CalendarFragment){
+            val intent = Intent(this, CreateWorkflowActivity::class.java)
+            intent.putExtra("cardinality",sender.getCardinality())
+            intent.putExtra("block_type", "Calendar")
+            setResult(Activity.RESULT_OK, intent)
+            listView.isEnabled = true
+            finish()
         }
 
     }
-
 
     override fun onClick(view: View) {
-
-    when(view.id){
-        R.id.button_cancel_block -> {
-            setResult(Activity.RESULT_CANCELED)
-            this.finish()
+        when(view.id){
+            R.id.button_cancel_block -> {
+                setResult(Activity.RESULT_CANCELED)
+                this.finish()
+            }
         }
-    }
-
     }
 
     private fun getBlockList(): List<Pair<String, Int>> {
@@ -301,17 +320,17 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             Pair(list[7], R.drawable.ic_news),
             Pair(list[8], R.drawable.ic_text),
             Pair(list[9], R.drawable.ic_text),
-            Pair(list[10], R.drawable.ic_list)
+            Pair(list[10], R.drawable.ic_list),
+            Pair(list[11], R.drawable.ic_list)
             )
 
     }
 
     private fun getTitlesList(): List<String> {
         return listOf("FeedRSS","Text Block","PIN",
-            "Read Email","News","Sport News","Twitter","Stock News","Weather","Crypto News", "List")
+            "Read Email","News","Sport News","Twitter","Stock News","Weather","Crypto News", "List", "Calendar")
 
     }
-
 
     override fun onBackPressed() {
         if(!listView.isEnabled)

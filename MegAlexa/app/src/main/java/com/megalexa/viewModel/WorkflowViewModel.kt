@@ -134,6 +134,14 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                 block=BlockList(JSONArray())
                 workflow.addBlock(block)
             }
+            /*"Read Mail" -> {
+                block=BlockReadEmail()
+                workflow.addBlock(block)
+            }
+            "Calendar" -> {
+                block=BlockCalendar()
+                workflow.addBlock(block)
+            }*/
 
         }
         refreshBlocks()

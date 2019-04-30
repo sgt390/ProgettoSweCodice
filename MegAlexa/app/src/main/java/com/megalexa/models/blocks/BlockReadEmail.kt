@@ -6,7 +6,7 @@ import org.json.JSONObject
 
 class BlockReadEmail(private val email: Email):Block,Filtrable {
     override fun getInformation():String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return "Read mail block"
     }
 
     init {
