@@ -23,6 +23,7 @@ import android.support.v7.widget.helper.ItemTouchHelper
 import android.util.Log
 import android.view.View
 import com.megalexa.R
+import com.megalexa.ui.adapters.BlockListViewAdapter
 import com.megalexa.ui.adapters.BlockViewAdapter
 import com.megalexa.util.InjectorUtils
 import com.megalexa.util.view.ItemMoveCallback
@@ -69,7 +70,7 @@ class ViewBlockListActivity: AppCompatActivity(), View.OnClickListener, View.OnL
         viewModel.setFromExistingWorkflow(title)
 
         val observer = Observer<ArrayList<String>>{
-            val adapter = BlockViewAdapter(this@ViewBlockListActivity)
+            val adapter = BlockListViewAdapter(this@ViewBlockListActivity)
             adapter.dataset=it!!
             runOnUiThread{
                 rec_view.adapter= adapter

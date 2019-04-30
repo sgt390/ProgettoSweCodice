@@ -24,7 +24,7 @@ class BlockListViewAdapter(val context: Context): RecyclerView.Adapter<BlockList
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BlockListViewHolder {
         return BlockListViewHolder(
             LayoutInflater.from(context).inflate(
-                R.layout.block_item,
+                R.layout.list_item_layout,
                 parent, false
             )
         )
@@ -37,7 +37,7 @@ class BlockListViewAdapter(val context: Context): RecyclerView.Adapter<BlockList
     //ViewHolder is the single list's object
     class BlockListViewHolder(v: View): RecyclerView.ViewHolder(v) {
 
-        val  tView = v.findViewById<TextView>(R.id.block_name)
+        val  tView = v.findViewById<TextView>(R.id.textListItem)
         //the line right below is gonna be useful to delete item
         //val  button= v.findViewById<ImageView>(R.id.mv_block)
 

@@ -30,7 +30,8 @@ class BlockList(private var list: JSONArray) : Block {
         return listOf()
     }
 
-    fun getList(): JSONArray{
+    fun getList(): JSONArray {
+
         return list
     }
 }

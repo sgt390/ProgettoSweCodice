@@ -9,7 +9,9 @@ import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.BlockList
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.models.workflow.Workflow.Companion.clone
+import com.megalexa.util.service.BlockListService.convertFromJSON
 import org.json.JSONArray
+import org.json.JSONObject
 import java.util.ArrayList
 
 class ViewModelBlockList(private var workflowName: String, private var blockPosition: Int) : ViewModel() {
@@ -38,10 +40,12 @@ class ViewModelBlockList(private var workflowName: String, private var blockPosi
         myHandler.postDelayed({
             val arrayJSON : JSONArray = (workflow.getBlocks().get(blockPosition) as BlockList).getList()
             var listJSON = ArrayList<String>()
-            Log.d("lenghtJSONArray", blockPosition.toString())
-            for(i in 0..arrayJSON.length()) {
-                Log.d("itemList", arrayJSON[i].toString())
-                listJSON.add(arrayJSON[i] as String)
+
+            //need to convert JSONArray to ArrayList<String>
+
+            for(i in 0..arrayJSON.length()-1) {
+                val itemListJSON=arrayJSON.getString(i)
+                listJSON.add(itemListJSON)
             }
             blockList.value=listJSON
         }, 0)
