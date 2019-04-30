@@ -78,6 +78,8 @@ class ViewBlockListActivity: AppCompatActivity(), View.OnClickListener, View.OnL
         }
         viewModel.getLiveBlockList().observe(this,observer)
 
+        button_cancel_list.setOnClickListener(this)
+
     }
 
     override fun onClick(v: View?) {
