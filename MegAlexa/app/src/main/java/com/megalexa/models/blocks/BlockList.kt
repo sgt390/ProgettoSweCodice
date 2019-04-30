@@ -29,4 +29,9 @@ class BlockList(private var list: JSONArray) : Block {
     fun listUtilities(): List<String>{
         return listOf()
     }
+
+    fun getList(): JSONArray {
+
+        return list
+    }
 }

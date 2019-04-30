@@ -22,9 +22,8 @@ import org.json.JSONObject
 object BlockListService : BlockService() {
 
     override fun convertFromJSON(jsonObject: JSONObject): BlockList {
-        val list = jsonObject.getJSONObject("config").getString("List")
-        //TODO
-        return BlockList(JSONArray())
+        val list = jsonObject.getJSONObject("config").getJSONArray("List")
+        return BlockList(list)
     }
 
     override fun <BlockList> convertToJSON(t: BlockList): JSONObject {

@@ -26,7 +26,6 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
     var dataset = ArrayList<String>()
         set(value){
             field= value
-            notifyDataSetChanged()
         }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -36,7 +35,7 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
         holder.setItemClickListener(object: ItemClickListener {
             override fun onClick(view: View?, position: Int) {
                 if(context is ViewBlockActivity && holder.tView?.text.toString() == "List") {
-                    context.startViewListActivity()
+                    context.startViewListActivity(position)
                 }
             }
 

@@ -13,37 +13,72 @@
  */
 package com.megalexa.ui.activities
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
+import android.util.Log
 import android.view.View
 import com.megalexa.R
+import com.megalexa.ui.adapters.BlockListViewAdapter
+import com.megalexa.ui.adapters.BlockViewAdapter
+import com.megalexa.util.InjectorUtils
+import com.megalexa.util.view.ItemMoveCallback
+import com.megalexa.viewModel.ViewModelBlockList
+import com.megalexa.viewModel.WorkflowViewModel
+import kotlinx.android.synthetic.main.activity_view_block.*
 import kotlinx.android.synthetic.main.list_activity_layout.*
 import kotlin.concurrent.thread
 
 class ViewBlockListActivity: AppCompatActivity(), View.OnClickListener, View.OnLongClickListener   {
+
+    companion object {
+        private lateinit var viewModel: ViewModelBlockList
+    }
+
+    private lateinit var rec_view: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.list_activity_layout)
+        var title: String = ""
+        var blockPosition: Int = 0
 
-        val list: ArrayList<String> = ArrayList()
+        if(savedInstanceState == null){
 
-        itemListView.apply {
-
-            // use a linear layout manager
-            layoutManager = LinearLayoutManager(context)
-
-            // specify an viewAdapter (see also next example)
-            //adapter = ListItemAdapter(list)
-
+            val extras :Bundle? = intent.extras
+            if(extras==null){
+                title="EXTRAS NULLI"
+            } else {
+                title= extras.getString("WORKFLOW_NAME")!!
+                blockPosition = extras.getInt("blockPosition")
+            }
+        }else{
+            title= savedInstanceState.getSerializable("WORKFLOW_NAME") as String
+            blockPosition = savedInstanceState.getSerializable("blockPosition") as Int
         }
 
-        //val buttonSave = findViewById<Button>(R.id.button_save_list)
-        //val buttonCancel = findViewById<Button>(R.id.button_cancel_list)
+        rec_view=findViewById(R.id.itemListView)
+        rec_view.layoutManager= LinearLayoutManager(this)
+        //workflow_title.text= title
+        val factory= InjectorUtils.provideBlockListViewModel(title, blockPosition)
+
+        viewModel = ViewModelProviders.of(this,factory).get(ViewModelBlockList::class.java)
+        viewModel.setFromExistingWorkflow(title)
+
+        val observer = Observer<ArrayList<String>>{
+            val adapter = BlockListViewAdapter(this@ViewBlockListActivity)
+            adapter.dataset=it!!
+            runOnUiThread{
+                rec_view.adapter= adapter
+            }
+        }
+        viewModel.getLiveBlockList().observe(this,observer)
 
         button_cancel_list.setOnClickListener(this)
-        //button_save_list.setOnClickListener(this)
-
 
     }
 
