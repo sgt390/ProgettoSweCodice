@@ -11,5 +11,5 @@
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_account_circle_dark_24dp" />
+            android:src="@drawable/ic_app_megalexa" />
 </LinearLayout>

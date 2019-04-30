@@ -38,6 +38,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_block)
+        supportActionBar?.hide()
         val title: String?
 
         if(savedInstanceState == null){

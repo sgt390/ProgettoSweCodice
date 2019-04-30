@@ -17,14 +17,14 @@
         <activity android:name=".ui.activities.TwitterActivity">
         </activity>
         <activity
-                android:name=".ui.activities.ViewBlockListActivity"
-                android:label="ViewBlockListActivity"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:name=".ui.activities.ListActivity"
+                android:label="@string/title_activity_list"
+                android:theme="@style/AppTheme">
         </activity>
 
         <activity
                 android:name=".ui.activities.GeneralLoggedActivity"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:theme="@style/AppTheme">
         </activity>
         <activity
                 android:name=".ui.activities.MainActivity"
@@ -37,15 +37,15 @@
         </activity>
         <activity
                 android:name=".ui.activities.CreateWorkflowActivity"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:theme="@style/AppTheme">
         </activity>
         <activity
                 android:name=".ui.activities.CreateBlockActivity"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:theme="@style/AppTheme">
         </activity>
         <activity
                 android:name=".ui.activities.ViewBlockActivity"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:theme="@style/AppTheme">
         </activity>
         <activity
                 android:name="com.amazon.identity.auth.device.workflow.WorkflowActivity"

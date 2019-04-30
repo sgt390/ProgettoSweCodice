@@ -32,6 +32,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_block)
+        supportActionBar?.hide()
         val factory= InjectorUtils.provideMegAlexaViewModelFactory()
         viewModel = ViewModelProviders.of(this,factory).get(MegAlexaViewModel::class.java)
 
