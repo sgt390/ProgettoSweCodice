@@ -14,7 +14,6 @@
 
 package com.megalexa.models.blocks
 
-import com.google.gson.JsonArray
 import org.json.JSONArray
 import org.json.JSONObject
 

@@ -23,8 +23,10 @@ import com.megalexa.util.InjectorUtils
 import com.megalexa.viewModel.WorkflowViewModel
 import kotlinx.android.synthetic.main.activity_view_block.*
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log
 import android.widget.Toast
 import com.megalexa.util.view.ItemMoveCallback
+import kotlinx.android.synthetic.main.item_workflow.*
 
 class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
     companion object {
@@ -163,6 +165,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
     fun startViewListActivity(position: Int) {
         val intent = Intent(this, ViewBlockListActivity::class.java)
         intent.putExtra("blockPosition", position)
+        intent.putExtra("WORKFLOW_NAME", workflow_title.text)
         startActivityForResult(intent, 0)
     }
 }

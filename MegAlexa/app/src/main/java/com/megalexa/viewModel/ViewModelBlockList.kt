@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import android.util.Log
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.BlockList
 import com.megalexa.models.workflow.Workflow
@@ -35,9 +36,11 @@ class ViewModelBlockList(private var workflowName: String, private var blockPosi
     private fun loadListItems() {
         val myHandler = android.os.Handler()
         myHandler.postDelayed({
-            val arrayJSON : JSONArray = (workflow.getBlocks()[blockPosition] as BlockList).getList()
+            val arrayJSON : JSONArray = (workflow.getBlocks().get(blockPosition) as BlockList).getList()
             var listJSON = ArrayList<String>()
+            Log.d("lenghtJSONArray", blockPosition.toString())
             for(i in 0..arrayJSON.length()) {
+                Log.d("itemList", arrayJSON[i].toString())
                 listJSON.add(arrayJSON[i] as String)
             }
             blockList.value=listJSON

@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.util.Log
 import android.view.View
 import com.megalexa.R
 import com.megalexa.ui.adapters.BlockViewAdapter
@@ -44,6 +45,7 @@ class ViewBlockListActivity: AppCompatActivity(), View.OnClickListener, View.OnL
         setContentView(R.layout.list_activity_layout)
         var title: String = ""
         var blockPosition: Int = 0
+
         if(savedInstanceState == null){
 
             val extras :Bundle? = intent.extras
@@ -60,45 +62,20 @@ class ViewBlockListActivity: AppCompatActivity(), View.OnClickListener, View.OnL
 
         rec_view=findViewById(R.id.itemListView)
         rec_view.layoutManager= LinearLayoutManager(this)
-        workflow_title.text= title
+        //workflow_title.text= title
         val factory= InjectorUtils.provideBlockListViewModel(title, blockPosition)
 
-        ViewBlockListActivity.viewModel = ViewModelProviders.of(this,factory).get(WorkflowViewModel::class.java)
-        ViewBlockListActivity.viewModel.setFromExistingWorkflow(title)
+        viewModel = ViewModelProviders.of(this,factory).get(ViewModelBlockList::class.java)
+        viewModel.setFromExistingWorkflow(title)
 
         val observer = Observer<ArrayList<String>>{
             val adapter = BlockViewAdapter(this@ViewBlockListActivity)
             adapter.dataset=it!!
-            val callback= ItemMoveCallback(this@ViewBlockListActivity,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
-
             runOnUiThread{
                 rec_view.adapter= adapter
             }
         }
-        ViewBlockListActivity.viewModel.getLiveBlockNames().observe(this,observer)
-
-
-
-
-
-        val list: ArrayList<String> = ArrayList()
-
-        itemListView.apply {
-
-            // use a linear layout manager
-            layoutManager = LinearLayoutManager(context)
-
-            // specify an viewAdapter (see also next example)
-            //adapter = ListItemAdapter(list)
-
-        }
-
-        //val buttonSave = findViewById<Button>(R.id.button_save_list)
-        //val buttonCancel = findViewById<Button>(R.id.button_cancel_list)
-
-        button_cancel_list.setOnClickListener(this)
-        //button_save_list.setOnClickListener(this)
-
+        viewModel.getLiveBlockList().observe(this,observer)
 
     }
 
