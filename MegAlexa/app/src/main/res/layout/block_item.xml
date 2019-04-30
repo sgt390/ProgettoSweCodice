@@ -24,7 +24,7 @@
             android:layout_width="56dp"
             android:layout_height="62dp"
             android:id="@+id/mv_block"
-            android:background="@drawable/ic_ud_arrow"
+            android:background="@drawable/ic_hand"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
     />
