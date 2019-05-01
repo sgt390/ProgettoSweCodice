@@ -20,9 +20,11 @@ import com.megalexa.ui.fragments.TwitterReadTimeLineUser
 import com.megalexa.ui.fragments.WriteTweetFragment
 import com.megalexa.util.view.FragmentClickListener
 import com.twitter.sdk.android.core.*
+import com.twitter.sdk.android.core.TwitterException
 import com.twitter.sdk.android.core.identity.TwitterLoginButton
 import com.twitter.sdk.android.core.models.User
 import kotlinx.android.synthetic.main.activity_twitter.*
+import twitter4j.*
 
 class TwitterActivity : AppCompatActivity(), FragmentClickListener {
 
@@ -65,7 +67,11 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
     override fun onFragmentClick(sender: Fragment) {
         if(sender is TwitterAnotherUserFragment){
             val anotherUser = sender.getUserName()
-            Toast.makeText(this,anotherUser,Toast.LENGTH_SHORT).show()
+            val users = TwitterFactory().getInstance().searchUsers(anotherUser, 1)
+            if(users.size > 0){
+                Toast.makeText(this,"This user don't exist!",Toast.LENGTH_SHORT).show()
+            }
+            //Toast.makeText(this,anotherUser,Toast.LENGTH_SHORT).show()
             val intent = Intent(this,CreateBlockActivity::class.java)
             intent.putExtra("cardinality",sender.getCardinality())
             intent.putExtra("block_type", "TwitterUserTL")
