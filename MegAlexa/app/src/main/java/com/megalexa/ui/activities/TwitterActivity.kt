@@ -109,7 +109,7 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         popupWindow.setBackgroundDrawable(ColorDrawable(Color.WHITE)) //Background color
         popupWindow.isFocusable = true //for click EditText
         popupWindow.setOnDismissListener {
-            supportFragmentManager.popBackStackImmediate()
+            //supportFragmentManager.popBackStackImmediate()
         }
         twitterLoginButton = view.findViewById(R.id.login_twitter_button)
         val x = 5

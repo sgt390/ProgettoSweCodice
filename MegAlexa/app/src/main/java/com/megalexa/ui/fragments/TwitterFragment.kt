@@ -35,7 +35,7 @@ import com.megalexa.util.ApplicationContextProvider
 class TwitterFragment: Fragment() {
 
     var screenName : String = ""
-    private var cardinality=0
+    private var cardinality=10
 
     //val consumer_api_key = ApplicationContextProvider.context!!.getResources()!!.getString(R.string.consumer_api_key_twitter) //"INSERT CONSUMER API KEY IN RES/VALUE/STRINGS"
     //val consumer_api_secret_key = ApplicationContextProvider.context!!.resources!!.getString(R.string.consumer_api_key_secret_twitter)//"INSERT CONSUMER API KEYS SECRET IN RES/VALUE/STRINGS"
@@ -57,7 +57,7 @@ class TwitterFragment: Fragment() {
             val builder = AlertDialog.Builder(ContextThemeWrapper(context,R.style.Theme_AppCompat_Dialog))
             val pickerLayout =inflater.inflate(R.layout.simple_number_picker,null)
             val picker=pickerLayout.findViewById<NumberPicker>(R.id.number_picker)
-            picker.minValue=0
+            picker.minValue=1
             picker.maxValue=10
 
             val confirmFilter = {

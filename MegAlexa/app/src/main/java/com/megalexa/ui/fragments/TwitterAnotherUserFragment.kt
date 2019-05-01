@@ -32,7 +32,7 @@ import com.megalexa.ui.activities.TwitterActivity
 class TwitterAnotherUserFragment: Fragment() {
 
     var username : String = ""
-    private var cardinality = 0
+    private var cardinality = 10
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.twitter_another_user_layout, container, false)
@@ -44,7 +44,7 @@ class TwitterAnotherUserFragment: Fragment() {
             val builder = AlertDialog.Builder(ContextThemeWrapper(context,R.style.Theme_AppCompat_Dialog))
             val pickerLayout =inflater.inflate(R.layout.simple_number_picker,null)
             val picker=pickerLayout.findViewById<NumberPicker>(R.id.number_picker)
-            picker.minValue=0
+            picker.minValue=1
             picker.maxValue=10
 
             val confirmFilter = {
