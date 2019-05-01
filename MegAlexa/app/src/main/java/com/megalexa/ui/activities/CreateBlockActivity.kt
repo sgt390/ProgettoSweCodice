@@ -80,34 +80,32 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
-                5-> {
+                5 -> {
                     fragment = SportFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
-
-                6-> {
-
-                    fragment = CryptoFragment()
-                    val transaction = supportFragmentManager.beginTransaction()
-                    listView.isEnabled=false
-                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()                }
-
-                7-> {
+                6 -> {
+                    val intent = Intent(this@CreateBlockActivity, TwitterActivity::class.java)
+                    startActivityForResult(intent, 1)
+                }
+                7 -> {
                     fragment = BorsaFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
-                8-> {
-                    val intent = Intent(this@CreateBlockActivity, TwitterActivity::class.java)
-                    startActivityForResult(intent, 1)
-                }
-                9 -> {
+                8 -> {
                     fragment = WeatherFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     listView.isEnabled=false
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+                }
+                9 -> {
+                    fragment = CryptoFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled = false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 10-> {
