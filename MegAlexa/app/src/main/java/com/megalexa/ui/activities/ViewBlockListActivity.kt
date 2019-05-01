@@ -107,7 +107,7 @@ class ViewBlockListActivity: AppCompatActivity(), View.OnClickListener, View.OnL
 
         val builder= android.support.v7.app.AlertDialog.Builder(ContextThemeWrapper(this@ViewBlockListActivity,R.style.AlertDialogCustom))
         val confirmDeletion={
-                _: DialogInterface, _: Int -> ViewBlockListActivity.viewModel.removeBlockAt(position)
+                _: DialogInterface, _: Int -> viewModel.removeListItemAt(position)
         }
         val cancelDeletion= {
                 _: DialogInterface, _:Int ->
