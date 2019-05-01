@@ -50,15 +50,6 @@ class BlockCrypto(private val url: String): Block,Filtrable {
         return " Crypto news"
     }
 
-    override fun toJSON() : JSONObject {
-        val allBlock = JSONObject()
-        allBlock.put("blockType", "Crypto" )
-        val config = JSONObject()
-        config.put("url" , url)
-        allBlock.put("config", config)
-        return allBlock
-    }
-
     fun url()= url
 
 }

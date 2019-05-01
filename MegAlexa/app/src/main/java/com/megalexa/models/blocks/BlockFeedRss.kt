@@ -51,15 +51,6 @@ class BlockFeedRss(private val url: String): Block,Filtrable {
         return "Feed RSS "
     }
 
-    override fun toJSON() : JSONObject {
-        val allBlock = JSONObject()
-        allBlock.put("blockType", "FeedRSS" )
-        val config = JSONObject()
-        config.put("url" , url)
-        allBlock.put("config", config)
-        return allBlock
-    }
-
     fun url()= url
 
 }

@@ -50,15 +50,6 @@ class BlockBorsa(private val url: String): Block,Filtrable {
         return "Feed Borsa block created for $url URL "
     }
 
-    override fun toJSON() : JSONObject {
-        val allBlock = JSONObject()
-        allBlock.put("blockType", "Borsa" )
-        val config = JSONObject()
-        config.put("url" , url)
-        allBlock.put("config", config)
-        return allBlock
-    }
-
     fun url()= url
 
 }

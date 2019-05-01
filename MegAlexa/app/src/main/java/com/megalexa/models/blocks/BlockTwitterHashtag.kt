@@ -46,18 +46,4 @@ class BlockTwitterHashtag(private val screenName: String): Block,Filtrable {
     fun getHashtag() = screenName
 
 
-    override fun toJSON() : JSONObject {
-        val allBlock = JSONObject()
-        allBlock.put("blockType", "TwitterHashtag" )
-        val config = JSONObject()
-        config.put("access_token_key" , access_token_key )
-        config.put("access_token_secret" , access_token_secret)
-        config.put("consumer_key" , consumer_key)
-        config.put("consumer_secret" , consumer_secret)
-        config.put("screenName" , screenName)
-        allBlock.put("config", config)
-        return allBlock
-    }
-
-
 }

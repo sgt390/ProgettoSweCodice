@@ -42,12 +42,4 @@ class BlockTextToSpeech(private var textBox: String):Block {
         textBox = text
     }
 
-    override fun toJSON() : JSONObject{
-        val allBlock : JSONObject = JSONObject()
-        allBlock.put("blockType", "TextToSpeech")
-        val config : JSONObject = JSONObject()
-        config.put("TextToSpeech", textBox )
-        allBlock.put("config", config)
-        return allBlock
-    }
 }

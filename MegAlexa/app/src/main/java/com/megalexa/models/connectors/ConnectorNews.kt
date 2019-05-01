@@ -60,9 +60,9 @@ class ConnectorNews(private var url: String):Connector {
 
     private fun isRssFeed() :Boolean {
 
-        var resource: URL
-        var xpp: XmlPullParser
-        var iStream: InputStream
+        val resource: URL
+        val xpp: XmlPullParser
+        val iStream: InputStream
         val result = AtomicBoolean()
         result.set(false)
         try {

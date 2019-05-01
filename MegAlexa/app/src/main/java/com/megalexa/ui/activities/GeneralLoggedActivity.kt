@@ -73,17 +73,14 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
             override fun onSuccess(p0: User) {
                 viewModel.setUser(p0)
                 viewModel.loadAppContext()
-
-                viewModel.refreshWorkflow()
             }
             override fun onError(p0: AuthError?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                return
             }
         })
     }
 
     override fun onBackPressed() {
-        viewModel.refreshWorkflow()
         if(drawer_layout.isDrawerOpen(GravityCompat.START)){
             drawer_layout.closeDrawer(GravityCompat.START)
         }else{
@@ -112,8 +109,8 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     }
 
     override fun onResume() {
-        viewModel.refreshWorkflow()
         super.onResume()
+        return
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -146,7 +143,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         startActivityForResult(intent,5)
     }
 
-    fun notifiyDeleteInteraction(position :Int) {
+    fun notifyDeleteInteraction(position :Int) {
 
         val builder= android.support.v7.app.AlertDialog.Builder(ContextThemeWrapper(this@GeneralLoggedActivity,R.style.AlertDialogCustom))
         val confirmDeletion={

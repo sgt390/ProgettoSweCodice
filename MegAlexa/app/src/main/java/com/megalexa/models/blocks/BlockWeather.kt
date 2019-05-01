@@ -36,17 +36,6 @@ class BlockWeather(private val OpenWeatherObj : JSONObject): Block {
         return "Weather "
     }
 
-    override fun toJSON() : JSONObject {
-        val allBlock = JSONObject()
-        allBlock.put("blockType", "Weather" )
-        val config = JSONObject()
-        config.put("APIKey", getAPIKey())
-        config.put("Latitude", getLatitude())
-        config.put("Longitude", getLongitude())
-        allBlock.put("config", config)
-        return allBlock
-    }
-
         fun getAPIKey(): String? {
             return APIKey
         }

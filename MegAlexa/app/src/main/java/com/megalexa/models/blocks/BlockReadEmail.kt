@@ -19,8 +19,4 @@ class BlockReadEmail(private val email: Email):Block,Filtrable {
         TODO(reason = "not implemented")
     }
 
-    override fun toJSON(): JSONObject {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
 }

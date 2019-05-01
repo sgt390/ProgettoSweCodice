@@ -16,10 +16,6 @@ class Filter(private val limit:Short):Block {
 
     fun limit() = limit
 
-    override fun toJSON(): JSONObject {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     /**
      * checks if block is filtrable, upper classes will add filters based on the result
      */

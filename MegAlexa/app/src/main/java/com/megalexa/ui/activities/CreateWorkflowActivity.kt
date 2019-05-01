@@ -170,13 +170,11 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                     "WriteTwitter" -> {
                         viewModel.addOneArgBlock("TwitterWrite","")
                     }
-
                     "Weather" -> {
                         val city= data!!.extras!!.get("city").toString()
                             viewModel.addOneArgBlock("Weather",city)
 
                     }
-
                     "List" -> {
                         viewModel.addOneArgBlock("List", "")
 

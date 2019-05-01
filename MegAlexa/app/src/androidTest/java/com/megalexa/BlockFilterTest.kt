@@ -5,7 +5,6 @@ import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.blocks.BlockFeedRss
 import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.models.blocks.Filter
-import com.megalexa.models.connectors.ConnectorAmazonMusic
 import com.megalexa.util.service.FilterService
 
 import org.junit.Test
