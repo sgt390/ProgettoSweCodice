@@ -149,20 +149,20 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
     fun notifiyDeleteInteraction(position :Int) {
 
         val builder= android.support.v7.app.AlertDialog.Builder(ContextThemeWrapper(this@GeneralLoggedActivity,R.style.AlertDialogCustom))
-      val confirmDeletion={
+        val confirmDeletion={
               _: DialogInterface, _: Int -> viewModel.removeWorkflow(position)
-      }
-      val cancelDeletion= {
-          _:DialogInterface,_:Int ->
-      }
+          }
+          val cancelDeletion= {
+              _:DialogInterface,_:Int ->
+          }
 
-        with(builder) {
+            with(builder) {
 
-            setTitle("Delete Workflow")
-            setPositiveButton("Confirm", confirmDeletion)
-            setNegativeButton("Cancel", cancelDeletion)
+                setTitle("Delete Workflow")
+                setPositiveButton("Confirm", confirmDeletion)
+                setNegativeButton("Cancel", cancelDeletion)
+            }
+
+            builder.show()
         }
-
-        builder.show()
-    }
 }

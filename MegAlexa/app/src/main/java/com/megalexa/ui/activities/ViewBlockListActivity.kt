@@ -15,13 +15,18 @@ package com.megalexa.ui.activities
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.DialogInterface
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.View
+import android.widget.EditText
+import android.widget.TextView
 import com.megalexa.R
 import com.megalexa.ui.adapters.BlockListViewAdapter
 import com.megalexa.ui.adapters.BlockViewAdapter
@@ -33,7 +38,7 @@ import kotlinx.android.synthetic.main.activity_view_block.*
 import kotlinx.android.synthetic.main.list_activity_layout.*
 import kotlin.concurrent.thread
 
-class ViewBlockListActivity: AppCompatActivity(), View.OnClickListener, View.OnLongClickListener   {
+class ViewBlockListActivity: AppCompatActivity(), View.OnClickListener, View.OnLongClickListener  {
 
     companion object {
         private lateinit var viewModel: ViewModelBlockList
@@ -96,6 +101,27 @@ class ViewBlockListActivity: AppCompatActivity(), View.OnClickListener, View.OnL
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+
+    fun notifyDeleteBlockListInteraction(position: Int) {
+
+
+        val builder= android.support.v7.app.AlertDialog.Builder(ContextThemeWrapper(this@ViewBlockListActivity,R.style.AlertDialogCustom))
+        val confirmDeletion={
+                _: DialogInterface, _: Int -> ViewBlockListActivity.viewModel.removeBlockAt(position)
+        }
+        val cancelDeletion= {
+                _: DialogInterface, _:Int ->
+        }
+
+        with(builder) {
+
+            setTitle("Delete Item")
+            setPositiveButton("Confirm", confirmDeletion)
+            setNegativeButton("Cancel", cancelDeletion)
+        }
+
+        builder.show()
+    }
     /*
     val buttonAdd = findViewById<Button>(R.id.addListItemButton)
     val buttonConfirm = findViewById<Button>(R.id.confirmItemBotton)

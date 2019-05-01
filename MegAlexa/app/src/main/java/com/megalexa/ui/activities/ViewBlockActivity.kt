@@ -147,7 +147,6 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         }
 
         with(builder) {
-
             setTitle("Delete Block")
             setPositiveButton("Confirm", confirmDeletion)
             setNegativeButton("Cancel", cancelDeletion)

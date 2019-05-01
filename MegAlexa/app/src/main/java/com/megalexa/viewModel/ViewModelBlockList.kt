@@ -40,9 +40,6 @@ class ViewModelBlockList(private var workflowName: String, private var blockPosi
         myHandler.postDelayed({
             val arrayJSON : JSONArray = (workflow.getBlocks().get(blockPosition) as BlockList).getList()
             var listJSON = ArrayList<String>()
-
-            //need to convert JSONArray to ArrayList<String>
-
             for(i in 0..arrayJSON.length()-1) {
                 val itemListJSON=arrayJSON.getString(i)
                 listJSON.add(itemListJSON)
@@ -62,6 +59,11 @@ class ViewModelBlockList(private var workflowName: String, private var blockPosi
         }
     }
 
+    fun updateBlockList() {
+        TODO("refreshBlockList ask ludo")
+        refreshBlockList()
+    }
+
     private fun refreshBlockList() {
         val arrayJSON : JSONArray = (workflow.getBlocks()[blockPosition] as BlockList).getList()
         var listJSON = ArrayList<String>()
@@ -69,6 +71,14 @@ class ViewModelBlockList(private var workflowName: String, private var blockPosi
             listJSON.add(arrayJSON[i] as String)
         }
         blockList.postValue(listJSON)
+    }
+
+
+    fun removeBlockAt(position: Int) {
+        Log.d("you are a good man", "ded")
+        val list = blockList.value!!
+        list.removeAt(position)
+        refreshBlockList()
     }
 }
 
