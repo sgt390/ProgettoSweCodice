@@ -89,7 +89,8 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
                 dataset.set(i, dataset.set(i-1, dataset.get(i)))
             }
         }
-        notifyItemMoved(fromPosition, toPosition)
+
+        //notifyItemMoved(fromPosition, toPosition)
     }
 
 }

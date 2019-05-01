@@ -184,7 +184,7 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     }
 
     fun validateSwap(position: Int) :SwapConfiguration {
-        val swapConfiguration:SwapConfiguration
+        var swapConfiguration=SwapConfiguration.UNDEFINED_ELEMENT
 
         if(position==0 && !(workflow.getBlocks()[0] is Filter)) {
             swapConfiguration= SwapConfiguration.IS_BLOCK
@@ -192,15 +192,51 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         }else if (workflow.getBlocks()[position-1] is Filter) {
             swapConfiguration=SwapConfiguration.HAS_FILTER_ATTACHED
 
-        }else {
-            swapConfiguration=SwapConfiguration.NO_FILTER_ATTACHED
+        }else if(workflow.getBlocks()[position] is Filter) {
+            swapConfiguration=SwapConfiguration.IS_FILTER
         }
         return swapConfiguration
     }
 
     fun swapItems(fromPosition:Int,toPosition:Int, swapConfig:Pair<SwapConfiguration,SwapConfiguration>){
+
         val list = workflow.getBlocks()
-        Collections.swap(list,fromPosition,toPosition)
+
+        if(swapConfig.first==SwapConfiguration.IS_BLOCK) {
+
+            if( swapConfig.second==SwapConfiguration.IS_BLOCK)  {
+                Collections.swap(list,fromPosition,toPosition)
+            }
+
+            if(swapConfig.second==SwapConfiguration.IS_FILTER) {
+
+            }
+
+            if(swapConfig.second==SwapConfiguration.HAS_FILTER_ATTACHED){
+
+            }
+        }
+
+        if(swapConfig.first==SwapConfiguration.HAS_FILTER_ATTACHED) {
+
+            if(swapConfig.second==SwapConfiguration.IS_BLOCK) {
+                Collections.swap(list,fromPosition-1,toPosition-1)
+                Collections.swap(list,fromPosition,toPosition)
+            }
+
+            if(swapConfig.second==SwapConfiguration.HAS_FILTER_ATTACHED) {
+                Collections.swap(list,fromPosition-1,toPosition-1)
+                Collections.swap(list,fromPosition,toPosition)
+            }
+
+            if(swapConfig.second==SwapConfiguration.IS_FILTER) {
+                
+            }
+        }
+
+
+
+
         refreshBlocks()
     }
 

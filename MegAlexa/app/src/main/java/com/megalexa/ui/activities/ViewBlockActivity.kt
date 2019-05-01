@@ -161,8 +161,8 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
         val configFromPosition = viewModel.validateSwap(fromPosition)
         val configToPosition = viewModel.validateSwap(toPosition)
-            mAdapter.swapItems(fromPosition,toPosition)
-            viewModel.swapItems(fromPosition,toPosition,Pair(configFromPosition,configToPosition))
+            mAdapter.swapItems(fromPosition,toPosition,Pair(configFromPosition,configToPosition))
+            viewModel.swapItems(fromPosition,toPosition, Pair(configFromPosition,configToPosition))
 
     }
 
