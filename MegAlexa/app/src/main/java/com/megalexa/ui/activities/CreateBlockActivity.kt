@@ -129,6 +129,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     val intent = Intent(this, CreateWorkflowActivity::class.java)
                     intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
                     intent.putExtra("block_type", "TwitterUserTL")
+                    intent.putExtra("screenName" ,anotherUser?.toString())
                     setResult(Activity.RESULT_OK,intent)
                     finish()
                 }
@@ -137,7 +138,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     val intent = Intent(this, CreateWorkflowActivity::class.java)
                     intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
                     intent.putExtra("block_type", "TwitterHashtag")
-                    intent.putExtra("screenName" ,hashtag?.toString())
+                    intent.putExtra("hashtag" ,hashtag?.toString())
                     setResult(Activity.RESULT_OK,intent)
                     finish()
                 }
