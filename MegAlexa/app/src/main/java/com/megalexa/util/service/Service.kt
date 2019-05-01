@@ -42,8 +42,31 @@ abstract class Service : JSONConverter{
         return json
     }
 
-    open fun putOperation(jsonObject: JSONObject): JSONObject {
-        TODO()
+    open fun putOperation(jsonObject: JSONObject) {
+        val url= "$APIUrl$resource"
+        val myURL = URL(url)
+        with(myURL.openConnection() as HttpsURLConnection) {
+            setRequestProperty("Content-Type", "application/json")
+            requestMethod = "PUT"
+            doOutput = true
+            val wr = OutputStreamWriter(outputStream)
+            wr.write(jsonObject.toString())
+            wr.flush()
+            println("URL : $url")
+            println("Response Code : $responseCode")
+            BufferedReader(InputStreamReader(inputStream)).use {
+                val response = StringBuffer()
+                var inputLine = it.readLine()
+                while (inputLine != null) {
+                    response.append(inputLine)
+                    inputLine = it.readLine()
+                }
+                Log.d("done", "here we go again")
+                println("Response : $response")
+            }
+
+            Log.d("done", "here we go again dopo")
+        }
     }
 
     open fun deleteOperation(jsonObject: JSONObject): JSONObject {

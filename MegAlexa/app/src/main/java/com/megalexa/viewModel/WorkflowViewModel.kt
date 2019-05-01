@@ -147,6 +147,13 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     fun updateWorkflow() {
 
         val list = app.getWorkflowList()
+
+        /* from saveWorkflow here
+            workflow.setName(workflowName)
+            app.addWorkflow(workflow)
+            val json = WorkflowService.convertToJSON(workflow)
+            WorkflowService.postOperation(json)
+        */
         val iterator= list.iterator()
         while (iterator.hasNext()) {
              iterator.forEach {
