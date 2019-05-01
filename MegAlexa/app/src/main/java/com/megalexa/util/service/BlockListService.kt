@@ -31,7 +31,7 @@ object BlockListService : BlockService() {
         val allBlock = JSONObject()
         allBlock.put("blockType", "List")
         val config = JSONObject()
-        config.put("List", listBlock.listUtilities())
+        config.put("List", listBlock.getList())
         allBlock.put("config", config)
 
         return allBlock

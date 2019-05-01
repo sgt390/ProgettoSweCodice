@@ -131,7 +131,8 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                 workflow.addBlock(block)
             }
             "List" -> {
-                block=BlockList(JSONArray())
+                val json : JSONArray = JSONArray()
+                block=BlockList(json)
                 workflow.addBlock(block)
             }
 
