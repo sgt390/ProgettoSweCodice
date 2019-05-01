@@ -182,11 +182,27 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         val list=workflow.getBlocks()
         list.add(Filter(cardinality))
     }
-fun swapItems(fromPosition:Int,toPosition:Int){
-    val list = workflow.getBlocks()
-    Collections.swap(list,fromPosition,toPosition)
-    refreshBlocks()
-}
+
+    fun validateSwap(position: Int) :SwapConfiguration {
+        val swapConfiguration:SwapConfiguration
+
+        if(position==0 && !(workflow.getBlocks()[0] is Filter)) {
+            swapConfiguration= SwapConfiguration.IS_BLOCK
+
+        }else if (workflow.getBlocks()[position-1] is Filter) {
+            swapConfiguration=SwapConfiguration.HAS_FILTER_ATTACHED
+
+        }else {
+            swapConfiguration=SwapConfiguration.NO_FILTER_ATTACHED
+        }
+        return swapConfiguration
+    }
+
+    fun swapItems(fromPosition:Int,toPosition:Int, swapConfig:Pair<SwapConfiguration,SwapConfiguration>){
+        val list = workflow.getBlocks()
+        Collections.swap(list,fromPosition,toPosition)
+        refreshBlocks()
+    }
 
     private fun getWeatherInfo(city:String): JSONObject {
 

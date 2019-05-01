@@ -18,6 +18,7 @@ import com.megalexa.ui.activities.CreateWorkflowActivity
 import com.megalexa.ui.activities.ViewBlockActivity
 import com.megalexa.ui.activities.ViewBlockListActivity
 import com.megalexa.util.view.ItemClickListener
+import com.megalexa.viewModel.SwapConfiguration
 import java.util.*
 
 class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHolder>(){
@@ -78,7 +79,7 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
     /**
      * Function called to swap dragged items
      */
-    fun swapItems(fromPosition: Int, toPosition: Int) {
+    fun swapItems(fromPosition: Int, toPosition: Int, swapConfiguration: Pair<SwapConfiguration,SwapConfiguration>) {
         if (fromPosition < toPosition) {
             for (i in fromPosition until(toPosition - 1)) {
                 dataset.set(i, dataset.set(i+1, dataset.get(i)))

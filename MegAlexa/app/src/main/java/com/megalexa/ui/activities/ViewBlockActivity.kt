@@ -158,8 +158,12 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
     fun swapItems(fromPosition:Int, toPosition:Int) {
         val mAdapter= rec_view.adapter as BlockViewAdapter
-        mAdapter.swapItems(fromPosition,toPosition)
-        viewModel.swapItems(fromPosition,toPosition)
+
+        val configFromPosition = viewModel.validateSwap(fromPosition)
+        val configToPosition = viewModel.validateSwap(toPosition)
+            mAdapter.swapItems(fromPosition,toPosition)
+            viewModel.swapItems(fromPosition,toPosition,Pair(configFromPosition,configToPosition))
+
     }
 
     fun startViewListActivity(position: Int) {
