@@ -50,15 +50,6 @@ class BlockSport(private val url: String): Block,Filtrable {
         return " Sport Feed "
     }
 
-    override fun toJSON() : JSONObject {
-        val allBlock = JSONObject()
-        allBlock.put("blockType", "Sport" )
-        val config = JSONObject()
-        config.put("url" , url)
-        allBlock.put("config", config)
-        return allBlock
-    }
-
     fun url()= url
 
 }

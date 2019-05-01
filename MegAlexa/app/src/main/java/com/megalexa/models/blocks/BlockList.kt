@@ -22,10 +22,6 @@ class BlockList(private var list: JSONArray) : Block {
         return "List"
     }
 
-    override fun toJSON(): JSONObject {
-        return JSONObject()
-    }
-
     fun listUtilities(): List<String>{
         return listOf()
     }

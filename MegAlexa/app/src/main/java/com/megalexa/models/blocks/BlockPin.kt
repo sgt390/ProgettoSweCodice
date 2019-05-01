@@ -32,12 +32,4 @@ class BlockPin(private var pin: Int):Block {
         pin = newPin
     }
 
-    override fun toJSON() : JSONObject{
-        val allBlock : JSONObject = JSONObject()
-        allBlock.put("blockType", "Pin")
-        val config : JSONObject = JSONObject()
-        config.put("Pin", pin )
-        allBlock.put("config", config)
-        return allBlock
-    }
 }

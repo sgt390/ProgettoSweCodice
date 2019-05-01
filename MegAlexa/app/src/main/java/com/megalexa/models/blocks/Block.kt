@@ -8,7 +8,4 @@ interface Block : Serializable{
 
     fun getInformation():String
 
-    //TODO() SAFELY DELETE THIS FUNCTION
-    fun toJSON() : JSONObject
-
 }

@@ -11,7 +11,4 @@ class BlockCalendar(private val userCredential:String): Block {
         TODO("not implemented")
     }
 
-    override fun toJSON(): JSONObject {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }

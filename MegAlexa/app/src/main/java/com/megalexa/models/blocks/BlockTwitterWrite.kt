@@ -24,7 +24,7 @@ class BlockTwitterWrite(): Block,Filtrable {
     fun getConsumerKey()=consumer_key
     fun getConsumerSecret()=consumer_secret
 
-    override fun toJSON() : JSONObject {
+    /*fun toJSON() : JSONObject {
         val allBlock = JSONObject()
         allBlock.put("blockType", "Twitter" )
         val config = JSONObject()
@@ -34,6 +34,6 @@ class BlockTwitterWrite(): Block,Filtrable {
         config.put("consumer_secret" , consumer_secret)
         allBlock.put("config", config)
         return allBlock
-    }
+    }*/
 
 }

@@ -3,7 +3,6 @@ package com.megalexa.ui.adapters
 import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +31,7 @@ class WorkflowViewAdapter(private val dataset: ArrayList<String>, private val co
 
             override fun onLongClick(view: View?, position: Int) {
                 val activity = context as GeneralLoggedActivity
-                activity.notifiyDeleteInteraction(position)
+                activity.notifyDeleteInteraction(position)
             }
         })
 

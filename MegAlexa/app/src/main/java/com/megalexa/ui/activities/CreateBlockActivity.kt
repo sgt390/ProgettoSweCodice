@@ -25,16 +25,11 @@ import org.json.JSONObject
 class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentClickListener {
 
     private lateinit var listView: ListView
-    companion object {
-        private lateinit var viewModel :MegAlexaViewModel
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_block)
         supportActionBar?.hide()
-        val factory= InjectorUtils.provideMegAlexaViewModelFactory()
-        viewModel = ViewModelProviders.of(this,factory).get(MegAlexaViewModel::class.java)
 
         listView = findViewById(R.id.view_blocks)
         listView.isScrollContainer=true
@@ -64,7 +59,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
-
                 2-> {
                     fragment = PinFragment()
                     listView.isEnabled=false
@@ -142,7 +136,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     setResult(Activity.RESULT_OK,intent)
                     finish()
                 }
-
                 "TwitterHomeTL" -> {
                     //val myUsername = data.extras!!.get("username")
                     val intent = Intent(this, CreateWorkflowActivity::class.java)
@@ -152,7 +145,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     setResult(Activity.RESULT_OK,intent)
                     finish()
                 }
-
                 "WriteTweet" -> {
                     val intent = Intent(this, CreateWorkflowActivity::class.java)
                     intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
@@ -163,6 +155,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             }
         }
     }
+
     override fun onFragmentClick(sender: Fragment) {
 
         if(sender is RssFragment){
@@ -174,7 +167,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             setResult(Activity.RESULT_OK, intent)
             listView.isEnabled=true
             finish()
-
 
         }else if(sender is TextToSpeechFragment){
             val text= sender.getText()
@@ -264,6 +256,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             setResult(Activity.RESULT_OK,intent)
             listView.isEnabled=true
             finish()
+
         } else if(sender is ListFragment) {
             val intent = Intent(this, CreateWorkflowActivity::class.java)
             intent.putExtra("block_type", "List")
@@ -274,15 +267,14 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
 
     }
 
-
     override fun onClick(view: View) {
 
-    when(view.id){
-        R.id.button_cancel_block -> {
-            setResult(Activity.RESULT_CANCELED)
-            this.finish()
+        when(view.id){
+            R.id.button_cancel_block -> {
+                setResult(Activity.RESULT_CANCELED)
+                this.finish()
+            }
         }
-    }
 
     }
 
@@ -311,7 +303,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             "Read Email","News","Sport News","Twitter","Stock News","Weather","Crypto News", "List")
 
     }
-
 
     override fun onBackPressed() {
         if(!listView.isEnabled)
