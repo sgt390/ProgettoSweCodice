@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.View
 import android.widget.TextView
@@ -24,8 +23,6 @@ import com.megalexa.util.InjectorUtils
 import com.megalexa.util.view.ItemMoveCallback
 import com.megalexa.viewModel.WorkflowViewModel
 import kotlinx.android.synthetic.main.activity_create_workflow.*
-import org.json.JSONArray
-import java.io.FileNotFoundException
 import kotlin.concurrent.thread
 
 class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
@@ -55,6 +52,12 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
             }
 
         }
+        val errObserver = Observer<String>{
+            if(it != "")
+                Toast.makeText(this, it,Toast.LENGTH_LONG).show()
+        }
+        
+        viewModel.getLiveError().observe(this,errObserver)
         viewModel.getLiveBlockNames().observe(this,observer)
 
         val buttonContinue : View=  findViewById(R.id.button_continue)
@@ -92,9 +95,11 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                 }
             button_save_workflow -> {
                 thread (start = true) {
-                    viewModel.saveWorkflow()
-                    setResult(Activity.RESULT_OK)
-                    finish()
+                    if(viewModel.workflowIsValid()) {
+                        viewModel.saveWorkflow()
+                        setResult(Activity.RESULT_OK)
+                        finish()
+                    }
                 }
             }
             button_cancel_workflow_creation -> startActivity(Intent(this, GeneralLoggedActivity::class.java))

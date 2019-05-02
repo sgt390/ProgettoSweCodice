@@ -3,7 +3,6 @@ package com.megalexa.util.view
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.widget.Toast
 import com.megalexa.ui.activities.CreateWorkflowActivity
 import com.megalexa.ui.activities.ViewBlockActivity
 
@@ -14,7 +13,6 @@ class ItemMoveCallback(private val context: Context, dragDirs: Int, swipeDirs: I
     }
 
     override fun onMove(p0: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-        Toast.makeText(context, "moving ${viewHolder.adapterPosition}",Toast.LENGTH_SHORT).show()
         if (context is CreateWorkflowActivity)
             context.swapItems(viewHolder.adapterPosition, target.adapterPosition)
         if (context is ViewBlockActivity)
@@ -22,5 +20,4 @@ class ItemMoveCallback(private val context: Context, dragDirs: Int, swipeDirs: I
 
         return true
     }
-
 }

@@ -2,21 +2,16 @@ package com.megalexa.ui.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.megalexa.R
 import com.megalexa.ui.activities.CreateWorkflowActivity
 import com.megalexa.ui.activities.ViewBlockActivity
-import com.megalexa.ui.activities.ViewBlockListActivity
 import com.megalexa.util.view.ItemClickListener
 import java.util.*
 
@@ -88,6 +83,7 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
                 dataset.set(i, dataset.set(i-1, dataset.get(i)))
             }
         }
+
         notifyItemMoved(fromPosition, toPosition)
     }
 
