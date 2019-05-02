@@ -42,12 +42,52 @@ abstract class Service : JSONConverter{
         return json
     }
 
-    open fun putOperation(jsonObject: JSONObject): JSONObject {
-        TODO()
+    open fun putOperation(jsonObject: JSONObject) {
+        val url= "$APIUrl$resource"
+        val myURL = URL(url)
+        with(myURL.openConnection() as HttpsURLConnection) {
+            setRequestProperty("Content-Type", "application/json")
+            requestMethod = "PUT"
+            doOutput = true
+            val wr = OutputStreamWriter(outputStream)
+            wr.write(jsonObject.toString())
+            wr.flush()
+            println("URL : $url")
+            println("Response Code : $responseCode")
+            BufferedReader(InputStreamReader(inputStream)).use {
+                val response = StringBuffer()
+                var inputLine = it.readLine()
+                while (inputLine != null) {
+                    response.append(inputLine)
+                    inputLine = it.readLine()
+                }
+                println("Response : $response")
+            }
+        }
     }
 
-    open fun deleteOperation(jsonObject: JSONObject): JSONObject {
-        TODO()
+    open fun deleteOperation(params:List<Pair<String,String>>) {
+        val query = StringBuilder()
+        for (item in params) {
+            query.append(URLEncoder.encode(item.first,"UTF-8")+"="+URLEncoder.encode(item.second,"UTF-8")+ "&")
+        }
+        val string=query.substring(0,query.length-1)
+        val url= "$APIUrl$resource/"
+        val myURL = URL("$url?$string")
+        with(myURL.openConnection() as HttpsURLConnection) {
+            setRequestProperty("Content-Type", "application/json")
+            requestMethod= "DELETE"
+            println("URL : $url")
+            println("Response Code : $responseCode")
+            BufferedReader(InputStreamReader(inputStream)).use {
+                val response = StringBuffer()
+                var inputLine = it.readLine()
+                while (inputLine != null) {
+                    response.append(inputLine)
+                    inputLine = it.readLine()
+                }
+            }
+        }
     }
 
     open fun postOperation(jsonObject: JSONObject) {

@@ -4,8 +4,6 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import android.util.Log
-import com.google.gson.JsonParser
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.*
 import com.megalexa.models.workflow.Workflow
@@ -15,7 +13,6 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.doAsyncResult
 import org.json.JSONArray
 import org.json.JSONObject
-import java.util.concurrent.*
 
 import java.util.*
 import com.megalexa.models.blocks.Filter as Filter
@@ -90,8 +87,7 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         if(res) {
             workflow.setName(workflowName)
             app.addWorkflow(workflow)
-            val json = WorkflowService.convertToJSON(workflow)
-            WorkflowService.postOperation(json)
+            doAsync{WorkflowService.postOperation(WorkflowService.convertToJSON(workflow))}
         }
     }
 
@@ -191,14 +187,13 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     }
 
     fun setFromExistingWorkflow(wName: String) {
-            val list = app.getWorkflowList()
-            for (item in list) {
-                if(item.getName()== wName) {
-                    this.workflow= Workflow.clone(item)
-                    this.workflowName=wName
-                }
-
+        val list = app.getWorkflowList()
+        for (item in list) {
+            if(item.getName()== wName) {
+            this.workflow= Workflow.clone(item)
+            this.workflowName=wName
             }
+        }
     }
 
     fun removeBlockAt(position: Int) {
@@ -224,7 +219,6 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         fun parseOpenweather(city:String) =doAsyncResult{
             return@doAsyncResult BlockWeatherService.getOperation(city)
         }
-
         return parseOpenweather(city).get()
     }
 }
