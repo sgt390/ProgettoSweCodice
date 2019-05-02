@@ -118,8 +118,8 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
         if(requestCode == 1) {
             if(resultCode== Activity.RESULT_OK) {
-                Toast.makeText(this@GeneralLoggedActivity,"your workflow was saved", Toast.LENGTH_SHORT).show()
-                viewModel.refreshWorkflow()
+                Toast.makeText(this@GeneralLoggedActivity,"Your workflow was saved", Toast.LENGTH_SHORT).show()
+                viewModel.cancelPreviousIntent()
             }
 
             if(resultCode == Activity.RESULT_CANCELED)
@@ -128,8 +128,8 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
         if(requestCode == 5) {
             if(resultCode== Activity.RESULT_OK) {
-                Toast.makeText(this@GeneralLoggedActivity,"your workflow was modified", Toast.LENGTH_SHORT).show()
-                viewModel.refreshWorkflow()
+                Toast.makeText(this@GeneralLoggedActivity,"Your workflow was modified", Toast.LENGTH_SHORT).show()
+                viewModel.cancelPreviousIntent()
             }
 
             if(resultCode == Activity.RESULT_CANCELED)
@@ -137,7 +137,6 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         }
 
     }
-
 
     fun passIntentForResult(intent:Intent) {
         startActivityForResult(intent,5)

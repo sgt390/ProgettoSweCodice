@@ -195,6 +195,9 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
             }
         }
     }
+    fun cancelPreviousIntent() {
+        refreshBlocks()
+    }
 
     fun removeBlockAt(position: Int) {
         val list = workflow.getBlocks()

@@ -45,9 +45,6 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
         return false
     }
 
-    fun addWorkflow(name:String) {
-        app.addWorkflow(Workflow(name))
-    }
     /**
      * loads the adapter that must be assigned  to activities (with workflow names)
      */
@@ -63,8 +60,8 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
             wNames.value= names
         }, 5000)
     }
-    //more functions to be added
-    fun refreshWorkflow() {
+
+    private fun refreshWorkflow() {
         val names =app.getWorkflowNames()
         wNames.postValue(names)
     }
@@ -78,6 +75,10 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
     fun removeWorkflow(position :Int) {
         val list= app.getWorkflowList()
         list.removeAt(position)
+        refreshWorkflow()
+    }
+
+    fun cancelPreviousIntent(){
         refreshWorkflow()
     }
 
