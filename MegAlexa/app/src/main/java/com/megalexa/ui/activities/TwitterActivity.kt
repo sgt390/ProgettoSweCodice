@@ -24,7 +24,6 @@ import com.twitter.sdk.android.core.TwitterException
 import com.twitter.sdk.android.core.identity.TwitterLoginButton
 import com.twitter.sdk.android.core.models.User
 import kotlinx.android.synthetic.main.activity_twitter.*
-import twitter4j.*
 
 class TwitterActivity : AppCompatActivity(), FragmentClickListener {
 
@@ -37,12 +36,13 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         val anotherUser = findViewById<LinearLayout>(R.id.homeTwitter)
         val hashtag = findViewById<LinearLayout>(R.id.SearchHashtag)
         val writeTweet = findViewById<LinearLayout>(R.id.writeTweet)
+        val exitButton = findViewById<Button>(R.id.exitTwitter)
 
         user.setOnClickListener {
             val fragment = TwitterReadTimeLineUser()
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
-            showLoginPopup()
+            if(!isUserAuthenticated())  showLoginPopup()
         }
         anotherUser.setOnClickListener {
             val fragment = TwitterAnotherUserFragment()
@@ -60,23 +60,25 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
             val fragment = WriteTweetFragment()
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
-            showLoginPopup()
+            if(!isUserAuthenticated())  showLoginPopup()
+        }
+        exitButton.setOnClickListener {
+            if(isUserAuthenticated()) {
+                TwitterCore.getInstance().sessionManager.clearActiveSession()
+                showLoginPopup()
+            }
         }
     }
 
     override fun onFragmentClick(sender: Fragment) {
         if(sender is TwitterAnotherUserFragment){
             val anotherUser = sender.getUserName()
-            val users = TwitterFactory().getInstance().searchUsers(anotherUser, 1)
-            if(users.size > 0){
-                Toast.makeText(this,"This user don't exist!",Toast.LENGTH_SHORT).show()
-            }
-            //Toast.makeText(this,anotherUser,Toast.LENGTH_SHORT).show()
-            val intent = Intent(this,CreateBlockActivity::class.java)
-            intent.putExtra("cardinality",sender.getCardinality())
+            Toast.makeText(this,"$anotherUser selected",Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, CreateBlockActivity::class.java)
+            intent.putExtra("cardinality", sender.getCardinality())
             intent.putExtra("block_type", "TwitterUserTL")
-            intent.putExtra("username",anotherUser)
-            setResult(Activity.RESULT_OK,intent)
+            intent.putExtra("username", anotherUser)
+            setResult(Activity.RESULT_OK, intent)
             finish()
         }else if (sender is TwitterFragment){
             val hashtag = sender.getTwit()
@@ -103,7 +105,7 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         }
     }
 
-    fun showLoginPopup() {
+    private fun showLoginPopup() {
         val inflater: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.twitter_login_popup, null)
         val popupWindow = PopupWindow(
@@ -135,12 +137,9 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
             override fun success(result: Result<User>?) {
                 val user = result!!.data
                 val x = 5
-
             }
 
-            override fun failure(exception: TwitterException?) {
-
-            }
+            override fun failure(exception: TwitterException?) {    }
         })
 
         // Finally, show the popup window on app
@@ -156,6 +155,15 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         twitterLoginButton.onActivityResult(requestCode, resultCode, data)
+    }
+
+    /**
+     * Check if user is authenticated.
+     *
+     * @return true if authenticated
+     */
+    private fun isUserAuthenticated(): Boolean {
+        return TwitterCore.getInstance().sessionManager.activeSession != null
     }
 
 }

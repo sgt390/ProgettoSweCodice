@@ -9,13 +9,34 @@
     android:id="@+id/twitter_activity"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"
+            android:orientation = "horizontal">
+        <Button
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_exit_to_app_black_24dp"
+                android:id="@+id/exitTwitter"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="10dp"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  tools:text="Logout"
+                  android:text="@string/logout"
+                  android:layout_gravity="center"
+                  android:textStyle="bold"
+                  android:textSize="18sp"
+                  android:textAlignment="center"/>
+    </LinearLayout>
     <TextView
             android:id="@+id/textGrid"
             android:text="@string/selectblockTwitter"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"/>

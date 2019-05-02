@@ -3,8 +3,8 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:background="@color/tw__solid_white"
               android:layout_height="wrap_content"
+              android:background="@color/colorSecondaryAccent"
               android:layout_gravity="center">
 
     <com.twitter.sdk.android.core.identity.TwitterLoginButton
