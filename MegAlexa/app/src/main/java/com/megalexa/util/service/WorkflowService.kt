@@ -57,13 +57,6 @@ object WorkflowService: Service() {
         return jsonObject
     }
 
-    fun deleteConvertToJSON(workflowName: String): JSONObject {
-        val jsonObject= JSONObject()
-        jsonObject.put("userID", MegAlexa.getInstance().getUser().getID())
-        jsonObject.put("workflowName", workflowName)
-        return jsonObject
-    }
-
     private fun convertBlock(block: Block):JSONObject{
         var result=JSONObject()
         when(block) {

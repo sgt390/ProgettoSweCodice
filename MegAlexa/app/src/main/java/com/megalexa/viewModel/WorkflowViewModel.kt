@@ -160,10 +160,10 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
              iterator.forEach {
                  if (it.getName() == workflow.getName()) {
                      iterator.remove()
-                     //bisogna cambiare qui, listOfPair deve diventare un array list
-                     doAsync {WorkflowService.deleteOperation(listOf(Pair("userID",app.getUser().getID()), Pair("workflowName", it.getName()))}
+                     var oldName = it.getName()
                      workflow.setName(workflowName)
-                     doAsync {WorkflowService.putOperation(WorkflowService.convertToJSON(it))}
+                     doAsync {WorkflowService.putOperation(WorkflowService.convertToJSON(workflow))}
+                     doAsync {WorkflowService.deleteOperation(listOf(Pair("userID",app.getUser().getID()), Pair("workflowName", oldName)))}
                  }
              }
             list.add(workflow)
