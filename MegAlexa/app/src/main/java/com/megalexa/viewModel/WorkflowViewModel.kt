@@ -63,7 +63,7 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
             workflow.setName(workflowName)
             app.addWorkflow(workflow)
             val json = WorkflowService.convertToJSON(workflow)
-            WorkflowService.postOperation(json)
+            doAsync{WorkflowService.postOperation(json)}
         }
     }
 
@@ -145,24 +145,27 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     }
 
     fun updateWorkflow() {
-
         val list = app.getWorkflowList()
 
-        /* from saveWorkflow here
-            workflow.setName(workflowName)
+            //from saveWorkflow here
+            //userID, workflowName, workflow
+            //delete workflow con userId e workflowName
+            /*workflow.setName(workflowName)
             app.addWorkflow(workflow)
             val json = WorkflowService.convertToJSON(workflow)
-            WorkflowService.postOperation(json)
-        */
+            WorkflowService.postOperation(json)*/
+
         val iterator= list.iterator()
         while (iterator.hasNext()) {
              iterator.forEach {
                  if (it.getName() == workflow.getName()) {
                      iterator.remove()
-                     //WorkflowService.deleteOperation(WorkflowService.convertToJSON(iterator))
+                     //bisogna cambiare qui, listOfPair deve diventare un array list
+                     doAsync {WorkflowService.deleteOperation(listOf(Pair("userID",app.getUser().getID()), Pair("workflowName", it.getName()))}
+                     workflow.setName(workflowName)
+                     doAsync {WorkflowService.putOperation(WorkflowService.convertToJSON(it))}
                  }
              }
-            workflow.setName(workflowName)
             list.add(workflow)
         }
         refreshBlocks()

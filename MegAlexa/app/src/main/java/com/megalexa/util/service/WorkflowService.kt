@@ -46,7 +46,7 @@ object WorkflowService: Service() {
     override fun <Workflow> convertToJSON(t: Workflow): JSONObject {
         val workflow= t as com.megalexa.models.workflow.Workflow
         val jsonArray = JSONArray()
-        val blocklist= workflow.getBlocks()
+        val blocklist = workflow.getBlocks()
         for(block in blocklist) {
             jsonArray.put(convertBlock(block))
         }
@@ -54,6 +54,13 @@ object WorkflowService: Service() {
         jsonObject.put("userID", MegAlexa.getInstance().getUser().getID())
         jsonObject.put("workflowName", workflow.getName())
         jsonObject.put("workflow",jsonArray)
+        return jsonObject
+    }
+
+    fun deleteConvertToJSON(workflowName: String): JSONObject {
+        val jsonObject= JSONObject()
+        jsonObject.put("userID", MegAlexa.getInstance().getUser().getID())
+        jsonObject.put("workflowName", workflowName)
         return jsonObject
     }
 

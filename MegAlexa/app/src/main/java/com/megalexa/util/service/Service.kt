@@ -61,16 +61,33 @@ abstract class Service : JSONConverter{
                     response.append(inputLine)
                     inputLine = it.readLine()
                 }
-                Log.d("done", "here we go again")
                 println("Response : $response")
             }
-
-            Log.d("done", "here we go again dopo")
         }
     }
 
-    open fun deleteOperation(jsonObject: JSONObject): JSONObject {
-        TODO()
+    open fun deleteOperation(params:List<Pair<String,String>>) {
+        val query = StringBuilder()
+        for (item in params) {
+            query.append(URLEncoder.encode(item.first,"UTF-8")+"="+URLEncoder.encode(item.second,"UTF-8")+ "&")
+        }
+        val string=query.substring(0,query.length-1)
+        val url= "$APIUrl$resource/"
+        val myURL = URL("$url?$string")
+        with(myURL.openConnection() as HttpsURLConnection) {
+            setRequestProperty("Content-Type", "application/json")
+            requestMethod= "DELETE"
+            println("URL : $url")
+            println("Response Code : $responseCode")
+            BufferedReader(InputStreamReader(inputStream)).use {
+                val response = StringBuffer()
+                var inputLine = it.readLine()
+                while (inputLine != null) {
+                    response.append(inputLine)
+                    inputLine = it.readLine()
+                }
+            }
+        }
     }
 
     open fun postOperation(jsonObject: JSONObject) {
