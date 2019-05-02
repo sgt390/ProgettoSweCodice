@@ -190,8 +190,8 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         val list = app.getWorkflowList()
         for (item in list) {
             if(item.getName()== wName) {
-            this.workflow= Workflow.clone(item)
-            this.workflowName=wName
+                this.workflow= Workflow.clone(item)
+                this.workflowName=wName
             }
         }
     }
