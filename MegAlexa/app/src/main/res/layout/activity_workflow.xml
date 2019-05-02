@@ -51,6 +51,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView"
                 android:scrollbars="vertical"
                 android:orientation="horizontal"
-                android:descendantFocusability="blocksDescendants"/>
+                android:descendantFocusability="blocksDescendants"
+                android:paddingBottom="120dp"
+        />
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>
