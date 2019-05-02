@@ -197,7 +197,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                 _: DialogInterface, _: Int -> viewModel.removeBlockAt(position)
         }
         val cancelDeletion= {
-                _: DialogInterface, _:Int ->
+                _: DialogInterface, _:Int -> viewModel.cancelPreviousIntent()
         }
         with(builder) {
             setTitle("Delete Block")

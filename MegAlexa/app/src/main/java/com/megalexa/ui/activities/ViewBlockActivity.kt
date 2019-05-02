@@ -63,7 +63,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         val observer = Observer<ArrayList<String>>{
             val adapter = BlockViewAdapter(this@ViewBlockActivity)
             adapter.dataset=it!!
-            val callback= ItemMoveCallback(this@ViewBlockActivity,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
+            val callback= ItemMoveCallback(this@ViewBlockActivity,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),ItemTouchHelper.RIGHT)
             touchHelper= ItemTouchHelper(callback)
             touchHelper?.attachToRecyclerView(rec_view)
             runOnUiThread{
@@ -150,7 +150,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
                 _: DialogInterface, _: Int -> viewModel.removeBlockAt(position)
         }
         val cancelDeletion= {
-                _:DialogInterface,_:Int ->
+                _:DialogInterface,_:Int -> viewModel.cancelPreviousIntent()
         }
 
         with(builder) {
