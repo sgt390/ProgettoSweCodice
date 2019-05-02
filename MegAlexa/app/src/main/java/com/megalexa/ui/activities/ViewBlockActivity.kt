@@ -138,7 +138,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
     fun notifyDeleteBlockInteraction(position: Int) {
 
 
-        val builder= android.support.v7.app.AlertDialog.Builder(ContextThemeWrapper(this@ViewBlockActivity,R.style.AlertDialogCustom))
+        val builder= AlertDialog.Builder(ContextThemeWrapper(this@ViewBlockActivity,R.style.AlertDialogCustom))
         val confirmDeletion={
                 _: DialogInterface, _: Int -> viewModel.removeBlockAt(position)
         }
@@ -158,12 +158,11 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
     fun swapItems(fromPosition:Int, toPosition:Int) {
         val mAdapter= rec_view.adapter as BlockViewAdapter
-
-        val configFromPosition = viewModel.validateSwap(fromPosition)
-        val configToPosition = viewModel.validateSwap(toPosition)
-            mAdapter.swapItems(fromPosition,toPosition,Pair(configFromPosition,configToPosition))
-            viewModel.swapItems(fromPosition,toPosition, Pair(configFromPosition,configToPosition))
-
+        val swapConfig= viewModel.validateSwap(fromPosition)
+        val swapSecondElement= viewModel.validateSwap(toPosition)
+        Log.d("fromPos",swapConfig.toString())
+        mAdapter.swapItems(fromPosition,toPosition)
+        viewModel.swapItems(fromPosition,toPosition)
     }
 
     fun startViewListActivity(position: Int) {

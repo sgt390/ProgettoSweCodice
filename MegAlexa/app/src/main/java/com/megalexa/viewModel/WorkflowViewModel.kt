@@ -184,59 +184,24 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     }
 
     fun validateSwap(position: Int) :SwapConfiguration {
-        var swapConfiguration=SwapConfiguration.UNDEFINED_ELEMENT
 
-        if(position==0 && !(workflow.getBlocks()[0] is Filter)) {
-            swapConfiguration= SwapConfiguration.IS_BLOCK
+        var swapConfiguration=SwapConfiguration.IS_BLOCK
 
-        }else if (workflow.getBlocks()[position-1] is Filter) {
+        if((workflow.getBlocks()[position] is Filter)) {
+            Log.d("filter","dhfgkhdfkghdkfhgkdhfg")
+            swapConfiguration= SwapConfiguration.IS_FILTER
+        }else if(position != 0 && workflow.getBlocks()[position-1] is Filter) {
+            Log.d("filter attached","dhfgkhdfkghdkfhgkdhfg")
             swapConfiguration=SwapConfiguration.HAS_FILTER_ATTACHED
-
-        }else if(workflow.getBlocks()[position] is Filter) {
-            swapConfiguration=SwapConfiguration.IS_FILTER
         }
+
         return swapConfiguration
     }
 
-    fun swapItems(fromPosition:Int,toPosition:Int, swapConfig:Pair<SwapConfiguration,SwapConfiguration>){
+    fun swapItems(fromPosition:Int,toPosition:Int){
 
         val list = workflow.getBlocks()
-
-        if(swapConfig.first==SwapConfiguration.IS_BLOCK) {
-
-            if( swapConfig.second==SwapConfiguration.IS_BLOCK)  {
-                Collections.swap(list,fromPosition,toPosition)
-            }
-
-            if(swapConfig.second==SwapConfiguration.IS_FILTER) {
-
-            }
-
-            if(swapConfig.second==SwapConfiguration.HAS_FILTER_ATTACHED){
-
-            }
-        }
-
-        if(swapConfig.first==SwapConfiguration.HAS_FILTER_ATTACHED) {
-
-            if(swapConfig.second==SwapConfiguration.IS_BLOCK) {
-                Collections.swap(list,fromPosition-1,toPosition-1)
-                Collections.swap(list,fromPosition,toPosition)
-            }
-
-            if(swapConfig.second==SwapConfiguration.HAS_FILTER_ATTACHED) {
-                Collections.swap(list,fromPosition-1,toPosition-1)
-                Collections.swap(list,fromPosition,toPosition)
-            }
-
-            if(swapConfig.second==SwapConfiguration.IS_FILTER) {
-                
-            }
-        }
-
-
-
-
+        Collections.swap(list,fromPosition,toPosition)
         refreshBlocks()
     }
 

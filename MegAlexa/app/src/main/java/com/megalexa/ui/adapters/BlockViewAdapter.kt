@@ -79,7 +79,7 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
     /**
      * Function called to swap dragged items
      */
-    fun swapItems(fromPosition: Int, toPosition: Int, swapConfiguration: Pair<SwapConfiguration,SwapConfiguration>) {
+    fun swapItems(fromPosition: Int, toPosition: Int) {
         if (fromPosition < toPosition) {
             for (i in fromPosition until(toPosition - 1)) {
                 dataset.set(i, dataset.set(i+1, dataset.get(i)))
@@ -90,7 +90,7 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
             }
         }
 
-        //notifyItemMoved(fromPosition, toPosition)
+        notifyItemMoved(fromPosition, toPosition)
     }
 
 }
