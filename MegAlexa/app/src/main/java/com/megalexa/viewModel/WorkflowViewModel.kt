@@ -4,8 +4,6 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import android.util.Log
-import com.google.gson.JsonParser
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.*
 import com.megalexa.models.workflow.Workflow
@@ -15,7 +13,6 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.doAsyncResult
 import org.json.JSONArray
 import org.json.JSONObject
-import java.util.concurrent.*
 
 import java.util.*
 
@@ -62,8 +59,7 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         if(res) {
             workflow.setName(workflowName)
             app.addWorkflow(workflow)
-            val json = WorkflowService.convertToJSON(workflow)
-            doAsync{WorkflowService.postOperation(json)}
+            doAsync{WorkflowService.postOperation(WorkflowService.convertToJSON(workflow))}
         }
     }
 
@@ -146,40 +142,32 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
 
     fun updateWorkflow() {
         val list = app.getWorkflowList()
-
-            //from saveWorkflow here
-            //userID, workflowName, workflow
-            //delete workflow con userId e workflowName
-            /*workflow.setName(workflowName)
-            app.addWorkflow(workflow)
-            val json = WorkflowService.convertToJSON(workflow)
-            WorkflowService.postOperation(json)*/
-
         val iterator= list.iterator()
         while (iterator.hasNext()) {
-             iterator.forEach {
-                 if (it.getName() == workflow.getName()) {
-                     iterator.remove()
-                     var oldName = it.getName()
-                     workflow.setName(workflowName)
-                     doAsync {WorkflowService.putOperation(WorkflowService.convertToJSON(workflow))}
-                     doAsync {WorkflowService.deleteOperation(listOf(Pair("userID",app.getUser().getID()), Pair("workflowName", oldName)))}
-                 }
-             }
+            iterator.forEach {
+                if (it.getName() == workflow.getName()) {
+                    var oldName = it.getName()
+                    iterator.remove()
+                    workflow.setName(workflowName)
+                    doAsync {
+                        WorkflowService.deleteOperation(listOf(Pair("userID",app.getUser().getID()), Pair("workflowName", oldName)))
+                        WorkflowService.putOperation(WorkflowService.convertToJSON(workflow))
+                    }
+                }
+            }
             list.add(workflow)
         }
         refreshBlocks()
     }
 
     fun setFromExistingWorkflow(wName: String) {
-            val list = app.getWorkflowList()
-            for (item in list) {
-                if(item.getName()== wName) {
-                    this.workflow= Workflow.clone(item)
-                    this.workflowName=wName
-                }
-
+        val list = app.getWorkflowList()
+        for (item in list) {
+            if(item.getName()== wName) {
+            this.workflow= Workflow.clone(item)
+            this.workflowName=wName
             }
+        }
     }
 
     fun removeBlockAt(position: Int) {
@@ -203,7 +191,6 @@ fun swapItems(fromPosition:Int,toPosition:Int){
         fun parseOpenweather(city:String) =doAsyncResult{
             return@doAsyncResult BlockWeatherService.getOperation(city)
         }
-
         return parseOpenweather(city).get()
     }
 }
