@@ -67,11 +67,11 @@ class TwitterAnotherUserFragment: Fragment() {
 
             username = editText.text.toString()
 
-            if (username == "" || username[0] != '@') {
+            if (username == "" || username[0] == '@') {
                 Toast.makeText(context, "invalid username", Toast.LENGTH_SHORT).show()
             }
             else {
-                if(ConnectorReadTwitter(username).valid()) {
+                if(!ConnectorReadTwitter(username).valid()) {
                     val activity = activity as TwitterActivity
                     activity.onFragmentClick(this)
                 }

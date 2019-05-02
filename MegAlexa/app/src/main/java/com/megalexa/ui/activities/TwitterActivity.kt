@@ -36,7 +36,8 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         val anotherUser = findViewById<LinearLayout>(R.id.homeTwitter)
         val hashtag = findViewById<LinearLayout>(R.id.SearchHashtag)
         val writeTweet = findViewById<LinearLayout>(R.id.writeTweet)
-        val exitButton = findViewById<Button>(R.id.exitTwitter)
+        val exitButton = findViewById<LinearLayout>(R.id.exitTwitter)
+        val cancelButton = findViewById<Button>(R.id.button_cancel_twitter)
 
         user.setOnClickListener {
             val fragment = TwitterReadTimeLineUser()
@@ -67,6 +68,10 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
                 TwitterCore.getInstance().sessionManager.clearActiveSession()
                 showLoginPopup()
             }
+        }
+        cancelButton.setOnClickListener {
+            setResult(Activity.RESULT_CANCELED)
+            finish()
         }
     }
 

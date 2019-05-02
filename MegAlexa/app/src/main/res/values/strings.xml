@@ -77,8 +77,8 @@
     <string name="textInsert">Insert your Twitter account</string>
     <string name="usernameormail">Username or mail</string>
     <string name="login">Login</string>
-    <string name="es">es. #picoftheday</string>
-    <string name="ese">es. @realDonaldTrump</string>
+    <string name="es">ex. #picoftheday</string>
+    <string name="ese">ex. realDonaldTrump</string>
     <string name="listTitle">Create new List</string>
     <string name="confirmBlockList">Confirm</string>
     <string name="titleListItem">List</string>

@@ -15,22 +15,27 @@
 package com.megalexa.models.connectors
 
 import org.json.JSONObject
-import java.net.URL
+import io.github.rybalkinsd.kohttp.ext.httpGet
+import okhttp3.Response
 
 
 class ConnectorReadTwitter(private val username: String):Connector {
-    private val url = "https://twitter.com/users/username_available?username="
+    //private val url = "https://twitter.com/users/username_available?username="
+    private val url = "https://api.twitter.com/1.1/users/search.json?q="
     override fun connect(url: String):String {
         TODO()
     }
 
 
     override fun valid():Boolean {
-        val result: JSONObject
-        URL(url+username).httpGet().responseJSON { _, _, result ->
+        val check = url + username
+        val response: Response = check.httpGet()
+        /*val response: Response = check.httpGet().responseJSON { _, _, result ->
             result.get().obj() // here you have your JSON object
-        }
-        return result.getBoolean("valid")
+        }*/
+        val result = JSONObject(response.message())
+
+        return true
     }
 
 }
