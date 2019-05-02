@@ -26,8 +26,8 @@ import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.Toast
 import com.megalexa.R
+import com.megalexa.models.connectors.ConnectorReadTwitter
 import com.megalexa.ui.activities.TwitterActivity
-import twitter4j.*
 
 class TwitterAnotherUserFragment: Fragment() {
 
@@ -71,14 +71,11 @@ class TwitterAnotherUserFragment: Fragment() {
                 Toast.makeText(context, "invalid username", Toast.LENGTH_SHORT).show()
             }
             else {
-                val users = TwitterFactory().instance.searchUsers(username, 1)
-                if(users.size <= 0){
-                    Toast.makeText(context, "Username don't exist", Toast.LENGTH_SHORT).show()
-                }
-                else {
+                if(ConnectorReadTwitter(username).valid()) {
                     val activity = activity as TwitterActivity
                     activity.onFragmentClick(this)
                 }
+                else  Toast.makeText(context, "Username don't exist", Toast.LENGTH_SHORT).show()
             }
         }
         return view

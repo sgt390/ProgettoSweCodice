@@ -14,27 +14,23 @@
 
 package com.megalexa.models.connectors
 
-import java.util.concurrent.atomic.AtomicBoolean
+import org.json.JSONObject
+import java.net.URL
 
-class ConnectorReadTwitter():Connector {
-    private var result= AtomicBoolean(false)
-    init {
-    }
 
-    public fun get_api(){
-        }
+class ConnectorReadTwitter(private val username: String):Connector {
+    private val url = "https://twitter.com/users/username_available?username="
     override fun connect(url: String):String {
-
-        return "stringa";
-
-        //  TODO
+        TODO()
     }
 
 
     override fun valid():Boolean {
-
-        return true;
-//      TODO
+        val result: JSONObject
+        URL(url+username).httpGet().responseJSON { _, _, result ->
+            result.get().obj() // here you have your JSON object
+        }
+        return result.getBoolean("valid")
     }
 
 }
