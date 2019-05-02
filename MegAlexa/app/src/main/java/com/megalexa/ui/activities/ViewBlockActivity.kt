@@ -70,6 +70,11 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
                 rec_view.adapter= adapter
             }
         }
+        val errObserver = Observer<String>{
+            if(it != "")
+                Toast.makeText(this, it,Toast.LENGTH_LONG).show()
+        }
+        viewModel.getLiveError().observe(this,errObserver)
         viewModel.getLiveBlockNames().observe(this,observer)
 
         button_confirm_modification.setOnClickListener(this)
@@ -90,11 +95,13 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         when(v) {
 
             button_confirm_modification -> {
-                val name= findViewById<TextView>(R.id.workflow_title)
-                viewModel.setName(name.text.toString())
-                viewModel.updateWorkflow()
-                setResult(Activity.RESULT_OK)
-                finish()
+                if(viewModel.workflowIsValid()) {
+                    val name= findViewById<TextView>(R.id.workflow_title)
+                    viewModel.setName(name.text.toString())
+                    viewModel.updateWorkflow()
+                    setResult(Activity.RESULT_OK)
+                    finish()
+                }
             }
             button_add_blockView -> startActivityForResult(Intent(this, CreateBlockActivity::class.java),1)
             button_cancel_modify -> {
@@ -158,9 +165,6 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
 
     fun swapItems(fromPosition:Int, toPosition:Int) {
         val mAdapter= rec_view.adapter as BlockViewAdapter
-        val swapConfig= viewModel.validateSwap(fromPosition)
-        val swapSecondElement= viewModel.validateSwap(toPosition)
-        Log.d("fromPos",swapConfig.toString())
         mAdapter.swapItems(fromPosition,toPosition)
         viewModel.swapItems(fromPosition,toPosition)
     }

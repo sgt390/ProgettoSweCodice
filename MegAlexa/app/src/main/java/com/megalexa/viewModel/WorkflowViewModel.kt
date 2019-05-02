@@ -18,11 +18,13 @@ import org.json.JSONObject
 import java.util.concurrent.*
 
 import java.util.*
+import com.megalexa.models.blocks.Filter as Filter
 
 class WorkflowViewModel(private val app: MegAlexa, private var workflowName:String) :ViewModel() {
 
     private var blockNames = MutableLiveData<ArrayList<String>>()
     private var workflow = Workflow(workflowName)
+    private var error= MutableLiveData<String>()
 
     /**
      * returns the adapter for the current block names that must be displayed
@@ -31,6 +33,13 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         if(blockNames.value == null)
             loadBlocks()
         return blockNames
+    }
+
+    fun getLiveError(): LiveData<String> {
+        if(error.value==null)
+            error.value=""
+
+        return error
     }
 
     /**
@@ -48,13 +57,32 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         }, 0)
     }
 
-    fun refreshBlocks() {
+    private fun refreshBlocks() {
         val blocks =workflow.getBlocks()
         val names= ArrayList<String>()
         for(item in blocks) {
             names.add(item.getInformation())
         }
         blockNames.postValue(names)
+    }
+
+    fun postError(str:String) {
+        error.postValue(str)
+    }
+
+    fun workflowIsValid() : Boolean{
+        val list= workflow.getBlocks()
+        val iterator= list.iterator()
+        var result= true
+
+        iterator.forEach {
+            if(it is Filter && (!iterator.hasNext() || !(iterator.next() is Filtrable))) {
+                postError("workflow is invalid, check for filters position")
+                result = false
+            }
+        }
+
+        return result
     }
 
     fun saveWorkflow() {
@@ -145,20 +173,21 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     }
 
     fun updateWorkflow() {
-
-        val list = app.getWorkflowList()
-        val iterator= list.iterator()
-        while (iterator.hasNext()) {
-             iterator.forEach {
-                 if (it.getName() == workflow.getName()) {
-                     iterator.remove()
-                     //WorkflowService.deleteOperation(WorkflowService.convertToJSON(iterator))
-                 }
-             }
-            workflow.setName(workflowName)
-            list.add(workflow)
+        if(workflowIsValid()) {
+            val list = app.getWorkflowList()
+            val iterator= list.iterator()
+            while (iterator.hasNext()) {
+                iterator.forEach {
+                    if (it.getName() == workflow.getName()) {
+                        iterator.remove()
+                        //WorkflowService.deleteOperation(WorkflowService.convertToJSON(iterator))
+                    }
+                }
+                workflow.setName(workflowName)
+                list.add(workflow)
+            }
+            refreshBlocks()
         }
-        refreshBlocks()
     }
 
     fun setFromExistingWorkflow(wName: String) {
@@ -181,21 +210,6 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     fun addFilter(cardinality: Short) {
         val list=workflow.getBlocks()
         list.add(Filter(cardinality))
-    }
-
-    fun validateSwap(position: Int) :SwapConfiguration {
-
-        var swapConfiguration=SwapConfiguration.IS_BLOCK
-
-        if((workflow.getBlocks()[position] is Filter)) {
-            Log.d("filter","dhfgkhdfkghdkfhgkdhfg")
-            swapConfiguration= SwapConfiguration.IS_FILTER
-        }else if(position != 0 && workflow.getBlocks()[position-1] is Filter) {
-            Log.d("filter attached","dhfgkhdfkghdkfhgkdhfg")
-            swapConfiguration=SwapConfiguration.HAS_FILTER_ATTACHED
-        }
-
-        return swapConfiguration
     }
 
     fun swapItems(fromPosition:Int,toPosition:Int){
