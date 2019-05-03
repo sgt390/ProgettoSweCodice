@@ -79,9 +79,11 @@
     <string name="usernameormail">Username or mail</string>
     <string name="login">Login</string>
     <string name="es">es. #picoftheday</string>
-    <string name="ese">es. @donald_trump</string>
+    <string name="ese">es. @realDonaldTrump</string>
     <string name="listTitle">Crea una lista vuota</string>
     <string name="confirmBlockList">Conferma</string>
     <string name="titleListItem">Lista</string>
     <string name="Select_site">Seleziona un sito per le news</string>
+    <string name="searchForUser">Cerca tweets di un utente</string>
+    <string name="listenMyTweet">Ascolta i tuoi tweets tramite Alexa</string>
 </resources>

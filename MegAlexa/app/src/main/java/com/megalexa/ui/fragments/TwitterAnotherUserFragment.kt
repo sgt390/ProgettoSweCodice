@@ -26,7 +26,6 @@ import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.Toast
 import com.megalexa.R
-import com.megalexa.ui.activities.CreateBlockActivity
 import com.megalexa.ui.activities.TwitterActivity
 
 class TwitterAnotherUserFragment: Fragment() {
@@ -68,8 +67,9 @@ class TwitterAnotherUserFragment: Fragment() {
             username = editText.text.toString()
 
             if (username == "" || username[0] != '@') {
-                Toast.makeText(context, "invalid username", Toast.LENGTH_SHORT).show()
-            } else {
+                Toast.makeText(context, "Invalid username", Toast.LENGTH_SHORT).show()
+            }
+            else {
                 val activity = activity as TwitterActivity
                 activity.onFragmentClick(this)
             }
