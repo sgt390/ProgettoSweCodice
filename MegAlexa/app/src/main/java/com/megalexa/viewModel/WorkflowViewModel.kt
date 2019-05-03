@@ -175,11 +175,15 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
             while (iterator.hasNext()) {
                 iterator.forEach {
                     if (it.getName() == workflow.getName()) {
+                        var oldName = it.getName()
                         iterator.remove()
-                        //WorkflowService.deleteOperation(WorkflowService.convertToJSON(iterator))
+                        workflow.setName(workflowName)
+                        doAsync {
+                            WorkflowService.deleteOperation(listOf(Pair("userID",app.getUser().getID()), Pair("workflowName", oldName)))
+                            WorkflowService.putOperation(WorkflowService.convertToJSON(workflow))
+                        }
                     }
                 }
-                workflow.setName(workflowName)
                 list.add(workflow)
             }
             refreshBlocks()
