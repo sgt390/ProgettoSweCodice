@@ -84,4 +84,6 @@
     <string name="confirmBlockList">Conferma</string>
     <string name="titleListItem">Lista</string>
     <string name="Select_site">Seleziona un sito per le news</string>
+    <string name="searchForUser">Cerca tweets di un utente</string>
+    <string name="listenMyTweet">Ascolta i tuoi tweets tramite Alexa</string>
 </resources>
