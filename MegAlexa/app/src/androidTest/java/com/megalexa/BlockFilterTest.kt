@@ -1,4 +1,4 @@
-package com.megalexa.model.block
+package com.megalexa
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

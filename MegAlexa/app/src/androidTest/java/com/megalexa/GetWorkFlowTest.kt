@@ -1,4 +1,4 @@
-package com.megalexa.util
+package com.megalexa
 
 
 import android.support.test.InstrumentationRegistry

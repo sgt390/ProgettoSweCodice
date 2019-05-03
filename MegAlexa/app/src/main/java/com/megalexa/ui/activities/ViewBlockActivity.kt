@@ -70,7 +70,6 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
                 rec_view.adapter= adapter
             }
         }
-
         val errObserver = Observer<String>{
             if(it != "")
                 Toast.makeText(this, it,Toast.LENGTH_LONG).show()

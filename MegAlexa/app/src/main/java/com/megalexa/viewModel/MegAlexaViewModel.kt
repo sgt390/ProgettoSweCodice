@@ -40,6 +40,7 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
         app.setUser(com.megalexa.models.User(user.userId, user.userName, user.userEmail))
     }
 
+
     fun isUserPresent(paramID:String):Boolean {
         if(app.getUser().getID()==paramID)
             return true

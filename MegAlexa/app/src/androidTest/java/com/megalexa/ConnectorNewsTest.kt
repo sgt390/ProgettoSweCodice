@@ -1,10 +1,9 @@
-package com.megalexa.util
+package com.megalexa
+
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-
-import com.megalexa.util.service.UserService
-import org.json.JSONObject
+import com.megalexa.models.connectors.ConnectorNews
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,7 +16,7 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class GetUserTest {
+class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -27,16 +26,9 @@ class GetUserTest {
 
     @Test
     fun valid() {
-        val param= "amzn1.account.AEFN6PFSKLCCFNVOH6GXZFGND5HA"
-
-        val response =UserService.getOperation(listOf(Pair("userID",param)))
-        val json= JSONObject("{\n" +
-                "  \"userID\": \"amzn1.account.AEFN6PFSKLCCFNVOH6GXZFGND5HA\",\n" +
-                "  \"name\": \"mirko.franco@icloud.com\",\n" +
-                "  \"email\": \"Mirko\"\n" +
-                "}")
-
-        assertEquals(response.toString(),json.toString())
+        val someaccount = "someAccount@gmail.com"
+        val accountIsValid = ConnectorNews(someaccount).valid()
+        assertEquals(true, accountIsValid)
     }
 
 }

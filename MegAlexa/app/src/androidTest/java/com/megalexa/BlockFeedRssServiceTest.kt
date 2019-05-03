@@ -1,10 +1,9 @@
-package com.megalexa.util.service
+package com.megalexa
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.models.blocks.BlockCrypto
 import com.megalexa.models.blocks.BlockFeedRss
-import com.megalexa.util.service.BlockCryptoService
+import com.megalexa.util.service.BlockFeedRssService
 import com.megalexa.util.service.BlockPinService
 import com.megalexa.util.service.WorkflowService
 import org.json.JSONArray
@@ -16,7 +15,7 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 
 @RunWith(AndroidJUnit4::class)
-class BlockCryptoServiceTest {
+class BlockFeedRssServiceTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -26,10 +25,10 @@ class BlockCryptoServiceTest {
 
     @Test
     fun validToJSON() {
-        val expected = BlockCrypto("http://feeds.reuters.com/Reuters/PoliticsNews")
-        val json = BlockCryptoService.convertToJSON(expected)
+        val expected = BlockFeedRss("http://feeds.reuters.com/Reuters/PoliticsNews")
+        val json = BlockFeedRssService.convertToJSON(expected)
         val url = json.getJSONObject("config").getString("URL")
-        val config = "{\"blockType\":\"Crypto\",\"config\":{\"URL\":\"\"}}"
+        val config = "{\"blockType\":\"FeedRSS\",\"config\":{\"URL\":\"\"}}"
         json.getJSONObject("config").put("URL","")
 
         assertTrue(url.equals("http://feeds.reuters.com/Reuters/PoliticsNews")
@@ -38,9 +37,9 @@ class BlockCryptoServiceTest {
 
     @Test
     fun validFromJSON() {
-        val expected = BlockCrypto("http://feeds.reuters.com/Reuters/PoliticsNews")
-        val json = BlockCryptoService.convertToJSON(expected)
-        val block = BlockCryptoService.convertFromJSON(json)
+        val expected = BlockFeedRss("http://feeds.reuters.com/Reuters/PoliticsNews")
+        val json = BlockFeedRssService.convertToJSON(expected)
+        val block = BlockFeedRssService.convertFromJSON(json)
         assertEquals(block.url(),"http://feeds.reuters.com/Reuters/PoliticsNews")
     }
 }

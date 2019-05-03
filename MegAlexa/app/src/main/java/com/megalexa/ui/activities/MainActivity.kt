@@ -92,11 +92,6 @@ class MainActivity : AppCompatActivity() {
                 if (result.accessToken != null) {
 
                     /* The user is signed in */
-                    viewModel.setUser(result.user)
-                    viewModel.loadAppContext()
-                    if(!(viewModel.isUserPresent(result.user.userId))) {
-                        viewModel.saveUser()
-                    }
                     startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
                 } else {
                     /* The user is not signed in */

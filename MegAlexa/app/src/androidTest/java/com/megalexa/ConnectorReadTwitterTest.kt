@@ -1,8 +1,9 @@
-package com.megalexa.model.connectors
+package com.megalexa
+
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.models.connectors.ConnectorFeedRss
+import com.megalexa.models.connectors.ConnectorReadTwitter
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,7 +16,7 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ConnectorFeedTest {
+class ConnectorReadTwitterTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -23,10 +24,12 @@ class ConnectorFeedTest {
         assertEquals("com.megalexa", appContext.packageName)
     }
 
-    @Test
-    fun valid() {
-        val uri = "https://feedforall.com/sample.xml"
-        val uriIsValid = ConnectorFeedRss(uri).valid()
-        assertEquals(true, uriIsValid)
-    }
+    //@Test
+    /*fun valid() {
+        val someaccount = "someAccount@gmail.com"
+        val password=""
+        val accountIsValid = ConnectorReadTwitter(someaccount,password).valid()
+        assertEquals(true, accountIsValid)
+    }*/
+
 }
