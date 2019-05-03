@@ -38,11 +38,15 @@ class ViewModelBlockList(private var workflowName: String, private var blockPosi
     private fun loadListItems() {
         val myHandler = android.os.Handler()
         myHandler.postDelayed({
-            val arrayJSON : JSONArray = (workflow.getBlocks().get(blockPosition) as BlockList).getList()
             var listJSON = ArrayList<String>()
-            for(i in 0..arrayJSON.length()-1) {
-                val itemListJSON=arrayJSON.getString(i)
-                listJSON.add(itemListJSON)
+            if(workflow.getCount() > blockPosition) {
+                val arrayJSON = (workflow.getBlocks().get(blockPosition) as BlockList).getList()
+                if (arrayJSON.length() != 0) {
+                    for (i in 0..arrayJSON.length() - 1) {
+                        val itemListJSON = arrayJSON.getString(i)
+                        listJSON.add(itemListJSON)
+                    }
+                }
             }
             blockList.value=listJSON
         }, 0)
@@ -57,11 +61,6 @@ class ViewModelBlockList(private var workflowName: String, private var blockPosi
             }
 
         }
-    }
-
-    fun updateBlockList() {
-        TODO("refreshBlockList ask ludo")
-        //refreshBlockList()
     }
 
     private fun refreshBlockList() {
