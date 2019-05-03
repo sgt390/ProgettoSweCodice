@@ -84,7 +84,7 @@ class TwitterFragment: Fragment() {
             screenName = editText.text.toString()
 
             if (screenName == "" || screenName[0] != '#') {
-                Toast.makeText(context, "invalid hashtag", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Invalid hashtag", Toast.LENGTH_SHORT).show()
             } else {
                     val activity = activity as TwitterActivity
                     activity.onFragmentClick(this)
