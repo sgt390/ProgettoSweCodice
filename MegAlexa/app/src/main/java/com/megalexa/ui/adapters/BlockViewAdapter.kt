@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.megalexa.R
 import com.megalexa.ui.activities.CreateWorkflowActivity
 import com.megalexa.ui.activities.ViewBlockActivity
@@ -35,16 +36,11 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
             }
 
             override fun onLongClick(view: View?, position: Int) {
-                if(context is ViewBlockActivity) {
-                    context.notifyDeleteBlockInteraction(position)
-                }
-                if (context is CreateWorkflowActivity) {
-                    context.notifyDeleteBlockInteraction(position)
-                }
+                return
             }
         })
 
-        holder.button.setOnTouchListener{_,event ->
+        holder.button.setOnTouchListener{ _, event ->
 
             if (event.actionMasked==MotionEvent.ACTION_DOWN && (context is ViewBlockActivity)) {
                 context.touchHelper?.startDrag(holder)
@@ -89,7 +85,7 @@ class BlockViewAdapter(val context: Context): RecyclerView.Adapter<BlockViewHold
 
 }
 
-class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener {
+class BlockViewHolder(v: View): RecyclerView.ViewHolder(v),View.OnClickListener{
 
     val  tView = v.findViewById<TextView>(R.id.block_name)
     val  button= v.findViewById<ImageView>(R.id.mv_block)

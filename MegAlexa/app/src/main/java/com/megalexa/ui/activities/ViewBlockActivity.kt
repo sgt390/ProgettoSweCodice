@@ -63,7 +63,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         val observer = Observer<ArrayList<String>>{
             val adapter = BlockViewAdapter(this@ViewBlockActivity)
             adapter.dataset=it!!
-            val callback= ItemMoveCallback(this@ViewBlockActivity,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
+            val callback= ItemMoveCallback(this@ViewBlockActivity,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),ItemTouchHelper.RIGHT)
             touchHelper= ItemTouchHelper(callback)
             touchHelper?.attachToRecyclerView(rec_view)
             runOnUiThread{
@@ -150,7 +150,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
                 _: DialogInterface, _: Int -> viewModel.removeBlockAt(position)
         }
         val cancelDeletion= {
-                _:DialogInterface,_:Int ->
+                _:DialogInterface,_:Int -> viewModel.cancelPreviousIntent()
         }
 
         with(builder) {
@@ -174,5 +174,89 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         intent.putExtra("blockPosition", position)
         intent.putExtra("WORKFLOW_NAME", workflow_title.text)
         startActivityForResult(intent, 0)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 1) {
+            if(resultCode==Activity.RESULT_OK) {
+                val blockType = data!!.extras!!.getString("block_type")
+
+                when(blockType){
+                    "Text to speech" -> {
+                        val text= data!!.extras!!.get("text").toString()
+                        viewModel.addOneArgBlock("Text to speech",text)
+                    }
+                    "FeedRss" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
+                        val url=data!!.extras!!.get("FeedUrl").toString()
+                        viewModel.addFilter(cardinality)
+                        viewModel.addOneArgBlock("FeedRss",url)
+
+                    }
+                    "News" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
+                        val news=data!!.extras!!.get("news").toString()
+                        viewModel.addFilter(cardinality)
+                        viewModel.addOneArgBlock("News",news)
+                    }
+                    "Pin" -> {
+                        val pin= data!!.extras!!.get(("pin")).toString()
+                        viewModel.addOneArgBlock("Pin",pin)
+                    }
+                    "Sport" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
+                        val sport= data!!.extras!!.get(("sport")).toString()
+                        viewModel.addFilter(cardinality)
+                        viewModel.addOneArgBlock("Sport",sport)
+                    }
+                    "Crypto" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
+                        val crypto= data!!.extras!!.get(("crypto")).toString()
+                        viewModel.addFilter(cardinality)
+                        viewModel.addOneArgBlock("Crypto",crypto)
+                    }
+                    "Borsa" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
+                        val borsa= data!!.extras!!.get(("borsa")).toString()
+                        viewModel.addFilter(cardinality)
+                        viewModel.addOneArgBlock("Borsa", borsa)
+                    }
+                    "TwitterHashtag" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
+                        val twit= data!!.extras!!.get(("hashtag")).toString()
+                        viewModel.addFilter(cardinality)
+                        viewModel.addOneArgBlock("TwitterHashtag", twit)
+                    }
+                    "TwitterHomeTL" -> {
+                        val cardinality = data!!.extras!!.get("cardinality").toString().toShort()
+                        //val username =  data!!.extras!!.get("username").toString()
+                        viewModel.addFilter(cardinality)
+                        viewModel.addOneArgBlock("TwitterHomeTL", "")
+                    }
+                    "TwitterUserTL" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
+                        val user = data!!.extras!!.get(("screenName")).toString()
+                        viewModel.addFilter(cardinality)
+                        viewModel.addOneArgBlock("TwitterUserTL",user)
+                    }
+                    "WriteTwitter" -> {
+                        viewModel.addOneArgBlock("TwitterWrite","")
+                    }
+                    "Weather" -> {
+                        val city= data!!.extras!!.get("city").toString()
+                        viewModel.addOneArgBlock("Weather",city)
+
+                    }
+                    "List" -> {
+                        viewModel.addOneArgBlock("List", "")
+
+                    }
+                }
+            }
+
+        }
+
     }
 }
