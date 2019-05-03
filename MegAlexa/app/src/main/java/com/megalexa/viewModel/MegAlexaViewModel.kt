@@ -71,7 +71,7 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
     fun saveUser() {
         val user= app.getUser()
         val json= UserService.convertToJSON(user)
-        UserService.postOperation(json)
+        doAsync {UserService.postOperation(json)}
     }
 
     fun removeWorkflow(position :Int) {
