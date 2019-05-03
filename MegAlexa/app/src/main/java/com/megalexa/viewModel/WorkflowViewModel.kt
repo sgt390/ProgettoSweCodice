@@ -206,6 +206,14 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     fun removeBlockAt(position: Int) {
         val list = workflow.getBlocks()
         list.removeAt(position)
+        /*
+        doAsync {
+            WorkflowService.deleteOperation(listOf(
+            Pair("userID",app.getUser().getID()),
+            Pair("workflowName", workflowName),
+            Pair("oldBlockIndex", position.toString())
+        ))}
+        */
         refreshBlocks()
     }
 

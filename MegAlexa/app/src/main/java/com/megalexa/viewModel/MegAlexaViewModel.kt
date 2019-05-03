@@ -10,6 +10,8 @@ import com.megalexa.models.MegAlexa
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.util.service.MegAlexaService
 import com.megalexa.util.service.UserService
+import com.megalexa.util.service.WorkflowService
+import org.jetbrains.anko.doAsync
 
 
 class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
@@ -74,6 +76,7 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
 
     fun removeWorkflow(position :Int) {
         val list= app.getWorkflowList()
+        doAsync {WorkflowService.deleteOperation(listOf(Pair("userID",app.getUser().getID()), Pair("workflowName", app.getWorkflowNames().get(position))))}
         list.removeAt(position)
         refreshWorkflow()
     }
