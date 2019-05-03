@@ -115,8 +115,8 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         val view = inflater.inflate(R.layout.twitter_login_popup, null)
         val popupWindow = PopupWindow(
             view, // Custom view to show in popup window
-            LinearLayout.LayoutParams.WRAP_CONTENT, // Width of popup window
-            LinearLayout.LayoutParams.WRAP_CONTENT // Window height
+            LinearLayout.LayoutParams.MATCH_PARENT, // Width of popup window
+            170 // Window height
         )
         // Settings window popup
         popupWindow.setBackgroundDrawable(ColorDrawable(Color.WHITE)) //Background color

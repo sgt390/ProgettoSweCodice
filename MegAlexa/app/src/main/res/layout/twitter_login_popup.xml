@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@color/colorSecondaryAccent"
-              android:layout_gravity="center">
+              android:layout_height="100dp"
+              android:background="@color/colorAccent"
+              android:layout_gravity="center"
+              android:gravity="center">
 
     <com.twitter.sdk.android.core.identity.TwitterLoginButton
             android:id="@+id/login_twitter_button"
             android:layout_width="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:layout_height="wrap_content" />
 </LinearLayout>
