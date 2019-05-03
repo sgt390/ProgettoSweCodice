@@ -52,7 +52,7 @@ object WorkflowService: Service() {
         }
         val jsonObject= JSONObject()
         jsonObject.put("userID", MegAlexa.getInstance().getUser().getID())
-        jsonObject.put("workflowName", workflow.getName())
+        jsonObject.put("workflowName", workflow.getName().toLowerCase().replace("\\s".toRegex(), ""))
         jsonObject.put("workflow",jsonArray)
         return jsonObject
     }

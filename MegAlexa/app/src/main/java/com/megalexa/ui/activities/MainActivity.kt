@@ -38,12 +38,12 @@ class MainActivity : AppCompatActivity() {
         requestContext.registerListener( object :
             AuthorizeListener(){
             /* Authorization was completed successfully. */
-            override fun onSuccess(result : AuthorizeResult){
+            override fun onSuccess(result : AuthorizeResult) {
+                if(!(viewModel.isUserPresent(result.user.userId))) {
+                    viewModel.saveUser()
+                }
                 viewModel.setUser(result.user)
                 viewModel.loadAppContext()
-              if(!(viewModel.isUserPresent(result.user.userId))) {
-                  viewModel.saveUser()
-              }
                 startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
             }
             /* There was an error during the attempt to authorize the application. */
@@ -90,10 +90,12 @@ class MainActivity : AppCompatActivity() {
         AuthorizationManager.getToken(this, scopes, object : Listener<AuthorizeResult, AuthError> {
             override fun onSuccess(result: AuthorizeResult) {
                 if (result.accessToken != null) {
+
                     /* The user is signed in */
                     startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
                 } else {
                     /* The user is not signed in */
+
                     return
                 }
             }
