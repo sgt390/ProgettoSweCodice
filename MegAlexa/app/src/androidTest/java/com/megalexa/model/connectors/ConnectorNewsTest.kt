@@ -1,9 +1,9 @@
-package com.megalexa
+package com.megalexa.model.connectors
 
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.models.connectors.ConnectorWeather
+import com.megalexa.models.connectors.ConnectorNews
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,7 +16,7 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ConnectorWeatherTest {
+class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -26,9 +26,9 @@ class ConnectorWeatherTest {
 
     @Test
     fun valid() {
-        val city = "Padova"
-        val cityIsValid = ConnectorWeather(city).valid()
-        assertEquals(true, cityIsValid)
+        val someaccount = "someAccount@gmail.com"
+        val accountIsValid = ConnectorNews(someaccount).valid()
+        assertEquals(true, accountIsValid)
     }
 
 }

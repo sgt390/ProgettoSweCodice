@@ -1,9 +1,9 @@
-package com.megalexa
+package com.megalexa.model.connectors
 
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.models.connectors.ConnectorSport
+import com.megalexa.models.connectors.ConnectorCalendar
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,7 +16,7 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ConnectorSportTest {
+class ConnectorCalendarTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -27,7 +27,8 @@ class ConnectorSportTest {
     @Test
     fun valid() {
         val someaccount = "someAccount@gmail.com"
-        val accountIsValid = ConnectorSport(someaccount).valid()
+        val password=""
+        val accountIsValid = ConnectorCalendar(someaccount,password).valid()
         assertEquals(true, accountIsValid)
     }
 

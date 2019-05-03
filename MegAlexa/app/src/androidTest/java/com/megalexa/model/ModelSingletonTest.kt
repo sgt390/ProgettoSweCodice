@@ -1,10 +1,12 @@
-package com.megalexa
+package com.megalexa.model
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.megalexa.models.MegAlexa
+import com.megalexa.models.User
+import com.megalexa.models.blocks.BlockTextToSpeech
+import com.megalexa.models.workflow.Workflow
 
-import com.megalexa.util.service.UserService
-import org.json.JSONObject
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,7 +19,7 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class GetUserTest {
+class ModelSingletonTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -26,17 +28,13 @@ class GetUserTest {
     }
 
     @Test
-    fun valid() {
-        val param= "amzn1.account.AEFN6PFSKLCCFNVOH6GXZFGND5HA"
+    fun singleton() {
 
-        val response =UserService.getOperation(listOf(Pair("userID",param)))
-        val json= JSONObject("{\n" +
-                "  \"userID\": \"amzn1.account.AEFN6PFSKLCCFNVOH6GXZFGND5HA\",\n" +
-                "  \"name\": \"mirko.franco@icloud.com\",\n" +
-                "  \"email\": \"Mirko\"\n" +
-                "}")
-
-        assertEquals(response.toString(),json.toString())
+        val instanceOne = MegAlexa.getInstance()
+        val user=User("test","test@gmail.com","zeroseven")
+        instanceOne.setUser(user)
+        val secondInstance= MegAlexa.getInstance()
+        assertEquals(instanceOne.getUser().getID(), secondInstance.getUser().getID())
     }
 
 }

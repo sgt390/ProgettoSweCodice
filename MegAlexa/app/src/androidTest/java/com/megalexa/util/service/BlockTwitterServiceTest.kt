@@ -1,10 +1,9 @@
-package com.megalexa
+package com.megalexa.util.service
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.blocks.BlockTwitter
-import com.megalexa.models.blocks.BlockTwitterHashtag
-import com.megalexa.util.service.BlockTwitterHashtagService
+import com.megalexa.util.service.BlockTwitterService
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -12,7 +11,7 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 
 @RunWith(AndroidJUnit4::class)
-class BlockTwitterHashtagServiceTest {
+class BlockTwitterServiceTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -22,29 +21,29 @@ class BlockTwitterHashtagServiceTest {
 
     @Test
     fun validToJSON() {
-        val expected = BlockTwitterHashtag("#Vero")
-        val json = BlockTwitterHashtagService.convertToJSON(expected)
-        val config = "{\"blockType\":\"TwitterHashtag\",\"config\":{\"access_token_key\":\"" +
+        val expected = BlockTwitter("@BillGates")
+        val json = BlockTwitterService.convertToJSON(expected)
+        val config = "{\"blockType\":\"TwitterUserTL\",\"config\":{\"access_token_key\":\"" +
                 "1110935101561556992-b9BpCfXw3NqSbzhEpMtvmvbVMqGE2N\",\"access_token_secret\":\"" +
                 "OMVvSqVFjCOC0uFQkelIycpvCgUvOWFht8COIkXSUWXUH\",\"consumer_key\":\"Bdc0zcGkYm6ykEoiw4NJUZxMO\",\"" +
-                "consumer_secret\":\"FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP\",\"hashtag\":\"" +
-                "#Vero\"}}"
+                "consumer_secret\":\"FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP\",\"screenName\":\"" +
+                "@BillGates\"}}"
 
         assertEquals(json.toString(),config)
     }
 
     @Test
     fun validFromJSON() {
-        val expected = BlockTwitterHashtag("#Vero")
-        val json = BlockTwitterHashtagService.convertToJSON(expected)
-        val block = BlockTwitterHashtagService.convertFromJSON(json)
+        val expected = BlockTwitter("@BillGates")
+        val json = BlockTwitterService.convertToJSON(expected)
+        val block = BlockTwitterService.convertFromJSON(json)
 
         assertTrue(
             block.getAccessKey().equals("1110935101561556992-b9BpCfXw3NqSbzhEpMtvmvbVMqGE2N") &&
                     block.getAccessSecret().equals("OMVvSqVFjCOC0uFQkelIycpvCgUvOWFht8COIkXSUWXUH") &&
                     block.getConsumerKey().equals("Bdc0zcGkYm6ykEoiw4NJUZxMO") &&
                     block.getConsumerSecret().equals("FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP") &&
-                    block.getHashtag().equals("#Vero")
+                    block.getScreenName().equals("@BillGates")
         )
     }
 }
