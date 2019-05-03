@@ -84,7 +84,7 @@ class MegAlexa private constructor(
         @Volatile private var instance: MegAlexa?= null
         //Singleton instantiation
         fun getInstance() = instance?: synchronized(this) {
-            instance ?: MegAlexa.build().also { instance = it }
+            instance ?: build().also { instance = it }
         }
 
         //Builder functions
