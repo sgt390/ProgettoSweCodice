@@ -36,7 +36,6 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         val anotherUser = findViewById<LinearLayout>(R.id.homeTwitter)
         val hashtag = findViewById<LinearLayout>(R.id.SearchHashtag)
         val writeTweet = findViewById<LinearLayout>(R.id.writeTweet)
-        val exitButton = findViewById<LinearLayout>(R.id.exitTwitter)
         val cancelButton = findViewById<Button>(R.id.button_cancel_twitter)
 
         user.setOnClickListener {
@@ -49,25 +48,17 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
             val fragment = TwitterAnotherUserFragment()
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
-            //showLoginPopup()
         }
         hashtag.setOnClickListener {
             val fragment = TwitterFragment()
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
-            //showLoginPopup()
         }
         writeTweet.setOnClickListener {
             val fragment = WriteTweetFragment()
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
             if(!isUserAuthenticated())  showLoginPopup()
-        }
-        exitButton.setOnClickListener {
-            if(isUserAuthenticated()) {
-                TwitterCore.getInstance().sessionManager.clearActiveSession()
-                showLoginPopup()
-            }
         }
         cancelButton.setOnClickListener {
             setResult(Activity.RESULT_CANCELED)
@@ -121,9 +112,7 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         // Settings window popup
         popupWindow.setBackgroundDrawable(ColorDrawable(Color.WHITE)) //Background color
         popupWindow.isFocusable = true //for click EditText
-        popupWindow.setOnDismissListener {
-            //supportFragmentManager.popBackStackImmediate()
-        }
+
         twitterLoginButton = view.findViewById(R.id.login_twitter_button)
         val x = 5
         twitterLoginButton.callback = object : Callback<TwitterSession>() {

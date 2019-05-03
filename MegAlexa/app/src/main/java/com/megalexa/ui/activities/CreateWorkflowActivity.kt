@@ -23,6 +23,7 @@ import com.megalexa.ui.adapters.BlockViewAdapter
 import com.megalexa.util.InjectorUtils
 import com.megalexa.util.view.ItemMoveCallback
 import com.megalexa.viewModel.WorkflowViewModel
+import com.twitter.sdk.android.core.TwitterCore
 import kotlinx.android.synthetic.main.activity_create_workflow.*
 import java.io.FileNotFoundException
 import kotlin.concurrent.thread
@@ -92,6 +93,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
             button_save_workflow -> {
                 thread (start = true) {
                     viewModel.saveWorkflow()
+                    TwitterCore.getInstance().sessionManager.clearActiveSession() //clear Twitter session
                     setResult(Activity.RESULT_OK)
                     finish()
                 }
