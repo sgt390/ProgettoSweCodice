@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.widget.ImageView
@@ -39,11 +40,12 @@ class MainActivity : AppCompatActivity() {
             AuthorizeListener(){
             /* Authorization was completed successfully. */
             override fun onSuccess(result : AuthorizeResult) {
+                Log.d("onCreate", "onSuccess")
                 viewModel.setUser(result.user)
-                viewModel.loadAppContext()
-                if(!(viewModel.isUserPresent(result.user.userId))) {
-                    viewModel.saveUser()
-                }
+                //viewModel.loadAppContext()
+                //if(!(viewModel.isUserPresent(result.user.userId))) {
+                viewModel.saveUser()
+                //}
                 startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
             }
             /* There was an error during the attempt to authorize the application. */
@@ -89,11 +91,14 @@ class MainActivity : AppCompatActivity() {
         )
         AuthorizationManager.getToken(this, scopes, object : Listener<AuthorizeResult, AuthError> {
             override fun onSuccess(result: AuthorizeResult) {
+                Log.d("onStart", "Fuori")
                 if (result.accessToken != null) {
-
+                    Log.d("onSuccess", "true")
+                    viewModel.loadAppContext()
                     /* The user is signed in */
                     startActivity(Intent(this@MainActivity, GeneralLoggedActivity::class.java))
                 } else {
+                    Log.d("onSuccess" ,"false")
                     /* The user is not signed in */
 
                     return
