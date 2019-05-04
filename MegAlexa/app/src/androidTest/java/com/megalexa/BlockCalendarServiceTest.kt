@@ -3,9 +3,10 @@ package com.megalexa
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import android.util.Log
-//import com.google.api.client.auth.oauth2.Credential
-//import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
+import com.google.api.client.auth.oauth2.Credential
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
 import com.megalexa.util.service.BlockCalendarService
+import org.json.JSONObject
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -22,8 +23,9 @@ class BlockCalendarServiceTest {
     @Test
     fun valid() {
 //        val HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport()
-//        val Cal : Credential = BlockCalendarService.getCredentials(HTTP_TRANSPORT)
-        junit.framework.Assert.assertEquals("prova", "prova")
+//        val Cal : JSONObject = BlockCalendarService.getToken(BlockCalendarService.getCredentials(HTTP_TRANSPORT))
+//        //Log.d("Token",Cal.accessToken)
+//        junit.framework.Assert.assertEquals("prova", "prova")
 
 
     }

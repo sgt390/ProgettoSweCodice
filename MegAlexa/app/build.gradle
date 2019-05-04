@@ -14,6 +14,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'}
     }
     buildTypes {
         release {
@@ -55,20 +57,19 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.twitter.sdk.android:twitter-core:3.2.0'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'pub.devrel:easypermissions:0.3.0'
     implementation 'com.android.support:multidex:1.0.3'
+
     implementation 'com.google.apis:google-api-services-gmail:v1-rev103-1.25.0'
     implementation 'com.google.api-client:google-api-client:1.25.0'
     implementation 'com.google.oauth-client:google-oauth-client-jetty:1.25.0'
+    implementation 'com.google.apis:google-api-services-oauth2:v2-rev150-1.25.0'
     implementation 'com.google.apis:google-api-services-calendar:v3-rev305-1.23.0'
-    implementation 'com.google.api-client:google-api-client:1.25.0'
-    implementation 'com.google.oauth-client:google-oauth-client-jetty:1.25.0'
-    implementation 'com.google.apis:google-api-services-gmail:v1-rev83-1.23.0'
     implementation 'com.google.http-client:google-http-client:1.25.0'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
-    implementation 'pub.devrel:easypermissions:0.3.0'
+
     implementation('com.google.apis:google-api-services-slides:v1-rev294-1.23.0') {
         exclude group: 'org.apache.httpcomponents'
     }
-    implementation 'com.google.apis:google-api-services-calendar:v3-rev305-1.23.0'
 }

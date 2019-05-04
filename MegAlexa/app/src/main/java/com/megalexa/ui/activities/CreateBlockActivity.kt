@@ -66,7 +66,10 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 3-> {
-                    //TODO() EMAIL FRAGMENT
+                    fragment = MailFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    listView.isEnabled=false
+                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 4-> {
                     fragment = NewsFragment()
