@@ -1,4 +1,4 @@
-package com.megalexa
+package com.megalexa.service.integration
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

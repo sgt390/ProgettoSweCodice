@@ -1,4 +1,4 @@
-package com.megalexa.service
+package com.megalexa.service.conversion
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -21,29 +21,6 @@ class BlockTwitterConversionTest: ConversionTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    @Test
-    override fun conversionFromObjectToJSon() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    @Test
-    fun validToJSON() {
-        val expected = BlockTwitter("@BillGates")
-        val json = BlockTwitterService.convertToJSON(expected)
-        val config = "{\"blockType\":\"TwitterUserTL\",\"config\":{\"access_token_key\":\"" +
-                "1110935101561556992-b9BpCfXw3NqSbzhEpMtvmvbVMqGE2N\",\"access_token_secret\":\"" +
-                "OMVvSqVFjCOC0uFQkelIycpvCgUvOWFht8COIkXSUWXUH\",\"consumer_key\":\"Bdc0zcGkYm6ykEoiw4NJUZxMO\",\"" +
-                "consumer_secret\":\"FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP\",\"screenName\":\"" +
-                "@BillGates\"}}"
-
-        assertEquals(json.toString(),config)
-    }
-
-    @Test
-    fun validFromJSON() {
         val expected = BlockTwitter("@BillGates")
         val json = BlockTwitterService.convertToJSON(expected)
         val block = BlockTwitterService.convertFromJSON(json)
@@ -55,5 +32,18 @@ class BlockTwitterConversionTest: ConversionTest {
                     block.getConsumerSecret().equals("FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP") &&
                     block.getScreenName().equals("@BillGates")
         )
+    }
+
+    @Test
+    override fun conversionFromObjectToJSon() {
+        val expected = BlockTwitter("@BillGates")
+        val json = BlockTwitterService.convertToJSON(expected)
+        val config = "{\"blockType\":\"TwitterUserTL\",\"config\":{\"access_token_key\":\"" +
+                "1110935101561556992-b9BpCfXw3NqSbzhEpMtvmvbVMqGE2N\",\"access_token_secret\":\"" +
+                "OMVvSqVFjCOC0uFQkelIycpvCgUvOWFht8COIkXSUWXUH\",\"consumer_key\":\"Bdc0zcGkYm6ykEoiw4NJUZxMO\",\"" +
+                "consumer_secret\":\"FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP\",\"screenName\":\"" +
+                "@BillGates\"}}"
+
+        assertEquals(json.toString(),config)
     }
 }

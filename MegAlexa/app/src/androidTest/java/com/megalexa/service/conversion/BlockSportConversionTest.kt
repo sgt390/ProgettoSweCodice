@@ -1,4 +1,4 @@
-package com.megalexa.service
+package com.megalexa.service.conversion
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -22,16 +22,14 @@ class BlockSportConversionTest: ConversionTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val expected = BlockSport("https://www.goal.com/feeds/en/news")
+        val json = BlockSportService.convertToJSON(expected)
+        val block = BlockSportService.convertFromJSON(json)
+        assertEquals(block.url(),"https://www.goal.com/feeds/en/news")
     }
 
     @Test
     override fun conversionFromObjectToJSon() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    @Test
-    fun validToJSON() {
         val expected = BlockSport("https://www.goal.com/feeds/en/news")
         val json = BlockSportService.convertToJSON(expected)
         val url = json.getJSONObject("config").getString("URL")
@@ -42,11 +40,4 @@ class BlockSportConversionTest: ConversionTest {
                 && json.toString().equals(config))
     }
 
-    @Test
-    fun validFromJSON() {
-        val expected = BlockSport("https://www.goal.com/feeds/en/news")
-        val json = BlockSportService.convertToJSON(expected)
-        val block = BlockSportService.convertFromJSON(json)
-        assertEquals(block.url(),"https://www.goal.com/feeds/en/news")
-    }
 }
