@@ -48,13 +48,16 @@ class MailFragment: Fragment(){
             builder.show()
         }
         button.setOnClickListener {
-            //doAsync {  BlockReadEmailService.getCredentials(BlockReadEmailService.HTTP_TRANSPORT)}
+            doAsync {
+                BlockReadEmailService.getToken()
+            }
                 val activity= activity as CreateBlockActivity
                 activity.onFragmentClick(this)
         }
 
         return view
     }
+
 
     fun getCardinality() = cardinality
 

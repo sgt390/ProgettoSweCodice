@@ -29,9 +29,10 @@ class GmailQuickStart {
 
         val flow: GoogleAuthorizationCodeFlow = GoogleAuthorizationCodeFlow.Builder(
             HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
-            .setDataStoreFactory(FileDataStoreFactory(File(TOKENS_DIRECTORY_PATH)))
+            //.setDataStoreFactory(FileDataStoreFactory(File(TOKENS_DIRECTORY_PATH)))
             .setAccessType("offline").build()
         val receiver: LocalServerReceiver = LocalServerReceiver.Builder().setPort(8888).build()
+        val Tok : Credential = AuthorizationCodeInstalledApp(flow,receiver).authorize("user")
         return AuthorizationCodeInstalledApp(flow, receiver).authorize("user")
     }
 }

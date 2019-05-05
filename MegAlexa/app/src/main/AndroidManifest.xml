@@ -16,6 +16,8 @@
             android:usesCleartextTraffic="true">
         <activity android:name=".ui.activities.TwitterActivity">
         </activity>
+        <activity android:name=".ui.activities.GoogleActivity">
+        </activity>
         <activity
                 android:name=".ui.activities.ViewBlockListActivity"
                 android:label="@string/title_activity_list"

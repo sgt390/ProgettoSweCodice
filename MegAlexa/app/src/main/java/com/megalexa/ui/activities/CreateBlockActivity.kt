@@ -67,9 +67,11 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                 }
                 3-> {
                     fragment = MailFragment()
-                    val transaction = supportFragmentManager.beginTransaction()
-                    listView.isEnabled=false
-                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
+                    val intent = Intent(this@CreateBlockActivity, GoogleActivity::class.java)
+                    startActivityForResult(intent, 1)
+//                    val transaction = supportFragmentManager.beginTransaction()
+//                    listView.isEnabled=false
+//                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 4-> {
                     fragment = NewsFragment()

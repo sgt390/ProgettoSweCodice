@@ -1,5 +1,6 @@
 package com.megalexa.util.service
 
+import android.util.Log
 import com.google.api.client.auth.oauth2.Credential
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
 import com.google.api.client.http.javanet.NetHttpTransport
@@ -29,9 +30,13 @@ object BlockReadEmailService:BlockService() {
     }
 
     fun getToken(): Credential {
-        val HTTP_TRANSPORT: NetHttpTransport = GoogleNetHttpTransport.newTrustedTransport()
+        val HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport()
+       // val HTTP_TRANSPORT: NetHttpTransport = NetHttpTransport()
+        Log.d("Entrata","2")
         val JSON_FACTORY: JacksonFactory = JacksonFactory.getDefaultInstance()
+        Log.d("Entrata","3")
         val token = GmailQuickStart().getCredential(HTTP_TRANSPORT)
+        Log.d("Entrata","4")
         var service = Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, token)
             .setApplicationName("Megalexa")
             .build()

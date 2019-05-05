@@ -57,26 +57,17 @@ object BlockCalendarService: BlockService() {
     @Throws(IOException::class)
     public fun getCredentials(HTTP_TRANSPORT: NetHttpTransport): Credential {
         // Load client secrets.
-        Log.d("Parma 1","Entrato qui")
         val `in` = this::class.java!!.getResourceAsStream(CREDENTIALS_FILE_PATH)
             ?: throw FileNotFoundException("Resource not found: $CREDENTIALS_FILE_PATH")
-        Log.d("Parma 2","Passato di qua")
         val clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, InputStreamReader(`in`))
-        // {"web":{"client_id":"1048781954504-4et458uubfu4chmgonlus6bv9c5ale1l.apps.googleusercontent.com","project_id":"megalexa","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"bkYtBK9CQjbkfJ7tUcc0PgjM"}}
-        // Build flow and trigger user authorization request.
-        Log.d("Parma 3",clientSecrets.details.tokenUri)
+        Log.d("ContieneCredentials",clientSecrets.details.clientId)
         val flow = GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
             //.setDataStoreFactory(FileDataStoreFactory(File(TOKENS_DIRECTORY_PATH)))
             .setAccessType("offline").build()
-        Log.d("Parma 4","4")
-        println("access_type: " + flow.accessType)
-        println("client: " + flow.clientAuthentication)
-
-
         val receiver : LocalServerReceiver = (LocalServerReceiver.Builder()).build()
-        Log.d("Parma 5",receiver.toString())
+        Log.d("arrivedHere","sonoqua")
         val token = AuthorizationCodeInstalledApp(flow, receiver).authorize("user")
-        Log.d("Parma 6",token.accessToken)
+        Log.d("arrivedHere",token.accessToken)
         println("access_token= " + token.accessToken)
         println("expires in = " + token.expiresInSeconds!!)
         println("refresh_token= " + token.refreshToken)
@@ -84,29 +75,3 @@ object BlockCalendarService: BlockService() {
         return token
     }
 }
-
-/*
-"blockType": "Calendar",
-"config": {
-    "credentials": {
-        "installed": {
-        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-        "client_id": "974570768081-p3e8rfbsmd25ae4r445edsv3niugh72u.apps.googleusercontent.com",
-        "client_secret": "MA-aItkDN3-dEQovlvtq3Mph",
-        "project_id": "megalexa-1556132707047",
-        "redirect_uris": [
-        "urn:ietf:wg:oauth:2.0:oob",
-        "http://localhost"
-        ],
-        "token_uri": "https://oauth2.googleapis.com/token"
-    }
-    },
-    "token": {
-        "access_token": "ya29.Glv-Bi1c0n5G_WE-G1oZW9Ec45JS01H6AFJWE3ki9fNTm3wLuan3JYG5bUI0cu9bfAX2wt9-t7sqIM8vyYp_bke1gLhOPf03iiR868XSUvhOECzNAYLwHY_wafK1",
-        "expiry_date": 1556137112472,
-        "refresh_token": "1/Wt6JQy6e5LqAccwu7SwW_GIQtyyp43BQlEXSwdsf-lE",
-        "scope": "https://www.googleapis.com/auth/calendar.readonly",
-        "token_type": "Bearer"
-    }
-}*/

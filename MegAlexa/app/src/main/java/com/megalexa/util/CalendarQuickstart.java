@@ -1,4 +1,5 @@
-//import com.google.android.gms.common.api.Api;
+//package com.megalexa.util;
+//
 //import com.google.api.client.auth.oauth2.Credential;
 //import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 //import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -48,8 +49,6 @@
 //            throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
 //        }
 //        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
-//// {"web":{"client_id":"1048781954504-4et458uubfu4chmgonlus6bv9c5ale1l.apps.googleusercontent.com","project_id":"megalexa","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"bkYtBK9CQjbkfJ7tUcc0PgjM"}}
-//        // Build flow and trigger user authorization request.
 //        GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
 //                HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
 //                .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
@@ -74,7 +73,7 @@
 //                .setApplicationName(APPLICATION_NAME)
 //                .build();
 //
-//        // List the next 10 events from the primary calendar.
+//  //       List the next 10 events from the primary calendar.
 //        DateTime now = new DateTime(System.currentTimeMillis());
 //        Events events = service.events().list("primary")
 //                .setMaxResults(10)
