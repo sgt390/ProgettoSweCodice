@@ -5,6 +5,7 @@ import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.models.blocks.Filter
 import com.megalexa.models.workflow.Workflow
+import com.megalexa.service.conversion.ConversionTest
 import com.megalexa.util.service.WorkflowService
 import junit.framework.Assert.assertEquals
 import org.junit.Assert
