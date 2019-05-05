@@ -68,7 +68,6 @@ dependencies {
     implementation 'com.google.http-client:google-http-client:1.25.0'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
-
     implementation('com.google.apis:google-api-services-slides:v1-rev294-1.23.0') {
         exclude group: 'org.apache.httpcomponents'
     }

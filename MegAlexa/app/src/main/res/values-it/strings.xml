@@ -84,4 +84,5 @@
     <string name="confirmBlockList">Conferma</string>
     <string name="titleListItem">Lista</string>
     <string name="Select_site">Seleziona un sito per le news</string>
+    <string name="listenMail">Ascolta le tue mails tramite Alexa</string>
 </resources>
