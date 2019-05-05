@@ -15,12 +15,22 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ConnectorReadTwitterTest {
+class ConnectorReadTwitterTest: ConnectorTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
         assertEquals("com.megalexa", appContext.packageName)
+    }
+
+    @Test
+    override fun validConnector() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    @Test
+    override fun nonValidConnector() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     //@Test
