@@ -15,7 +15,7 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ConnectorFeedTest : ConnectorTest {
+class ConnectorFeedValidityTest : ConnectorValidityTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -30,13 +30,9 @@ class ConnectorFeedTest : ConnectorTest {
 
     @Test
     override fun validConnector() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    @Test
-    fun valid() {
         val uri = "https://feedforall.com/sample.xml"
         val uriIsValid = ConnectorFeedRss(uri).valid()
         assertEquals(true, uriIsValid)
     }
+
 }

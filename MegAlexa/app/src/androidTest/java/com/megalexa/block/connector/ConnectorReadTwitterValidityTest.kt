@@ -3,7 +3,6 @@ package com.megalexa.block.connector
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.models.connectors.ConnectorReadEmail
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,7 +15,7 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ConnectorReadEmailTest: ConnectorTest {
+class ConnectorReadTwitterValidityTest: ConnectorValidityTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -34,12 +33,12 @@ class ConnectorReadEmailTest: ConnectorTest {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    @Test
-    fun valid() {
-        val email = "zerosevenswe@gmail.com"
+    //@Test
+    /*fun valid() {
+        val someaccount = "someAccount@gmail.com"
         val password=""
-        val emailIsValid = ConnectorReadEmail(email,password).valid()
-        assertEquals(true, emailIsValid)
-    }
+        val accountIsValid = ConnectorReadTwitter(someaccount,password).valid()
+        assertEquals(true, accountIsValid)
+    }*/
 
 }

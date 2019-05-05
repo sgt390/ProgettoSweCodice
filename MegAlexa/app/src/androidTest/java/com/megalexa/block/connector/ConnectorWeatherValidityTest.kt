@@ -16,7 +16,7 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ConnectorWeatherTest: ConnectorTest {
+class ConnectorWeatherValidityTest: ConnectorValidityTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -26,19 +26,13 @@ class ConnectorWeatherTest: ConnectorTest {
 
     @Test
     override fun validConnector() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val city = "Padova"
+        val cityIsValid = ConnectorWeather(city).valid()
+        assertEquals(true, cityIsValid)
     }
 
     @Test
     override fun nonValidConnector() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
-    @Test
-    fun valid() {
-        val city = "Padova"
-        val cityIsValid = ConnectorWeather(city).valid()
-        assertEquals(true, cityIsValid)
-    }
-
 }

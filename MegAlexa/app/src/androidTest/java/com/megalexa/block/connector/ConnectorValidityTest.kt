@@ -1,6 +1,6 @@
 package com.megalexa.block.connector
 
-interface ConnectorTest {
+interface ConnectorValidityTest {
 
     fun validConnector()
 

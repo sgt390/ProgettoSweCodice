@@ -16,7 +16,7 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ConnectorSportTest : ConnectorTest {
+class ConnectorSportValidityTest : ConnectorValidityTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -26,7 +26,9 @@ class ConnectorSportTest : ConnectorTest {
 
     @Test
     override fun validConnector() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val someaccount = "someAccount@gmail.com"
+        val accountIsValid = ConnectorSport(someaccount).valid()
+        assertEquals(true, accountIsValid)
     }
 
     @Test
@@ -36,9 +38,6 @@ class ConnectorSportTest : ConnectorTest {
 
     @Test
     fun valid() {
-        val someaccount = "someAccount@gmail.com"
-        val accountIsValid = ConnectorSport(someaccount).valid()
-        assertEquals(true, accountIsValid)
     }
 
 }
