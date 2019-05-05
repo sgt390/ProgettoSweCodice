@@ -1,9 +1,8 @@
-package com.megalexa
-
+package com.megalexa.block.connector
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.models.connectors.ConnectorNews
+import com.megalexa.models.connectors.ConnectorFeedRss
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,7 +15,7 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest: ConnectorTest {
+class ConnectorFeedTest : ConnectorTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -25,20 +24,19 @@ class ExampleInstrumentedTest: ConnectorTest {
     }
 
     @Test
-    override fun validConnector() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    @Test
     override fun nonValidConnector() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     @Test
-    fun valid() {
-        val someaccount = "someAccount@gmail.com"
-        val accountIsValid = ConnectorNews(someaccount).valid()
-        assertEquals(true, accountIsValid)
+    override fun validConnector() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    @Test
+    fun valid() {
+        val uri = "https://feedforall.com/sample.xml"
+        val uriIsValid = ConnectorFeedRss(uri).valid()
+        assertEquals(true, uriIsValid)
+    }
 }

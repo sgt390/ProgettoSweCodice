@@ -2,8 +2,8 @@ package com.megalexa
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.models.connectors.ConnectorFeedRss
-
+import com.megalexa.util.service.UserService
+import org.json.JSONObject
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -15,7 +15,7 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ConnectorFeedTest : ConnectorTest {
+class WorkflowIntegrationTest: RestApiOperationTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -24,19 +24,22 @@ class ConnectorFeedTest : ConnectorTest {
     }
 
     @Test
-    override fun nonValidConnector() {
+    override fun testDelete() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     @Test
-    override fun validConnector() {
+    override fun testGet() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     @Test
-    fun valid() {
-        val uri = "https://feedforall.com/sample.xml"
-        val uriIsValid = ConnectorFeedRss(uri).valid()
-        assertEquals(true, uriIsValid)
+    override fun testPost() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    @Test
+    override fun testPut() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

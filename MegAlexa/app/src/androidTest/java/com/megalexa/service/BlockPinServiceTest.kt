@@ -1,12 +1,9 @@
-package com.megalexa
+package com.megalexa.service
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.blocks.BlockPin
 import com.megalexa.util.service.BlockPinService
-import com.megalexa.util.service.WorkflowService
-import org.json.JSONArray
-import org.json.JSONObject
 
 import org.junit.Test
 import org.junit.runner.RunWith

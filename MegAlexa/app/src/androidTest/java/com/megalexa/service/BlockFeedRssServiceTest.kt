@@ -1,14 +1,9 @@
-package com.megalexa
+package com.megalexa.service
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.blocks.BlockFeedRss
-import com.megalexa.models.blocks.BlockTextToSpeech
-import com.megalexa.util.service.BlockPinService
-import com.megalexa.util.service.BlockTextToSpeechService
-import com.megalexa.util.service.WorkflowService
-import org.json.JSONArray
-import org.json.JSONObject
+import com.megalexa.util.service.BlockFeedRssService
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,7 +11,7 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 
 @RunWith(AndroidJUnit4::class)
-class BlockTextToSpeechServiceTest : ServiceTest{
+class BlockFeedRssServiceTest : ServiceTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -36,16 +31,21 @@ class BlockTextToSpeechServiceTest : ServiceTest{
 
     @Test
     fun validToJSON() {
-        val expected = BlockTextToSpeech("This is the first block")
-        val json = BlockTextToSpeechService.convertToJSON(expected)
-        assertEquals(json.toString(),"{\"blockType\":\"TextToSpeech\",\"config\":{\"TextToSpeech\":\"This is the first block\"}}")
+        val expected = BlockFeedRss("http://feeds.reuters.com/Reuters/PoliticsNews")
+        val json = BlockFeedRssService.convertToJSON(expected)
+        val url = json.getJSONObject("config").getString("URL")
+        val config = "{\"blockType\":\"FeedRSS\",\"config\":{\"URL\":\"\"}}"
+        json.getJSONObject("config").put("URL","")
+
+        assertTrue(url.equals("http://feeds.reuters.com/Reuters/PoliticsNews")
+                && json.toString().equals(config))
     }
 
     @Test
     fun validFromJSON() {
-        val expected = BlockTextToSpeech("This is the first block")
-        val json = BlockTextToSpeechService.convertToJSON(expected)
-        val block = BlockTextToSpeechService.convertFromJSON(json)
-        assertEquals(block.textBox(),"This is the first block")
+        val expected = BlockFeedRss("http://feeds.reuters.com/Reuters/PoliticsNews")
+        val json = BlockFeedRssService.convertToJSON(expected)
+        val block = BlockFeedRssService.convertFromJSON(json)
+        assertEquals(block.url(),"http://feeds.reuters.com/Reuters/PoliticsNews")
     }
 }

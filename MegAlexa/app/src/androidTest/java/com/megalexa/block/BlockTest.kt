@@ -1,4 +1,4 @@
-package com.megalexa
+package com.megalexa.block
 
 interface BlockTest {
 

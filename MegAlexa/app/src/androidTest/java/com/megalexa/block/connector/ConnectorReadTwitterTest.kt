@@ -1,9 +1,8 @@
-package com.megalexa
+package com.megalexa.block.connector
 
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.models.connectors.ConnectorSport
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,7 +15,7 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ConnectorSportTest : ConnectorTest{
+class ConnectorReadTwitterTest: ConnectorTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -34,11 +33,12 @@ class ConnectorSportTest : ConnectorTest{
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    @Test
-    fun valid() {
+    //@Test
+    /*fun valid() {
         val someaccount = "someAccount@gmail.com"
-        val accountIsValid = ConnectorSport(someaccount).valid()
+        val password=""
+        val accountIsValid = ConnectorReadTwitter(someaccount,password).valid()
         assertEquals(true, accountIsValid)
-    }
+    }*/
 
 }

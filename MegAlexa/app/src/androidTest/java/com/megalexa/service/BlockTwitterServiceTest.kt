@@ -1,4 +1,4 @@
-package com.megalexa
+package com.megalexa.service
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -11,7 +11,7 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 
 @RunWith(AndroidJUnit4::class)
-class BlockTwitterServiceTest:ServiceTest {
+class BlockTwitterServiceTest: ServiceTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
