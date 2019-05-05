@@ -2,9 +2,8 @@ package com.megalexa.service
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.models.blocks.BlockBorsa
-import com.megalexa.util.service.BlockBorsaService
-
+import com.megalexa.models.blocks.BlockPin
+import com.megalexa.util.service.BlockPinService
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -12,7 +11,7 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 
 @RunWith(AndroidJUnit4::class)
-class BlockBorsaServiceTest : ServiceTest {
+class BlockPinConversionTest: ConversionTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -32,22 +31,17 @@ class BlockBorsaServiceTest : ServiceTest {
 
     @Test
     fun validToJSON() {
-        val expected = BlockBorsa("https://www.goal.com/feeds/en/news")
-        val json = BlockBorsaService.convertToJSON(expected)
-        val url = json.getJSONObject("config").getString("URL")
-        val config = "{\"blockType\":\"Borsa\",\"config\":{\"URL\":\"\"}}"
-        json.getJSONObject("config").put("URL","")
-
-        assertTrue(url.equals("https://www.goal.com/feeds/en/news")
-                && json.toString().equals(config))
+        val expected = BlockPin(1234)
+        val json = BlockPinService.convertToJSON(expected)
+        assertEquals(json.toString(),"{\"blockType\":\"PIN\",\"config\":{\"PIN\":\"1234\"}}")
     }
 
     @Test
     fun validFromJSON() {
-        val expected = BlockBorsa("https://www.goal.com/feeds/en/news")
-        val json = BlockBorsaService.convertToJSON(expected)
-        val block = BlockBorsaService.convertFromJSON(json)
-        assertEquals(block.url(),"https://www.goal.com/feeds/en/news")
+        val expected = BlockPin(1234)
+        val json = BlockPinService.convertToJSON(expected)
+        val block = BlockPinService.convertFromJSON(json)
+        assertTrue(block.pin() == 1234)
     }
 
 }

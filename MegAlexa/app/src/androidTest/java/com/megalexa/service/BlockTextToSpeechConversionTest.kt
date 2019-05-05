@@ -2,8 +2,8 @@ package com.megalexa.service
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.models.blocks.BlockSport
-import com.megalexa.util.service.BlockSportService
+import com.megalexa.models.blocks.BlockTextToSpeech
+import com.megalexa.util.service.BlockTextToSpeechService
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -11,14 +11,13 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 
 @RunWith(AndroidJUnit4::class)
-class BlockSportServiceTest: ServiceTest {
+class BlockTextToSpeechConversionTest : ConversionTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
         assertEquals("com.megalexa", appContext.packageName)
     }
-
 
     @Test
     override fun conversionFromJSontoObject() {
@@ -32,21 +31,16 @@ class BlockSportServiceTest: ServiceTest {
 
     @Test
     fun validToJSON() {
-        val expected = BlockSport("https://www.goal.com/feeds/en/news")
-        val json = BlockSportService.convertToJSON(expected)
-        val url = json.getJSONObject("config").getString("URL")
-        val config = "{\"blockType\":\"Sport\",\"config\":{\"URL\":\"\"}}"
-        json.getJSONObject("config").put("URL","")
-
-        assertTrue(url.equals("https://www.goal.com/feeds/en/news")
-                && json.toString().equals(config))
+        val expected = BlockTextToSpeech("This is the first block")
+        val json = BlockTextToSpeechService.convertToJSON(expected)
+        assertEquals(json.toString(),"{\"blockType\":\"TextToSpeech\",\"config\":{\"TextToSpeech\":\"This is the first block\"}}")
     }
 
     @Test
     fun validFromJSON() {
-        val expected = BlockSport("https://www.goal.com/feeds/en/news")
-        val json = BlockSportService.convertToJSON(expected)
-        val block = BlockSportService.convertFromJSON(json)
-        assertEquals(block.url(),"https://www.goal.com/feeds/en/news")
+        val expected = BlockTextToSpeech("This is the first block")
+        val json = BlockTextToSpeechService.convertToJSON(expected)
+        val block = BlockTextToSpeechService.convertFromJSON(json)
+        assertEquals(block.textBox(),"This is the first block")
     }
 }

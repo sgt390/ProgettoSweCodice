@@ -11,7 +11,7 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 
 @RunWith(AndroidJUnit4::class)
-class BlockFeedRssServiceTest : ServiceTest {
+class BlockFeedRssConversionTest : ConversionTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -21,16 +21,14 @@ class BlockFeedRssServiceTest : ServiceTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val expected = BlockFeedRss("http://feeds.reuters.com/Reuters/PoliticsNews")
+        val json = BlockFeedRssService.convertToJSON(expected)
+        val block = BlockFeedRssService.convertFromJSON(json)
+        assertEquals(block.url(),"http://feeds.reuters.com/Reuters/PoliticsNews")
     }
 
     @Test
     override fun conversionFromObjectToJSon() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    @Test
-    fun validToJSON() {
         val expected = BlockFeedRss("http://feeds.reuters.com/Reuters/PoliticsNews")
         val json = BlockFeedRssService.convertToJSON(expected)
         val url = json.getJSONObject("config").getString("URL")
@@ -41,11 +39,4 @@ class BlockFeedRssServiceTest : ServiceTest {
                 && json.toString().equals(config))
     }
 
-    @Test
-    fun validFromJSON() {
-        val expected = BlockFeedRss("http://feeds.reuters.com/Reuters/PoliticsNews")
-        val json = BlockFeedRssService.convertToJSON(expected)
-        val block = BlockFeedRssService.convertFromJSON(json)
-        assertEquals(block.url(),"http://feeds.reuters.com/Reuters/PoliticsNews")
-    }
 }

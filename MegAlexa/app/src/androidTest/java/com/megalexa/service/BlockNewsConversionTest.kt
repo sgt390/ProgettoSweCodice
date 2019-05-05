@@ -11,7 +11,7 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 
 @RunWith(AndroidJUnit4::class)
-class BlockNewsServiceTest : ServiceTest {
+class BlockNewsConversionTest : ConversionTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -21,16 +21,6 @@ class BlockNewsServiceTest : ServiceTest {
 
     @Test
     override fun conversionFromObjectToJSon() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    @Test
-    override fun conversionFromJSontoObject() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    @Test
-    fun validToJSON() {
         val expected = BlockNews("https://news.google.com/rss?hl=it&gl=IT&ceid=IT:it")
         val json = BlockNewsService.convertToJSON(expected)
         val url = json.getJSONObject("config").getString("URL")
@@ -42,7 +32,7 @@ class BlockNewsServiceTest : ServiceTest {
     }
 
     @Test
-    fun validFromJSON() {
+    override fun conversionFromJSontoObject() {
         val expected = BlockNews("https://news.google.com/rss?hl=it&gl=IT&ceid=IT:it")
         val json = BlockNewsService.convertToJSON(expected)
         val block = BlockNewsService.convertFromJSON(json)

@@ -1,6 +1,6 @@
 package com.megalexa.service
 
-interface ServiceTest {
+interface ConversionTest {
 
     fun conversionFromJSontoObject()
 
