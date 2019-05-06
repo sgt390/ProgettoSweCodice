@@ -6,6 +6,7 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
 import com.google.api.services.gmail.Gmail
+import com.megalexa.models.blocks.BlockReadEmail
 import com.megalexa.util.GmailQuickStart
 import org.json.JSONObject
 import java.io.IOException
@@ -13,7 +14,7 @@ import java.security.GeneralSecurityException
 
 object BlockReadEmailService:BlockService() {
 
-    override fun convertFromJSON(jsonObject: JSONObject): BlockReadEmailService {
+    override fun convertFromJSON(jsonObject: JSONObject): BlockReadEmail {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
