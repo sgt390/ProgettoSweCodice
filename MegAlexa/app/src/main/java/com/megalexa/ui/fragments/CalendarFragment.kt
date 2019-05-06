@@ -22,7 +22,7 @@ class CalendarFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.mail_fragment_layout,container,false)
+        val view = inflater.inflate(R.layout.calendar_fragment_layout,container,false)
         val filter = view.findViewById<Button>(R.id.button_filter)
         val button= view.findViewById<Button>(R.id.confirmItemBotton_mail)
 
