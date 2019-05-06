@@ -84,4 +84,5 @@
     <string name="titleListItem">List</string>
     <string name="Select_site">Select News site</string>
     <string name="listenMail">Listen your emails through Alexa</string>
+    <string name="listenTask">Listen your tasks through Alexa</string>
 </resources>

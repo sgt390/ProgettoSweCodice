@@ -1,77 +1,132 @@
 package com.megalexa.ui.activities
 
-import android.content.Context
+
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
+import android.view.View
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.Scope
-import com.google.api.client.extensions.android.http.AndroidHttp
-import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential
-import com.google.api.client.json.jackson2.JacksonFactory
-import com.google.api.services.gmail.Gmail
-import com.google.api.services.sheets.v4.SheetsScopes
+import com.google.android.gms.common.SignInButton
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.megalexa.R
-import com.megalexa.util.ApplicationContextProvider.Companion.context
+import kotlinx.android.synthetic.main.mail_fragment_layout.*
+import android.support.annotation.NonNull
+import android.util.Log
+import com.google.android.gms.tasks.OnCompleteListener
+import com.amazon.identity.auth.device.api.authorization.AuthorizationManager.signOut
+import com.google.api.client.auth.oauth2.Credential
+import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp
+import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver
+import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow
+import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
+import com.google.api.client.json.jackson2.JacksonFactory
+import com.google.api.client.util.store.FileDataStoreFactory
+import com.google.api.services.calendar.CalendarScopes
+import com.megalexa.util.ApplicationContextProvider
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.doAsyncResult
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.InputStreamReader
 
+
+const val RC_SIGN_IN = 123
 
 class GoogleActivity : AppCompatActivity() {
     companion object {
         private const val REQUEST_SIGN_IN = 1
+        private val JSON_FACTORY = JacksonFactory.getDefaultInstance()
+        private val SCOPES = listOf(CalendarScopes.CALENDAR)
+        private val TOKENS_DIRECTORY_PATH = "tokens"
     }
-
-     override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mail_fragment_layout)
 
-        requestSignIn(this)
-    }
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_SIGN_IN) {
-            if (resultCode == RESULT_OK) {
-                GoogleSignIn.getSignedInAccountFromIntent(data)
-                    .addOnSuccessListener { account ->
-                        val scopes = listOf(SheetsScopes.SPREADSHEETS)
-                        val credential = GoogleAccountCredential.usingOAuth2(context, scopes)
-                        credential.selectedAccount = account.account
-
-                        val jsonFactory = JacksonFactory.getDefaultInstance()
-                        // GoogleNetHttpTransport.newTrustedTransport()
-                        val httpTransport =  AndroidHttp.newCompatibleTransport()
-                        val service = Gmail.Builder(httpTransport, jsonFactory, credential)
-                            .setApplicationName(getString(R.string.app_name))
-                            .build()
-
-                    }
-                    .addOnFailureListener { e ->
-                        Toast.makeText(context, "Errore nel Google Activity", Toast.LENGTH_SHORT).show()
-                    }
-            }
-        }
-    }
-
-    private fun requestSignIn(context: Context) {
-        /*
-        GoogleSignIn.getLastSignedInAccount(context)?.also { account ->
-            Timber.d("account=${account.displayName}")
-        }
-         */
-
-        val signInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            // .requestEmail()
-            // .requestScopes(Scope(SheetsScopes.SPREADSHEETS_READONLY))
-            .requestScopes(Scope(SheetsScopes.SPREADSHEETS))
+        // Configure sign-in to request the user's ID, email address, and basic
+// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(ApplicationContextProvider.context!!.resources!!.getString(R.string.client_Id))
+            .requestEmail()
             .build()
-        val client = GoogleSignIn.getClient(context, signInOptions)
+        // Build a GoogleSignInClient with the options specified by gso.
+        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        ///////////////////////////////////////////////////////////////////////
+        //      MY CODE FROM QUICKSTART
 
-        startActivityForResult(client.signInIntent, REQUEST_SIGN_IN)
+
+//               var HTTP_TRANSPORT =  com.google.api.client.http.javanet.NetHttpTransport()
+//        val input = this::class.java.getResourceAsStream("/credentials.json")
+//            ?: throw FileNotFoundException("Resource not found: /credentials.json")
+//        val clientSecrets: GoogleClientSecrets = GoogleClientSecrets.load(JSON_FACTORY, InputStreamReader(input))
+//        val flow = GoogleAuthorizationCodeFlow.Builder(
+//            HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES
+//        )
+////            .setDataStoreFactory(FileDataStoreFactory(File(TOKENS_DIRECTORY_PATH)))
+//            .setAccessType("offline")
+//            .build()
+//        println("client: " + flow.clientAuthentication)
+//        val receiver: LocalServerReceiver = LocalServerReceiver.Builder().setPort(8888).build()
+//        val Tok  = doAsyncResult { AuthorizationCodeInstalledApp(flow,receiver).authorize("user") }
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////
+        sign_in_button.visibility = View.VISIBLE
+        tv_name.visibility = View.GONE
+        sign_in_button.setSize(SignInButton.SIZE_STANDARD)
+        sign_in_button.setOnClickListener{
+            val signInIntent = mGoogleSignInClient.signInIntent
+            startActivityForResult(signInIntent, RC_SIGN_IN)
+        }
+        val acct = GoogleSignIn.getLastSignedInAccount(this)
+        if (acct != null) {
+            sign_in_button.visibility = View.GONE
+            tv_name.text = acct.displayName
+            tv_name.visibility = View.VISIBLE
+//            Log.d("Tag",acct.idToken)
+        }
+        mGoogleSignInClient.signOut()
+            .addOnCompleteListener(this, OnCompleteListener<Void> {
+                // ...
+            })
     }
 
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
+    }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            sign_in_button.visibility = View.GONE
+            if (account != null) {
+//                Log.d("tag",account.idToken)
+                tv_name.text = account.displayName
+            }
+            tv_name.visibility = View.VISIBLE
+        } catch (e: ApiException) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+
+            sign_in_button.visibility = View.VISIBLE
+            tv_name.text = ""
+            tv_name.visibility = View.GONE
+
+        }
 
     }
+    private fun signOut() {
+
+    }
+}

@@ -15,13 +15,14 @@ import com.megalexa.ui.activities.CreateBlockActivity
 import com.megalexa.util.ApplicationContextProvider.Companion.context
 import com.megalexa.util.service.BlockCalendarService
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.doAsyncResult
 
 class CalendarFragment: Fragment() {
     private var cardinality = 5
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.mail_fragment_layout,container,false)
+        val view = inflater.inflate(R.layout.calendar_fragment_layout,container,false)
         val filter = view.findViewById<Button>(R.id.button_filter)
         val button= view.findViewById<Button>(R.id.confirmItemBotton_mail)
 
@@ -48,7 +49,7 @@ class CalendarFragment: Fragment() {
             builder.show()
         }
         button.setOnClickListener {
-            doAsync {  BlockCalendarService.getCredentials(BlockCalendarService.HTTP_TRANSPORT)}
+            doAsyncResult {  BlockCalendarService.getCredentials(BlockCalendarService.HTTP_TRANSPORT)}
             val activity= activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
