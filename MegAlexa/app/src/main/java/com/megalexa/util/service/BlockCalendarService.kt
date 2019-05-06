@@ -13,6 +13,7 @@ import com.google.api.client.json.jackson2.JacksonFactory
 import com.google.api.client.util.store.FileDataStoreFactory
 import com.google.api.services.calendar.CalendarScopes
 import com.megalexa.models.blocks.BlockCalendar
+import com.megalexa.util.CalendarQuickstart
 import org.json.JSONObject
 import java.io.File
 import java.io.FileNotFoundException
@@ -42,9 +43,10 @@ object BlockCalendarService: BlockService() {
         return allBlock
     }
 
-    public fun getToken(credential: Credential): JSONObject {
-
-        return JSONObject()
+    public fun getToken(): Credential {
+        val HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport()
+        val cred = CalendarQuickstart.getCredentials(HTTP_TRANSPORT)
+        return cred
     }
 
 //    private fun getCredentials(): JSONObject {

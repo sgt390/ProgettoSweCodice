@@ -8,7 +8,12 @@
               android:background="@color/colorSecondaryAccent"
               android:gravity="start"
               android:orientation="vertical">
+<com.google.android.gms.common.SignInButton
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/sign_in_button">
 
+</com.google.android.gms.common.SignInButton>
     <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -16,6 +21,7 @@
 
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
+                  android:id="@+id/tv_name"
                   tools:text="Listen your emails through Alexa"
                   android:text="@string/listenMail"
                   android:layout_gravity="center"
