@@ -11,7 +11,7 @@ import javax.net.ssl.HttpsURLConnection
 
 abstract class Service : JSONConverter{
 
-    private val APIUrl = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/"
+    private var APIUrl = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/"
 
     abstract val resource:String
 
@@ -90,8 +90,9 @@ abstract class Service : JSONConverter{
         }
     }
 
-    open fun postOperation(jsonObject: JSONObject) {
+    open fun postOperation(jsonObject: JSONObject):String {
         val url= "$APIUrl$resource"
+        val response = StringBuffer()
         val myURL = URL(url)
         with(myURL.openConnection() as HttpsURLConnection) {
             setRequestProperty("Content-Type", "application/json")
@@ -103,7 +104,6 @@ abstract class Service : JSONConverter{
             println("URL : $url")
             println("Response Code : $responseCode")
             BufferedReader(InputStreamReader(inputStream)).use {
-                val response = StringBuffer()
                 var inputLine = it.readLine()
                 while (inputLine != null) {
                     response.append(inputLine)
@@ -113,10 +113,13 @@ abstract class Service : JSONConverter{
             }
 
         }
-
+        return response.toString()
     }
     fun getURL():String {
         return APIUrl
     }
 
+    fun setURL(param : String){
+        APIUrl= param
+    }
 }

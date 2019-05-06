@@ -1,4 +1,4 @@
-package com.megalexa.service.integration
+package com.megalexa.service
 
 interface RestApiOperationTest {
 
