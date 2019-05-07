@@ -37,7 +37,7 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
     }
 
     fun setUser(user: com.amazon.identity.auth.device.api.authorization.User) {
-        app.setUser(com.megalexa.models.User(user.userId, user.userName, user.userEmail))
+        app.setUser(com.megalexa.models.User(user.userId, user.userEmail, user.userName))
     }
 
 
