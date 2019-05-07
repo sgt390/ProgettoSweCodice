@@ -6,6 +6,7 @@ import com.megalexa.models.workflow.Workflow
 import com.megalexa.service.RestApiOperationTest
 import com.megalexa.util.service.WorkflowService
 import junit.framework.Assert.assertEquals
+import org.json.JSONObject
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -24,27 +25,18 @@ class WorkflowUnitTest :RestApiOperationTest {
        val jsonObject=WorkflowService.getOperation(
            listOf(Pair("userID","1"),Pair("workflowName","prova")))
 
-        assertEquals(jsonObject.toString(),"[\n" +
-                "      \t\t{\n" +
-                "\t\t\"id\" : \"userID=1?workflowName=prova\",\n" +
-                "        \t\"blockType\": \"TextToSpeech\",\n" +
-                "        \t\"config\": {\n" +
-                "         \t\t \"TextToSpeech\": \"first workflow created\"\n" +
-                "       \t\t}\n" +
-                "      }\n" +
-                "    ]")
+        assertEquals(jsonObject.get("content").toString(),"[{\"id\":\"userID=1?workflowName=prova\",\"blockType\":\"TextToSpeech\",\"config\":{\"TextToSpeech\":\"first workflow created\"}}]")
 
     }
 
     @Test
     override fun testPost() {
         WorkflowService.setURL("https://my-json-server.typicode.com/ludobrocca/RestAPILocalTestingServer/")
-        val workflow= Workflow("post")
+        val workflow= Workflow("example")
         workflow.addBlock(BlockTextToSpeech("first workflow created"))
         val string= WorkflowService.postOperation(WorkflowService.convertToJSON(workflow))
-
-        assertEquals(string," ")
-
+        val jsonObject=JSONObject(string)
+        assertEquals(jsonObject.get("workflowName"),"example")
     }
 
     @Test
