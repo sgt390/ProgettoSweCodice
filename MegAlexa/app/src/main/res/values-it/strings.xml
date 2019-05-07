@@ -57,7 +57,7 @@
     <string name="inserttitle">Inserisci oggetto</string>
     <string name="title_activity_list">ListActivity</string>
     <string name="calcio">Calcio</string>
-    <string name="selectnews">Seleziona le News per lo Sport</string>
+    <string name="selectnews">Seleziona le news per lo Sport</string>
     <string name="nfl">Calcio</string>
     <string name="tennis">Tennis</string>
     <string name="f1">Formula1</string>
@@ -86,4 +86,6 @@
     <string name="Select_site">Seleziona un sito per le news</string>
     <string name="searchForUser">Cerca tweets di un utente</string>
     <string name="listenMyTweet">Ascolta i tuoi tweets tramite Alexa</string>
+    <string name="newyork">es. New York</string>
+    <string name="insertcity">Inserisci una città</string>
 </resources>

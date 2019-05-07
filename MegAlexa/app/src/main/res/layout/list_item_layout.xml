@@ -16,8 +16,7 @@
             android:textAlignment="center"
             android:textSize="30sp"
             android:gravity="center_vertical"
-            app:layout_constraintEnd_toEndOf="@+id/mv_block"
-    />
+            app:layout_constraintEnd_toEndOf="@+id/mv_block"/>
 
     </LinearLayout>
 

@@ -13,12 +13,12 @@
 
     <TextView
             android:id="@+id/insert_tts"
-            android:layout_width="236dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
             android:textStyle="bold"
+            android:textSize="18sp"
             tools:text="Insert Text To Speech paragraph"
-            android:padding="2dp"
             android:text="@string/inserttext"/>
 
 
@@ -41,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
     />
 </LinearLayout>
