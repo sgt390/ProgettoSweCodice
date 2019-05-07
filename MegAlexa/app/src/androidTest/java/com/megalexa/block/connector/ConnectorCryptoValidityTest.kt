@@ -1,5 +1,7 @@
 package com.megalexa.block.connector
 
+import com.megalexa.models.connectors.ConnectorCrypto
+import org.junit.Assert
 import org.junit.Test
 
 
@@ -7,12 +9,15 @@ class ConnectorCryptoValidityTest :ConnectorValidityTest {
 
     @Test
     override fun validConnector() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+        val someaccount = "https://cryptocontrol.io/feed"
+        val accountIsValid = ConnectorCrypto(someaccount).valid()
+        Assert.assertEquals(true, accountIsValid)
+         }
 
     @Test
     override fun nonValidConnector() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+        val someaccount = "www.google.com"
+        val accountIsValid = ConnectorCrypto(someaccount).valid()
+        Assert.assertEquals(false, accountIsValid) }
 
 }

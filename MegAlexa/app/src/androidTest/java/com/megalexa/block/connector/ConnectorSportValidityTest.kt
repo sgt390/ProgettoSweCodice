@@ -26,15 +26,17 @@ class ConnectorSportValidityTest : ConnectorValidityTest {
 
     @Test
     override fun validConnector() {
-        val someaccount = "someAccount@gmail.com"
+        val someaccount = "https://www.goal.com/feeds/en/news"
         val accountIsValid = ConnectorSport(someaccount).valid()
         assertEquals(true, accountIsValid)
     }
 
     @Test
     override fun nonValidConnector() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+        val someaccount = "www.google.com"
+        val accountIsValid = ConnectorSport(someaccount).valid()
+        assertEquals(false, accountIsValid)
+         }
 
     @Test
     fun valid() {

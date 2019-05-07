@@ -2,6 +2,11 @@ package com.megalexa.service.conversion
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import android.support.v4.media.session.MediaSessionCompat
+import com.megalexa.models.blocks.BlockReadEmail
+import com.megalexa.util.service.BlockReadEmailService
+import junit.framework.Assert.assertTrue
+import org.json.JSONObject
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -23,6 +28,11 @@ class BlockReadEmailConversionTest:ConversionTest {
 
     @Test
     override fun conversionFromObjectToJSon() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+       val expected = BlockReadEmail(JSONObject())
+        val json = BlockReadEmailService.convertToJSON(expected)
+        val Token_Gmail = json.getJSONObject("config").getString("token")
+        val config = "{\"blockType\":\"News\",\"config\":{\"URL\":\"\"}}"
+        json.getJSONObject("config").put("Credential","Cred")
+        println("dovrebbe essere il token "+Token_Gmail.toString())
+        assertTrue(Token_Gmail.equals("") && json.toString().equals(config))    }
 }

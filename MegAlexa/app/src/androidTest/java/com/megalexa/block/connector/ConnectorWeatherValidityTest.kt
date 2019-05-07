@@ -33,6 +33,8 @@ class ConnectorWeatherValidityTest: ConnectorValidityTest {
 
     @Test
     override fun nonValidConnector() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+        val city = "dsaijdasidnaiuda"
+        val cityIsValid = ConnectorWeather(city).valid()
+        assertEquals(false, cityIsValid)
+            }
 }

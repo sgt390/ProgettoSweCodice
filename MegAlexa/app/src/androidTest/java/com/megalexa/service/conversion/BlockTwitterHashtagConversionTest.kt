@@ -21,29 +21,6 @@ class BlockTwitterHashtagConversionTest: ConversionTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    @Test
-    override fun conversionFromObjectToJSon() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    @Test
-    fun validToJSON() {
-        val expected = BlockTwitterHashtag("#Vero")
-        val json = BlockTwitterHashtagService.convertToJSON(expected)
-        val config = "{\"blockType\":\"TwitterHashtag\",\"config\":{\"access_token_key\":\"" +
-                "1110935101561556992-b9BpCfXw3NqSbzhEpMtvmvbVMqGE2N\",\"access_token_secret\":\"" +
-                "OMVvSqVFjCOC0uFQkelIycpvCgUvOWFht8COIkXSUWXUH\",\"consumer_key\":\"Bdc0zcGkYm6ykEoiw4NJUZxMO\",\"" +
-                "consumer_secret\":\"FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP\",\"hashtag\":\"" +
-                "#Vero\"}}"
-
-        assertEquals(json.toString(),config)
-    }
-
-    @Test
-    fun validFromJSON() {
         val expected = BlockTwitterHashtag("#Vero")
         val json = BlockTwitterHashtagService.convertToJSON(expected)
         val block = BlockTwitterHashtagService.convertFromJSON(json)
@@ -55,5 +32,19 @@ class BlockTwitterHashtagConversionTest: ConversionTest {
                     block.getConsumerSecret().equals("FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP") &&
                     block.getHashtag().equals("#Vero")
         )
+    }
+
+
+    @Test
+    override fun conversionFromObjectToJSon() {
+        val expected = BlockTwitterHashtag("#Vero")
+        val json = BlockTwitterHashtagService.convertToJSON(expected)
+        val config = "{\"blockType\":\"TwitterHashtag\",\"config\":{\"access_token_key\":\"" +
+                "1110935101561556992-b9BpCfXw3NqSbzhEpMtvmvbVMqGE2N\",\"access_token_secret\":\"" +
+                "OMVvSqVFjCOC0uFQkelIycpvCgUvOWFht8COIkXSUWXUH\",\"consumer_key\":\"Bdc0zcGkYm6ykEoiw4NJUZxMO\",\"" +
+                "consumer_secret\":\"FSgU3qIVe6gvLg4NLkKnZYIHFWQHNLMrKYCGoHR5pjUz0IPaRP\",\"hashtag\":\"" +
+                "#Vero\"}}"
+
+        assertEquals(json.toString(), config)
     }
 }

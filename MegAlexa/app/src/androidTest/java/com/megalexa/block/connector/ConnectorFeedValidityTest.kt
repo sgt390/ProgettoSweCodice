@@ -25,8 +25,10 @@ class ConnectorFeedValidityTest : ConnectorValidityTest {
 
     @Test
     override fun nonValidConnector() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+        val uri = "www.google.com"
+        val uriIsValid = ConnectorFeedRss(uri).valid()
+        assertEquals(false, uriIsValid)
+            }
 
     @Test
     override fun validConnector() {

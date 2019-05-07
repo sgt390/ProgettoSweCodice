@@ -32,7 +32,6 @@ class BlockWeather(private val OpenWeatherObj : JSONObject): Block {
      *
      */
     override fun getInformation():String {
-        Log.d("oggettoJson",OpenWeatherObj.toString())
         return "Weather "
     }
 

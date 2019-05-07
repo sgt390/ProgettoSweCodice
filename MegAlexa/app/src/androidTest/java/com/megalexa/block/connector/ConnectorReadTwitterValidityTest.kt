@@ -33,12 +33,5 @@ class ConnectorReadTwitterValidityTest: ConnectorValidityTest {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    //@Test
-    /*fun valid() {
-        val someaccount = "someAccount@gmail.com"
-        val password=""
-        val accountIsValid = ConnectorReadTwitter(someaccount,password).valid()
-        assertEquals(true, accountIsValid)
-    }*/
 
 }

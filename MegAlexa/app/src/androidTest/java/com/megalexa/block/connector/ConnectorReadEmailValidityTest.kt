@@ -26,10 +26,7 @@ class ConnectorReadEmailValidityTest: ConnectorValidityTest {
 
     @Test
     override fun validConnector() {
-        val email = "zerosevenswe@gmail.com"
-        val password=""
-        val emailIsValid = ConnectorReadEmail(email,password).valid()
-        assertEquals(true, emailIsValid)
+        TODO("not implemented")
     }
 
     @Test

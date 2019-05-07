@@ -15,6 +15,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.JsonObject
 import com.megalexa.R
+import com.megalexa.models.connectors.ConnectorWeather
 import com.megalexa.ui.activities.CreateBlockActivity
 import com.megalexa.util.service.BlockWeatherService
 import com.megalexa.util.service.BlockWeatherService.getOperation
@@ -42,8 +43,9 @@ class WeatherFragment: Fragment(){
 
         button.setOnClickListener {
             city = editText.text.toString()
-            if(editText.text.toString() == "") {
-                Toast.makeText(context, "city is empty", Toast.LENGTH_SHORT).show()
+            val isValid=ConnectorWeather(city).valid()
+            if(editText.text.toString() == "" || !isValid) {
+                Toast.makeText(context, "city is not valid", Toast.LENGTH_SHORT).show()
             }
             else{
                 city = editText.text.toString()

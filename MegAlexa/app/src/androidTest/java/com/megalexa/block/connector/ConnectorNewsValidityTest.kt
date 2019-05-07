@@ -26,13 +26,15 @@ class ConnectorNewsValidityTest: ConnectorValidityTest {
 
     @Test
     override fun validConnector() {
-        val someaccount = "someAccount@gmail.com"
+        val someaccount = "http://feeds.skynews.com/feeds/rss/world.xml"
         val accountIsValid = ConnectorNews(someaccount).valid()
         assertEquals(true, accountIsValid)
     }
 
     @Test
     override fun nonValidConnector() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val someaccount = "someAccount@gmail.com"
+        val accountIsValid = ConnectorNews(someaccount).valid()
+        assertEquals(false, accountIsValid)
     }
 }
