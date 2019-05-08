@@ -98,7 +98,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                     }
 
                     override fun onError(authError: AuthError) {
-
+                        return
                     }
                 })
                 return true

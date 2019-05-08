@@ -21,7 +21,7 @@ import com.megalexa.util.ApplicationContextProvider
 import org.json.JSONObject
 
 
-class BlockWeather(private val OpenWeatherObj : JSONObject): Block {
+class BlockWeather(private val openWeatherObj : JSONObject): Block {
 
 
     private val APIKey = ApplicationContextProvider.context!!.getResources()!!.getString(R.string.OpenWeather_API_Key)
@@ -40,11 +40,11 @@ class BlockWeather(private val OpenWeatherObj : JSONObject): Block {
         }
 
         fun getLatitude(): String? {
-            return OpenWeatherObj.getString("Latitude")
+            return openWeatherObj.getString("Latitude")
         }
 
         fun getLongitude(): String? {
-            return OpenWeatherObj.getString("Longitude")
+            return openWeatherObj.getString("Longitude")
         }
     }
 

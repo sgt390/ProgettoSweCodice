@@ -179,8 +179,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == 1) {
-            if(resultCode==Activity.RESULT_OK) {
+        if(requestCode == 1 && resultCode==Activity.RESULT_OK) {
                 val blockType = data!!.extras!!.getString("block_type")
 
                 when(blockType){
@@ -247,16 +246,11 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
                     "Weather" -> {
                         val city= data!!.extras!!.get("city").toString()
                         viewModel.addOneArgBlock("Weather",city)
-
                     }
                     "List" -> {
                         viewModel.addOneArgBlock("List", "")
-
                     }
                 }
-            }
-
         }
-
     }
 }

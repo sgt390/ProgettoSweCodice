@@ -34,7 +34,7 @@ class BlockNews(private val url: String): Block,Filtrable {
 
         val toReturn=ConnectorNews(url= url)
         if(!toReturn.valid()){
-            //throw InvalidBLockException() TODO("custom error handling required ")
+            println("invalid block!")
         }
 
         return toReturn

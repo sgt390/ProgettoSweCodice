@@ -21,10 +21,11 @@ class BlockTextToSpeechConversionTest : ConversionTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        val expected = BlockTextToSpeech("This is the first block")
+        val param="This is the first block"
+        val expected = BlockTextToSpeech(param)
         val json = BlockTextToSpeechService.convertToJSON(expected)
         val block = BlockTextToSpeechService.convertFromJSON(json)
-        assertEquals(block.textBox(),"This is the first block")
+        assertEquals(block.textBox(),param)
     }
 
     @Test

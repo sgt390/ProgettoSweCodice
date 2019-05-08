@@ -30,9 +30,9 @@ class BlockReadEmailConversionTest:ConversionTest {
     override fun conversionFromObjectToJSon() {
        val expected = BlockReadEmail(JSONObject())
         val json = BlockReadEmailService.convertToJSON(expected)
-        val Token_Gmail = json.getJSONObject("config").getString("token")
+        val tokenGmail = json.getJSONObject("config").getString("token")
         val config = "{\"blockType\":\"News\",\"config\":{\"URL\":\"\"}}"
         json.getJSONObject("config").put("Credential","Cred")
-        println("dovrebbe essere il token "+Token_Gmail.toString())
-        assertTrue(Token_Gmail.equals("") && json.toString().equals(config))    }
+        println("dovrebbe essere il token "+tokenGmail.toString())
+        assertTrue(tokenGmail.equals("") && json.toString().equals(config))    }
 }

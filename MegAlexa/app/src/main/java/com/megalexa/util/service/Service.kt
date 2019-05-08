@@ -12,6 +12,8 @@ import javax.net.ssl.HttpsURLConnection
 abstract class Service : JSONConverter{
 
     private var APIUrl = "https://m95485wij9.execute-api.us-east-1.amazonaws.com/beta/"
+    private val requestProperty= "application/json"
+    private val contentType= "Content-Type"
 
     abstract val resource:String
 
@@ -25,7 +27,7 @@ abstract class Service : JSONConverter{
         val url= "$APIUrl$resource/"
         val myURL = URL("$url?$string")
         with(myURL.openConnection() as HttpsURLConnection) {
-            setRequestProperty("Content-Type", "application/json")
+            setRequestProperty(contentType,requestProperty)
             requestMethod= "GET"
             println("URL : $url")
             println("Response Code : $responseCode")
@@ -46,7 +48,7 @@ abstract class Service : JSONConverter{
         val url= "$APIUrl$resource"
         val myURL = URL(url)
         with(myURL.openConnection() as HttpsURLConnection) {
-            setRequestProperty("Content-Type", "application/json")
+            setRequestProperty(contentType, requestProperty)
             requestMethod = "PUT"
             doOutput = true
             val wr = OutputStreamWriter(outputStream)
@@ -75,7 +77,7 @@ abstract class Service : JSONConverter{
         val url= "$APIUrl$resource/"
         val myURL = URL("$url?$string")
         with(myURL.openConnection() as HttpsURLConnection) {
-            setRequestProperty("Content-Type", "application/json")
+            setRequestProperty(contentType, requestProperty)
             requestMethod= "DELETE"
             println("URL : $url")
             println("Response Code : $responseCode")
@@ -95,7 +97,7 @@ abstract class Service : JSONConverter{
         val response = StringBuffer()
         val myURL = URL(url)
         with(myURL.openConnection() as HttpsURLConnection) {
-            setRequestProperty("Content-Type", "application/json")
+            setRequestProperty(contentType, requestProperty)
             requestMethod = "POST"
             doOutput = true
             val wr = OutputStreamWriter(outputStream)

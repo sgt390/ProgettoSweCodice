@@ -34,7 +34,7 @@ class BlockSport(private val url: String): Block,Filtrable {
 
         val toReturn=ConnectorSport(url= url)
         if(!toReturn.valid()){
-            //throw InvalidBLockException() TODO("custom error handling required ")
+            println("invalid block!")
         }
 
         return toReturn

@@ -29,24 +29,18 @@ class ConnectorCalendar(private var email: String, private var password: String)
     private var result= AtomicBoolean(false)
     init {
         email = "someAccount";
-
-        //   TODO
-
     }
 
 
     override fun connect(url: String):String {
 
         return "stringa";
-
-        //  TODO
     }
 
 
     override fun valid():Boolean {
 
         return true;
-//      TODO
     }
 
 }

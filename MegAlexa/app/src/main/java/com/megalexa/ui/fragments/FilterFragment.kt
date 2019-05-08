@@ -36,9 +36,6 @@ class FilterFragment: Fragment() {
         button.setOnClickListener {
             //start from 0 so there aren't controls to do
             filter = numberPicker.value
-
-            /*val activity= activity as CreateBlockActivity
-            activity.onFragmentClick(this)*/
         }
         return view
     }

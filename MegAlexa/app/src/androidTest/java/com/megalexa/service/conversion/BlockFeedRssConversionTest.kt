@@ -12,6 +12,9 @@ import org.junit.Assert.*
 
 @RunWith(AndroidJUnit4::class)
 class BlockFeedRssConversionTest : ConversionTest {
+    
+    val feed_url="http://feeds.reuters.com/Reuters/PoliticsNews"
+
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -21,21 +24,21 @@ class BlockFeedRssConversionTest : ConversionTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        val expected = BlockFeedRss("http://feeds.reuters.com/Reuters/PoliticsNews")
+        val expected = BlockFeedRss(feed_url)
         val json = BlockFeedRssService.convertToJSON(expected)
         val block = BlockFeedRssService.convertFromJSON(json)
-        assertEquals(block.url(),"http://feeds.reuters.com/Reuters/PoliticsNews")
+        assertEquals(block.url(),feed_url)
     }
 
     @Test
     override fun conversionFromObjectToJSon() {
-        val expected = BlockFeedRss("http://feeds.reuters.com/Reuters/PoliticsNews")
+        val expected = BlockFeedRss(feed_url)
         val json = BlockFeedRssService.convertToJSON(expected)
         val url = json.getJSONObject("config").getString("URL")
         val config = "{\"blockType\":\"FeedRSS\",\"config\":{\"URL\":\"\"}}"
         json.getJSONObject("config").put("URL","")
 
-        assertTrue(url.equals("http://feeds.reuters.com/Reuters/PoliticsNews")
+        assertTrue(url.equals(feed_url)
                 && json.toString().equals(config))
     }
 

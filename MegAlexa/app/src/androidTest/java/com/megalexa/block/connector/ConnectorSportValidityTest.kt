@@ -37,9 +37,4 @@ class ConnectorSportValidityTest : ConnectorValidityTest {
         val accountIsValid = ConnectorSport(someaccount).valid()
         assertEquals(false, accountIsValid)
          }
-
-    @Test
-    fun valid() {
-    }
-
 }

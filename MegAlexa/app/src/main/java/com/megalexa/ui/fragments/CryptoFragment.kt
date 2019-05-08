@@ -32,7 +32,6 @@ import org.jetbrains.anko.support.v4.findOptional
 class CryptoFragment : Fragment() {
     private var url = ""
     private var cardinality=10
-    //      TODO IMPORTAN change feed... matteo si sta occupando di procurare i nuovi feed
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.crypto_fragment_layout, container, false)

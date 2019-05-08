@@ -28,8 +28,8 @@ class ConnectorCalendarValidityTest : ConnectorValidityTest {
     @Test
     override fun validConnector() {
         val someaccount = "someAccount@gmail.com"
-        val password = ""
-        val accountIsValid = ConnectorCalendar(someaccount, password).valid()
+        val secondArg = ""
+        val accountIsValid = ConnectorCalendar(someaccount, secondArg).valid()
         assertEquals(true, accountIsValid)
     }
 

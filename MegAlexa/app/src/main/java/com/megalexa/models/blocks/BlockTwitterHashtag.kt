@@ -26,11 +26,6 @@ class BlockTwitterHashtag(private val screenName: String): Block,Filtrable {
     private val access_token_key = ApplicationContextProvider.context!!.resources!!.getString(R.string.access_token_twitter)//"INSERT ACCESS TOKEN"
     private val access_token_secret = ApplicationContextProvider.context!!.resources!!.getString(R.string.access_token_secret_twitter)//"INSERT ACCESS TOKEN SECRET"
 
-    //private val consumer_key = " "
-    //private val consumer_secret =" "
-    //private val access_token_key = " "
-    //private val access_token_secret =" "
-
     override fun getInformation():String {
         return "Twitter hashtag block created "
     }

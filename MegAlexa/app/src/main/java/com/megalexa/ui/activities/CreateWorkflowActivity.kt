@@ -112,8 +112,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == 1) {
-            if(resultCode==Activity.RESULT_OK) {
+        if(requestCode == 1 && resultCode==Activity.RESULT_OK ) {
                 val blockType = data!!.extras!!.getString("block_type")
 
                 when(blockType){
@@ -126,7 +125,6 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                         val url=data!!.extras!!.get("FeedUrl").toString()
                         viewModel.addFilter(cardinality)
                         viewModel.addOneArgBlock("FeedRss",url)
-
                     }
                     "News" -> {
                         val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
@@ -180,15 +178,11 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                     "Weather" -> {
                         val city= data!!.extras!!.get("city").toString()
                             viewModel.addOneArgBlock("Weather",city)
-
                     }
                     "List" -> {
                         viewModel.addOneArgBlock("List", "")
-
                     }
                 }
-            }
-
         }
 
     }

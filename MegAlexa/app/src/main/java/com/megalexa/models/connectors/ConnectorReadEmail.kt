@@ -21,23 +21,16 @@ class ConnectorReadEmail(private var email: String, private var password: String
     private var result= AtomicBoolean(false)
     init {
        email ="qualcosa@gmail.com"
-        //  TODO
-
     }
 
 
-   override fun connect(url: String):String {
-
-    return "stringa"
-
-       //  TODO
+    override fun connect(url: String):String {
+        return "stringa"
     }
 
 
     override fun valid():Boolean {
-
         return true;
-//      TODO
     }
 
 }

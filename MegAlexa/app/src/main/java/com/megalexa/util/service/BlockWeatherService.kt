@@ -47,8 +47,6 @@ object BlockWeatherService :BlockService() {
             with(myURL.openConnection() as HttpsURLConnection) {
             setRequestProperty("Content-Type", "application/json")
             requestMethod= "GET"
-          //  println("URL : $url")
-          //  println("Response Code : $responseCode")
             BufferedReader(InputStreamReader(inputStream)).use {
                 val response = StringBuffer()
                 var inputLine = it.readLine()

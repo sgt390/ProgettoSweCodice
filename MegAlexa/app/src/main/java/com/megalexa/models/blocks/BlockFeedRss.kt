@@ -35,7 +35,7 @@ class BlockFeedRss(private val url: String): Block,Filtrable {
 
         val toReturn=ConnectorFeedRss(url= url)
         if(!toReturn.valid()){
-            //throw InvalidBLockException() TODO("custom error handling required ")
+            println("invalid block!")
         }
 
         return toReturn
