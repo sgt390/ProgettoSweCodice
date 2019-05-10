@@ -28,30 +28,17 @@ class BlockFilterTest : BlockTest {
 
     @Test
     override fun validBlock() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    @Test
-    override fun invalidBLock() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    @Test
-    fun withFilterableBlock() {
         val filter = Filter(5)
-
         val block= BlockFeedRss("https://feedforall.com/sample.xml")
         filter.attachTo(block)
         assertEquals(true,filter.getResult())
     }
-    
+
     @Test
-    fun withNonFilterableBlock() {
+    override fun invalidBLock() {
         val filter = Filter(5)
         val block= BlockTextToSpeech("Prova")
         filter.attachTo(block)
         assertEquals(false,filter.getResult())
-
     }
-
 }

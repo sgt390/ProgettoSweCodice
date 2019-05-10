@@ -16,6 +16,7 @@ package com.megalexa.models.blocks
 import android.util.Log
 import com.megalexa.models.connectors.Connector
 import com.megalexa.models.connectors.ConnectorSport
+import com.megalexa.util.InvalidBlockException
 import org.json.JSONObject
 
 
@@ -34,7 +35,7 @@ class BlockSport(private val url: String): Block,Filtrable {
 
         val toReturn=ConnectorSport(url= url)
         if(!toReturn.valid()){
-            println("invalid block!")
+            throw InvalidBlockException("Invalid Block")
         }
 
         return toReturn

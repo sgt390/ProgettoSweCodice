@@ -32,7 +32,7 @@ class BlockWeather(private val openWeatherObj : JSONObject): Block {
      *
      */
     override fun getInformation():String {
-        return "Weather "
+        return "Weather"
     }
 
         fun getAPIKey(): String? {
@@ -46,5 +46,5 @@ class BlockWeather(private val openWeatherObj : JSONObject): Block {
         fun getLongitude(): String? {
             return openWeatherObj.getString("Longitude")
         }
-    }
+}
 

@@ -1,6 +1,11 @@
 package com.megalexa.block
 
 import android.support.test.runner.AndroidJUnit4
+import com.megalexa.models.blocks.BlockCrypto
+import com.megalexa.models.blocks.BlockFeedRss
+import com.megalexa.util.InvalidBlockException
+import junit.framework.Assert
+import junit.framework.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -8,12 +13,21 @@ import org.junit.runner.RunWith
 class BlockFeedRssTest: BlockTest {
 
     @Test
-    override fun validBlock() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun invalidBLock() {
+        var expected= "no errors found"
+        try {
+            val block= BlockFeedRss("https://google.com")
+        }catch (e: InvalidBlockException) {
+            expected= e.getErrorMessage()
+        }
+
+        assertEquals(expected, "Invalid Block")
     }
 
     @Test
-    override fun invalidBLock() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun validBlock() {
+        val validUrl= "https://www.coindesk.com/feed"
+        val block= BlockFeedRss(validUrl)
+        assertEquals(block.url(), validUrl)
     }
 }

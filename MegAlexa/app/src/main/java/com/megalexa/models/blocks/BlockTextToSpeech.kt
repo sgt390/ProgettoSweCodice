@@ -15,13 +15,14 @@
 package com.megalexa.models.blocks
 
 import android.webkit.JsPromptResult
+import com.megalexa.util.InvalidBlockException
 import org.json.JSONObject
 
 class BlockTextToSpeech(private var textBox: String):Block {
     init{
         //Control variable textBox's character number
         require(textBox.length <= 256){
-            println("Text too long, please stay within 256 character")
+            throw InvalidBlockException("Text too long, please stay within 256 character")
         }
     }
     /* getInformation()
