@@ -289,10 +289,10 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             Pair(list[3], R.drawable.ic_email),
             Pair(list[4], R.drawable.ic_news),
             Pair(list[5], R.drawable.ic_sport),
-            Pair(list[6], R.drawable.ic_news),
-            Pair(list[7], R.drawable.ic_news),
-            Pair(list[8], R.drawable.ic_text),
-            Pair(list[9], R.drawable.ic_text),
+            Pair(list[6], R.drawable.ic_twitter),
+            Pair(list[7], R.drawable.ic_stock),
+            Pair(list[8], R.drawable.ic_weather),
+            Pair(list[9], R.drawable.ic_crypto),
             Pair(list[10], R.drawable.ic_list)
             )
 
