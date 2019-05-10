@@ -24,7 +24,6 @@ class WorkflowUnitTest :RestApiOperationTest {
        WorkflowService.setURL("https://my-json-server.typicode.com/ludobrocca/RestAPILocalTestingServer/")
        val jsonObject=WorkflowService.getOperation(
            listOf(Pair("userID","1"),Pair("workflowName","prova")))
-
         assertEquals(jsonObject.get("content").toString(),"[{\"id\":\"userID=1?workflowName=prova\",\"blockType\":\"TextToSpeech\",\"config\":{\"TextToSpeech\":\"first workflow created\"}}]")
 
     }
