@@ -45,7 +45,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
         val observer = Observer<ArrayList<String>>{
             val adapter = BlockViewAdapter(this@CreateWorkflowActivity)
             adapter.dataset=it!!
-            val callback= ItemMoveCallback(this@CreateWorkflowActivity,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),0)
+            val callback= ItemMoveCallback(this@CreateWorkflowActivity,ItemTouchHelper.UP.or(ItemTouchHelper.DOWN),ItemTouchHelper.RIGHT)
             touchHelper= ItemTouchHelper(callback)
             touchHelper?.attachToRecyclerView(rec_view)
             runOnUiThread{
