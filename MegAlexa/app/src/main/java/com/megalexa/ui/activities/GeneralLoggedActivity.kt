@@ -48,7 +48,13 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
                 recyclerView.adapter= adapter
             }
         }
+        val errObserver = Observer<String>{
+            if(it != "")
+                Toast.makeText(this, it,Toast.LENGTH_LONG).show()
+        }
+
         viewModel.getLiveWorkflowNames().observe(this,observer)
+        viewModel.getLiveError().observe(this, errObserver)
 
         recyclerView=findViewById(R.id.container_workflow)
         recyclerView.setHasFixedSize(true)

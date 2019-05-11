@@ -12,12 +12,13 @@ import com.megalexa.util.service.MegAlexaService
 import com.megalexa.util.service.UserService
 import com.megalexa.util.service.WorkflowService
 import org.jetbrains.anko.doAsync
+import java.io.IOException
 
 
 class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
 
     private var wNames = MutableLiveData<ArrayList<String>>()
-
+    private var error= MutableLiveData<String>()
     /**
      * returns the adapter that must be assigned  to activities (with workflow names)
      */
@@ -27,12 +28,23 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
         return wNames
     }
 
+    fun getLiveError(): LiveData<String> {
+        if(error.value==null)
+            error.value=""
+
+        return error
+    }
+
     /**this functions sets the correct instance for the MegAlexa object
      * calls the API with a GET function using Service classes
      */
     fun loadAppContext() {
-        val jsonObject=MegAlexaService.getOperation(listOf(Pair("userID",app.getUser().getID())))
-        app.setInstance(MegAlexaService.convertFromJSON(jsonObject))
+        try{
+            val jsonObject=MegAlexaService.getOperation(listOf(Pair("userID",app.getUser().getID())))
+            app.setInstance(MegAlexaService.convertFromJSON(jsonObject))
+        }catch (e:IOException) {
+            postError("Connection Error!")
+        }
         refreshWorkflow()
     }
 
@@ -68,16 +80,28 @@ class MegAlexaViewModel(private val app: MegAlexa): ViewModel() {
         wNames.postValue(names)
     }
 
+    fun postError(str:String) {
+        error.postValue(str)
+    }
+
     fun saveUser() {
-        val user= app.getUser()
-        val json= UserService.convertToJSON(user)
-        doAsync {UserService.postOperation(json)}
+     try{
+         val user= app.getUser()
+         val json= UserService.convertToJSON(user)
+         doAsync {UserService.postOperation(json)}
+     }catch (e:IOException) {
+         postError("Connection Error!")
+     }
     }
 
     fun removeWorkflow(position :Int) {
-        val list= app.getWorkflowList()
-        doAsync {WorkflowService.deleteOperation(listOf(Pair("userID",app.getUser().getID()), Pair("workflowName", app.getWorkflowNames().get(position))))}
-        list.removeAt(position)
+     try{
+         val list= app.getWorkflowList()
+         doAsync {WorkflowService.deleteOperation(listOf(Pair("userID",app.getUser().getID()), Pair("workflowName", app.getWorkflowNames().get(position))))}
+         list.removeAt(position)
+     }catch (e:IOException) {
+         postError("Connection Error!")
+     }
         refreshWorkflow()
     }
 
