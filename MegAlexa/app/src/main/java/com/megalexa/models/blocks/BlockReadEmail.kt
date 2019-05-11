@@ -4,19 +4,33 @@ import android.provider.ContactsContract.CommonDataKinds.Email
 import com.megalexa.models.connectors.Connector
 import org.json.JSONObject
 
-class BlockReadEmail(private val email: Email):Block,Filtrable {
+class BlockReadEmail:Block,Filtrable {
+    //configuration
+    private val auth_provider_url = "https://www.googleapis.com/oauth2/v1/certs"
+    private val auth_uri = "https://accounts.google.com/o/oauth2/auth"
+    private val project_id = "quickstart-1552122622714"
+    private val redirect_uris1 = "urn:ietf:wg:oauth:2.0:oob"
+    private val redirect_uris2 = "http://localhost"
+    private val token_uri = "https://oauth2.googleapis.com/token"
+
+    //token
+    private val expiryDate = 100000
+    private val scope = "https://www.googleapis.com/auth/gmail.readonly"
+    private val tokenType = "Bearer"
+
     override fun getInformation():String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return "Block for read emails added"
     }
 
-    init {
-        val connector: Connector = generateConnector(email)
-    }
-    private fun generateConnector(email: Email): Connector{
-        TODO(reason = "not implemented")
-    }
-    fun valid(): Boolean {
-        TODO(reason = "not implemented")
-    }
+    fun getAuthProvider() = auth_provider_url
+    fun getAuthUri() = auth_uri
+    fun getProjectId() = project_id
+    fun getRedirect1() = redirect_uris1
+    fun getRedirect2() = redirect_uris2
+    fun getTokenUri() = token_uri
+
+    fun getDate() = expiryDate
+    fun getScope() = scope
+    fun getTokenType() = tokenType
 
 }

@@ -113,6 +113,11 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
+                /*
+                11 -> {
+                    TODO() Calendar activity or fragment
+                }
+                */
             }
         }
 
@@ -299,13 +304,14 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             Pair(list[8], R.drawable.ic_text),
             Pair(list[9], R.drawable.ic_text),
             Pair(list[10], R.drawable.ic_list)
-            )
+            //,Pair(list[11], R.drawable.ic_list) /*<-Da mettere ic_calendar dopo merge nel develop*/
+        )
 
     }
 
     private fun getTitlesList(): List<String> {
         return listOf("FeedRSS","Text Block","PIN",
-            "Read Email","News","Sport News","Twitter","Stock News","Weather","Crypto News", "List")
+            "Read Email","News","Sport News","Twitter","Stock News","Weather","Crypto News", "List" /*,"Calendar"*/)
 
     }
 

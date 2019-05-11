@@ -14,6 +14,7 @@ import com.google.api.client.util.store.FileDataStoreFactory
 import com.google.api.services.calendar.CalendarScopes
 import com.megalexa.models.blocks.BlockCalendar
 import com.megalexa.util.CalendarQuickstart
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
 import java.io.FileNotFoundException
@@ -29,21 +30,23 @@ object BlockCalendarService: BlockService() {
     private val CREDENTIALS_FILE_PATH = "/credentials.json"
 
     override fun convertFromJSON(jsonObject: JSONObject): BlockCalendar {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return BlockCalendar()
     }
 
     override fun <BlockCalendar> convertToJSON(t: BlockCalendar): JSONObject {
-        val blockCalendar = t as com.megalexa.models.blocks.BlockCalendar
         val allBlock = JSONObject()
         allBlock.put("blockType", "Calendar")
         val config = JSONObject()
-        config.put("credentials", "getCredentials()")
-        config.put("token", "getToken()")
+        val credential = JSONObject()
+
+        credential.put("installed", createInstalled(t))
+        config.put("credential", credential)
+        config.put("token", createToken(t))
         allBlock.put("config", config)
         return allBlock
     }
 
-    public fun getToken(): Credential {
+    fun getToken(): Credential {
         val HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport()
         val cred = CalendarQuickstart.getCredentials(HTTP_TRANSPORT)
         return cred
@@ -74,6 +77,31 @@ object BlockCalendarService: BlockService() {
         println("expires in = " + token.expiresInSeconds!!)
         println("refresh_token= " + token.refreshToken)
         println("serverEncoded= " + token.tokenServerEncodedUrl)
+        return token
+    }
+
+    private fun <BlockCalendar> createInstalled(t: BlockCalendar): JSONObject{
+        val installed = JSONObject()
+        val blockCalendar = t as com.megalexa.models.blocks.BlockCalendar
+        installed.put("auth_provider_x509_cert_url", blockCalendar.getAuthProvider())
+        installed.put("auth_uri", blockCalendar.getAuthUri())
+        installed.put("client_id", "DalSecret")
+        installed.put("client_secret", "DalSecret")
+        installed.put("project_id", blockCalendar.getProjectId())
+        val redUris = JSONArray()
+        redUris.put(blockCalendar.getRedirect1())
+        redUris.put(blockCalendar.getRedirect2())
+        installed.put("redirect_uris", redUris)
+        installed.put("token_uri", blockCalendar.getTokenUri())
+        return installed
+    }
+    private fun <BlockCalendar> createToken(t: BlockCalendar): JSONObject{
+        val blockCalendar = t as com.megalexa.models.blocks.BlockCalendar
+        val token = JSONObject()
+        token.put("access_token", "tokenDaSecret")
+        token.put("expires_in", blockCalendar.getDate())
+        token.put("scope", blockCalendar.getScope())
+        token.put("token_type",blockCalendar.getTokenType())
         return token
     }
 }
