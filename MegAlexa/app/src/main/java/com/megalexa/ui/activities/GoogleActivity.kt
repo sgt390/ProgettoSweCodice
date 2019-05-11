@@ -38,32 +38,11 @@ class GoogleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.mail_fragment_layout)
 
-        // Configure sign-in to request the user's ID, email address, and basic
-// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        //val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-          //  .requestIdToken(ApplicationContextProvider.context!!.resources!!.getString(R.string.client_Id))
-            //.requestEmail()
-            //.build()
-        // Build a GoogleSignInClient with the options specified by gso.
-        //val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-        ///////////////////////////////////////////////////////////////////////
-        //      MY CODE FROM QUICKSTART
-
-
-//               var HTTP_TRANSPORT =  com.google.api.client.http.javanet.NetHttpTransport()
-//        val input = this::class.java.getResourceAsStream("/credentials.json")
-//            ?: throw FileNotFoundException("Resource not found: /credentials.json")
-//        val clientSecrets: GoogleClientSecrets = GoogleClientSecrets.load(JSON_FACTORY, InputStreamReader(input))
-//        val flow = GoogleAuthorizationCodeFlow.Builder(
-//            HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES
-//        )
-////            .setDataStoreFactory(FileDataStoreFactory(File(TOKENS_DIRECTORY_PATH)))
-//            .setAccessType("offline")
-//            .build()
-//        println("client: " + flow.clientAuthentication)
-//        val receiver: LocalServerReceiver = LocalServerReceiver.Builder().setPort(8888).build()
-//        val Tok  = doAsyncResult { AuthorizationCodeInstalledApp(flow,receiver).authorize("user") }
-        val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(ApplicationContextProvider.context!!.resources!!.getString(R.string.google_client_id)).requestEmail().build()
+        val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestServerAuthCode(ApplicationContextProvider.context!!.resources!!
+                .getString(R.string.default_web_client_idtwo))
+            .requestIdToken(ApplicationContextProvider.context!!.resources!!
+                .getString(R.string.default_web_client_idtwo)).requestEmail().build()
         googleSignInClient = GoogleSignIn.getClient(this, options)
 
 
@@ -78,14 +57,15 @@ class GoogleActivity : AppCompatActivity() {
         val acct = GoogleSignIn.getLastSignedInAccount(this)
         if (acct != null) {
             sign_in_button.visibility = View.GONE
-            tv_name.text = acct.displayName
+            tv_name.text = acct.email
+            Log.d("TOKEN",acct.idToken)
             tv_name.visibility = View.VISIBLE
 //            Log.d("Tag",acct.idToken)
         }
-        /*mGoogleSignInClient.signOut()
+        googleSignInClient.signOut()
             .addOnCompleteListener(this, OnCompleteListener<Void> {
                 // ...
-            })*/
+            })
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -105,7 +85,7 @@ class GoogleActivity : AppCompatActivity() {
             sign_in_button.visibility = View.GONE
             if (account != null) {
                 val ciao = account.idToken
-                Log.d("tag", account.idToken)
+                Log.d("tag", account.serverAuthCode)
                 tv_name.text = account.displayName
             }
             tv_name.visibility = View.VISIBLE

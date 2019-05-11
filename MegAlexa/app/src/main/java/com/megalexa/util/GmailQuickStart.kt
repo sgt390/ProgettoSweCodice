@@ -1,5 +1,6 @@
 package com.megalexa.util
 
+import android.util.Log
 import com.google.api.client.auth.oauth2.Credential
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver
@@ -23,16 +24,21 @@ class GmailQuickStart {
 
     @Throws(IOException::class)
     fun getCredential(HTTP_TRANSPORT: NetHttpTransport): Credential{
+        Log.d("arrivato","1")
         val input = this::class.java.getResourceAsStream(CREDENTIALS_FILE_PATH)
             ?: throw FileNotFoundException("Resource not found: $CREDENTIALS_FILE_PATH")
+        Log.d("arrivato","2")
         val clientSecrets: GoogleClientSecrets = GoogleClientSecrets.load(JSON_FACTORY, InputStreamReader(input))
-
+        Log.d("arrivato","3")
         val flow: GoogleAuthorizationCodeFlow = GoogleAuthorizationCodeFlow.Builder(
             HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
             //.setDataStoreFactory(FileDataStoreFactory(File(TOKENS_DIRECTORY_PATH)))
             .setAccessType("offline").build()
+        Log.d("arrivato","4")
         val receiver: LocalServerReceiver = LocalServerReceiver.Builder().setPort(8888).build()
+        Log.d("arrivato","5")
         val Tok : Credential = AuthorizationCodeInstalledApp(flow,receiver).authorize("user")
+        Log.d("arrivato","6")
         return AuthorizationCodeInstalledApp(flow, receiver).authorize("user")
     }
 }

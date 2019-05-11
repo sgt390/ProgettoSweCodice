@@ -17,6 +17,8 @@
         <activity android:name=".ui.activities.TwitterActivity">
         </activity>
         <activity android:name=".ui.activities.GoogleActivity">
+    </activity>
+        <activity android:name=".ui.activities.TokenExchange">
         </activity>
         <activity
                 android:name=".ui.activities.ViewBlockListActivity"
