@@ -1,6 +1,7 @@
 package com.megalexa.ui.activities
 
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.widget.ImageView
+import android.widget.Toast
 import com.amazon.identity.auth.device.api.workflow.RequestContext
 import com.amazon.identity.auth.device.api.authorization.*
 import com.amazon.identity.auth.device.api.authorization.AuthCancellation
@@ -63,6 +65,13 @@ class MainActivity : AppCompatActivity() {
         animation.duration=2400
         logo.animation=animation
         logo.startAnimation(animation)
+
+        val errObserver = Observer<String>{
+            if(it != "")
+                Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+        }
+
+        viewModel.getLiveError().observe(this,errObserver)
 
         val loginButton : View = findViewById(R.id.login_with_amazon)
         loginButton.setOnClickListener(object: View.OnClickListener{

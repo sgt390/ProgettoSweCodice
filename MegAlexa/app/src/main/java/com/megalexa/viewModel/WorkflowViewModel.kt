@@ -4,15 +4,19 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import android.util.Log
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.*
 import com.megalexa.models.workflow.Workflow
+import com.megalexa.util.InvalidBlockException
 import com.megalexa.util.service.BlockWeatherService
 import com.megalexa.util.service.WorkflowService
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.doAsyncResult
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.IOException
+import java.net.UnknownHostException
 
 import java.util.*
 import com.megalexa.models.blocks.Filter as Filter
@@ -83,11 +87,15 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     }
 
     fun saveWorkflow() {
-        val res=isUnique(workflow.getName())
-        if(res) {
-            workflow.setName(workflowName)
-            app.addWorkflow(workflow)
-            doAsync{WorkflowService.postOperation(WorkflowService.convertToJSON(workflow))}
+        try{
+            val res=isUnique(workflow.getName())
+            if(res) {
+                workflow.setName(workflowName)
+                app.addWorkflow(workflow)
+                doAsync{WorkflowService.postOperation(WorkflowService.convertToJSON(workflow))}
+            }
+        }catch(e:IOException) {
+            postError("Connection Error!")
         }
     }
 
@@ -101,66 +109,72 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     }
 
     fun addOneArgBlock(blockType:String,param:String) {
-        val block:Block
-        when(blockType) {
+     try {
+         val block:Block
+         when(blockType) {
 
-            "FeedRss"-> {
-                block = BlockFeedRss(param)
-                workflow.addBlock(block)
-            }
-            "News" -> {
-                block= BlockNews(param)
-                workflow.addBlock(block)
-            }
-            "Sport" -> {
-                block = BlockSport(param)
-                workflow.addBlock(block)
-            }
-            "Pin" -> {
-                block = BlockPin(param.toInt())
-                workflow.addBlock(block)
-            }
-            "Text to speech" -> {
-                block = BlockTextToSpeech(param)
-                workflow.addBlock(block)
-            }
-            "Crypto" -> {
-                block=BlockCrypto(param)
-                workflow.addBlock(block)
-            }
-            "Borsa" -> {
-                block=BlockBorsa(param)
-                workflow.addBlock(block)
-            }
-            "TwitterHashtag" -> {
-                block= BlockTwitterHashtag(param)
-                workflow.addBlock(block)
-            }
-            "TwitterUserTL" -> {
-                block= BlockTwitter(param)
-                workflow.addBlock(block)
-            }
-            "TwitterHomeTL" -> {
-                block= BlockTwitterHomeTL()
-                workflow.addBlock(block)
-            }
-            "TwitterWrite" -> {
-                block=BlockTwitterWrite()
-                workflow.addBlock(block)
-            }
-            "Weather" -> {
-                val json :JSONObject = getWeatherInfo(param)
-                block=BlockWeather(json)
-                //set all informations
-                workflow.addBlock(block)
-            }
-            "List" -> {
-                val json : JSONArray = JSONArray()
-                block=BlockList(json)
-                workflow.addBlock(block)
-            }
+             "FeedRss"-> {
+                 block = BlockFeedRss(param)
+                 workflow.addBlock(block)
+             }
+             "News" -> {
+                 block= BlockNews(param)
+                 workflow.addBlock(block)
+             }
+             "Sport" -> {
+                 block = BlockSport(param)
+                 workflow.addBlock(block)
+             }
+             "Pin" -> {
+                 block = BlockPin(param.toInt())
+                 workflow.addBlock(block)
+             }
+             "Text to speech" -> {
+                 block = BlockTextToSpeech(param)
+                 workflow.addBlock(block)
+             }
+             "Crypto" -> {
+                 block=BlockCrypto(param)
+                 workflow.addBlock(block)
+             }
+             "Borsa" -> {
+                 block=BlockBorsa(param)
+                 workflow.addBlock(block)
+             }
+             "TwitterHashtag" -> {
+                 block= BlockTwitterHashtag(param)
+                 workflow.addBlock(block)
+             }
+             "TwitterUserTL" -> {
+                 block= BlockTwitter(param)
+                 workflow.addBlock(block)
+             }
+             "TwitterHomeTL" -> {
+                 block= BlockTwitterHomeTL()
+                 workflow.addBlock(block)
+             }
+             "TwitterWrite" -> {
+                 block=BlockTwitterWrite()
+                 workflow.addBlock(block)
+             }
+             "Weather" -> {
+                 val json :JSONObject = getWeatherInfo(param)
+                 block=BlockWeather(json)
+                 //set all informations
+                 workflow.addBlock(block)
+             }
+             "List" -> {
+                 val json : JSONArray = JSONArray()
+                 block=BlockList(json)
+                 workflow.addBlock(block)
+             }
 
-        }
+         }
+
+     }catch (e: Exception) {
+         postError("Connection Error!")
+     }
+
         refreshBlocks()
     }
 
@@ -169,24 +183,29 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     }
 
     fun updateWorkflow() {
-        if(workflowIsValid()) {
-            val list = app.getWorkflowList()
-            val iterator= list.iterator()
-            while (iterator.hasNext()) {
-                iterator.forEach {
-                    if (it.getName() == workflow.getName()) {
-                        var oldName = it.getName()
-                        iterator.remove()
-                        workflow.setName(workflowName)
-                        doAsync {
-                            WorkflowService.deleteOperation(listOf(Pair("userID",app.getUser().getID()), Pair("workflowName", oldName)))
-                            WorkflowService.putOperation(WorkflowService.convertToJSON(workflow))
+
+        try{
+            if(workflowIsValid()) {
+                val list = app.getWorkflowList()
+                val iterator= list.iterator()
+                while (iterator.hasNext()) {
+                    iterator.forEach {
+                        if (it.getName() == workflow.getName()) {
+                            val oldName = it.getName()
+                            iterator.remove()
+                            workflow.setName(workflowName)
+                            doAsync {
+                                WorkflowService.deleteOperation(listOf(Pair("userID",app.getUser().getID()), Pair("workflowName", oldName)))
+                                WorkflowService.putOperation(WorkflowService.convertToJSON(workflow))
+                            }
                         }
                     }
+                    list.add(workflow)
                 }
-                list.add(workflow)
+                refreshBlocks()
             }
-            refreshBlocks()
+        }catch(e:IOException) {
+            postError("Connection Error!")
         }
     }
 
@@ -204,17 +223,21 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
     }
 
     fun removeBlockAt(position: Int) {
-        val list = workflow.getBlocks()
-        list.removeAt(position)
-        /*
-        doAsync {
-            WorkflowService.deleteOperation(listOf(
-            Pair("userID",app.getUser().getID()),
-            Pair("workflowName", workflowName),
-            Pair("oldBlockIndex", position.toString())
-        ))}
-        */
-        refreshBlocks()
+        try{
+            val list = workflow.getBlocks()
+            list.removeAt(position)
+            /*
+            doAsync {
+                WorkflowService.deleteOperation(listOf(
+                Pair("userID",app.getUser().getID()),
+                Pair("workflowName", workflowName),
+                Pair("oldBlockIndex", position.toString())
+            ))}
+            */
+            refreshBlocks()
+        }catch(e:IOException) {
+            postError("Connection Error!")
+        }
     }
 
     fun addFilter(cardinality: Short) {
@@ -234,7 +257,15 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
         fun parseOpenweather(city:String) =doAsyncResult{
             return@doAsyncResult BlockWeatherService.getOperation(city)
         }
-        return parseOpenweather(city).get()
+
+        var json=JSONObject()
+        try {
+            json=parseOpenweather(city).get()
+        }catch(e:IOException){
+            postError("Connection Error!")
+        }
+
+        return json
     }
 }
 
