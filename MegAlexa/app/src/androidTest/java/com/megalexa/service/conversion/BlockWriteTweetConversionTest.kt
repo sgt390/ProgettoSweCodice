@@ -6,6 +6,7 @@ import com.megalexa.models.blocks.BlockTwitterWrite
 import com.megalexa.util.service.BlockWriteTweetService
 import junit.framework.Assert.assertEquals
 import org.junit.Assert
+import org.junit.Assert.assertNotEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -31,7 +32,7 @@ class BlockWriteTweetConversionTest :ConversionTest {
         try {
             val block= BlockTwitterWrite()
             val json= BlockWriteTweetService.convertToJSON(block)
-            assertEquals(json.toString()," ")
+            assertNotEquals(json.toString()," ")
         }catch(e:NullPointerException) {
             assertEquals(true,true)
         }

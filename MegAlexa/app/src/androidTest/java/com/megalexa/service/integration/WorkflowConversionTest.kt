@@ -8,6 +8,7 @@ import com.megalexa.models.workflow.Workflow
 import com.megalexa.service.conversion.ConversionTest
 import com.megalexa.util.service.WorkflowService.convertFromJSON
 import com.megalexa.util.service.WorkflowService
+import com.megalexa.util.service.WorkflowService.convertToJSON
 import junit.framework.Assert.assertEquals
 import org.json.JSONArray
 import org.json.JSONObject
@@ -28,21 +29,27 @@ class WorkflowConversionTest: ConversionTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        /*
         val jsonObject= WorkflowService.getOperation(
-            listOf(Pair("userID","dummyUID"),Pair("workflowName","workflow")))
+            listOf(Pair("userID","dummyUID"),Pair("workflowName","workflowNotCancelled")))
 
-        //doesn't workflow shit here
+        var workflow = convertFromJSON(jsonObject)
 
-        var expected= Workflow("workflow")
-        expected.addBlock(BlockTextToSpeech("This is the second block"))
+        var expected= Workflow("workflowNotCancelled")
+        expected.addBlock(BlockTextToSpeech("This is the first block"))
 
         Assert.assertEquals(expected, workflow)
-        */
+
     }
+
+    @Test
     override fun conversionFromObjectToJSon() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        var workflow= Workflow("workflowNotCancelled")
+        workflow.addBlock(BlockTextToSpeech("This is the first block"))
+
+        val jsonOBJ = convertToJSON(workflow)
+
+        val expected =  "{\"userID\":\"dummyUID\",\"workflowName\":\"workflownotcancelled\",\"workflow\":[{\"blockType\":\"TextToSpeech\",\"config\":{\"TextToSpeech\":\"This is the first block\"}}]}"
+        Assert.assertEquals(expected, jsonOBJ.toString())
     }
 
     @Test
@@ -54,7 +61,8 @@ class WorkflowConversionTest: ConversionTest {
         workflow.addBlock(Filter(2))
 
         val json= WorkflowService.convertToJSON(workflow)
-        assertEquals(json.toString(),"prova")
+        val expected = "{\"userID\":\"dummyUID\",\"workflowName\":\"pizza\",\"workflow\":[{\"blockType\":\"TextToSpeech\",\"config\":{\"TextToSpeech\":\"This is the second block\"}},{\"blockType\":\"Filter\",\"config\":{\"limit\":2}}]}"
+        assertEquals(json.toString(), expected)
 
     }
 
