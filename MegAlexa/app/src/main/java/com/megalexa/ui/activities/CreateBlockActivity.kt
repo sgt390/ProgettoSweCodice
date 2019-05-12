@@ -66,12 +66,8 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 3-> {
-                    fragment = MailFragment()
                     val intent = Intent(this@CreateBlockActivity, GoogleActivity::class.java)
                     startActivityForResult(intent, 1)
-//                    val transaction = supportFragmentManager.beginTransaction()
-//                    listView.isEnabled=false
-//                    transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 4-> {
                     fragment = NewsFragment()
@@ -113,11 +109,6 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     listView.isEnabled=false
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
-                /*
-                11 -> {
-                    TODO() Calendar activity or fragment
-                }
-                */
             }
         }
 
@@ -296,7 +287,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             Pair(list[0], R.drawable.ic_feed_rss),
             Pair(list[1], R.drawable.ic_text),
             Pair(list[2], R.drawable.ic_lock),
-            Pair(list[3], R.drawable.ic_email),
+            Pair(list[3], R.drawable.ic_google),
             Pair(list[4], R.drawable.ic_news),
             Pair(list[5], R.drawable.ic_sport),
             Pair(list[6], R.drawable.ic_news),
@@ -304,14 +295,13 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             Pair(list[8], R.drawable.ic_text),
             Pair(list[9], R.drawable.ic_text),
             Pair(list[10], R.drawable.ic_list)
-            //,Pair(list[11], R.drawable.ic_list) /*<-Da mettere ic_calendar dopo merge nel develop*/
         )
 
     }
 
     private fun getTitlesList(): List<String> {
         return listOf("FeedRSS","Text Block","PIN",
-            "Read Email","News","Sport News","Twitter","Stock News","Weather","Crypto News", "List" /*,"Calendar"*/)
+            "Google","News","Sport News","Twitter","Stock News","Weather","Crypto News","List")
 
     }
 

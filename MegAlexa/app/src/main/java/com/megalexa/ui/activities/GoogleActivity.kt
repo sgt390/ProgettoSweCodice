@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -58,6 +59,7 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
         setContentView(R.layout.activity_google)
         val gmail = findViewById<LinearLayout>(R.id.Gmail)
         val calendar = findViewById<LinearLayout>(R.id.Calendar)
+        val buttonCancel = findViewById<Button>(R.id.button_cancel_block)
 
         gmail.setOnClickListener {
                 startExchange()
@@ -71,7 +73,10 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
         }
-
+        buttonCancel.setOnClickListener {
+            setResult(Activity.RESULT_CANCELED)
+            this.finish()
+        }
 
     }
 
