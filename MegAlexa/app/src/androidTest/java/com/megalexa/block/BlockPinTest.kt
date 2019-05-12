@@ -1,6 +1,9 @@
 package com.megalexa.block
 
 import android.support.test.runner.AndroidJUnit4
+import com.megalexa.models.blocks.BlockPin
+import junit.framework.Assert.assertEquals
+import org.junit.Assert.assertNotEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -9,11 +12,15 @@ class BlockPinTest: BlockTest{
 
     @Test
     override fun validBlock() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val validPIN = 1234
+        val block = BlockPin(validPIN)
+        assertEquals(block.pin(), validPIN)
     }
 
     @Test
     override fun invalidBLock() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val validPIN = 1234
+        val block = BlockPin(validPIN)
+        assertNotEquals(block.pin(), "1111")
     }
 }

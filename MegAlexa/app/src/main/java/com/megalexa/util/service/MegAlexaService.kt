@@ -37,6 +37,6 @@ object MegAlexaService:Service() {
     }
 
     override fun <MegAlexa> convertToJSON(t: MegAlexa): JSONObject {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return JSONObject()
     }
 }

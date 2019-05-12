@@ -4,6 +4,7 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.blocks.BlockList
 import com.megalexa.util.service.BlockListService
+import junit.framework.Assert.assertEquals
 import org.json.JSONArray
 import org.junit.Assert
 import org.junit.Test
@@ -24,11 +25,14 @@ class BlockListConversionTest:ConversionTest {
         val expected = BlockList(JSONArray())
         val json = BlockListService.convertToJSON(expected)
         val block = BlockListService.convertFromJSON(json)
-        Assert.assertEquals(block.getList(), JSONArray())
+        assertEquals(block.getList(), JSONArray())
     }
 
     @Test
     override fun conversionFromObjectToJSon() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val block= BlockList(JSONArray())
+        val json = BlockListService.convertToJSON(block)
+        assertEquals(json.toString(),"{\"blockType\":\"List\",\"config\":{\"List\":[]}}")
+
     }
 }

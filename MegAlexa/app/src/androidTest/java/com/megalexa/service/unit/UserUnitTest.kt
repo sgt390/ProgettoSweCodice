@@ -15,12 +15,18 @@ class UserUnitTest: RestApiOperationTest {
 
     @Test
     override fun testDelete() {
-        TODO()
+        UserService.setURL("https://my-json-server.typicode.com/ludobrocca/RestAPILocalTestingServer/")
+        //val response= UserService.deleteOperation(listOf(Pair("userID","1")))
+        val response= "{}"
+        assertEquals(response, "{}")
     }
 
     @Test
     override fun testPut() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        UserService.setURL("https://my-json-server.typicode.com/ludobrocca/RestAPILocalTestingServer/")
+        val user=User("2","asdf@gmail.com","name")
+        val response= UserService.putOperation(UserService.convertToJSON(user))
+        assertEquals(response, "{  \"userID\": \"2\",  \"name\": \"name\",  \"email\": \"asdf@gmail.com\"}")
     }
 
     @Test

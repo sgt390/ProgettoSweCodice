@@ -42,7 +42,8 @@ abstract class Service : JSONConverter{
         return json
     }
 
-    open fun putOperation(jsonObject: JSONObject) {
+    open fun putOperation(jsonObject: JSONObject) : String{
+        val response= StringBuffer()
         val url= "$APIUrl$resource"
         val myURL = URL(url)
         with(myURL.openConnection() as HttpsURLConnection) {
@@ -55,18 +56,19 @@ abstract class Service : JSONConverter{
             println("URL : $url")
             println("Response Code : $responseCode")
             BufferedReader(InputStreamReader(inputStream)).use {
-                val response = StringBuffer()
                 var inputLine = it.readLine()
                 while (inputLine != null) {
                     response.append(inputLine)
                     inputLine = it.readLine()
                 }
-                println("Response : $response")
+
             }
         }
+        return response.toString()
     }
 
-    open fun deleteOperation(params:List<Pair<String,String>>) {
+    open fun deleteOperation(params:List<Pair<String,String>>) :String {
+        val response = StringBuffer()
         val query = StringBuilder()
         for (item in params) {
             query.append(URLEncoder.encode(item.first,"UTF-8")+"="+URLEncoder.encode(item.second,"UTF-8")+ "&")
@@ -80,14 +82,16 @@ abstract class Service : JSONConverter{
             println("URL : $url")
             println("Response Code : $responseCode")
             BufferedReader(InputStreamReader(inputStream)).use {
-                val response = StringBuffer()
+
                 var inputLine = it.readLine()
                 while (inputLine != null) {
                     response.append(inputLine)
                     inputLine = it.readLine()
                 }
+                println("Response : $response")
             }
         }
+        return response.toString()
     }
 
     open fun postOperation(jsonObject: JSONObject):String {

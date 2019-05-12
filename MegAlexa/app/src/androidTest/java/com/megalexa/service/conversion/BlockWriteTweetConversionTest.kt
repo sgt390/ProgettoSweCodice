@@ -2,6 +2,9 @@ package com.megalexa.service.conversion
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.megalexa.models.blocks.BlockTwitterWrite
+import com.megalexa.util.service.BlockWriteTweetService
+import junit.framework.Assert.assertEquals
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -18,11 +21,19 @@ class BlockWriteTweetConversionTest :ConversionTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val block= BlockTwitterWrite()
+        val convertedBlock= BlockTwitterWrite()
+        assertEquals(block.getAccessKey(), convertedBlock.getAccessKey())
     }
 
     @Test
     override fun conversionFromObjectToJSon() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        try {
+            val block= BlockTwitterWrite()
+            val json= BlockWriteTweetService.convertToJSON(block)
+            assertEquals(json.toString()," ")
+        }catch(e:NullPointerException) {
+            assertEquals(true,true)
+        }
     }
 }

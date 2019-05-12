@@ -2,6 +2,9 @@ package com.megalexa.service.conversion
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.megalexa.models.User
+import com.megalexa.util.service.UserService
+import junit.framework.Assert.assertEquals
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,11 +20,15 @@ class UserConversionTest :ConversionTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val user= User("id3","prova@prova.com","prova")
+        val convertedUser= UserService.convertFromJSON(UserService.convertToJSON(user))
+        assertEquals(user.getID(),convertedUser.getID())
     }
 
     @Test
     override fun conversionFromObjectToJSon() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val user= User("id3","prova@prova.com","prova")
+        val json= UserService.convertToJSON(user)
+        assertEquals(json.toString(),"{\"userID\":\"id3\",\"name\":\"prova\",\"email\":\"prova@prova.com\"}")
     }
 }

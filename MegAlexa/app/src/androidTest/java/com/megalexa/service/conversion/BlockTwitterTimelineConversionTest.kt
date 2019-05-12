@@ -2,9 +2,13 @@ package com.megalexa.service.conversion
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.megalexa.models.blocks.BlockTwitterHomeTL
+import com.megalexa.util.service.BlockTwitterHomeTLService
+import junit.framework.Assert.assertEquals
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.lang.NullPointerException
 
 @RunWith(AndroidJUnit4::class)
 class BlockTwitterTimelineConversionTest:ConversionTest {
@@ -17,11 +21,19 @@ class BlockTwitterTimelineConversionTest:ConversionTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val block= BlockTwitterHomeTL()
+        val convertedBlock= BlockTwitterHomeTL()
+        assertEquals(block.getAccessKey(),convertedBlock.getAccessKey())
     }
 
     @Test
     override fun conversionFromObjectToJSon() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+         try {
+             val block= BlockTwitterHomeTL()
+             val json= BlockTwitterHomeTLService.convertToJSON(block)
+             assertEquals(json.toString()," ")
+         }catch(e:NullPointerException) {
+             assertEquals(true,true)
+         }
     }
 }

@@ -1,6 +1,8 @@
 package com.megalexa.block
 
 import android.support.test.runner.AndroidJUnit4
+import com.megalexa.models.blocks.BlockTwitterHomeTL
+import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -9,11 +11,37 @@ class BlockTwitterHomeTLTest:BlockTest {
 
     @Test
     override fun validBlock() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val block = BlockTwitterHomeTL()
+        Assert.assertEquals(block.getInformation(), "Twitter home block created")
     }
 
     @Test
     override fun invalidBLock() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val block = BlockTwitterHomeTL()
+        Assert.assertNotEquals(block.getInformation(), "Twitter home block not Created")
+    }
+
+    @Test
+    fun getAccessKey() {
+        val block = BlockTwitterHomeTL()
+        Assert.assertNotNull(block.getAccessKey())
+    }
+
+    @Test
+    fun getAccessSecret() {
+        val block = BlockTwitterHomeTL()
+        Assert.assertNotNull(block.getAccessSecret())
+    }
+
+    @Test
+    fun getConsumerKey() {
+        val block = BlockTwitterHomeTL()
+        Assert.assertNotNull(block.getConsumerKey())
+    }
+
+    @Test
+    fun getConsumerSecret() {
+        val block = BlockTwitterHomeTL()
+        Assert.assertNotNull(block.getConsumerSecret())
     }
 }

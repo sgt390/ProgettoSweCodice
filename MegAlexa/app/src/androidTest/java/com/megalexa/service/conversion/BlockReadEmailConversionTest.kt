@@ -5,6 +5,7 @@ import android.support.test.runner.AndroidJUnit4
 import android.support.v4.media.session.MediaSessionCompat
 import com.megalexa.models.blocks.BlockReadEmail
 import com.megalexa.util.service.BlockReadEmailService
+import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertTrue
 import org.json.JSONObject
 import org.junit.Assert
@@ -23,7 +24,9 @@ class BlockReadEmailConversionTest:ConversionTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val block= BlockReadEmail(JSONObject())
+        val convertedBlock= BlockReadEmailService.convertFromJSON(BlockReadEmailService.convertToJSON(block))
+        assertEquals(block.valid(),convertedBlock)
     }
 
     @Test
