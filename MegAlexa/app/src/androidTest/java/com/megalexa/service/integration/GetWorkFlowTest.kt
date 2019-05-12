@@ -10,6 +10,7 @@ import com.megalexa.util.service.UserService
 import com.megalexa.util.service.WorkflowService
 import org.json.JSONArray
 import org.json.JSONObject
+import org.junit.Assert
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -32,29 +33,20 @@ class GetWorkFlowTest {
 
     @Test
     fun valid() {
+
         val jsonObject= WorkflowService.getOperation(
-            listOf(Pair("userID","amzn1.account.AEUNVRHMHE2VKRFZWW72HELB4ZBQ"),Pair("workflowName","prova")))
+            listOf(Pair("userID","dummyUID"),Pair("workflowName","workflow")))
 
         val expected= JSONArray("[\n" +
                 "  {\n" +
                 "    \"config\": {\n" +
-                "      \"textToSpeech\": \"icsdi\"\n" +
+                "      \"TextToSpeech\": \"This is the second block\"\n" +
                 "    },\n" +
-                "    \"blockType\": \"textToSpeech\"\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"config\": {\n" +
-                "      \"textToSpeech\": \"ciao\"\n" +
-                "    },\n" +
-                "    \"blockType\": \"textToSpeech\"\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"config\": {\n" +
-                "      \"textToSpeech\": \"3\"\n" +
-                "    },\n" +
-                "    \"blockType\": \"textToSpeech\"\n" +
-                "  }\n" +
+                "    \"blockType\": \"TextToSpeech\"\n" +
+                "  }"+
                 "]")
+
+        Assert.assertEquals(expected.toString(), jsonObject.get("content").toString())
 
         assertEquals(expected.toString(),jsonObject.get("content").toString())
     }

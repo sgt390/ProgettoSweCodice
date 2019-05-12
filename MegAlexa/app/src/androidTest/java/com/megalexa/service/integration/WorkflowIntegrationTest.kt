@@ -2,6 +2,7 @@ package com.megalexa.service.integration
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.megalexa.models.workflow.Workflow
 import com.megalexa.service.RestApiOperationTest
 import org.junit.Test
 import org.junit.runner.RunWith
