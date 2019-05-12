@@ -2,8 +2,20 @@ package com.megalexa.service.integration
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.amazon.identity.auth.device.interactive.WorkflowFragment
+import com.megalexa.models.MegAlexa
+import com.megalexa.models.User
+import com.megalexa.models.blocks.BlockList
+import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.service.RestApiOperationTest
+import com.megalexa.util.service.MegAlexaService
+import com.megalexa.util.service.WorkflowService
+import junit.framework.Assert
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.doAsyncResult
+import org.json.JSONArray
+import org.json.JSONObject
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -23,23 +35,51 @@ class WorkflowIntegrationTest: RestApiOperationTest {
         assertEquals("com.megalexa", appContext.packageName)
     }
 
+
     @Test
     override fun testDelete() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val response= WorkflowService.deleteOperation(listOf(Pair("userID","dummyUID"),Pair("workflowName","workflow")))
+        assertEquals(response,"{}")
     }
 
     @Test
     override fun testGet() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val json= WorkflowService.getOperation(listOf(Pair("userID","dummyUID"),Pair("workflowName","workflow")))
+        val expected= JSONArray("[\n" +
+                "  {\n" +
+                "    \"config\": {\n" +
+                "      \"TextToSpeech\": \"This is the second block\"\n" +
+                "    },\n" +
+                "    \"blockType\": \"TextToSpeech\"\n" +
+                "  }"+
+                "]")
+        Assert.assertEquals(json.get("content").toString(), expected.toString())
     }
 
     @Test
     override fun testPost() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val user= User("dummyUID","dummyEmail","dummyName")
+        val app= MegAlexa.user(user).build()
+        val workflow = Workflow("workflowtest")
+        workflow.addBlock(BlockTextToSpeech("This is the first block"))
+        app.addWorkflow(workflow)
+        val response=WorkflowService.postOperation(WorkflowService.convertToJSON(workflow))
+        val expected= "{\"Attributes\":{\"workflowList\":{\"workflowtest\":[{\"config\":{\"TextToSpeech\":\"This is the first block\"},\"blockType\":\"TextToSpeech\"}]}}}"
+        Assert.assertEquals(response, expected)
     }
+
 
     @Test
     override fun testPut() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val user= User("dummyUID","dummyEmail","dummyName")
+        val app= MegAlexa.user(user).build()
+        val workflow = Workflow("workflowtest")
+        workflow.addBlock(BlockTextToSpeech("This is the first block"))
+        workflow.addBlock(BlockTextToSpeech("This is the put block"))
+        app.addWorkflow(workflow)
+        val response= WorkflowService.putOperation(WorkflowService.convertToJSON(workflow))
+
+        val expected= "{}"
+        Assert.assertEquals(response, expected)
     }
 }
