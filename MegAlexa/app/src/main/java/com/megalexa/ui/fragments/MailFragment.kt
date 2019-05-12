@@ -10,8 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.NumberPicker
+import com.google.android.gms.common.SignInButton
 import com.megalexa.R
 import com.megalexa.ui.activities.CreateBlockActivity
+import com.megalexa.ui.activities.GoogleActivity
 import com.megalexa.util.service.BlockReadEmailService
 import org.jetbrains.anko.doAsync
 
@@ -48,10 +50,8 @@ class MailFragment: Fragment(){
             builder.show()
         }
         button.setOnClickListener {
-            doAsync {
-                BlockReadEmailService.getToken()
-            }
-                val activity= activity as CreateBlockActivity
+
+                val activity= activity as GoogleActivity
                 activity.onFragmentClick(this)
         }
 

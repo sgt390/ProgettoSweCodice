@@ -18,8 +18,6 @@
         </activity>
         <activity android:name=".ui.activities.GoogleActivity">
     </activity>
-        <activity android:name=".ui.activities.TokenExchange">
-        </activity>
         <activity
                 android:name=".ui.activities.ViewBlockListActivity"
                 android:label="@string/title_activity_list"

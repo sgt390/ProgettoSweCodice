@@ -38,5 +38,5 @@
                 android:layout_marginTop="15dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content" tools:layout_editor_absoluteY="222dp"
-                tools:layout_editor_absoluteX="148dp" android:id="@+id/confirmItemBotton_mail"/>
+                tools:layout_editor_absoluteX="148dp" android:id="@+id/confirmItemBotton_calendar"/>
 </LinearLayout>

@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.NumberPicker
 import com.megalexa.R
 import com.megalexa.ui.activities.CreateBlockActivity
+import com.megalexa.ui.activities.GoogleActivity
 import com.megalexa.util.ApplicationContextProvider.Companion.context
 import com.megalexa.util.service.BlockCalendarService
 import org.jetbrains.anko.doAsync
@@ -24,7 +25,7 @@ class CalendarFragment: Fragment() {
 
         val view = inflater.inflate(R.layout.calendar_fragment_layout,container,false)
         val filter = view.findViewById<Button>(R.id.button_filter)
-        val button= view.findViewById<Button>(R.id.confirmItemBotton_mail)
+        val button= view.findViewById<Button>(R.id.confirmItemBotton_calendar)
 
         filter.setOnClickListener{
             val builder = AlertDialog.Builder(ContextThemeWrapper(context, R.style.Theme_AppCompat_Dialog))
@@ -49,8 +50,7 @@ class CalendarFragment: Fragment() {
             builder.show()
         }
         button.setOnClickListener {
-            doAsyncResult {  BlockCalendarService.getCredentials(BlockCalendarService.HTTP_TRANSPORT)}
-            val activity= activity as CreateBlockActivity
+            val activity= activity as GoogleActivity
             activity.onFragmentClick(this)
         }
 

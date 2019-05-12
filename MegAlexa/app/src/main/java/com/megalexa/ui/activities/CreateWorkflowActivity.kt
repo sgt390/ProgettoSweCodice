@@ -184,6 +184,18 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                         viewModel.addOneArgBlock("List", "")
 
                     }
+
+                    "Mail" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
+                        viewModel.addOneArgBlock("Mail", "")
+
+                    }
+
+                    "Calendar" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
+                        viewModel.addOneArgBlock("Calendar", "")
+
+                    }
                 }
             }
 

@@ -85,5 +85,9 @@
     <string name="titleListItem">Lista</string>
     <string name="Select_site">Seleziona un sito per le news</string>
     <string name="listenMail">Ascolta le tue mails tramite Alexa</string>
+    <string name="listenCalendar">Ascolta i tuoi impegni tramite Alexa</string>
     <string name="listenTask">Ascolta i tuoi impegni tramite Alexa</string>
+    <string name="selectblockGoogle">Seleziona un blocco Google</string>
+    <string name="Gmail">Gmail</string>
+    <string name="Calendar">Calendario</string>
 </resources>
