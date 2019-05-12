@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.megalexa.R
@@ -147,12 +148,31 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     finish()
                 }
                 "WriteTweet" -> {
+                val intent = Intent(this, CreateWorkflowActivity::class.java)
+                intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
+                intent.putExtra("block_type", "WriteTwitter")
+                setResult(Activity.RESULT_OK,intent)
+                finish()
+                 }
+                "Email" -> {
                     val intent = Intent(this, CreateWorkflowActivity::class.java)
+                    val token = data.extras!!.get("token")
                     intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
-                    intent.putExtra("block_type", "WriteTwitter")
+                    intent.putExtra("block_type", "Email")
+                    intent.putExtra("access_token",token.toString())
                     setResult(Activity.RESULT_OK,intent)
                     finish()
                 }
+                "Calendar" -> {
+                    val intent = Intent(this, CreateWorkflowActivity::class.java)
+                    val token = data.extras!!.get("token")
+                    intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
+                    intent.putExtra("block_type", "Calendar")
+                    intent.putExtra("access_token",token.toString())
+                    setResult(Activity.RESULT_OK,intent)
+                    finish()
+                }
+
             }
         }
     }

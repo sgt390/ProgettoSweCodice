@@ -84,7 +84,7 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
         if(sender is MailFragment){
             val intent = Intent(this,CreateBlockActivity::class.java)
             intent.putExtra("cardinality",sender.getCardinality())
-            intent.putExtra("block_type", "Mail")
+            intent.putExtra("block_type", "Email")
             intent.putExtra("token",accessToken)
             setResult(Activity.RESULT_OK,intent)
             finish()
@@ -112,7 +112,7 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
                     exchangeTokens(account)
                 }
             } catch (e: ApiException) {
-                Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(this, e.message + "ApiException", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -123,13 +123,13 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
 
     private fun startExchange() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken(getString(R.string.google_client_id))
             .requestScopes(
                 Scope(Scopes.EMAIL),
                 Scope(CalendarScopes.CALENDAR)
             )
             .requestEmail()
-            .requestServerAuthCode(getString(R.string.default_web_client_id), false)
+            .requestServerAuthCode(getString(R.string.google_client_id), false)
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
         val signInIntent = mGoogleSignInClient.signInIntent
@@ -146,7 +146,7 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
             val client = builder.build()
 
             val requestBody = FormBody.Builder()
-                .add("client_id", getString(R.string.default_web_client_id))
+                .add("client_id", getString(R.string.google_client_id))
                 .add("client_secret", getString(R.string.google_client_secret))
                 .add("grant_type", "authorization_code")
                 .add("code", authCode!!)
@@ -178,11 +178,11 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
                     try {
                         if (o != null) {
                 val jsonObject = JsonParser().parse(o.body()!!.string()).getAsJsonObject()
-                            accessToken = jsonObject.get("access_token").toString()
+                            accessToken = jsonObject.get("access_token").asString
                             o.body()!!.close()
                         }
                     } catch (e: IOException) {
-                        Toast.makeText(this@GoogleActivity, e.message, Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@GoogleActivity, e.message+" IOException", Toast.LENGTH_LONG).show()
                         Log.e("ERROR", e.message, e)
                     }
 
@@ -197,11 +197,14 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
         return accessToken
     }
 
-
     private fun signOut() {
         mGoogleSignInClient.signOut()
             .addOnCompleteListener(this, OnCompleteListener<Void> {
                 // ...
             })
     }
+    public fun getToken() : String{
+        return accessToken
+    }
+
 }
