@@ -114,6 +114,29 @@ public class TokenExchange extends AppCompatActivity {
                     .post(requestBody)
                     .build();
 
+/*   private val task= {object : AsyncTask<Void,Void,Response>() {
+
+
+            override fun doInBackground(vararg params: Void?): Response {
+                try {
+                    //TRADURRE QUA
+                }catch(e: IOException) {
+                    Log.e("ERROR",e.message,e)
+                    return null
+                }
+            }
+
+            override fun onPostExecute(result: Response?) {
+            super.onPostExecute(result)
+                //TRADURRE QUA
+            }
+
+
+
+        }
+
+    }
+*/
             AsyncTask<Void, Void, Response> task = new AsyncTask<Void, Void, Response>() {
                 @Override
                 protected Response doInBackground(Void[] objects) {
