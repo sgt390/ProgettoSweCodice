@@ -2,6 +2,9 @@ package com.megalexa.service.conversion
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.megalexa.models.blocks.Filter
+import com.megalexa.util.service.FilterService
+import junit.framework.Assert.assertEquals
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,11 +20,15 @@ class FilterConversionTest:ConversionTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val filter= Filter(5)
+        val convertedFilter= FilterService.convertFromJSON(FilterService.convertToJSON(filter))
+        assertEquals(filter.getResult(),convertedFilter.getResult())
     }
 
     @Test
     override fun conversionFromObjectToJSon() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val filter= Filter(5)
+        val json= FilterService.convertToJSON(filter)
+        assertEquals(json.toString(),"{\"blockType\":\"Filter\",\"config\":{\"limit\":5}}")
     }
 }

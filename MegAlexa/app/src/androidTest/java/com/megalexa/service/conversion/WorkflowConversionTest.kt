@@ -2,6 +2,9 @@ package com.megalexa.service.conversion
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.megalexa.models.workflow.Workflow
+import com.megalexa.util.service.WorkflowService
+import junit.framework.Assert.assertEquals
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,11 +20,16 @@ class WorkflowConversionTest :ConversionTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val workflow=Workflow("conversione")
+        val convertedWorkflow=WorkflowService.convertFromJSON(WorkflowService.convertToJSON(workflow))
+        assertEquals(workflow.getName(),convertedWorkflow.getName())
     }
 
     @Test
     override fun conversionFromObjectToJSon() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val workflow=Workflow("conversione")
+        val json=WorkflowService.convertToJSON(workflow)
+        assertEquals(json.toString(),"{\"userID\":\"dummyUID\",\"workflowName\":\"conversione\",\"workflow\":[]}")
+
     }
 }

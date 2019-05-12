@@ -2,6 +2,10 @@ package com.megalexa.service.conversion
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.megalexa.models.MegAlexa
+import com.megalexa.util.service.MegAlexaService
+import junit.framework.Assert.assertEquals
+import org.json.JSONObject
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,11 +21,15 @@ class MegAlexaConversionTest :ConversionTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val app= MegAlexa.build()
+        val second= MegAlexa.getInstance()
+        assertEquals(app.getUser().getID(),second.getUser().getID())
     }
 
     @Test
     override fun conversionFromObjectToJSon() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val app= MegAlexa.build()
+        val json= MegAlexaService.convertToJSON(app)
+        assertEquals(json.toString(),"{}")
     }
 }
