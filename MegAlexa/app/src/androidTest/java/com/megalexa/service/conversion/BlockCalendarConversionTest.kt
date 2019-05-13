@@ -12,7 +12,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class BlockCalendarConversionTest:ConversionTest {
-val token : String = "ya29.GlwIB0nsb45rknRWc8iInRpzP9Wkh_X0xWKgsWoqEUZX-5T-Zz_LTf_0HHmO2vBF1Pi3NDkQqwehKBgRliG3xBAnSAlAyyn9fkXqCkAgksKgGAGI_KoNUp0frFpNsw"
+val token : String = "ya29adAGI_KoNUp0frFpNsw"
     @Test
     fun useAppContext() {
         // Context of the app under test.
