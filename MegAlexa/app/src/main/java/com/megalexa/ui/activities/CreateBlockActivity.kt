@@ -313,8 +313,21 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
     }
 
     private fun getTitlesList(): List<String> {
-        return listOf("FeedRSS","Text Block","PIN",
-            "Google","News","Sport News","Twitter","Stock News","Weather","Crypto News","List")
+
+        return listOf(
+            this.resources.getString(R.string.ListFeedRss),
+            this.resources.getString(R.string.ListTextBlock),
+            this.resources.getString(R.string.ListPin),
+            this.resources.getString(R.string.ListGoogle),
+            this.resources.getString(R.string.ListNews),
+            this.resources.getString(R.string.ListSportNews),
+            this.resources.getString(R.string.ListTwitter),
+            this.resources.getString(R.string.ListStockNews),
+            this.resources.getString(R.string.ListWeather),
+            this.resources.getString(R.string.ListCryptoNews),
+            this.resources.getString(R.string.ListList)
+
+        )
 
     }
 

@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.ContextThemeWrapper
 import android.view.View
 import android.widget.TextView
@@ -57,7 +59,26 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
             if(it != "")
                 Toast.makeText(this, it,Toast.LENGTH_LONG).show()
         }
-        
+
+
+        val wNameView=findViewById<TextView>(R.id.input_title_workflow)
+
+        wNameView.addTextChangedListener(object: TextWatcher{
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                return
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                return
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                viewModel.setName(wNameView.text.toString())
+            }
+
+        })
+
         viewModel.getLiveError().observe(this,errObserver)
         viewModel.getLiveBlockNames().observe(this,observer)
 
@@ -95,13 +116,21 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                     }
                 }
             button_save_workflow -> {
-                thread (start = true) {
-                    if(viewModel.workflowIsValid()) {
-                        viewModel.saveWorkflow()
-                        TwitterCore.getInstance().sessionManager.clearActiveSession() //clear Twitter session
-                        setResult(Activity.RESULT_OK)
-                        finish()
-                    }
+                    val workflowTitle=findViewById<TextView>(R.id.input_title_workflow).text.toString()
+                    val isUnique= viewModel.isUnique(workflowTitle)
+                    if(workflowTitle.isEmpty()){
+                        Toast.makeText(this,"workflow name must not be empty",Toast.LENGTH_SHORT).show()
+                    }else {
+                        if(!isUnique) {
+                            Toast.makeText(this,"workflow name must be unique",Toast.LENGTH_SHORT).show()
+                        } else if(viewModel.workflowIsValid()) {
+                            thread(start= true) {
+                                viewModel.saveWorkflow()
+                            }
+                            TwitterCore.getInstance().sessionManager.clearActiveSession() //clear Twitter session
+                            setResult(Activity.RESULT_OK)
+                            finish()
+                        }
                 }
             }
             button_cancel_workflow_creation -> startActivity(Intent(this, GeneralLoggedActivity::class.java))
