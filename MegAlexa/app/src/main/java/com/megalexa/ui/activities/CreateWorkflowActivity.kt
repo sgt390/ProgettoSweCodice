@@ -212,7 +212,7 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                 _: DialogInterface, _:Int -> viewModel.cancelPreviousIntent()
         }
         with(builder) {
-            setTitle("Delete Block")
+            setTitle("Delete block")
             setPositiveButton("Confirm", confirmDeletion)
             setNegativeButton("Cancel", cancelDeletion)
         }

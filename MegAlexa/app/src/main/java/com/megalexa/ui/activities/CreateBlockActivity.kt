@@ -159,7 +159,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     val token = data.extras!!.get("token")
                     intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
                     intent.putExtra("block_type", "Email")
-                    intent.putExtra("access_token",token.toString())
+                    intent.putExtra("access_token",token?.toString())
                     setResult(Activity.RESULT_OK,intent)
                     finish()
                 }
@@ -168,7 +168,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     val token = data.extras!!.get("token")
                     intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
                     intent.putExtra("block_type", "Calendar")
-                    intent.putExtra("access_token",token.toString())
+                    intent.putExtra("access_token",token?.toString())
                     setResult(Activity.RESULT_OK,intent)
                     finish()
                 }
