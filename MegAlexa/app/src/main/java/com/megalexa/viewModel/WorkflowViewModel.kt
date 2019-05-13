@@ -113,61 +113,69 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
          val block:Block
          when(blockType) {
 
-             "FeedRss"-> {
-                 block = BlockFeedRss(param)
-                 workflow.addBlock(block)
-             }
-             "News" -> {
-                 block= BlockNews(param)
-                 workflow.addBlock(block)
-             }
-             "Sport" -> {
-                 block = BlockSport(param)
-                 workflow.addBlock(block)
-             }
-             "Pin" -> {
-                 block = BlockPin(param.toInt())
-                 workflow.addBlock(block)
-             }
-             "Text to speech" -> {
-                 block = BlockTextToSpeech(param)
-                 workflow.addBlock(block)
-             }
-             "Crypto" -> {
-                 block=BlockCrypto(param)
-                 workflow.addBlock(block)
-             }
-             "Borsa" -> {
-                 block=BlockBorsa(param)
-                 workflow.addBlock(block)
-             }
-             "TwitterHashtag" -> {
-                 block= BlockTwitterHashtag(param)
-                 workflow.addBlock(block)
-             }
-             "TwitterUserTL" -> {
-                 block= BlockTwitter(param)
-                 workflow.addBlock(block)
-             }
-             "TwitterHomeTL" -> {
-                 block= BlockTwitterHomeTL()
-                 workflow.addBlock(block)
-             }
-             "TwitterWrite" -> {
-                 block=BlockTwitterWrite()
-                 workflow.addBlock(block)
-             }
-             "Weather" -> {
-                 val json :JSONObject = getWeatherInfo(param)
-                 block=BlockWeather(json)
-                 //set all informations
-                 workflow.addBlock(block)
-             }
-             "List" -> {
-                 val json : JSONArray = JSONArray()
-                 block=BlockList(json)
-                 workflow.addBlock(block)
-             }
+            "FeedRss"-> {
+                block = BlockFeedRss(param)
+                workflow.addBlock(block)
+            }
+            "News" -> {
+                block= BlockNews(param)
+                workflow.addBlock(block)
+            }
+            "Sport" -> {
+                block = BlockSport(param)
+                workflow.addBlock(block)
+            }
+            "Pin" -> {
+                block = BlockPin(param.toInt())
+                workflow.addBlock(block)
+            }
+            "Text to speech" -> {
+                block = BlockTextToSpeech(param)
+                workflow.addBlock(block)
+            }
+            "Crypto" -> {
+                block=BlockCrypto(param)
+                workflow.addBlock(block)
+            }
+            "Borsa" -> {
+                block=BlockBorsa(param)
+                workflow.addBlock(block)
+            }
+            "TwitterHashtag" -> {
+                block= BlockTwitterHashtag(param)
+                workflow.addBlock(block)
+            }
+            "TwitterUserTL" -> {
+                block= BlockTwitter(param)
+                workflow.addBlock(block)
+            }
+            "TwitterHomeTL" -> {
+                block= BlockTwitterHomeTL()
+                workflow.addBlock(block)
+            }
+            "TwitterWrite" -> {
+                block=BlockTwitterWrite()
+                workflow.addBlock(block)
+            }
+            "Weather" -> {
+                val json :JSONObject = getWeatherInfo(param)
+                block=BlockWeather(json)
+                //set all informations
+                workflow.addBlock(block)
+            }
+            "List" -> {
+                val json : JSONArray = JSONArray()
+                block=BlockList(json)
+                workflow.addBlock(block)
+            }
+            "Email" -> {
+                block=BlockReadEmail(param)
+                workflow.addBlock(block)
+            }
+            "Calendar" -> {
+                block=BlockCalendar(param)
+                workflow.addBlock(block)
+            }
 
          }
 

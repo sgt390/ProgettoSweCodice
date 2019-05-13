@@ -1,3 +1,6 @@
 .DS_Store
 MegAlexa/.idea/
 MegAlexa/app/src/main/assets/api_key.txt
+MegAlexa/app/src/main/resources/credentials.json
+MegAlexa/app/src/main/resources/credentials.json
+MegAlexa/tokens/StoredCredential

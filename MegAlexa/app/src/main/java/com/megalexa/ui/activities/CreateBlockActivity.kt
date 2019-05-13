@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.megalexa.R
@@ -66,7 +67,8 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     transaction.replace(R.id.fragment_container, fragment).addToBackStack("").commit()
                 }
                 3-> {
-                    //TODO() EMAIL FRAGMENT
+                    val intent = Intent(this@CreateBlockActivity, GoogleActivity::class.java)
+                    startActivityForResult(intent, 1)
                 }
                 4-> {
                     fragment = NewsFragment()
@@ -146,12 +148,31 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                     finish()
                 }
                 "WriteTweet" -> {
+                val intent = Intent(this, CreateWorkflowActivity::class.java)
+                intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
+                intent.putExtra("block_type", "WriteTwitter")
+                setResult(Activity.RESULT_OK,intent)
+                finish()
+                 }
+                "Email" -> {
                     val intent = Intent(this, CreateWorkflowActivity::class.java)
+                    val token = data.extras!!.get("token")
                     intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
-                    intent.putExtra("block_type", "WriteTwitter")
+                    intent.putExtra("block_type", "Email")
+                    intent.putExtra("access_token",token.toString())
                     setResult(Activity.RESULT_OK,intent)
                     finish()
                 }
+                "Calendar" -> {
+                    val intent = Intent(this, CreateWorkflowActivity::class.java)
+                    val token = data.extras!!.get("token")
+                    intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
+                    intent.putExtra("block_type", "Calendar")
+                    intent.putExtra("access_token",token.toString())
+                    setResult(Activity.RESULT_OK,intent)
+                    finish()
+                }
+
             }
         }
     }
@@ -286,7 +307,7 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             Pair(list[0], R.drawable.ic_feed_rss),
             Pair(list[1], R.drawable.ic_text),
             Pair(list[2], R.drawable.ic_lock),
-            Pair(list[3], R.drawable.ic_email),
+            Pair(list[3], R.drawable.ic_google),
             Pair(list[4], R.drawable.ic_news),
             Pair(list[5], R.drawable.ic_sport),
             Pair(list[6], R.drawable.ic_twitter),
@@ -294,13 +315,13 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
             Pair(list[8], R.drawable.ic_weather),
             Pair(list[9], R.drawable.ic_crypto),
             Pair(list[10], R.drawable.ic_list)
-            )
+        )
 
     }
 
     private fun getTitlesList(): List<String> {
         return listOf("FeedRSS","Text Block","PIN",
-            "Read Email","News","Sport News","Twitter","Stock News","Weather","Crypto News", "List")
+            "Google","News","Sport News","Twitter","Stock News","Weather","Crypto News","List")
 
     }
 

@@ -87,4 +87,10 @@
     <string name="listenMyTweet">Listen your tweets through Alexa</string>
     <string name="newyork">ex. New York</string>
     <string name="insertcity">Insert city</string>
+    <string name="listenMail">Listen your emails through Alexa</string>
+    <string name="listenTask">Listen your tasks through Alexa</string>
+    <string name="selectblockGoogle">Select a Google block</string>
+    <string name="listenCalendar">Listen your events through Alexa</string>
+    <string name="Gmail">Gmail</string>
+    <string name="Calendar">Calendar</string>
 </resources>

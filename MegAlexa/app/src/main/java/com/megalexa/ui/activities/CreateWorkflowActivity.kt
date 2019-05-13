@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.View
 import android.widget.TextView
@@ -181,6 +182,21 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                     }
                     "List" -> {
                         viewModel.addOneArgBlock("List", "")
+                    }
+                    "Email" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
+                        val token = data!!.extras!!.get(("access_token")).toString()
+                        viewModel.addFilter(cardinality)
+                        viewModel.addOneArgBlock("Email", token)
+
+                    }
+
+                    "Calendar" -> {
+                        val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
+                        val token = data!!.extras!!.get(("access_token")).toString()
+                        viewModel.addFilter(cardinality)
+                        viewModel.addOneArgBlock("Calendar", token)
+
                     }
                 }
         }
