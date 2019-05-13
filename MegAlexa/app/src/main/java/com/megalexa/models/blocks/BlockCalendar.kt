@@ -18,8 +18,9 @@ class BlockCalendar(token :String): Block, Filtrable {
     private val scope = "https://www.googleapis.com/auth/gmail.send"
     private val tokenType = "Bearer"
     private val access_token = token
+
     override fun getInformation() :String {
-        return "Block calendar added"
+        return  ApplicationContextProvider.context!!.resources!!.getString(R.string.BlockCalendar)
     }
 
     fun testConnection(): Boolean{

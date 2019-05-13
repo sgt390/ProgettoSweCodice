@@ -14,8 +14,10 @@
 
 package com.megalexa.models.blocks
 
+import com.megalexa.R
 import com.megalexa.models.connectors.Connector
 import com.megalexa.models.connectors.ConnectorFeedRss
+import com.megalexa.util.ApplicationContextProvider
 import com.megalexa.util.InvalidBlockException
 
 
@@ -47,7 +49,7 @@ class BlockFeedRss(private val url: String): Block,Filtrable {
      *
      */
     override fun getInformation():String {
-        return "Feed RSS "
+        return  ApplicationContextProvider.context!!.resources!!.getString(R.string.BlockFeedRss)
     }
 
     fun url()= url

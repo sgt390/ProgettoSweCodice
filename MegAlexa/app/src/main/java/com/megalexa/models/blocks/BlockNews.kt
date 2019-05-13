@@ -13,8 +13,10 @@
 
 package com.megalexa.models.blocks
 
+import com.megalexa.R
 import com.megalexa.models.connectors.Connector
 import com.megalexa.models.connectors.ConnectorNews
+import com.megalexa.util.ApplicationContextProvider
 import com.megalexa.util.InvalidBlockException
 
 
@@ -23,7 +25,6 @@ class BlockNews(private val url: String): Block,Filtrable {
         val connector = generateConnector(url)
 
     }
-
 
     /** generateConnector(url) returns an object that represents the connector for the desidered feed for News
      * @param url is the url for the feedRSS
@@ -46,7 +47,7 @@ class BlockNews(private val url: String): Block,Filtrable {
      *
      */
     override fun getInformation():String {
-        return "News"
+        return  ApplicationContextProvider.context!!.resources!!.getString(R.string.BlockNews)
     }
 
     fun url()= url

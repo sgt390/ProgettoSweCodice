@@ -14,11 +14,13 @@
 
 package com.megalexa.models.blocks
 
+import com.megalexa.R
+import com.megalexa.util.ApplicationContextProvider
 import org.json.JSONArray
 
 class BlockList(private var list: JSONArray) : Block {
     override fun getInformation(): String {
-        return "List"
+        return  ApplicationContextProvider.context!!.resources!!.getString(R.string.BlockList)
     }
 
     fun listUtilities(): List<String>{

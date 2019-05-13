@@ -12,10 +12,13 @@
  */
 package com.megalexa.models.blocks
 
+import com.megalexa.R
+import com.megalexa.util.ApplicationContextProvider
+
 class BlockPin(private var pin: Int):Block {
 
     override fun getInformation(): String {
-        return "PIN"
+        return  ApplicationContextProvider.context!!.resources!!.getString(R.string.BlockPin)
     }
 
     /* Return the pin

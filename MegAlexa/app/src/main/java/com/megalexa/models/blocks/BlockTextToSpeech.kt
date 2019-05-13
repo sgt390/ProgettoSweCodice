@@ -14,6 +14,8 @@
  */
 package com.megalexa.models.blocks
 
+import com.megalexa.R
+import com.megalexa.util.ApplicationContextProvider
 import com.megalexa.util.InvalidBlockException
 
 class BlockTextToSpeech(private var textBox: String):Block {
@@ -27,7 +29,7 @@ class BlockTextToSpeech(private var textBox: String):Block {
     *  @return String
     */
     override fun getInformation(): String {
-        return "Contains personalized text"
+        return  ApplicationContextProvider.context!!.resources!!.getString(R.string.BlockTextToSpeech)
     }
 
     /* Return the text the user inserted

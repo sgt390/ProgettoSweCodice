@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ListFeedRss">FeedRSS</string>
+    <string name="ListTextBlock">Text Block</string>
+    <string name="ListPin">PIN</string>
+    <string name="ListGoogle">Google</string>
+    <string name="ListNews">News</string>
+    <string name="ListSportNews">Sport News</string>
+    <string name="ListTwitter">Twitter</string>
+    <string name="ListStockNews">Stock News</string>
+    <string name="ListWeather">Weather</string>
+    <string name="ListCryptoNews">Crypto News</string>
+    <string name="ListList">List</string>
+</resources>
