@@ -41,6 +41,7 @@ import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import org.jetbrains.anko.contentView
 import org.json.JSONObject
 import org.mortbay.util.ajax.JSON
 
@@ -60,15 +61,23 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
         val gmail = findViewById<LinearLayout>(R.id.Gmail)
         val calendar = findViewById<LinearLayout>(R.id.Calendar)
         val buttonCancel = findViewById<Button>(R.id.button_cancel_block)
+        val buttonDisconnect = findViewById<Button>(R.id.disconnect_button)
+        buttonDisconnect.visibility = View.GONE
 
+        buttonDisconnect.setOnClickListener{
+        signOut()
+        buttonDisconnect.visibility = View.GONE
+        }
         gmail.setOnClickListener {
                 startExchange()
+            buttonDisconnect.visibility = View.VISIBLE
             val fragment = MailFragment()
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
         }
         calendar.setOnClickListener {
                 startExchange()
+            buttonDisconnect.visibility = View.VISIBLE
             val fragment = CalendarFragment()
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
