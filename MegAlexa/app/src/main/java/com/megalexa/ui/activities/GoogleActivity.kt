@@ -53,6 +53,7 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
 
     lateinit var mGoogleSignInClient : GoogleSignInClient
     var accessToken : String = ""
+    var refreshToken : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,6 +96,7 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
             intent.putExtra("cardinality",sender.getCardinality())
             intent.putExtra("block_type", "Email")
             intent.putExtra("token",accessToken)
+            intent.putExtra("refreshToken",refreshToken)
             setResult(Activity.RESULT_OK,intent)
             finish()
         }else if (sender is CalendarFragment){
@@ -134,11 +136,12 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.google_client_id))
             .requestScopes(
-                Scope(Scopes.EMAIL),
+                Scope("https://www.googleapis.com/auth/gmail.readonly"),
+                //Scope(Scopes.EMAIL),
                 Scope(CalendarScopes.CALENDAR)
             )
             .requestEmail()
-            .requestServerAuthCode(getString(R.string.google_client_id), false)
+            .requestServerAuthCode(getString(R.string.google_client_id), true)
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
         val signInIntent = mGoogleSignInClient.signInIntent
@@ -146,7 +149,7 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
         return
     }
 
-    private fun exchangeTokens(account: GoogleSignInAccount) : String  {
+    private fun exchangeTokens(account: GoogleSignInAccount)  {
 
         try {
             val token = account.idToken
@@ -159,7 +162,7 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
                 .add("client_secret", getString(R.string.google_client_secret))
                 .add("grant_type", "authorization_code")
                 .add("code", authCode!!)
-                .add("requested_token_type", "urn:ietf:params:oauth:token-type:refresh_token")
+                //.add("requested_token_type", "urn:ietf:params:oauth:token-type:refresh_token")
                 .add("redirect_uri", "https://megalexa-1556132707047.firebaseapp.com/__/auth/handler")
                 .build()
 
@@ -187,7 +190,9 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
                     try {
                         if (o != null) {
                 val jsonObject = JsonParser().parse(o.body()!!.string()).getAsJsonObject()
+                            println(jsonObject.toString())
                             accessToken = jsonObject.get("access_token").asString
+                            refreshToken = jsonObject.get("refresh_token").asString
                             o.body()!!.close()
                         }
                     } catch (e: IOException) {
@@ -203,11 +208,10 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
             Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
             Log.e("ERROR", e.message, e)
         }
-        return accessToken
     }
 
     private fun signOut() {
-        mGoogleSignInClient.signOut()
+        mGoogleSignInClient.revokeAccess()
             .addOnCompleteListener(this, OnCompleteListener<Void> {
                 // ...
             })

@@ -24,9 +24,9 @@ class BlockReadEmailConversionTest:ConversionTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        val block= BlockReadEmail("token")
+        val block= BlockReadEmail("token","refresh")
         val convertedBlock= BlockReadEmailService.convertFromJSON(BlockReadEmailService.convertToJSON(block))
-        assertEquals("token",convertedBlock)
+        assertEquals(block.getToken(),convertedBlock.getToken())
     }
 
     @Test
