@@ -30,11 +30,12 @@ object WorkflowService: Service() {
                     "FeedRSS" -> BlockFeedRssService.convertFromJSON(blocks.getJSONObject(i))
                     "News" -> BlockNewsService.convertFromJSON(blocks.getJSONObject(i))
                     "PIN" -> BlockPinService.convertFromJSON(blocks.getJSONObject(i))
-                   // "ReadMail" -> BlockReadEmailService.convertFromJSON(blocks.getJSONObject(i))
+                    "Email" -> BlockReadEmailService.convertFromJSON(blocks.getJSONObject(i))
                     "Sport" -> BlockSportService.convertFromJSON(blocks.getJSONObject(i))
                     "Twitter" -> BlockTwitterService.convertFromJSON(blocks.getJSONObject(i))
                     "Weather" -> BlockWeatherService.convertFromJSON(blocks.getJSONObject(i))
                     "Filter" -> FilterService.convertFromJSON(blocks.getJSONObject(i))
+                    "Calendar" -> FilterService.convertFromJSON(blocks.getJSONObject(i))
                     "List" -> BlockListService.convertFromJSON(blocks.getJSONObject(i))
                     else -> BlockTextToSpeech("Undefined")
                 }
