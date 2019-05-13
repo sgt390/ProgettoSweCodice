@@ -19,7 +19,9 @@ import java.io.InputStreamReader
 object BlockCalendarService: BlockService() {
 
     override fun convertFromJSON(jsonObject: JSONObject): BlockCalendar {
-        return BlockCalendar("token")
+        val access_token : String = jsonObject.getJSONObject("config").getJSONObject("token").get("access_token").toString()
+        println(access_token)
+        return BlockCalendar(access_token)
     }
 
     override fun <BlockCalendar> convertToJSON(t: BlockCalendar): JSONObject {
