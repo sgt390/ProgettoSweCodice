@@ -4,11 +4,9 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import android.util.Log
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.blocks.*
 import com.megalexa.models.workflow.Workflow
-import com.megalexa.util.InvalidBlockException
 import com.megalexa.util.service.BlockWeatherService
 import com.megalexa.util.service.WorkflowService
 import org.jetbrains.anko.doAsync
@@ -16,10 +14,7 @@ import org.jetbrains.anko.doAsyncResult
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
-import java.net.UnknownHostException
-
 import java.util.*
-import com.megalexa.models.blocks.Filter as Filter
 
 class WorkflowViewModel(private val app: MegAlexa, private var workflowName:String) :ViewModel() {
 

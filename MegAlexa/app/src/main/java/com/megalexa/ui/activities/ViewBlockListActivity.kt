@@ -18,23 +18,15 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
-import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import com.megalexa.R
 import com.megalexa.ui.adapters.BlockListViewAdapter
-import com.megalexa.ui.adapters.BlockViewAdapter
 import com.megalexa.util.InjectorUtils
-import com.megalexa.util.view.ItemMoveCallback
 import com.megalexa.viewModel.ViewModelBlockList
-import com.megalexa.viewModel.WorkflowViewModel
-import kotlinx.android.synthetic.main.activity_view_block.*
 import kotlinx.android.synthetic.main.list_activity_layout.*
 import kotlin.concurrent.thread
 

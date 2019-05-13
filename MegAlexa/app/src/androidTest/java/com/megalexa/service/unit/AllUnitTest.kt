@@ -3,12 +3,8 @@ package com.megalexa.service.unit
 import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.User
-import com.megalexa.models.workflow.Workflow
 import com.megalexa.service.RestApiOperationTest
 import com.megalexa.util.service.MegAlexaService
-import com.megalexa.util.service.UserService
-import com.megalexa.util.service.WorkflowService
-import junit.framework.Assert
 import junit.framework.Assert.assertEquals
 import org.json.JSONObject
 import org.junit.Assert.assertNotEquals

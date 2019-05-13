@@ -1,10 +1,7 @@
 package com.megalexa.models.blocks
 
-import android.provider.ContactsContract.CommonDataKinds.Email
 import com.megalexa.R
-import com.megalexa.models.connectors.Connector
 import com.megalexa.util.ApplicationContextProvider
-import org.json.JSONObject
 
 class BlockReadEmail(token : String):Block,Filtrable {
     //configuration

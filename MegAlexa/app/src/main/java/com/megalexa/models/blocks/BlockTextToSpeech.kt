@@ -14,9 +14,7 @@
  */
 package com.megalexa.models.blocks
 
-import android.webkit.JsPromptResult
 import com.megalexa.util.InvalidBlockException
-import org.json.JSONObject
 
 class BlockTextToSpeech(private var textBox: String):Block {
     init{

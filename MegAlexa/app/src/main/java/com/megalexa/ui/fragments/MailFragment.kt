@@ -2,20 +2,16 @@ package com.megalexa.ui.fragments
 
 import android.app.AlertDialog
 import android.content.DialogInterface
-import android.support.v4.app.Fragment
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.NumberPicker
-import com.google.android.gms.common.SignInButton
 import com.megalexa.R
-import com.megalexa.ui.activities.CreateBlockActivity
 import com.megalexa.ui.activities.GoogleActivity
-import com.megalexa.util.service.BlockReadEmailService
-import org.jetbrains.anko.doAsync
 
 class MailFragment: Fragment(){
 

@@ -1,17 +1,13 @@
 package com.megalexa.util
 
+
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.User
-import com.megalexa.models.blocks.BlockTextToSpeech
-import com.megalexa.models.workflow.Workflow
-
-
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 
 /**
  * Instrumented test, which will execute on an Android device.

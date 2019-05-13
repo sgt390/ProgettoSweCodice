@@ -1,6 +1,5 @@
 package com.megalexa.util.service
 
-import android.util.Log
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.workflow.Workflow
 import org.json.JSONObject

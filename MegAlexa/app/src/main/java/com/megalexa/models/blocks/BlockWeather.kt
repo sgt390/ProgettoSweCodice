@@ -13,10 +13,7 @@
 
 package com.megalexa.models.blocks
 
-import android.util.Log
 import com.megalexa.R
-import com.megalexa.models.connectors.Connector
-import com.megalexa.models.connectors.ConnectorWeather
 import com.megalexa.util.ApplicationContextProvider
 import org.json.JSONObject
 

@@ -7,9 +7,7 @@ import android.util.Log
 import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.models.blocks.Filter
 import com.megalexa.models.workflow.Workflow
-import com.megalexa.util.service.UserService
 import com.megalexa.util.service.WorkflowService
-import org.json.JSONObject
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith

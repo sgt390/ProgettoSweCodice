@@ -8,7 +8,6 @@ import junit.framework.Assert.assertEquals
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.lang.NullPointerException
 
 @RunWith(AndroidJUnit4::class)
 class BlockTwitterTimelineConversionTest:ConversionTest {

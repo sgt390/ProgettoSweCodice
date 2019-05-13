@@ -2,11 +2,6 @@ package com.megalexa
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import android.util.Log
-import com.google.api.client.auth.oauth2.Credential
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
-import com.megalexa.util.service.BlockCalendarService
-import org.json.JSONObject
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith

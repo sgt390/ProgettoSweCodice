@@ -1,6 +1,5 @@
 package com.megalexa.util.service
 
-import com.megalexa.models.blocks.BlockTwitter
 import com.megalexa.models.blocks.BlockTwitterWrite
 import com.twitter.sdk.android.core.TwitterCore
 import org.json.JSONObject

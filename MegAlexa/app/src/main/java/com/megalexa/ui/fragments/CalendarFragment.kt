@@ -11,12 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.NumberPicker
 import com.megalexa.R
-import com.megalexa.ui.activities.CreateBlockActivity
 import com.megalexa.ui.activities.GoogleActivity
-import com.megalexa.util.ApplicationContextProvider.Companion.context
-import com.megalexa.util.service.BlockCalendarService
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.doAsyncResult
 
 class CalendarFragment: Fragment() {
     private var cardinality = 5

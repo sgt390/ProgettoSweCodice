@@ -11,7 +11,6 @@
  * Gian Marco Bratzu  || 2019-03-27   || creating file and header
  */
 package com.megalexa.models.blocks
-import org.json.JSONObject
 
 class BlockPin(private var pin: Int):Block {
 

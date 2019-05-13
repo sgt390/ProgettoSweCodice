@@ -10,23 +10,21 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.ContextThemeWrapper
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.User
 import com.megalexa.R
 import com.megalexa.ui.adapters.BlockViewAdapter
 import com.megalexa.util.InjectorUtils
+import com.megalexa.util.view.ItemMoveCallback
 import com.megalexa.viewModel.WorkflowViewModel
 import kotlinx.android.synthetic.main.activity_view_block.*
-import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log
-import android.widget.Toast
-import com.megalexa.util.view.ItemMoveCallback
-import kotlinx.android.synthetic.main.item_workflow.*
 
 class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
     companion object {

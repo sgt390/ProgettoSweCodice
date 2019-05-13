@@ -2,7 +2,6 @@ package com.megalexa.service.conversion
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import android.support.v4.media.session.MediaSessionCompat
 import com.megalexa.models.blocks.BlockReadEmail
 import com.megalexa.util.service.BlockReadEmailService
 import junit.framework.Assert.assertEquals

@@ -13,11 +13,9 @@
 
 package com.megalexa.models.blocks
 
-import android.util.Log
 import com.megalexa.models.connectors.Connector
 import com.megalexa.models.connectors.ConnectorNews
 import com.megalexa.util.InvalidBlockException
-import org.json.JSONObject
 
 
 class BlockNews(private val url: String): Block,Filtrable {

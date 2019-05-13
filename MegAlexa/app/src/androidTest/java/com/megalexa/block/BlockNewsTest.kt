@@ -1,10 +1,8 @@
 package com.megalexa.block
 
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.models.blocks.BlockCrypto
 import com.megalexa.models.blocks.BlockNews
 import com.megalexa.util.InvalidBlockException
-import junit.framework.Assert
 import junit.framework.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith

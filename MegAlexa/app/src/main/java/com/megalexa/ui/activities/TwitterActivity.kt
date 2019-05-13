@@ -5,14 +5,17 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.transition.TransitionManager
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.widget.*
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.PopupWindow
+import android.widget.Toast
 import com.megalexa.R
 import com.megalexa.ui.fragments.TwitterAnotherUserFragment
 import com.megalexa.ui.fragments.TwitterFragment
@@ -20,7 +23,6 @@ import com.megalexa.ui.fragments.TwitterReadTimeLineUser
 import com.megalexa.ui.fragments.WriteTweetFragment
 import com.megalexa.util.view.FragmentClickListener
 import com.twitter.sdk.android.core.*
-import com.twitter.sdk.android.core.TwitterException
 import com.twitter.sdk.android.core.identity.TwitterLoginButton
 import com.twitter.sdk.android.core.models.User
 import kotlinx.android.synthetic.main.activity_twitter.*

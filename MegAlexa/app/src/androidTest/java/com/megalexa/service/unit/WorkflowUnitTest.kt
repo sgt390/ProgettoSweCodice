@@ -5,7 +5,6 @@ import com.megalexa.models.User
 import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.service.RestApiOperationTest
-import com.megalexa.util.service.UserService
 import com.megalexa.util.service.WorkflowService
 import junit.framework.Assert.assertEquals
 import org.json.JSONObject

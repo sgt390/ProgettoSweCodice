@@ -14,9 +14,7 @@
 package com.megalexa.ui.fragments
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.DialogInterface
-import android.content.res.Resources
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.ContextThemeWrapper
@@ -28,9 +26,7 @@ import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.Toast
 import com.megalexa.R
-import com.megalexa.ui.activities.CreateBlockActivity
 import com.megalexa.ui.activities.TwitterActivity
-import com.megalexa.util.ApplicationContextProvider
 
 class TwitterFragment: Fragment() {
 

@@ -1,7 +1,6 @@
 package com.megalexa.block
 
 import android.support.test.runner.AndroidJUnit4
-import android.util.Log
 import com.megalexa.models.blocks.BlockTwitterWrite
 import org.junit.Assert.*
 import org.junit.Test

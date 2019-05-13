@@ -14,9 +14,7 @@
 
 package com.megalexa.util.service
 
-import android.util.Log
 import com.megalexa.models.blocks.BlockList
-import org.json.JSONArray
 import org.json.JSONObject
 
 object BlockListService : BlockService() {
