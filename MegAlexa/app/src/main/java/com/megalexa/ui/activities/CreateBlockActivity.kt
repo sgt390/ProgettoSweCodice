@@ -2,25 +2,18 @@ package com.megalexa.ui.activities
 
 
 import android.app.Activity
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.ListView
+import android.widget.Toast
 import com.megalexa.R
-import com.megalexa.models.blocks.BlockWeather
 import com.megalexa.ui.adapters.ListArrayAdapter
 import com.megalexa.ui.fragments.*
-import com.megalexa.util.ApplicationContextProvider.Companion.context
-import com.megalexa.util.InjectorUtils
-import com.megalexa.util.service.BlockWeatherService
 import com.megalexa.util.view.FragmentClickListener
-import com.megalexa.viewModel.MegAlexaViewModel
 import kotlinx.android.synthetic.main.activity_create_block.*
-import org.json.JSONObject
 
 
 class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentClickListener {

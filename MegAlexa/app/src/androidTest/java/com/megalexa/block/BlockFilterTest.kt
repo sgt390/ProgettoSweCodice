@@ -5,12 +5,9 @@ import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.blocks.BlockFeedRss
 import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.models.blocks.Filter
-import com.megalexa.util.service.FilterService
-
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 
 /**
  * Instrumented test, which will execute on an Android device.

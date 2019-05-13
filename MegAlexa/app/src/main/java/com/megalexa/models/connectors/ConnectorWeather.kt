@@ -17,7 +17,10 @@ package com.megalexa.models.connectors
 import com.megalexa.R
 import com.megalexa.util.ApplicationContextProvider
 import org.jetbrains.anko.doAsyncResult
-import java.io.*
+import java.io.BufferedReader
+import java.io.FileNotFoundException
+import java.io.InputStreamReader
+import java.io.Reader
 import java.net.URL
 import java.net.URLEncoder
 import javax.net.ssl.HttpsURLConnection

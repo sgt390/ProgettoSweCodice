@@ -1,6 +1,5 @@
 package com.megalexa.util.service
 
-import android.util.Log
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader

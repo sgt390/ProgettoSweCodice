@@ -13,16 +13,7 @@
 */
 
 package com.megalexa.models.connectors
-import org.xmlpull.v1.XmlPullParser
-import org.xmlpull.v1.XmlPullParserException
-import org.xmlpull.v1.XmlPullParserFactory
-import java.io.IOException
-import java.io.InputStream
-import java.net.MalformedURLException
-import java.net.URL
-import java.net.URLConnection
 import java.util.concurrent.atomic.AtomicBoolean
-import kotlin.concurrent.thread
 
 
 class ConnectorCalendar(private var email: String, private var password: String):Connector {

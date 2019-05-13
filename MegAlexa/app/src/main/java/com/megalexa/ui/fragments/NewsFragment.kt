@@ -24,10 +24,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.NumberPicker
+import android.widget.TextView
 import com.megalexa.R
 import com.megalexa.ui.activities.CreateBlockActivity
-import android.widget.TextView
-import com.megalexa.models.connectors.ConnectorNews
 
 class NewsFragment : Fragment() {
     private var url = ""

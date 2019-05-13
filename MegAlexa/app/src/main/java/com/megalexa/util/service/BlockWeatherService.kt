@@ -2,9 +2,7 @@ package com.megalexa.util.service
 
 
 
-import android.util.Log
 import com.megalexa.models.blocks.BlockWeather
-import org.jetbrains.anko.doAsyncResult
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader

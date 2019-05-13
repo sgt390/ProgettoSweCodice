@@ -2,7 +2,6 @@ package com.megalexa.models.blocks
 
 import com.megalexa.R
 import com.megalexa.util.ApplicationContextProvider
-import org.json.JSONObject
 
 class BlockCalendar(token :String): Block, Filtrable {
     //configuration

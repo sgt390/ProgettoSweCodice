@@ -2,7 +2,6 @@ package com.megalexa.models.workflow
 
 
 import com.megalexa.models.blocks.Block
-import kotlin.collections.ArrayList
 
 class Workflow(private val name:String) {
     private  var  blockList: ArrayList<Block> = ArrayList()

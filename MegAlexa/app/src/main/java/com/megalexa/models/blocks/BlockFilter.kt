@@ -1,7 +1,5 @@
 package com.megalexa.models.blocks
 
-import org.json.JSONObject
-
 /*
     Check if predecessor is Filtrable in Workflow class!
  */

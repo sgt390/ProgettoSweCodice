@@ -2,7 +2,6 @@ package com.megalexa.models.blocks
 
 import com.megalexa.R
 import com.megalexa.util.ApplicationContextProvider
-import org.json.JSONObject
 
 class BlockTwitterHomeTL (): Block,Filtrable {
     private val consumer_key = ApplicationContextProvider.context!!.getResources()!!.getString(R.string.consumer_api_key_twitter)//"INSERT CONSUMER API KEYS"

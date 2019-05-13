@@ -5,7 +5,6 @@ import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.MegAlexa
 import com.megalexa.util.service.MegAlexaService
 import junit.framework.Assert.assertEquals
-import org.json.JSONObject
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith

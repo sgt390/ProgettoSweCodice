@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -16,33 +15,21 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.SignInButton
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
-import com.megalexa.R
-import kotlinx.android.synthetic.main.mail_fragment_layout.*
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.api.client.json.jackson2.JacksonFactory
-import com.google.api.services.calendar.CalendarScopes
-import com.megalexa.util.ApplicationContextProvider
-
 import com.google.android.gms.common.Scopes
+import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.Scope
-import com.google.gson.Gson
-import com.google.gson.JsonObject
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.api.services.calendar.CalendarScopes
 import com.google.gson.JsonParser
+import com.megalexa.R
 import com.megalexa.ui.fragments.CalendarFragment
 import com.megalexa.ui.fragments.MailFragment
-import com.megalexa.util.service.JSONConverter
 import com.megalexa.util.view.FragmentClickListener
-import kotlinx.android.synthetic.main.activity_google.*
-import java.io.IOException
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
-import org.json.JSONObject
-import org.mortbay.util.ajax.JSON
+import java.io.IOException
 
 
 const val RC_SIGN_IN = 123
@@ -199,11 +186,11 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
 
     private fun signOut() {
         mGoogleSignInClient.signOut()
-            .addOnCompleteListener(this, OnCompleteListener<Void> {
+            .addOnCompleteListener(this, {
                 // ...
             })
     }
-    public fun getToken() : String{
+    fun getToken() : String{
         return accessToken
     }
 

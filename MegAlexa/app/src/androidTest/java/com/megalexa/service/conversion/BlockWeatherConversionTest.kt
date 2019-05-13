@@ -5,11 +5,10 @@ import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.blocks.BlockWeather
 import com.megalexa.util.service.BlockWeatherService
 import org.json.JSONObject
-
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 
 @RunWith(AndroidJUnit4::class)
 class BlockWeatherConversionTest: ConversionTest {

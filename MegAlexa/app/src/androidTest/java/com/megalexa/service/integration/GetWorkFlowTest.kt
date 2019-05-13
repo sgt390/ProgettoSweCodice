@@ -3,18 +3,11 @@ package com.megalexa.service.integration
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import android.util.Log
-import com.megalexa.models.connectors.ConnectorSport
-import com.megalexa.models.workflow.Workflow
-import com.megalexa.util.service.UserService
 import com.megalexa.util.service.WorkflowService
 import org.json.JSONArray
-import org.json.JSONObject
-
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 
 /**
  * Instrumented test, which will execute on an Android device.

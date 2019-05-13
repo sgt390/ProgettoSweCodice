@@ -1,32 +1,31 @@
 package com.megalexa.ui.activities
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
-import android.view.MenuItem
-import android.view.View
-import com.megalexa.R
-import kotlinx.android.synthetic.main.activity_workflow.*
-import android.content.Intent
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.ContextThemeWrapper
+import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import com.amazon.identity.auth.device.AuthError
 import com.amazon.identity.auth.device.api.Listener
 import com.amazon.identity.auth.device.api.authorization.AuthorizationManager
 import com.amazon.identity.auth.device.api.authorization.User
+import com.megalexa.R
 import com.megalexa.ui.adapters.WorkflowViewAdapter
-import kotlinx.android.synthetic.main.activity_general_logged.*
 import com.megalexa.util.InjectorUtils
 import com.megalexa.viewModel.MegAlexaViewModel
+import kotlinx.android.synthetic.main.activity_general_logged.*
+import kotlinx.android.synthetic.main.activity_workflow.*
 
 
 class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {

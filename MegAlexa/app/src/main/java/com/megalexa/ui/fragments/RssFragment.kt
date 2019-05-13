@@ -27,8 +27,8 @@ import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.Toast
 import com.megalexa.R
-import com.megalexa.ui.activities.CreateBlockActivity
 import com.megalexa.models.connectors.ConnectorFeedRss
+import com.megalexa.ui.activities.CreateBlockActivity
 
 class RssFragment : Fragment() {
     private var url=""

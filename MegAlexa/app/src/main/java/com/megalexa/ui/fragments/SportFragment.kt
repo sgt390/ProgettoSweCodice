@@ -22,12 +22,11 @@ import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.NumberPicker
 import com.megalexa.R
 import com.megalexa.ui.activities.CreateBlockActivity
-import com.megalexa.models.connectors.ConnectorSport
-import org.jetbrains.anko.support.v4.find
-import org.jetbrains.anko.support.v4.findOptional
 
 class SportFragment : Fragment() {
     private var url = ""
