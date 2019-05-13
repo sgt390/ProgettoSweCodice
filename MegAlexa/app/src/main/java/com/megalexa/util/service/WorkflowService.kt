@@ -35,7 +35,7 @@ object WorkflowService: Service() {
                     "Twitter" -> BlockTwitterService.convertFromJSON(blocks.getJSONObject(i))
                     "Weather" -> BlockWeatherService.convertFromJSON(blocks.getJSONObject(i))
                     "Filter" -> FilterService.convertFromJSON(blocks.getJSONObject(i))
-                    "Calendar" -> FilterService.convertFromJSON(blocks.getJSONObject(i))
+                    "calendar" -> FilterService.convertFromJSON(blocks.getJSONObject(i))
                     "List" -> BlockListService.convertFromJSON(blocks.getJSONObject(i))
                     else -> BlockTextToSpeech("Undefined")
                 }
