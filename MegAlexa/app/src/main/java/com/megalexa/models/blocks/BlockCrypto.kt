@@ -13,8 +13,10 @@
 
 package com.megalexa.models.blocks
 
+import com.megalexa.R
 import com.megalexa.models.connectors.Connector
 import com.megalexa.models.connectors.ConnectorCrypto
+import com.megalexa.util.ApplicationContextProvider
 import com.megalexa.util.InvalidBlockException
 
 
@@ -46,7 +48,7 @@ class BlockCrypto(private val url: String): Block,Filtrable {
      *
      */
     override fun getInformation():String {
-        return " Crypto news"
+        return  ApplicationContextProvider.context!!.resources!!.getString(R.string.BlockCrypto)
     }
 
     fun url()= url

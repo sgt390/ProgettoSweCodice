@@ -29,7 +29,7 @@ class BlockWeather(private val openWeatherObj : JSONObject): Block {
      *
      */
     override fun getInformation():String {
-        return "Weather"
+        return ApplicationContextProvider.context!!.resources!!.getString(R.string.BlockWeather)
     }
 
         fun getAPIKey(): String? {

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="BlockBorsa">Blocco-Borsa riferito a</string>
+    <string name="BlockCalendar">Blocco-Calendario</string>
+    <string name="BlockCrypto">News sulle Cryptovalute</string>
+    <string name="BlockFeedRss">Feed RSS</string>
+    <string name="BlockFilter">Filtra un blocco per</string>
+    <string name="Items">elementi</string>
+    <string name="BlockList">Lista</string>
+    <string name="BlockNews">News</string>
+    <string name="BlockPin">PIN</string>
+    <string name="BlockReadEmail">Blocco per leggere le proprie mail</string>
+    <string name="BlockSport">News sullo Sport</string>
+    <string name="BlockTextToSpeech">Contiene testo personalizzato</string>
+    <string name="BlockTwitter">Aggiunto blocco Twitter-user</string>
+    <string name="BlockTwitterHashtag">Aggiunto blocco Twitter-hashtag</string>
+    <string name="BlockTwitterHomeTimeL">Aggiunto blocco Twitter-home</string>
+    <string name="BlockTwitterWrite">Aggiunto blocco Twitter-write</string>
+    <string name="BlockWeather">Meteo</string>
+</resources>

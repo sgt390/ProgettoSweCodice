@@ -13,8 +13,10 @@
 
 package com.megalexa.models.blocks
 
+import com.megalexa.R
 import com.megalexa.models.connectors.Connector
 import com.megalexa.models.connectors.ConnectorBorsa
+import com.megalexa.util.ApplicationContextProvider
 import com.megalexa.util.InvalidBlockException
 
 
@@ -46,7 +48,8 @@ class BlockBorsa(private val url: String): Block,Filtrable {
      *
      */
     override fun getInformation():String {
-        return "Feed Borsa block created for $url URL "
+        val message= ApplicationContextProvider.context!!.resources!!.getString(R.string.BlockBorsa)
+        return "$message $url + URL "
     }
 
     fun url()= url

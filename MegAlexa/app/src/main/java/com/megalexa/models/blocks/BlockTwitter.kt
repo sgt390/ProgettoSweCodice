@@ -19,7 +19,7 @@ import com.megalexa.util.ApplicationContextProvider
 
 class BlockTwitter(private val screenName: String): Block,Filtrable {
 
-    private val consumer_key = ApplicationContextProvider.context!!.getResources()!!.getString(R.string.consumer_api_key_twitter)//"INSERT CONSUMER API KEYS"
+    private val consumer_key = ApplicationContextProvider.context!!.resources!!.getString(R.string.consumer_api_key_twitter)//"INSERT CONSUMER API KEYS"
     private val consumer_secret = ApplicationContextProvider.context!!.resources!!.getString(R.string.consumer_api_key_secret_twitter) //"INSERT CONSUMER API KEYS SECRET"
     private val access_token_key = ApplicationContextProvider.context!!.resources!!.getString(R.string.access_token_twitter)//"INSERT ACCESS TOKEN"
     private val access_token_secret = ApplicationContextProvider.context!!.resources!!.getString(R.string.access_token_secret_twitter)//"INSERT ACCESS TOKEN SECRET"
@@ -30,7 +30,7 @@ class BlockTwitter(private val screenName: String): Block,Filtrable {
     //private val access_token_secret =" "
 
     override fun getInformation():String {
-        return "Twitter user block created"
+        return ApplicationContextProvider.context!!.resources!!.getString(R.string.BlockTwitter)
     }
 
     fun getAccessKey()=access_token_key
