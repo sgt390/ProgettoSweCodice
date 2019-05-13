@@ -37,22 +37,16 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_block)
         supportActionBar?.hide()
-        val title: String?
+        val extras :Bundle? = intent.extras
+        val title: String?= extras!!.getString("WORKFLOW_NAME")
 
-        if(savedInstanceState == null){
-
-            val extras :Bundle? = intent.extras
-            if(extras==null){
-                title="EXTRAS NULLI"
-            } else {
-                title= extras.getString("WORKFLOW_NAME")
-            }
-        }else{
-            title= savedInstanceState.getSerializable("WORKFLOW_NAME") as String
+        if(title!= null) {
+            workflow_title.text= title
         }
+        
         rec_view=findViewById(R.id.recyclerView_addedBlocksView)
         rec_view.layoutManager= LinearLayoutManager(this)
-        workflow_title.text= title
+
         val factory= InjectorUtils.provideWorkflowViewModelFactory(title!!)
 
         viewModel = ViewModelProviders.of(this,factory).get(WorkflowViewModel::class.java)
