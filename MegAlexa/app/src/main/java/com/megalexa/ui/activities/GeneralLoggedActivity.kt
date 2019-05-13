@@ -160,7 +160,7 @@ class GeneralLoggedActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
             with(builder) {
 
-                setTitle("Delete Workflow")
+                setTitle("Delete workflow")
                 setPositiveButton("Confirm", confirmDeletion)
                 setNegativeButton("Cancel", cancelDeletion)
             }

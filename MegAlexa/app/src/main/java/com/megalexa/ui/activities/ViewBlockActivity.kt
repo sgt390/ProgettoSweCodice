@@ -121,7 +121,7 @@ class ViewBlockActivity:AppCompatActivity(), View.OnClickListener {
         val edit=alertDialog.findViewById<EditText>(R.id.dialog_edit)
 
         with(builder){
-            setTitle("Change Workflow Name")
+            setTitle("Change workflow name")
             setView(alertDialog)
             setPositiveButton("OK",object: DialogInterface.OnClickListener{
                 override fun onClick(dialog: DialogInterface?, which: Int) {
