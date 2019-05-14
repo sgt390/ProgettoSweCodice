@@ -1,14 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: BlockCrypto
+ *  Version: 1.0
+ *  Date: 2019-03-08
+ *  Author: Ludovico Brocca
  *  License:
  *  History:
- *  Author        || Date            || Description
- * /
- *
+ *  Author            || Date            || Description
+ *  Ludovico Brocca   || 2019-03-08      || File created
+ *  Mirko Franco      || 2019-03-10   || Verifying code
  */
 
 

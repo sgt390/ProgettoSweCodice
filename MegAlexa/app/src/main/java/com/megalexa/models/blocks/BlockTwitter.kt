@@ -1,14 +1,14 @@
 /*
 * File: BlockTwitter.kt
 * Version: 1.0.0
-* Date:
+* Date: 2019-04-05
 * Author: Gian Marco Bratzu
 * License:
 *
 * History:
 * Author                || Date         || Description
-* Gian Marco Bratzu     ||    || Writing class BlockTwitter
-
+* Gian Marco Bratzu     || 2019-04-15   || Writing class BlockTwitter
+* Mirko Franco          || 2019-04-17   || Verifying code
 */
 
 package com.megalexa.models.blocks

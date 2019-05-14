@@ -1,13 +1,15 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: Connector.kt
+ *  Version: 1.0.0
+ *  Date: 2019-02-17
+ *  Author: Ludovico Brocca
  *  License:
  *  History:
- *  Author        || Date            || Description
- * /
+ *  Author          || Date            || Description
+ *  Ludovico Brocca || 2019-02-17      || File created
+ *  Mirko Franco    || 2019-02-23   || Verifying code
+ *
  *
  */
 

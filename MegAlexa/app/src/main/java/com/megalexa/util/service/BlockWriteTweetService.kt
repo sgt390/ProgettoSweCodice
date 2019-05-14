@@ -1,15 +1,17 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: BlockWriteTweetService.kt
+ *  Version: 1.0.0
+ *  Date: 2019-04-20
+ *  Author: Andrea Deidda
  *  License:
  *  History:
  *  Author        || Date            || Description
- * /
+ *  Andrea Deidda || 2019-04-20      || File created
+ *  Mirko Franco  || 2019-04-27      || Verifying code
  *
  */
+
 
 package com.megalexa.util.service
 

@@ -9,7 +9,7 @@
 * History:
 * Author                || Date         || Description
 * Gian Marco Bratzu     || 2019-03-19   || Writing class ConnectorCalendar
-*      ||    || Verifying code
+*  ||    || Verifying code
 */
 
 package com.megalexa.models.connectors

@@ -9,7 +9,7 @@
 * History:
 * Author                || Date         || Description
 * Gian Marco Bratzu     || 2019-03-18   || Writing class ConnectorWeather
-*      ||    || Verifying code
+* Mirko Franco          || 2019-03-24   || Verifying code
 */
 
 package com.megalexa.models.connectors

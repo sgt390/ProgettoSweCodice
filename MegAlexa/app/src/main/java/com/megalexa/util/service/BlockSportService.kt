@@ -1,13 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: BlockSportService.kt
+ *  Version: 1.0.0
+ *  Date: 2019-03-12
+ *  Author: Ludovico Brocca
  *  License:
  *  History:
- *  Author        || Date            || Description
- * /
+ *  Author          || Date            || Description
+ *  Ludovico Brocca || 2019-03-12      || File created
+ *  Mirko Franco    || 2019-03-19      || Verifying code
  *
  */
 

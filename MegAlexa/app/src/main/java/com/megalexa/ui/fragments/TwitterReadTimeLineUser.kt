@@ -1,14 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: TwiiterReadTimeLineUser.kt
+ *  Version: 1.0.0
+ *  Date: 2019-03-27
+ *  Author: Andrea Deidda
  *  License:
  *  History:
  *  Author        || Date            || Description
- * /
- *
+ *  Andrea Deidda || 2019-03-27      || File created
+ *  Mirko Franco  || 2019-03-30      || Verifying code
  */
 
 package com.megalexa.ui.fragments

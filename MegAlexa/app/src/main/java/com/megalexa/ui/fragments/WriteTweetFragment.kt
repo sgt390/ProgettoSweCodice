@@ -1,13 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: WriteTwitterFragment.kt
+ *  Version: 1.0.0
+ *  Date: 2019-03-27
+ *  Author: Mirko Franco
  *  License:
  *  History:
  *  Author        || Date            || Description
- * /
+ *  Mirko Franco  || 2019-03-27      || File created
+ *  Andrea Deidda || 2019-03-30      || Verifying code
  *
  */
 

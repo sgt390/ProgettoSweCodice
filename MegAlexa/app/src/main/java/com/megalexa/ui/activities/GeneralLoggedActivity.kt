@@ -1,3 +1,17 @@
+/*
+ *
+ *  File name: GeneralLoggedActivity
+ *  Version: 1.0.0
+ *  Date: 2019-03-01
+ *  Author: Ludovico Brocca
+ *  License:
+ *  History:
+ *  Author           || Date            || Description
+ *  Mirko Franco     || 2019-02-23      || File created
+ *  Matteo Depascale || 2019-03-07      || Verifying code
+ *
+ */
+
 package com.megalexa.ui.activities
 
 import android.app.Activity

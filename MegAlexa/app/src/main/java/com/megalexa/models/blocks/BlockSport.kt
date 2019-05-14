@@ -1,14 +1,14 @@
 /*
 * File: BlockSport.kt
 * Version: 1.0.0
-* Date:
+* Date: 2019-02-18
 * Author: Gian Marco Bratzu
 * License:
 *
 * History:
 * Author                || Date         || Description
-* Gian Marco Bratzu     ||    || Writing class BlockSport
-
+* Gian Marco Bratzu     || 2019-02-18   || Writing class BlockSport
+* Matteo Depascale      || 2019-02-23   || Verifying code
 */
 
 package com.megalexa.models.blocks

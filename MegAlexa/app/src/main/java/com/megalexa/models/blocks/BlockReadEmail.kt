@@ -1,13 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: BlockReadMail.kt
+ *  Version: 1.0.0
+ *  Date: 2019-05-02
+ *  Author: Gian Marco Bratzu
  *  License:
  *  History:
- *  Author        || Date            || Description
- * /
+ *  Author            || Date            || Description
+ *  Gian Marco Bratzu || 2019-05-02      || File created
+ *  Mirko Franco     || 2019-05-05       || Verifying code
  *
  */
 

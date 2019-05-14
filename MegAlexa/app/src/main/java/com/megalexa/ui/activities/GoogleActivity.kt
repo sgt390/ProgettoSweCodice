@@ -1,13 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
+ *  File name: GoogleActivity.kt
+ *  Version: 1.0.0
+ *  Date: 2019-05-07
  *  Author:
  *  License:
  *  History:
- *  Author        || Date            || Description
- * /
+ *  Author            || Date            || Description
+ *  Gian Marco Bratzu || 2019-05-07      || File created
+ *  Mirko Franco      || 2019-05-13      || Verifying code
  *
  */
 

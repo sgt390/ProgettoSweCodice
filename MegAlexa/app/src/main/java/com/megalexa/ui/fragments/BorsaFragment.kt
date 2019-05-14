@@ -9,7 +9,7 @@
 * History:
 * Author                || Date         || Description
 * Ludovico Brocca       || 2019-02-18   || Writing class RssFragment
-*                       ||              ||
+* Andrea Deidda         || 2019-02-25   || Verifying code
 */
 
 package com.megalexa.ui.fragments

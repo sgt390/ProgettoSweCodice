@@ -1,13 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: TwitterAcitivity.kt
+ *  Version: 1.0.0
+ *  Date: 2019-04-09
+ *  Author: Andrea Deidda
  *  License:
  *  History:
  *  Author        || Date            || Description
- * /
+ *  Andrea Deidda || 2019-04-09      || File created
+ *  Mirko Franco  || 2019-04-13      || Verifying code
  *
  */
 

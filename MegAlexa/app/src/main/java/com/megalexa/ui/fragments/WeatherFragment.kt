@@ -1,13 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: WeatherFragment.kt
+ *  Version: 1.0.0
+ *  Date: 2019-03-15
+ *  Author: Ludovico Brocca
  *  License:
  *  History:
- *  Author        || Date            || Description
- * /
+ *  Author           || Date            || Description
+ *  Ludovico Brocca  || 2019-03-15      || File created
+ *  Andrea Deidda    || 2019-03-22      || Verifying code
  *
  */
 

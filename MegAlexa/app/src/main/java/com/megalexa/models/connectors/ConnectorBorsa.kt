@@ -1,15 +1,15 @@
 /*
-* File: ConnectorFeedRss.kt
+* File: ConnectorBorsa.kt
 * Version: 1.0.0
-* Date: 2019-03-18
+* Date: 2019-02-17
 * Author: Gian Marco Bratzu
 *
 * License:
 *
 * History:
 * Author                || Date         || Description
-* Gian Marco Bratzu     || 2019-03-19   || Writing class ConnectorBorsa
-*      ||    || Verifying code
+* Gian Marco Bratzu     || 2019-02-17   || Writing class ConnectorBorsa
+* Matteo Depascale      || 2019-02-23   || Verifying code
 */
 
 package com.megalexa.models.connectors

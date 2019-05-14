@@ -1,15 +1,15 @@
 /*
 * File: TwitterAnotherUserFragment.kt
 * Version: 1.0.0
-* Date: 2019-03-27
+* Date: 2019-04-27
 * Author: Andrea Deidda
 *
 * License:
 *
 * History:
 * Author                || Date         || Description
-* Andrea Deidda         || 2019-04-26   || Create class TwitterAnotherUserFragment
-*                       ||              ||
+* Andrea Deidda         || 2019-04-27   || Create class TwitterAnotherUserFragment
+* Mirko Franco          || 2019-04-30   || Verifying code
 */
 package com.megalexa.ui.fragments
 

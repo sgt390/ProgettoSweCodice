@@ -1,16 +1,16 @@
 /*
-* File: RssFragment.kt
-* Version: 1.0.0
-* Date: 2019-02-18
-* Author: Ludovico Brocca
-*
-* License:
-*
-* History:
-* Author                || Date         || Description
-* Ludovico Brocca       || 2019-02-18   || Writing class RssFragment
-*                       ||              ||
-*/
+ *
+ *  File name: CryptoFragment.kt
+ *  Version: 1.0.0
+ *  Date: 2019-03-05
+ *  Author: Andrea Deidda
+ *  License:
+ *  History:
+ *  Author        || Date            || Description
+ *  Andrea Deidda || 2019-03-05      || File created
+ *  Bianca Ciuche || 2019-03-10      || Verifying code
+ *
+ */
 
 package com.megalexa.ui.fragments
 

@@ -1,14 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: BlockTwitterWrite.kt
+ *  Version: 1.0.0
+ *  Date: 2019-04-16
+ *  Author: Mirko Franco
  *  License:
  *  History:
- *  Author        || Date            || Description
- * /
- *
+ *  Author            || Date            || Description
+ *  Mirko Franco      || 2019-04-16      || File created
+ *  Gian Marco Bratzu || 2019-04-17   || Verifying code
  */
 
 package com.megalexa.models.blocks

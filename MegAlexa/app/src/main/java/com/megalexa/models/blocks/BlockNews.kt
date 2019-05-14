@@ -1,14 +1,15 @@
 /*
 * File: BlockNews.kt
 * Version: 1.0.0
-* Date:
+* Date: 2019-02-17
 * Author: Gian Marco Bratzu
 * License:
 *
 * History:
 * Author                || Date         || Description
-* Gian Marco Bratzu     ||    || Writing class BlockNews
-
+* Gian Marco Bratzu     || 2019-02-17   || Writing class BlockNews
+* Matteo Depascale      || 2019-02-23   || Verifying code
+*
 */
 
 package com.megalexa.models.blocks

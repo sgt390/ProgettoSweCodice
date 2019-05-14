@@ -1,13 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
+ *  File name: BlockCryptoService.kt
+ *  Version: 1.0.0
+ *  Date: 2019-03-12
  *  Author:
  *  License:
  *  History:
- *  Author        || Date            || Description
- * /
+ *  Author          || Date            || Description
+ *  Ludovico Brocca || 2019-03-12      || File created
+ *  Mirko Franco    || 2019-03-19      || Verifying code
  *
  */
 

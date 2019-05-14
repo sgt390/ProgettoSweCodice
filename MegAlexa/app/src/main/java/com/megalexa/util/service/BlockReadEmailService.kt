@@ -1,9 +1,9 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: BlockReadEmailService.kt
+ *  Version: 1.0.0
+ *  Date: 2019-05-05
+ *  Author: Gian Marco Brarzu
  *  License:
  *  History:
  *  Author        || Date            || Description

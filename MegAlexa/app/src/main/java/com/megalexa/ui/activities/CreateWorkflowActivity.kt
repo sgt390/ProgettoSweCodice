@@ -1,13 +1,16 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: CreateWorkflowActivity
+ *  Version: 2.0.0
+ *  Date: 2019-03-01
+ *  Author: Ludovico Brocca
  *  License:
  *  History:
- *  Author        || Date            || Description
- * /
+ *  Author           || Date            || Description
+ *  Ludovico Brocca  || 2019-03-01      || File created
+ *  Matteo Depascale || 2019-03-07      || Verifying code
+ *  Ludovico Brocca  || 2019-04-11      || Add all blocks
+ *  Mirko Franco     || 2019-04-17      || Verifying code
  *
  */
 

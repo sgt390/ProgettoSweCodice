@@ -1,13 +1,14 @@
 /*
 * File: BlockWeather.kt
 * Version: 1.0.0
-* Date:
+* Date: 2019-03-02
 * Author: Gian Marco Bratzu
 * License:
 *
 * History:
 * Author                || Date         || Description
-* Gian Marco Bratzu     ||    || Writing class BlockWeather
+* Gian Marco Bratzu     || 2019-03-02   || Writing class BlockWeather
+* Mirko Franco          || 2019-03-10   || Verifying code
 
 */
 

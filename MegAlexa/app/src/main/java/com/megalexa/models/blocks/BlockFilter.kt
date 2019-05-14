@@ -1,13 +1,15 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: BlockFiler.kt
+ *  Version: 1.0
+ *  Date: 2019-02-05
+ *  Author: Mirko Franco
  *  License:
  *  History:
- *  Author        || Date            || Description
- * /
+ *  Author          || Date            || Description
+ *  Mirko Franco    || 2019-02-05      || File created
+ *  Ludovico Brocca || 2019-02-23      || Verifying code
+ *
  *
  */
 

@@ -8,8 +8,8 @@
 *
 * History:
 * Author                || Date         || Description
-* Matteo Depascale      || 2019-02-17   || Create file
-*                       ||              ||
+* Matteo Depascale      || 2019-04-27   || Create file
+* Mirko Franco          || 2019-05-02   || Verifying code
 */
 
 package com.megalexa.models.blocks

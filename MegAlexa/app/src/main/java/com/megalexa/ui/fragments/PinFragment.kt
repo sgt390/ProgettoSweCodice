@@ -9,7 +9,7 @@
 * History:
 * Author                || Date         || Description
 * Ludovico Brocca       || 2019-03-27   || Writing class PinFragment
-*                       ||              ||
+* Bianca Ciuche         || 2019-04-04   || Verifying code
 */
 
 package com.megalexa.ui.fragments

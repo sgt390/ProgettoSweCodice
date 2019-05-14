@@ -9,7 +9,7 @@
 * History:
 * Author                || Date         || Description
 * Andrea Deidda         || 2019-03-27   || Create class NewsFragment
-*                       ||              ||
+* Bianca Ciuche         || 2019-04-04   || Verifying code
 */
 
 package com.megalexa.ui.fragments

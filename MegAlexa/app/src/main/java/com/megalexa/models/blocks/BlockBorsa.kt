@@ -1,14 +1,14 @@
 /*
 * File: BlockBorsa.kt
 * Version: 1.0.0
-* Date:
+* Date: 2019-02-17
 * Author: Gian Marco Bratzu
 * License:
 *
 * History:
 * Author                || Date         || Description
-* Gian Marco Bratzu     ||    || Writing class BlockBorsa
-
+* Gian Marco Bratzu     || 2019-02-17   || Writing class BlockBorsa
+* Matteo Depascale      || 2019-02-23   || Verifying code
 */
 
 package com.megalexa.models.blocks

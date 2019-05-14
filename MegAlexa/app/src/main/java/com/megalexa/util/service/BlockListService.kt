@@ -1,17 +1,4 @@
 /*
- *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
- *  License:
- *  History:
- *  Author        || Date            || Description
- * /
- *
- */
-
-/*
 * File: BlockListService.kt
 * Version: 1.0.0
 * Date: 2019-04-27
@@ -21,8 +8,8 @@
 *
 * History:
 * Author                || Date         || Description
-* Matteo Depascale      || 2019-02-17   || Create file
-*                       ||              ||
+* Matteo Depascale      || 2019-04-27   || Create file
+* Andrea Deidda         || 2019-05-02   || Verifying code
 */
 
 package com.megalexa.util.service

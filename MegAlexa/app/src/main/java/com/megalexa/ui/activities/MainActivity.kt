@@ -1,13 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: MainActivity.kt
+ *  Version: 1.0.0
+ *  Date: 2019-01-25
+ *  Author: Mirko Franco
  *  License:
  *  History:
- *  Author        || Date            || Description
- * /
+ *  Author           || Date            || Description
+ *  Mirko Franco     || 2019-01-25      || File created
+ *  Stefano Zanatta  || 2019-03-01      || Verifying code
  *
  */
 

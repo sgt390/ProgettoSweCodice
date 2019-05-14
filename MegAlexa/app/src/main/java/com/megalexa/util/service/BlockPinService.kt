@@ -1,13 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: BlockPinService.kt
+ *  Version: 1.0.0
+ *  Date: 2019-03-10
+ *  Author: Ludovico Brocca
  *  License:
  *  History:
- *  Author        || Date            || Description
- * /
+ *  Author            || Date            || Description
+ *  Ludovico Broccca  || 2019-03-10      || File created
+ *  Andrea Deidda     || 2019-03-20      || Verifying code
  *
  */
 

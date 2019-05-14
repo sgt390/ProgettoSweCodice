@@ -9,6 +9,7 @@
  * History:
  * Author             || Date         || Description
  * Gian Marco Bratzu  || 2019-03-27   || creating file and header
+ * Andrea Deidda      || 2019-04-02   || Verifying code
  */
 package com.megalexa.models.blocks
 

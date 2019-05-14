@@ -1,13 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: ListFragment.kt
+ *  Version: 1.0.0
+ *  Date: 2019-03-05
+ *  Author: Andrea Deidda
  *  License:
  *  History:
  *  Author        || Date            || Description
- * /
+ *  Andrea Deidda || 2019-03-05      || File created
+ *  Bianca Ciuche || 2019-03-10      || Verifying code
  *
  */
 

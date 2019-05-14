@@ -1,13 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
+ *  File name: BlockCalendarService.kt
+ *  Version: 1.0.0
+ *  Date: 2019-05-02
  *  Author:
  *  License:
  *  History:
- *  Author        || Date            || Description
- * /
+ *  Author            || Date            || Description
+ *  Gian Marco Bratzu || 2019-05-02      || File created
+ *  Mirko Franco      || 2019-05-04      || Verifying code
  *
  */
 

@@ -1,15 +1,17 @@
 /*
- *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
- *  License:
- *  History:
- *  Author        || Date            || Description
- * /
- *
- */
+* File: RssFragment.kt
+* Version: 1.0.0
+* Date: 2019-02-19
+* Author: Andrea Deidda
+*
+* License:
+*
+* History:
+* Author                || Date         || Description
+* Andrea Deidda         || 2019-02-19   || Writing class RssFragment
+* Bianca Ciuche         || 2019-01-24   || Verifying code
+*/
+
 
 package com.megalexa.ui.fragments
 

@@ -1,13 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: CryptoFragment.kt
+ *  Version: 1.0.0
+ *  Date: 2019-03-05
+ *  Author: Andrea Deidda
  *  License:
  *  History:
  *  Author        || Date            || Description
- * /
+ *  Andrea Deidda || 2019-04-20      || File created
+ *  Bianca Ciuche || 2019-04-29     || Verifying code
  *
  */
 

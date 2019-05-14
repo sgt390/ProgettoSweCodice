@@ -1,18 +1,18 @@
-package com.megalexa.ui.adapters
-
 /*
-* File: ListArrayAdapter.kt
-* Version: 1.0.0
-* Date: 2019-02-17
-* Author: Ludovico Brocca
-*
-* License:
-*
-* History:
-* Author                || Date         || Description
-* Ludovico Brocca       || 2019-02-17   || Writing class ListArrayAdapter
-*                       ||              ||
-*/
+ *
+ *  File name: BlockViewListAdapter.kt
+ *  Version: 1.0.0
+ *  Date: 2019-03-20
+ *  Author: Ludovico Brocca
+ *  License:
+ *  History:
+ *  Author            || Date            || Description
+ *  Ludovico Brocca   || 2019-03-20      || File created
+ *  Gian Marco Bratzu || 2019-03-24      || Verifying code
+ *
+ */
+
+package com.megalexa.ui.adapters
 
 
 import android.content.Context

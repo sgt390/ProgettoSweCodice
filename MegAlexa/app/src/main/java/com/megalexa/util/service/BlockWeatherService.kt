@@ -1,13 +1,14 @@
 /*
  *
- *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  File name: BlockWeatherService.kt
+ *  Version: 1.0.0
+ *  Date: 2019-03-15
+ *  Author: Ludovico Brocca
  *  License:
  *  History:
- *  Author        || Date            || Description
- * /
+ *  Author            || Date            || Description
+ *  Ludovico Brocca   || 2019-03-15      || File created
+ *  Gian Marco Bratzu || 2019-03-20      || Verifying code
  *
  */
 

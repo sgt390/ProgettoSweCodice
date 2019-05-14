@@ -1,14 +1,14 @@
 /*
  *
  *  File name:
- *  Version:
- *  Date:
- *  Author:
+ *  Version: 1.0.0
+ *  Date: 2019-02-20
+ *  Author: Mirko Franco
  *  License:
  *  History:
- *  Author        || Date            || Description
- * /
- *
+ *  Author          || Date            || Description
+ *  Mirko Franco    || 2019-02-20      || File created
+ *  Ludovico Brocca || 2019-02-27      || Verifying code
  */
 
 package com.megalexa.models

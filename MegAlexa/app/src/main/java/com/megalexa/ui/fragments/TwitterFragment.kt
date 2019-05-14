@@ -9,7 +9,7 @@
 * History:
 * Author                || Date         || Description
 * Andrea Deidda         || 2019-03-27   || Create class TwitterFragment
-*                       ||              ||
+* Mirko Franco          || 2019-03-30   || Verifying code
 */
 package com.megalexa.ui.fragments
 
