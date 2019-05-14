@@ -4,7 +4,7 @@ import com.megalexa.R
 import com.megalexa.R.string
 import com.megalexa.util.ApplicationContextProvider
 
-class BlockReadEmail(token : String):Block,Filtrable {
+class BlockReadEmail(token : String,refreshToken:String):Block,Filtrable {
     //configuration
     private val auth_provider_url = "https://www.googleapis.com/oauth2/v1/certs"
     private val auth_uri = "https://accounts.google.com/o/oauth2/auth"
@@ -19,7 +19,7 @@ class BlockReadEmail(token : String):Block,Filtrable {
     private val scope = "https://www.googleapis.com/auth/gmail.readonly"
     private val tokenType = "Bearer"
     private val access_token = token
-
+    private val refresh_token = refreshToken
     override fun getInformation():String {
         return  ApplicationContextProvider.context!!.resources!!.getString(string.BlockReadEmail)
     }
@@ -36,4 +36,5 @@ class BlockReadEmail(token : String):Block,Filtrable {
     fun getScope() = scope
     fun getTokenType() = tokenType
     fun getToken() = access_token
+    fun getRefreshToken() = refresh_token
 }

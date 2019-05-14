@@ -163,10 +163,6 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                 block=BlockList(json)
                 workflow.addBlock(block)
             }
-            "Email" -> {
-                block=BlockReadEmail(param)
-                workflow.addBlock(block)
-            }
             "Calendar" -> {
                 block=BlockCalendar(param)
                 workflow.addBlock(block)
@@ -180,7 +176,24 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
 
         refreshBlocks()
     }
+    fun addTwoArgBlock(blockType:String,param:String,paramTwo:String) {
+        try {
+            val block:Block
+            when(blockType) {
 
+                "Email" -> {
+                    block=BlockReadEmail(param,paramTwo)
+                    workflow.addBlock(block)
+                }
+
+            }
+
+        }catch (e: Exception) {
+            postError("Connection Error!")
+        }
+
+        refreshBlocks()
+    }
     fun setName(param : String) {
         this.workflowName = param
     }

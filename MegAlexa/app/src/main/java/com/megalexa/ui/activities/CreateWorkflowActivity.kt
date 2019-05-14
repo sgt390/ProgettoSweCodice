@@ -214,8 +214,9 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
                     "Email" -> {
                         val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
                         val token = data!!.extras!!.get(("access_token")).toString()
+                        val refreshToken = data!!.extras!!.get(("refresh_token")).toString()
                         viewModel.addFilter(cardinality)
-                        viewModel.addOneArgBlock("Email", token)
+                        viewModel.addTwoArgBlock("Email", token,refreshToken)
 
                     }
 
