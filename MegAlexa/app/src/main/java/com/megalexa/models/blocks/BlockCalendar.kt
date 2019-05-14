@@ -30,7 +30,7 @@ class BlockCalendar(token :String): Block, Filtrable {
     private val google_client_secret = ApplicationContextProvider.context!!.resources!!.getString(R.string.google_client_secret)
     //token
     private val expiresIn = 100000
-    private val scope = "https://www.googleapis.com/auth/gmail.send"
+    private val scope = "https://www.googleapis.com/auth/calendar.readonly"
     private val tokenType = "Bearer"
     private val access_token = token
 

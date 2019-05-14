@@ -41,7 +41,7 @@ class SportFragment : Fragment() {
         val calcio = view.findViewById<LinearLayout>(R.id.Calcio_News)
         val basket = view.findViewById<LinearLayout>(R.id.Basket_News)
         val nfl = view.findViewById<LinearLayout>(R.id.nfl_News)
-        val formula1 = view.findViewById<LinearLayout>(R.id.f1_News)
+        val formula = view.findViewById<LinearLayout>(R.id.f1_News)
         val motorcycle = view.findViewById<LinearLayout>(R.id.Motorcycle_News)
 
 
@@ -71,7 +71,7 @@ class SportFragment : Fragment() {
 
         }
         tennis.setOnClickListener {
-            url = "https://www.atptour.com/en/media/rss-feed/xml-feed"
+            url = "http://www.espn.com/espn/rss/tennis/news"
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
@@ -90,8 +90,8 @@ class SportFragment : Fragment() {
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
-        formula1.setOnClickListener {
-            url = "http://www.autosport.com/rss/feed/f1"
+        formula.setOnClickListener {
+            url = "http://www.espn.com/espn/rss/f1/news" // non va
             val activity = activity as CreateBlockActivity
             activity.onFragmentClick(this)
         }
