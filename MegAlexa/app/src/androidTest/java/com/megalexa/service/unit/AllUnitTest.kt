@@ -1,3 +1,16 @@
+/*
+ *
+ *  File name. AllUnitTest.kt
+ *  Version: 1.0.0
+ *  Date: 2019-04-27
+ *  Author: Ludovico Brocca
+ *  License:
+ *  History:
+ *  Author            || Date            || Description
+ *  Ludovico Brocca   || 2019-04-27     || File created
+ *  Gian Marco Bratzu || 2019-04-28     || Verifying code
+ *
+ */
 package com.megalexa.service.unit
 
 import android.support.test.runner.AndroidJUnit4

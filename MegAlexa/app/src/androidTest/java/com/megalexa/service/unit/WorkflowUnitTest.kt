@@ -1,3 +1,16 @@
+/*
+ *
+ *  File name. WorkflowUnitTest.kt
+ *  Version: 1.0.0
+ *  Date: 2019-04-28
+ *  Author: Ludovico Brocca
+ *  License:
+ *  History:
+ *  Author            || Date            || Description
+ *  Ludovico Brocca   || 2019-04-28     || File created
+ *  Gian Marco Bratzu || 2019-04-29    || Verifying code
+ *
+ */
 package com.megalexa.service.unit
 
 import android.support.test.runner.AndroidJUnit4

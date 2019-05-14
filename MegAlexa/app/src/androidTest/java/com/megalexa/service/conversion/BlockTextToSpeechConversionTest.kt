@@ -1,5 +1,22 @@
-package com.megalexa.service.conversion
+/*
+ *
+ *  File name. BlockTextToSpeechConversionTest.kt
+ *  Version: 1.0.0
+ *  Date: 2019-04-20
+ *  Author: Ludovico Brocca
+ *  License:
+ *  History:
+ *  Author            || Date            || Description
+ *  Ludovico Brocca   || 2019-04-20      || File created
+ *  Gian Marco Bratzu || 2019-04-21     || Verifying code
+ *
+ */
 
+
+
+
+package com.megalexa.service.conversion
+import com.megalexa.service.conversion.ConversionTest
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.blocks.BlockTextToSpeech

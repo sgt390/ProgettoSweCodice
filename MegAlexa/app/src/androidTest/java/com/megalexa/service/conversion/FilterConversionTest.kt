@@ -1,3 +1,16 @@
+/*
+ *
+ *  File name. FilerConversionTest.kt
+ *  Version: 1.0.0
+ *  Date: 2019-04-23
+ *  Author: Ludovico Brocca
+ *  License:
+ *  History:
+ *  Author            || Date            || Description
+ *  Ludovico Brocca   || 2019-04-23      || File created
+ *  Gian Marco Bratzu || 2019-04-24     || Verifying code
+ *
+ */
 package com.megalexa.service.conversion
 
 import android.support.test.InstrumentationRegistry
