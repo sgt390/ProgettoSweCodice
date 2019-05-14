@@ -1,3 +1,16 @@
+/*
+ *
+ *  File name:
+ *  Version:
+ *  Date:
+ *  Author:
+ *  License:
+ *  History:
+ *  Author        || Date            || Description
+ * /
+ *
+ */
+
 package com.megalexa.ui.activities
 
 
@@ -8,6 +21,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -32,6 +46,7 @@ import okhttp3.Response
 import org.jetbrains.anko.contentView
 import org.json.JSONObject
 import org.mortbay.util.ajax.JSON
+import java.io.IOException
 
 
 const val RC_SIGN_IN = 123

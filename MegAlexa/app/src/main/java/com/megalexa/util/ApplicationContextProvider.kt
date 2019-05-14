@@ -1,3 +1,16 @@
+/*
+ *
+ *  File name:
+ *  Version:
+ *  Date:
+ *  Author:
+ *  License:
+ *  History:
+ *  Author        || Date            || Description
+ * /
+ *
+ */
+
 package com.megalexa.util
 
 import android.app.Application

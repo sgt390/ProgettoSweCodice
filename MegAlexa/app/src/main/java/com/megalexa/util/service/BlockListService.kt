@@ -1,4 +1,17 @@
 /*
+ *
+ *  File name:
+ *  Version:
+ *  Date:
+ *  Author:
+ *  License:
+ *  History:
+ *  Author        || Date            || Description
+ * /
+ *
+ */
+
+/*
 * File: BlockListService.kt
 * Version: 1.0.0
 * Date: 2019-04-27

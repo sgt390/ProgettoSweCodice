@@ -1,15 +1,17 @@
 /*
-* File: BlockCrypto.kt
-* Version: 1.0.0
-* Date:
-* Author: Gian Marco Bratzu
-* License:
-*
-* History:
-* Author                || Date         || Description
-* Gian Marco Bratzu     ||    || Writing class BlockCrypto
+ *
+ *  File name:
+ *  Version:
+ *  Date:
+ *  Author:
+ *  License:
+ *  History:
+ *  Author        || Date            || Description
+ * /
+ *
+ */
 
-*/
+
 
 package com.megalexa.models.blocks
 
