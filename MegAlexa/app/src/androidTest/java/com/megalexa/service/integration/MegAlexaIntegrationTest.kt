@@ -22,7 +22,9 @@ import com.megalexa.models.workflow.Workflow
 import com.megalexa.service.RestApiOperationTest
 import com.megalexa.util.service.MegAlexaService
 import junit.framework.Assert
+import junit.framework.Assert.assertEquals
 import org.json.JSONArray
+import org.junit.Assert.assertNotEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 
