@@ -238,9 +238,10 @@ class CreateWorkflowActivity: AppCompatActivity(), View.OnClickListener {
 
                     "Calendar" -> {
                         val cardinality=data!!.extras!!.get("cardinality").toString().toShort()
+                        val refreshToken = data!!.extras!!.get(("refresh_token")).toString()
                         val token = data!!.extras!!.get(("access_token")).toString()
                         viewModel.addFilter(cardinality)
-                        viewModel.addOneArgBlock("Calendar", token)
+                        viewModel.addTwoArgBlock("Calendar", token,refreshToken)
 
                     }
                 }

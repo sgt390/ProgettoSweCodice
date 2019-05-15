@@ -177,10 +177,6 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
                 block=BlockList(json)
                 workflow.addBlock(block)
             }
-            "Calendar" -> {
-                block=BlockCalendar(param)
-                workflow.addBlock(block)
-            }
 
          }
 
@@ -197,6 +193,10 @@ class WorkflowViewModel(private val app: MegAlexa, private var workflowName:Stri
 
                 "Email" -> {
                     block=BlockReadEmail(param,paramTwo)
+                    workflow.addBlock(block)
+                }
+                "Calendar" -> {
+                    block=BlockCalendar(param,paramTwo)
                     workflow.addBlock(block)
                 }
 

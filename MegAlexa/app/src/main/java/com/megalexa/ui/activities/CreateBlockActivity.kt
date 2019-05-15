@@ -175,9 +175,11 @@ class CreateBlockActivity: AppCompatActivity(), View.OnClickListener, FragmentCl
                 "Calendar" -> {
                     val intent = Intent(this, CreateWorkflowActivity::class.java)
                     val token = data.extras!!.get("token")
+                    val refreshToken = data.extras!!.get("refreshToken")
                     intent.putExtra("cardinality",data.extras?.get("cardinality").toString())
                     intent.putExtra("block_type", "Calendar")
                     intent.putExtra("access_token",token?.toString())
+                    intent.putExtra("refresh_token",refreshToken.toString())
                     setResult(Activity.RESULT_OK,intent)
                     finish()
                 }
