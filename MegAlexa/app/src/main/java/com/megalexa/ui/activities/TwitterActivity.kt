@@ -26,10 +26,8 @@ import android.transition.TransitionManager
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.PopupWindow
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import com.megalexa.R
 import com.megalexa.ui.fragments.TwitterAnotherUserFragment
 import com.megalexa.ui.fragments.TwitterFragment
@@ -57,8 +55,9 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         user.setOnClickListener {
             val fragment = TwitterReadTimeLineUser()
             val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
-            if(!isUserAuthenticated())  showLoginPopup()
+            transaction.replace(R.id.container_fragment, fragment).addToBackStack("").hide(fragment).commit()
+            if(!isUserAuthenticated())  showLoginPopup(fragment)
+            else transaction.show(fragment)
         }
         anotherUser.setOnClickListener {
             val fragment = TwitterAnotherUserFragment()
@@ -73,8 +72,9 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         writeTweet.setOnClickListener {
             val fragment = WriteTweetFragment()
             val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.container_fragment, fragment).addToBackStack("").commit()
-            if(!isUserAuthenticated())  showLoginPopup()
+            transaction.replace(R.id.container_fragment, fragment).addToBackStack("").hide(fragment).commit()
+            if(!isUserAuthenticated())  showLoginPopup(fragment)
+            else transaction.show(fragment)
         }
         cancelButton.setOnClickListener {
             setResult(Activity.RESULT_CANCELED)
@@ -117,7 +117,7 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
         }
     }
 
-    private fun showLoginPopup() {
+    private fun showLoginPopup(fragment: Fragment) {
         val inflater: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.twitter_login_popup, null)
         val popupWindow = PopupWindow(
@@ -135,6 +135,7 @@ class TwitterActivity : AppCompatActivity(), FragmentClickListener {
             override fun success(result: Result<TwitterSession>) {
                 Log.d("Twitter", "Login eseguito")
                 popupWindow.dismiss()
+                supportFragmentManager.beginTransaction().show(fragment).commit()
             }
 
             override fun failure(e: TwitterException) {
