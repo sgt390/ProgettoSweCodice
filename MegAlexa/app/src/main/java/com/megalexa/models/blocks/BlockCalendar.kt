@@ -39,9 +39,6 @@ class BlockCalendar(token :String,refreshToken:String): Block, Filtrable {
         return  ApplicationContextProvider.context!!.resources!!.getString(R.string.BlockCalendar)
     }
 
-    fun testConnection(): Boolean{
-        TODO("not implemented")
-    }
 
     fun getAuthProvider() = auth_provider_url
     fun getAuthUri() = auth_uri

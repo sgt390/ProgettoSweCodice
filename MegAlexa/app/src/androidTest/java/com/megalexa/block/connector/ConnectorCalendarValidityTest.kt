@@ -5,6 +5,7 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.connectors.ConnectorCalendar
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -33,8 +34,10 @@ class ConnectorCalendarValidityTest : ConnectorValidityTest {
 
     @Test
     override fun nonValidConnector() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val someaccount = "someAccount@gmail.com"
+        val secondArg = ""
+        val account = ConnectorCalendar(someaccount, secondArg)
+        assertNotEquals(account.valid(), "  something")
     }
-
 
 }

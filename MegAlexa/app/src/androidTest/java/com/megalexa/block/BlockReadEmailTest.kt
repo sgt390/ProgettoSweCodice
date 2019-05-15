@@ -14,6 +14,8 @@
 package com.megalexa.block
 
 import android.support.test.runner.AndroidJUnit4
+import com.megalexa.models.blocks.BlockReadEmail
+import org.junit.Assert.assertNotEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -22,11 +24,13 @@ class BlockReadEmailTest:BlockTest {
 
     @Test
     override fun validBlock() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val block= BlockReadEmail("sdgsjdgfjhds","sdfksjdhfkhsd")
+        assertNotEquals(block.getClientId(),"something")
     }
 
     @Test
     override fun invalidBLock() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val block= BlockReadEmail("sdgsjdgfjhds","sdfksjdhfkhsd")
+        assertNotEquals(block.getClientId(),"something")
     }
 }

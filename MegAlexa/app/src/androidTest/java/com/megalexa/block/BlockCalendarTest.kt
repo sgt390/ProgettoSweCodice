@@ -15,6 +15,8 @@
 package com.megalexa.block
 
 import android.support.test.runner.AndroidJUnit4
+import com.megalexa.models.blocks.BlockCalendar
+import org.junit.Assert.assertNotEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -23,11 +25,13 @@ class BlockCalendarTest:BlockTest {
 
     @Test
     override fun validBlock() {
-        TODO()
+        val block= BlockCalendar("askjdlaksjdla","zdnvdkn")
+        assertNotEquals(block.getClientId(),"something")
     }
 
     @Test
     override fun invalidBLock() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val block= BlockCalendar("askjdlaksjdla","zdnvdkn")
+        assertNotEquals(block.getClientId(),"something")
     }
 }
