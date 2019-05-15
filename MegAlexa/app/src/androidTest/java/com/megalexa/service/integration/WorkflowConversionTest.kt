@@ -19,8 +19,8 @@ import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.models.blocks.Filter
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.service.conversion.ConversionTest
-import com.megalexa.util.service.WorkflowService.convertFromJSON
 import com.megalexa.util.service.WorkflowService
+import com.megalexa.util.service.WorkflowService.convertFromJSON
 import com.megalexa.util.service.WorkflowService.convertToJSON
 import junit.framework.Assert.assertEquals
 import org.junit.Assert

@@ -16,7 +16,6 @@
 
 
 package com.megalexa.service.conversion
-import com.megalexa.service.conversion.ConversionTest
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.blocks.BlockTextToSpeech

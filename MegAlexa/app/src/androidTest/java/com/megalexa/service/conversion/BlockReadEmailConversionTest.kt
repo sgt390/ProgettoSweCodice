@@ -18,8 +18,6 @@ import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.blocks.BlockReadEmail
 import com.megalexa.util.service.BlockReadEmailService
 import junit.framework.Assert.assertEquals
-import junit.framework.Assert.assertTrue
-import org.json.JSONObject
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith

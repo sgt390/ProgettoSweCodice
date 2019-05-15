@@ -26,8 +26,10 @@ import android.transition.TransitionManager
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.PopupWindow
+import android.widget.Toast
 import com.megalexa.R
 import com.megalexa.ui.fragments.TwitterAnotherUserFragment
 import com.megalexa.ui.fragments.TwitterFragment

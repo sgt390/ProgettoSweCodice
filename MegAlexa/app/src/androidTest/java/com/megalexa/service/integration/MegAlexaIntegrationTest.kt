@@ -15,15 +15,9 @@ package com.megalexa.service.integration
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.megalexa.models.MegAlexa
-import com.megalexa.models.User
-import com.megalexa.models.blocks.BlockTextToSpeech
-import com.megalexa.models.workflow.Workflow
 import com.megalexa.service.RestApiOperationTest
 import com.megalexa.util.service.MegAlexaService
-import junit.framework.Assert
 import junit.framework.Assert.assertEquals
-import org.json.JSONArray
 import org.junit.Assert.assertNotEquals
 import org.junit.Test
 import org.junit.runner.RunWith

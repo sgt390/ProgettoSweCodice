@@ -15,7 +15,6 @@ package com.megalexa.service.conversion
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import android.util.Log
 import com.megalexa.models.blocks.BlockCalendar
 import com.megalexa.util.service.BlockCalendarService
 import junit.framework.Assert.assertEquals

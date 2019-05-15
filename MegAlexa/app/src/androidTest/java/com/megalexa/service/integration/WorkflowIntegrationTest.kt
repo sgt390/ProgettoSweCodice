@@ -15,21 +15,13 @@ package com.megalexa.service.integration
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.amazon.identity.auth.device.interactive.WorkflowFragment
 import com.megalexa.models.MegAlexa
 import com.megalexa.models.User
-import com.megalexa.models.blocks.BlockList
 import com.megalexa.models.blocks.BlockTextToSpeech
 import com.megalexa.models.workflow.Workflow
 import com.megalexa.service.RestApiOperationTest
-import com.megalexa.util.service.MegAlexaService
 import com.megalexa.util.service.WorkflowService
-import junit.framework.Assert
 import junit.framework.Assert.assertEquals
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.doAsyncResult
-import org.json.JSONArray
-import org.json.JSONObject
 import org.junit.Assert.assertNotEquals
 import org.junit.Test
 import org.junit.runner.RunWith

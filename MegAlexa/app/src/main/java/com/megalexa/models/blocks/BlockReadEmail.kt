@@ -14,7 +14,6 @@
 
 package com.megalexa.models.blocks
 
-import com.megalexa.R
 import com.megalexa.R.string
 import com.megalexa.util.ApplicationContextProvider
 
