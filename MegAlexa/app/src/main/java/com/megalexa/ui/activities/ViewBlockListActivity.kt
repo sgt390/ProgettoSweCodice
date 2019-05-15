@@ -30,7 +30,7 @@ import com.megalexa.viewModel.ViewModelBlockList
 import kotlinx.android.synthetic.main.list_activity_layout.*
 import kotlin.concurrent.thread
 
-class ViewBlockListActivity: AppCompatActivity(), View.OnClickListener, View.OnLongClickListener  {
+class ViewBlockListActivity: AppCompatActivity(), View.OnClickListener {
 
     companion object {
         private lateinit var viewModel: ViewModelBlockList
@@ -87,10 +87,6 @@ class ViewBlockListActivity: AppCompatActivity(), View.OnClickListener, View.OnL
                 }
             }
         }
-    }
-
-    override fun onLongClick(v: View?): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 

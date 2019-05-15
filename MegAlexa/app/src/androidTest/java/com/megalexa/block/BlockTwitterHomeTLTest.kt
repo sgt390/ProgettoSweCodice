@@ -16,6 +16,7 @@ package com.megalexa.block
 import android.support.test.runner.AndroidJUnit4
 import com.megalexa.models.blocks.BlockTwitterHomeTL
 import org.junit.Assert
+import org.junit.Assert.assertNotEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -25,13 +26,13 @@ class BlockTwitterHomeTLTest:BlockTest {
     @Test
     override fun validBlock() {
         val block = BlockTwitterHomeTL()
-        Assert.assertEquals(block.getInformation(), "Twitter home block created")
+        assertNotEquals(block.getInformation(), "Twitter block created")
     }
 
     @Test
     override fun invalidBLock() {
         val block = BlockTwitterHomeTL()
-        Assert.assertNotEquals(block.getInformation(), "Twitter home block not Created")
+        assertNotEquals(block.getInformation(), "Twitter  block not Created")
     }
 
     @Test
