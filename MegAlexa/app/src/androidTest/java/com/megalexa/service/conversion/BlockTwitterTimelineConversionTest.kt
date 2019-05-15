@@ -20,6 +20,7 @@ import com.megalexa.models.blocks.BlockTwitterHomeTL
 import com.megalexa.util.service.BlockTwitterHomeTLService
 import junit.framework.Assert.assertEquals
 import org.junit.Assert
+import org.junit.Assert.assertNotEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -44,7 +45,7 @@ class BlockTwitterTimelineConversionTest:ConversionTest {
          try {
              val block= BlockTwitterHomeTL()
              val json= BlockTwitterHomeTLService.convertToJSON(block)
-             assertEquals(json.toString()," ")
+             assertNotEquals(json.toString()," ")
          }catch(e:NullPointerException) {
              assertEquals(true,true)
          }
