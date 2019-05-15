@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "974570768081",
+    "firebase_url": "https://megalexa-1556132707047.firebaseio.com",
+    "project_id": "megalexa-1556132707047",
+    "storage_bucket": "megalexa-1556132707047.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974570768081:android:60c5c2faa80f76c6",
+        "android_client_info": {
+          "package_name": "com.megalexa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "974570768081-rbe9i8nt4m0ieh0afebs551mta19fe69.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.megalexa",
+            "certificate_hash": "ac03ebfb1335073902e891c758984406d90cc26f"
+          }
+        },
+        {
+          "client_id": "974570768081-dj6r57189hnove2avo5pp0kpfl8864bk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTjEXMDD2ntDRubKNzlBpxqnmkk6JiyzQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974570768081-dj6r57189hnove2avo5pp0kpfl8864bk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

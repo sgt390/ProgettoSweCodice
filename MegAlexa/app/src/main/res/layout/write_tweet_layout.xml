@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/tts_fragment_container"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:padding="16dp"
+              android:orientation="vertical"
+              tools:openDrawer="start"
+              android:background="@color/colorSecondaryAccent"
+              android:gravity="start"
+
+>
+
+    <TextView
+            android:id="@+id/insert_tweet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:text="@string/inserttexttweet"/>
+
+    <Button
+            android:id="@+id/twitter_confirm_button"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/done"
+            android:layout_marginTop="8dp"/>
+
+</LinearLayout>

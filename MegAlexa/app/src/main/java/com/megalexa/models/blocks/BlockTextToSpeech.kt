@@ -1,0 +1,46 @@
+/*
+ * File: BlockTextToSpeech.kt
+ * Version: 1.0.0
+ * Date: 2019-02-17
+ * Author:  Andrea Deidda
+ *          Matteo Depascale
+ * License:
+ *
+ * History:
+ * Author           || Date         || Description
+ * Andrea Deidda    || 2019-02-07   || creating file and header
+ * Andrea Deidda    || 2019-02-20   || implementing functions
+ * Matteo Depascale || 2019-02-24   || verified BlockTextToSpeech
+ */
+package com.megalexa.models.blocks
+
+import com.megalexa.R
+import com.megalexa.util.ApplicationContextProvider
+import com.megalexa.util.InvalidBlockException
+
+class BlockTextToSpeech(private var textBox: String):Block {
+    init{
+        //Control variable textBox's character number
+        require(textBox.length <= 256){
+            throw InvalidBlockException("Text too long, please stay within 256 character")
+        }
+    }
+    /* getInformation()
+    *  @return String
+    */
+    override fun getInformation(): String {
+        return  ApplicationContextProvider.context!!.resources!!.getString(R.string.BlockTextToSpeech)
+    }
+
+    /* Return the text the user inserted
+    *  @return String text
+    */
+    fun textBox()=textBox
+
+
+    //Set method
+    fun setText(text: String){
+        textBox = text
+    }
+
+}

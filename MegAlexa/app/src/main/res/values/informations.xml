@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="BlockBorsa">Stock-Feed block created for</string>
+    <string name="BlockCalendar">Block calendar added</string>
+    <string name="BlockCrypto">Crypto News</string>
+    <string name="BlockFeedRss">Feed RSS</string>
+    <string name="BlockFilter">Filters a block for</string>
+    <string name="Items">items</string>
+    <string name="BlockList">List</string>
+    <string name="BlockNews">News</string>
+    <string name="BlockPin">PIN</string>
+    <string name="BlockReadEmail">Block for reading your emails</string>
+    <string name="BlockSport">Sport Feed</string>
+    <string name="BlockTextToSpeech">Contains personalized text</string>
+    <string name="BlockTwitter">Twitter-user block created</string>
+    <string name="BlockTwitterHashtag">Twitter-hashtag block created</string>
+    <string name="BlockTwitterHomeTimeL">Twitter-home block created</string>
+    <string name="BlockTwitterWrite">Twitter-write block created</string>
+    <string name="BlockWeather">Weather</string>
+</resources>

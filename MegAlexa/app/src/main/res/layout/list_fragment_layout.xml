@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/colorSecondaryAccent"
+              android:gravity="start"
+              android:layout_gravity="center"
+              android:padding="16dp">
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/listTitle"
+              tools:text="Confirm Block List"
+              android:layout_gravity="center"
+              android:textSize="18sp"
+              android:layout_marginBottom="10dp"
+              android:textAlignment="center"
+              android:textStyle="bold"/>
+
+    <Button
+            android:text="@string/confirmBlockList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/confirmItemBotton"
+            tools:text="Confirm"
+            android:layout_gravity="center"/>
+
+</LinearLayout>
