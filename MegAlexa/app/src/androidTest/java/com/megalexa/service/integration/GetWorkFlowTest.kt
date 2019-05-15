@@ -17,9 +17,11 @@ package com.megalexa.service.integration
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.megalexa.util.service.WorkflowService
+import junit.framework.Assert.assertEquals
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert
+import org.junit.Assert.assertNotEquals
 
 import org.junit.Test
 import org.junit.runner.RunWith

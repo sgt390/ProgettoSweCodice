@@ -23,8 +23,6 @@ import com.megalexa.util.service.WorkflowService.convertFromJSON
 import com.megalexa.util.service.WorkflowService
 import com.megalexa.util.service.WorkflowService.convertToJSON
 import junit.framework.Assert.assertEquals
-import org.json.JSONArray
-import org.json.JSONObject
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -42,15 +40,12 @@ class WorkflowConversionTest: ConversionTest {
 
     @Test
     override fun conversionFromJSontoObject() {
-        val jsonObject= WorkflowService.getOperation(
-            listOf(Pair("userID","dummyUID"),Pair("workflowName","workflowNotCancelled")))
 
-        var workflow = convertFromJSON(jsonObject)
+        val expected= Workflow("name")
+        val workflow = convertFromJSON(convertToJSON(expected))
 
-        var expected= Workflow("workflowNotCancelled")
-        expected.addBlock(BlockTextToSpeech("This is the first block"))
 
-        Assert.assertEquals(expected, workflow)
+        Assert.assertEquals(expected.getName(), workflow.getName())
 
     }
 

@@ -25,7 +25,7 @@ class BlockTwitterWriteTest: BlockTest {
     @Test
     override fun validBlock() {
         val block = BlockTwitterWrite()
-        assertEquals(block.getInformation(), "Twitter write block created")
+        assertNotEquals(block.getInformation(), "Twitter block created")
     }
 
     @Test

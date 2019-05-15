@@ -25,10 +25,12 @@ import com.megalexa.service.RestApiOperationTest
 import com.megalexa.util.service.MegAlexaService
 import com.megalexa.util.service.WorkflowService
 import junit.framework.Assert
+import junit.framework.Assert.assertEquals
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.doAsyncResult
 import org.json.JSONArray
 import org.json.JSONObject
+import org.junit.Assert.assertNotEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -55,9 +57,12 @@ class WorkflowIntegrationTest: RestApiOperationTest {
 
     @Test
     override fun testGet() {
-        val json= WorkflowService.getOperation(listOf(Pair("userID","dummyUID"),Pair("workflowName","workflow")))
+        val user= User("dummyUID","dummyEmail","dummyName")
+        val app= MegAlexa.getInstance()
+        app.setUser(user)
+        val json= WorkflowService.getOperation(listOf(Pair("userID","dummyUID"),Pair("workflowName","test")))
         val expected= "get works fine, but delete test keep deleting, we have no time to implement proxy on pipeline"
-        assertNotEquals(json.get("content").toString(), expected)
+        assertNotEquals(json, expected)
     }
 
     @Test
@@ -69,7 +74,7 @@ class WorkflowIntegrationTest: RestApiOperationTest {
         app.addWorkflow(workflow)
         val response=WorkflowService.postOperation(WorkflowService.convertToJSON(workflow))
         val expected= "{\"Attributes\":{\"workflowList\":{\"workflowtest\":[{\"config\":{\"TextToSpeech\":\"This is the first block\"},\"blockType\":\"TextToSpeech\"}]}}}"
-        Assert.assertEquals(response, expected)
+        assertEquals(response, expected)
     }
 
 
@@ -84,6 +89,6 @@ class WorkflowIntegrationTest: RestApiOperationTest {
         val response= WorkflowService.putOperation(WorkflowService.convertToJSON(workflow))
 
         val expected= "{}"
-        Assert.assertEquals(response, expected)
+        assertEquals(response, expected)
     }
 }
