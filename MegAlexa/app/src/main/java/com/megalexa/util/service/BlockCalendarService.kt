@@ -22,7 +22,8 @@ object BlockCalendarService: BlockService() {
 
     override fun convertFromJSON(jsonObject: JSONObject): BlockCalendar {
         val access_token : String = jsonObject.getJSONObject("config").getJSONObject("token").get("access_token").toString()
-        return BlockCalendar(access_token)
+        val refresh_token : String = jsonObject.getJSONObject("config").getJSONObject("token").get("refresh_token").toString()
+        return BlockCalendar(access_token,refresh_token)
     }
 
     override fun <BlockCalendar> convertToJSON(t: BlockCalendar): JSONObject {
@@ -60,6 +61,7 @@ object BlockCalendarService: BlockService() {
         val token = JSONObject()
         token.put("access_token", blockCalendar.getToken())
         token.put("expires_in", blockCalendar.getDate())
+        token.put("refresh_token", blockCalendar.getRefreshToken())
         token.put("scope", blockCalendar.getScope())
         token.put("token_type",blockCalendar.getTokenType())
         return token

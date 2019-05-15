@@ -25,7 +25,9 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class BlockCalendarConversionTest:ConversionTest {
-val token : String = "ya29adAGI_KoNUp0frFpNsw"
+    val token : String = "ya29adAGI_KoNUp0frFpNsw"
+    val refresh : String = "1/ewqewq"
+
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -35,7 +37,7 @@ val token : String = "ya29adAGI_KoNUp0frFpNsw"
 
     @Test
     override fun conversionFromJSontoObject() {
-        val expected = BlockCalendar(token)
+        val expected = BlockCalendar(token,refresh)
         val json = BlockCalendarService.convertToJSON(expected)
         val block = BlockCalendarService.convertFromJSON(json)
         Assert.assertEquals(expected.getToken(),block.getToken() )

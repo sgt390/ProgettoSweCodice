@@ -108,6 +108,7 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
             intent.putExtra("cardinality",sender.getCardinality())
             intent.putExtra("block_type", "Calendar")
             intent.putExtra("token",accessToken)
+            intent.putExtra("refreshToken",refreshToken)
             setResult(Activity.RESULT_OK,intent)
             finish()
         }
@@ -219,9 +220,6 @@ class GoogleActivity : AppCompatActivity() , FragmentClickListener {
             .addOnCompleteListener(this, OnCompleteListener<Void> {
                 // ...
             })
-    }
-    fun getToken() : String{
-        return accessToken
     }
 
 }
